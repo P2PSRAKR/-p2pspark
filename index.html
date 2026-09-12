@@ -1,0 +1,1787 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P2PSPARK</title>
+
+<style>
+:root{
+  --bg:#fff;
+  --panel:#fff;
+  --line:#e5e5e5;
+  --text:#111;
+  --muted:#6f6f6f;
+  --black:#080808;
+  --soft:#f3f3f3;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+}
+
+button,input,select{
+  font:inherit;
+}
+
+.screen{
+  min-height:100vh;
+}
+
+.login{
+  display:grid;
+  place-items:center;
+  padding:24px;
+  background:#fff;
+}
+
+.loginbox{
+  width:min(430px,100%);
+  background:#fff;
+  border:1px solid #ddd;
+  border-radius:24px;
+  padding:30px;
+  box-shadow:0 18px 60px #00000012;
+}
+
+.brand{
+  text-align:center;
+  font-size:29px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.brand span{
+  color:#000;
+}
+
+.tag{
+  text-align:center;
+  color:#777;
+  font-size:12px;
+  letter-spacing:2px;
+  margin:6px 0 30px;
+}
+
+.loginbox h2{
+  text-align:center;
+  margin:0 0 8px;
+}
+
+.hint{
+  text-align:center;
+  color:#777;
+  font-size:14px;
+  margin-bottom:24px;
+}
+
+.field{
+  margin:13px 0;
+}
+
+.field label{
+  display:block;
+  color:#555;
+  font-size:13px;
+  margin-bottom:7px;
+}
+
+.field input{
+  width:100%;
+  background:#fff;
+  color:#111;
+  border:1px solid #d7d7d7;
+  border-radius:12px;
+  padding:13px;
+  outline:none;
+}
+
+.field input:focus{
+  border-color:#111;
+}
+
+.primary{
+  width:100%;
+  border:0;
+  background:#090909;
+  color:#fff;
+  border-radius:12px;
+  padding:14px;
+  font-weight:800;
+  cursor:pointer;
+  margin-top:8px;
+}
+
+.login-note{
+  text-align:center;
+  color:#888;
+  font-size:12px;
+  margin-top:18px;
+}
+
+.demo{
+  margin-top:14px;
+  padding:10px;
+  border-radius:10px;
+  background:#f5f5f5;
+  color:#666;
+  font-size:12px;
+  line-height:1.5;
+}
+
+.app{
+  display:none;
+  min-height:100vh;
+}
+
+.app.show{
+  display:flex;
+}
+
+.sidebar{
+  width:260px;
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  background:#fff;
+  border-right:1px solid var(--line);
+  padding:23px 14px;
+  z-index:5;
+}
+
+.brand.left{
+  text-align:left;
+  padding:5px 12px 25px;
+  font-size:23px;
+}
+
+.nav{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.nav button{
+  border:1px solid transparent;
+  background:#fff;
+  color:#222;
+  text-align:left;
+  padding:13px 14px;
+  border-radius:13px;
+  cursor:pointer;
+}
+
+.nav button.active,
+.nav button:hover{
+  background:#f1f1f1;
+  border-color:#cfcfcf;
+  color:#000;
+  font-weight:700;
+}
+
+.logout{
+  position:absolute;
+  bottom:22px;
+  left:14px;
+  right:14px;
+  border:0;
+  background:#fff;
+  color:#555;
+  text-align:left;
+  padding:12px;
+  cursor:pointer;
+}
+
+.main{
+  margin-left:260px;
+  width:calc(100% - 260px);
+}
+
+.top{
+  height:70px;
+  background:#fff;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 28px;
+}
+
+.top strong{
+  font-size:17px;
+}
+
+.user{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#555;
+}
+
+.avatar{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#111;
+  color:#fff;
+  font-weight:800;
+}
+
+.content{
+  padding:28px;
+  max-width:1250px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.title{
+  font-size:29px;
+  font-weight:850;
+  margin-bottom:6px;
+}
+
+.sub{
+  color:#777;
+  margin-bottom:21px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+
+.card{
+  background:#fff;
+  border:1px solid #dedede;
+  border-radius:17px;
+  padding:19px;
+}
+
+.wide{
+  grid-column:span 2;
+}
+
+.label{
+  font-size:13px;
+  color:#777;
+}
+
+.value{
+  font-size:28px;
+  font-weight:850;
+  margin-top:8px;
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:18px;
+}
+
+.btn{
+  border:1px solid #d4d4d4;
+  background:#fff;
+  color:#111;
+  border-radius:11px;
+  padding:11px 15px;
+  font-weight:750;
+  cursor:pointer;
+}
+
+.btn:hover{
+  background:#f5f5f5;
+}
+
+.btn.blue{
+  background:#090909;
+  border-color:#090909;
+  color:#fff;
+}
+
+.section{
+  margin-top:20px;
+  border:1px solid #dedede;
+  background:#fff;
+  border-radius:17px;
+  overflow:auto;
+}
+
+.section h3{
+  margin:0;
+  padding:17px 19px;
+  border-bottom:1px solid var(--line);
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:700px;
+}
+
+th,td{
+  text-align:left;
+  padding:14px 18px;
+  border-bottom:1px solid #eee;
+  font-size:14px;
+}
+
+th{
+  color:#777;
+  font-weight:600;
+}
+
+.pill{
+  padding:5px 9px;
+  border-radius:99px;
+  font-size:12px;
+  background:#f1f1f1;
+}
+
+.ok{
+  background:#edf8f1;
+  color:#167c45;
+}
+
+.warn{
+  background:#fff7e5;
+  color:#9a6500;
+}
+
+.danger{
+  background:#fff0ef;
+  color:#b3261e;
+}
+
+.form{
+  display:grid;
+  gap:12px;
+  padding:20px;
+  max-width:560px;
+}
+
+.form label{
+  font-size:13px;
+  color:#666;
+}
+
+.form input,
+.form select{
+  background:#fff;
+  color:#111;
+  border:1px solid #d7d7d7;
+  border-radius:10px;
+  padding:12px;
+}
+
+.mobile{
+  display:none;
+  border:1px solid #ddd;
+  background:#fff;
+  color:#111;
+  border-radius:9px;
+  padding:8px 11px;
+}
+
+.admin-only{
+  display:none;
+}
+
+.admin .admin-only{
+  display:block;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#0008;
+  z-index:30;
+  place-items:center;
+}
+
+.modal.show{
+  display:grid;
+}
+
+.modalbox{
+  width:min(520px,92%);
+  background:#fff;
+  border:1px solid #ddd;
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 20px 70px #0003;
+}
+
+.modalbox h2{
+  margin:0 0 5px;
+}
+
+.close{
+  float:right;
+  background:none;
+  border:0;
+  color:#111;
+  font-size:25px;
+  cursor:pointer;
+}
+
+.mobile-menu{
+  display:none;
+}
+
+@media(max-width:800px){
+
+  .sidebar{
+    display:none;
+  }
+
+  .main{
+    margin-left:0;
+    width:100%;
+  }
+
+  .mobile{
+    display:block;
+  }
+
+  .top{
+    padding:0 15px;
+  }
+
+  .content{
+    padding:20px 15px;
+  }
+
+  .cards{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .wide{
+    grid-column:span 2;
+  }
+
+  .mobile-menu{
+    display:block;
+  }
+
+  .mobile-menu .nav button{
+    background:#fff;
+  }
+}
+
+@media(max-width:500px){
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .wide{
+    grid-column:span 1;
+  }
+
+  .title{
+    font-size:25px;
+  }
+
+  .loginbox{
+    padding:24px;
+  }
+
+  .top strong{
+    font-size:16px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<section class="screen login" id="login">
+
+<div class="loginbox">
+
+<div class="brand">
+P2P<span>SPARK</span>
+</div>
+
+<div class="tag">
+PEOPLE • DEALS • OPPORTUNITIES
+</div>
+
+<h2>Вход в аккаунт</h2>
+
+<div class="hint">
+Введите данные, выданные администратором
+</div>
+
+<div class="field">
+<label>Почта (Gmail)</label>
+<input id="email" type="email" placeholder="user@gmail.com">
+</div>
+
+<div class="field">
+<label>Пароль</label>
+<input id="password" type="password" placeholder="Введите пароль">
+</div>
+
+<button class="primary" onclick="login()">
+Войти →
+</button>
+
+<div class="login-note">
+Доступ к аккаунту создаёт администратор
+</div>
+
+<div class="demo">
+<b>Демо:</b> пользователь — user@gmail.com / 123456<br>
+<b>Админ:</b> admin@p2pspark.com / admin123
+</div>
+
+</div>
+</section><section class="screen app" id="app">
+
+  <aside class="sidebar">
+
+    <div class="brand left">
+      P2PSPARK
+    </div>
+
+    <nav class="nav">
+      <button class="active" onclick="showPage('dashboard',this)">📊 Дашборд</button>
+      <button onclick="showPage('finance',this)">💰 Финансы</button>
+      <button onclick="showPage('deals',this)">🔄 Сделки</button>
+      <button onclick="showPage('requests',this)">📋 Заявки</button>
+      <button onclick="showPage('disputes',this)">⚠️ Споры</button>
+      <button onclick="showPage('details',this)">💳 Реквизиты</button>
+      <button onclick="showPage('devices',this)">📱 Устройства</button>
+      <button onclick="showPage('reports',this)">📑 Отчёты</button>
+      <button onclick="showPage('profile',this)">👤 Профиль</button>
+      <button class="admin-only" onclick="showPage('admin',this)">⚙️ Администрирование</button>
+    </nav>
+
+    <button class="logout" onclick="logout()">⇥ Выйти</button>
+
+  </aside>
+
+  <main class="main">
+
+    <header class="top">
+
+      <button class="mobile" onclick="toggleMobileMenu()">
+        ☰
+      </button>
+
+      <strong id="topTitle">Дашборд</strong>
+
+      <div class="user">
+        <span id="userEmail">user@gmail.com</span>
+        <div class="avatar" id="avatar">U</div>
+      </div>
+
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+
+      <nav class="nav">
+        <button onclick="showPage('dashboard',this);toggleMobileMenu()">📊 Дашборд</button>
+        <button onclick="showPage('finance',this);toggleMobileMenu()">💰 Финансы</button>
+        <button onclick="showPage('deals',this);toggleMobileMenu()">🔄 Сделки</button>
+        <button onclick="showPage('requests',this);toggleMobileMenu()">📋 Заявки</button>
+        <button onclick="showPage('disputes',this);toggleMobileMenu()">⚠️ Споры</button>
+        <button onclick="showPage('details',this);toggleMobileMenu()">💳 Реквизиты</button>
+        <button onclick="showPage('devices',this);toggleMobileMenu()">📱 Устройства</button>
+        <button onclick="showPage('reports',this);toggleMobileMenu()">📑 Отчёты</button>
+        <button onclick="showPage('profile',this);toggleMobileMenu()">👤 Профиль</button>
+        <button class="admin-only" onclick="showPage('admin',this);toggleMobileMenu()">⚙️ Администрирование</button>
+      </nav>
+
+    </div>
+
+    <div class="content">
+
+      <!-- ДАШБОРД -->
+
+      <section class="page active" id="page-dashboard">
+
+        <div class="title">Дашборд</div>
+        <div class="sub">Обзор вашего аккаунта</div>
+
+        <div class="cards">
+
+          <div class="card">
+            <div class="label">Баланс</div>
+            <div class="value" id="dashboardBalance">0 USDT</div>
+          </div>
+
+          <div class="card">
+            <div class="label">Прибыль</div>
+            <div class="value">0 USDT</div>
+          </div>
+
+          <div class="card">
+            <div class="label">Активные сделки</div>
+            <div class="value">0</div>
+          </div>
+
+          <div class="card">
+            <div class="label">Заявки</div>
+            <div class="value" id="dashboardRequests">0</div>
+          </div>
+
+          <div class="card wide">
+            <div class="label">Открытые споры</div>
+            <div class="value">0</div>
+          </div>
+
+        </div>
+
+        <div class="actions">
+          <button class="btn blue" onclick="showPageById('requests')">
+            + Пополнить
+          </button>
+
+          <button class="btn" onclick="showPageById('deals')">
+            🔄 Сделки
+          </button>
+        </div>
+
+      </section>
+
+
+      <!-- ФИНАНСЫ -->
+
+      <section class="page" id="page-finance">
+
+        <div class="title">Финансы</div>
+        <div class="sub">Ваш финансовый баланс</div>
+
+        <div class="cards">
+
+          <div class="card wide">
+            <div class="label">Баланс депозита</div>
+            <div class="value" id="financeBalance">0 USDT</div>
+          </div>
+
+          <div class="card">
+            <div class="label">Прибыль</div>
+            <div class="value">0 USDT</div>
+          </div>
+
+        </div>
+
+        <div class="section">
+
+          <h3>История операций</h3>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Дата</th>
+                <th>Операция</th>
+                <th>Сумма</th>
+                <th>Статус</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>—</td>
+                <td>Операций пока нет</td>
+                <td>—</td>
+                <td><span class="pill">Нет данных</span></td>
+              </tr>
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- СДЕЛКИ -->
+
+      <section class="page" id="page-deals">
+
+        <div class="title">Сделки</div>
+        <div class="sub">Управление сделками</div>
+
+        <div class="section">
+
+          <h3>Мои сделки</h3>
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Дата</th>
+                <th>Сумма</th>
+                <th>Статус</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td>—</td>
+                <td>—</td>
+                <td>0 USDT</td>
+                <td>
+                  <span class="pill">Нет сделок</span>
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- ЗАЯВКИ -->
+
+      <section class="page" id="page-requests">
+
+        <div class="title">Заявки</div>
+        <div class="sub">Заявки на пополнение</div>
+
+        <div class="section">
+
+          <h3>Создать заявку</h3>
+
+          <div class="form">
+
+            <label>Сумма пополнения, USDT</label>
+
+            <input
+              id="topupAmount"
+              type="number"
+              min="1"
+              placeholder="Введите сумму"
+            >
+
+            <button class="btn blue" onclick="createRequest()">
+              Создать заявку
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="section">
+
+          <h3>Мои заявки</h3>
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Сумма</th>
+                <th>Статус</th>
+                <th>Действие</th>
+              </tr>
+            </thead>
+
+            <tbody id="requestsTable">
+
+              <tr>
+                <td>—</td>
+                <td>Нет заявок</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- СПОРЫ -->
+
+      <section class="page" id="page-disputes">
+
+        <div class="title">Споры</div>
+        <div class="sub">Открытые и закрытые споры</div>
+
+        <div class="section">
+
+          <h3>Мои споры</h3>
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Сделка</th>
+                <th>Причина</th>
+                <th>Статус</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td>—</td>
+                <td>—</td>
+                <td>Споров нет</td>
+                <td>
+                  <span class="pill ok">Нет открытых</span>
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- РЕКВИЗИТЫ -->
+
+      <section class="page" id="page-details">
+
+        <div class="title">Реквизиты</div>
+        <div class="sub">Ваши сохранённые реквизиты</div>
+
+        <div class="section">
+
+          <h3>Платёжные реквизиты</h3>
+
+          <div class="form">
+
+            <label>Название реквизита</label>
+            <input id="detailName" placeholder="Например: Основная карта">
+
+            <label>Реквизит</label>
+            <input id="detailValue" placeholder="Введите реквизит">
+
+            <button class="btn blue" onclick="saveDetails()">
+              Сохранить
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- УСТРОЙСТВА -->
+
+      <section class="page" id="page-devices">
+
+        <div class="title">Устройства</div>
+        <div class="sub">Устройства, с которых выполнен вход</div>
+
+        <div class="section">
+
+          <h3>Активные устройства</h3>
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Устройство</th>
+                <th>Последняя активность</th>
+                <th>Статус</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td>Текущее устройство</td>
+                <td>Сейчас</td>
+                <td>
+                  <span class="pill ok">Активно</span>
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- ОТЧЁТЫ -->
+
+      <section class="page" id="page-reports">
+
+        <div class="title">Отчёты</div>
+        <div class="sub">Финансовые отчёты аккаунта</div>
+
+        <div class="cards">
+
+          <div class="card">
+            <div class="label">Сделки</div>
+            <div class="value">0</div>
+          </div>
+
+          <div class="card">
+            <div class="label">Оборот</div>
+            <div class="value">0 USDT</div>
+          </div>
+
+          <div class="card">
+            <div class="label">Прибыль</div>
+            <div class="value">0 USDT</div>
+          </div>
+
+        </div>
+
+        <div class="actions">
+          <button class="btn" onclick="alert('Отчёт будет доступен после появления операций.')">
+            Скачать отчёт
+          </button>
+        </div>
+
+      </section>
+
+
+      <!-- ПРОФИЛЬ -->
+
+      <section class="page" id="page-profile">
+
+        <div class="title">Профиль</div>
+        <div class="sub">Данные вашего аккаунта</div>
+
+        <div class="section">
+
+          <div class="form">
+
+            <label>Email</label>
+
+            <input
+              id="profileEmail"
+              type="email"
+              disabled
+            >
+
+            <label>Роль</label>
+
+            <input
+              id="profileRole"
+              disabled
+            >
+
+            <label>Имя</label>
+
+            <input
+              id="profileName"
+              placeholder="Ваше имя"
+            >
+
+            <button class="btn blue" onclick="saveProfile()">
+              Сохранить профиль
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- АДМИНИСТРИРОВАНИЕ -->
+
+      <section class="page admin-only" id="page-admin">
+
+        <div class="title">Администрирование</div>
+        <div class="sub">Управление пользователями системы</div>
+
+        <div class="actions">
+
+          <button class="btn blue" onclick="openCreateUser()">
+            + Создать личный кабинет
+          </button>
+
+        </div>
+
+        <div class="section">
+
+          <h3>Пользователи</h3>
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Роль</th>
+                <th>Баланс</th>
+                <th>Действие</th>
+              </tr>
+            </thead>
+
+            <tbody id="usersTable">
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+</section>
+
+
+<!-- МОДАЛЬНОЕ ОКНО СОЗДАНИЯ ПОЛЬЗОВАТЕЛЯ -->
+
+<div class="modal" id="createUserModal">
+
+  <div class="modalbox">
+
+    <button class="close" onclick="closeCreateUser()">×</button>
+
+    <h2>Создать личный кабинет</h2>
+
+    <div class="hint">
+      Данные для входа пользователь получит от администратора
+    </div>
+
+    <div class="form">
+
+      <label>Email</label>
+
+      <input
+        id="newEmail"
+        type="email"
+        placeholder="user@gmail.com"
+      >
+
+      <label>Пароль</label>
+
+      <input
+        id="newPassword"
+        type="password"
+        placeholder="Введите пароль"
+      >
+
+      <label>Начальный баланс, USDT</label>
+
+      <input
+        id="newBalance"
+        type="number"
+        min="0"
+        value="0"
+      >
+
+      <button class="btn blue" onclick="createUser()">
+        Создать аккаунт
+      </button>
+
+    </div>
+
+  </div>
+
+</div><script>
+
+const demoUsers = {
+  "user@gmail.com": {
+    password: "123456",
+    role: "user",
+    balance: 0,
+    name: "Пользователь",
+    requests: []
+  },
+
+  "admin@p2pspark.com": {
+    password: "admin123",
+    role: "admin",
+    balance: 0,
+    name: "Администратор",
+    requests: []
+  }
+};
+
+let currentUser = null;
+
+function login(){
+
+  const email = document.getElementById("email").value.trim().toLowerCase();
+  const password = document.getElementById("password").value;
+
+  if(!email || !password){
+    alert("Введите почту и пароль");
+    return;
+  }
+
+  const users = getUsers();
+  const user = users[email];
+
+  if(!user || user.password !== password){
+    alert("Неверная почта или пароль");
+    return;
+  }
+
+  currentUser = {
+    email: email,
+    ...user
+  };
+
+  localStorage.setItem(
+    "p2pspark_current",
+    JSON.stringify(currentUser)
+  );
+
+  openApp();
+}
+
+
+function getUsers(){
+
+  const saved = localStorage.getItem("p2pspark_users");
+
+  if(saved){
+    return JSON.parse(saved);
+  }
+
+  localStorage.setItem(
+    "p2pspark_users",
+    JSON.stringify(demoUsers)
+  );
+
+  return JSON.parse(
+    JSON.stringify(demoUsers)
+  );
+}
+
+
+function saveUsers(users){
+
+  localStorage.setItem(
+    "p2pspark_users",
+    JSON.stringify(users)
+  );
+
+}
+
+
+function openApp(){
+
+  document.getElementById("login").style.display = "none";
+
+  const app = document.getElementById("app");
+
+  app.classList.add("show");
+
+  if(currentUser.role === "admin"){
+    app.classList.add("admin");
+  }
+
+  document.getElementById("userEmail").textContent =
+    currentUser.email;
+
+  document.getElementById("avatar").textContent =
+    currentUser.email.charAt(0).toUpperCase();
+
+  document.getElementById("profileEmail").value =
+    currentUser.email;
+
+  document.getElementById("profileRole").value =
+    currentUser.role === "admin"
+      ? "Администратор"
+      : "Пользователь";
+
+  document.getElementById("profileName").value =
+    currentUser.name || "";
+
+  updateBalance();
+
+  updateRequests();
+
+  updateUsersTable();
+
+}
+
+
+function updateBalance(){
+
+  const balance = Number(currentUser.balance || 0);
+
+  const text =
+    balance.toLocaleString("ru-RU") + " USDT";
+
+  document.getElementById(
+    "dashboardBalance"
+  ).textContent = text;
+
+  document.getElementById(
+    "financeBalance"
+  ).textContent = text;
+
+}
+
+
+function showPage(page, button){
+
+  document.querySelectorAll(".page")
+    .forEach(el => el.classList.remove("active"));
+
+  const target =
+    document.getElementById("page-" + page);
+
+  if(!target) return;
+
+  target.classList.add("active");
+
+  document.querySelectorAll(".nav button")
+    .forEach(el => el.classList.remove("active"));
+
+  if(button){
+    button.classList.add("active");
+  }
+
+  const titles = {
+    dashboard: "Дашборд",
+    finance: "Финансы",
+    deals: "Сделки",
+    requests: "Заявки",
+    disputes: "Споры",
+    details: "Реквизиты",
+    devices: "Устройства",
+    reports: "Отчёты",
+    profile: "Профиль",
+    admin: "Администрирование"
+  };
+
+  document.getElementById("topTitle").textContent =
+    titles[page] || "P2PSPARK";
+
+}
+
+
+function showPageById(page){
+
+  const button = document.querySelector(
+    '.nav button[onclick*="' + page + '"]'
+  );
+
+  showPage(page, button);
+
+}
+
+
+function toggleMobileMenu(){
+
+  const menu =
+    document.getElementById("mobileMenu");
+
+  if(menu.style.display === "block"){
+    menu.style.display = "none";
+  }else{
+    menu.style.display = "block";
+  }
+
+}
+
+
+function logout(){
+
+  currentUser = null;
+
+  localStorage.removeItem(
+    "p2pspark_current"
+  );
+
+  document.getElementById("app")
+    .classList.remove("show","admin");
+
+  document.getElementById("login")
+    .style.display = "grid";
+
+  document.getElementById("email").value = "";
+  document.getElementById("password").value = "";
+
+}
+
+
+function createRequest(){
+
+  const input =
+    document.getElementById("topupAmount");
+
+  const amount =
+    Number(input.value);
+
+  if(!amount || amount <= 0){
+    alert("Введите корректную сумму");
+    return;
+  }
+
+  const users = getUsers();
+
+  if(!users[currentUser.email].requests){
+    users[currentUser.email].requests = [];
+  }
+
+  const request = {
+    id: "REQ-" +
+      Date.now().toString().slice(-6),
+
+    amount: amount,
+
+    status: "На рассмотрении",
+
+    created: new Date().toLocaleString("ru-RU")
+  };
+
+  users[currentUser.email]
+    .requests
+    .push(request);
+
+  saveUsers(users);
+
+  currentUser.requests =
+    users[currentUser.email].requests;
+
+  localStorage.setItem(
+    "p2pspark_current",
+    JSON.stringify(currentUser)
+  );
+
+  input.value = "";
+
+  updateRequests();
+
+  alert(
+    "Заявка создана и отправлена администратору"
+  );
+
+}
+
+
+function updateRequests(){
+
+  const table =
+    document.getElementById("requestsTable");
+
+  const requests =
+    currentUser.requests || [];
+
+  document.getElementById(
+    "dashboardRequests"
+  ).textContent = requests.length;
+
+  if(!requests.length){
+
+    table.innerHTML = `
+      <tr>
+        <td>—</td>
+        <td>Нет заявок</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+    `;
+
+    return;
+  }
+
+  table.innerHTML =
+    requests.map((request,index) => `
+
+      <tr>
+
+        <td>${request.id}</td>
+
+        <td>
+          <input
+            id="request-${index}"
+            type="number"
+            min="1"
+            value="${request.amount}"
+            style="
+              width:120px;
+              padding:8px;
+              border:1px solid #ddd;
+              border-radius:8px;
+            "
+          >
+        </td>
+
+        <td>
+          <span class="pill warn">
+            ${request.status}
+          </span>
+        </td>
+
+        <td>
+          <button
+            class="btn"
+            onclick="changeRequest(${index})"
+          >
+            Изменить
+          </button>
+        </td>
+
+      </tr>
+
+    `).join("");
+
+}
+
+
+function changeRequest(index){
+
+  const input =
+    document.getElementById(
+      "request-" + index
+    );
+
+  const amount =
+    Number(input.value);
+
+  if(!amount || amount <= 0){
+    alert("Введите корректную сумму");
+    return;
+  }
+
+  const users = getUsers();
+
+  const requests =
+    users[currentUser.email].requests;
+
+  if(!requests[index]){
+    return;
+  }
+
+  if(
+    requests[index].status !==
+    "На рассмотрении"
+  ){
+    alert(
+      "Эту заявку уже нельзя изменить"
+    );
+    return;
+  }
+
+  requests[index].amount = amount;
+
+  saveUsers(users);
+
+  currentUser.requests = requests;
+
+  localStorage.setItem(
+    "p2pspark_current",
+    JSON.stringify(currentUser)
+  );
+
+  updateRequests();
+
+  alert("Сумма заявки изменена");
+
+}
+
+
+function saveDetails(){
+
+  const name =
+    document.getElementById("detailName").value;
+
+  const value =
+    document.getElementById("detailValue").value;
+
+  if(!name || !value){
+    alert("Заполните оба поля");
+    return;
+  }
+
+  const users = getUsers();
+
+  users[currentUser.email].details = {
+    name: name,
+    value: value
+  };
+
+  saveUsers(users);
+
+  alert("Реквизиты сохранены");
+
+}
+
+
+function saveProfile(){
+
+  const name =
+    document.getElementById("profileName").value;
+
+  const users = getUsers();
+
+  users[currentUser.email].name =
+    name || "Пользователь";
+
+  saveUsers(users);
+
+  currentUser.name =
+    users[currentUser.email].name;
+
+  localStorage.setItem(
+    "p2pspark_current",
+    JSON.stringify(currentUser)
+  );
+
+  alert("Профиль сохранён");
+
+}
+
+
+function openCreateUser(){
+
+  document.getElementById(
+    "createUserModal"
+  ).classList.add("show");
+
+}
+
+
+function closeCreateUser(){
+
+  document.getElementById(
+    "createUserModal"
+  ).classList.remove("show");
+
+}
+
+
+function createUser(){
+
+  const email =
+    document.getElementById("newEmail")
+      .value.trim()
+      .toLowerCase();
+
+  const password =
+    document.getElementById("newPassword")
+      .value;
+
+  const balance =
+    Number(
+      document.getElementById("newBalance")
+        .value || 0
+    );
+
+  if(!email || !password){
+    alert("Введите email и пароль");
+    return;
+  }
+
+  if(!email.includes("@")){
+    alert("Введите корректный email");
+    return;
+  }
+
+  const users = getUsers();
+
+  if(users[email]){
+    alert("Такой аккаунт уже существует");
+    return;
+  }
+
+  users[email] = {
+
+    password: password,
+
+    role: "user",
+
+    balance: balance,
+
+    name: "Новый пользователь",
+
+    requests: []
+
+  };
+
+  saveUsers(users);
+
+  document.getElementById("newEmail").value = "";
+  document.getElementById("newPassword").value = "";
+  document.getElementById("newBalance").value = "0";
+
+  closeCreateUser();
+
+  updateUsersTable();
+
+  alert(
+    "Личный кабинет успешно создан"
+  );
+
+}
+
+
+function updateUsersTable(){
+
+  const table =
+    document.getElementById("usersTable");
+
+  if(!table) return;
+
+  const users = getUsers();
+
+  table.innerHTML = Object.keys(users)
+    .map(email => {
+
+      const user = users[email];
+
+      return `
+
+        <tr>
+
+          <td>${email}</td>
+
+          <td>
+            <span class="pill">
+              ${user.role}
+            </span>
+          </td>
+
+          <td>
+            ${Number(user.balance || 0)
+              .toLocaleString("ru-RU")} USDT
+          </td>
+
+          <td>
+
+            <button
+              class="btn"
+              onclick="adminChangeBalance('${email}')"
+            >
+              Баланс
+            </button>
+
+          </td>
+
+        </tr>
+
+      `;
+
+    }).join("");
+
+}
+
+
+function adminChangeBalance(email){
+
+  if(currentUser.role !== "admin"){
+    alert("Доступ запрещён");
+    return;
+  }
+
+  const users = getUsers();
+
+  const current =
+    Number(users[email].balance || 0);
+
+  const value =
+    prompt(
+      "Введите новый баланс USDT:",
+      current
+    );
+
+  if(value === null){
+    return;
+  }
+
+  const balance =
+    Number(value);
+
+  if(!Number.isFinite(balance) || balance < 0){
+    alert("Некорректный баланс");
+    return;
+  }
+
+  users[email].balance = balance;
+
+  saveUsers(users);
+
+  updateUsersTable();
+
+  if(email === currentUser.email){
+
+    currentUser.balance = balance;
+
+    localStorage.setItem(
+      "p2pspark_current",
+      JSON.stringify(currentUser)
+    );
+
+    updateBalance();
+
+  }
+
+  alert("Баланс обновлён");
+
+}
+
+
+/* Автоматический вход после обновления страницы */
+
+window.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    const saved =
+      localStorage.getItem(
+        "p2pspark_current"
+      );
+
+    if(saved){
+
+      try{
+
+        currentUser =
+          JSON.parse(saved);
+
+        openApp();
+
+      }catch(e){
+
+        localStorage.removeItem(
+          "p2pspark_current"
+        );
+
+      }
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
