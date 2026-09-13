@@ -932,6 +932,261 @@ openMenu.addEventListener("click", () => {
 overlay.addEventListener("click", closeMenu);
 
 </script>
+<!-- P2PSPARK LOGIN -->
+<div id="loginScreen" style="
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  background:#f5f6f8;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  font-family:Arial,sans-serif;
+">
 
+  <div style="
+    width:100%;
+    max-width:420px;
+    background:#fff;
+    border:1px solid #e1e5eb;
+    border-radius:24px;
+    padding:32px;
+    box-shadow:0 15px 45px rgba(20,30,50,.10);
+  ">
+
+    <div style="text-align:center;margin-bottom:30px;">
+      <div style="
+        font-size:28px;
+        font-weight:800;
+        color:#172033;
+        margin-bottom:8px;
+      ">P2PSPARK</div>
+
+      <div style="color:#7d8799;font-size:14px;">
+        Вход в личный кабинет
+      </div>
+    </div>
+
+    <label style="
+      display:block;
+      font-size:14px;
+      font-weight:600;
+      color:#172033;
+      margin-bottom:8px;
+    ">Email</label>
+
+    <input
+      id="loginEmail"
+      type="email"
+      placeholder="Введите email"
+      autocomplete="email"
+      style="
+        width:100%;
+        height:52px;
+        border:1px solid #e1e5eb;
+        border-radius:12px;
+        padding:0 15px;
+        font-size:15px;
+        outline:none;
+        margin-bottom:18px;
+        box-sizing:border-box;
+      "
+    >
+
+    <label style="
+      display:block;
+      font-size:14px;
+      font-weight:600;
+      color:#172033;
+      margin-bottom:8px;
+    ">Пароль</label>
+
+    <input
+      id="loginPassword"
+      type="password"
+      placeholder="Введите пароль"
+      autocomplete="current-password"
+      style="
+        width:100%;
+        height:52px;
+        border:1px solid #e1e5eb;
+        border-radius:12px;
+        padding:0 15px;
+        font-size:15px;
+        outline:none;
+        margin-bottom:18px;
+        box-sizing:border-box;
+      "
+    >
+
+    <div id="loginError" style="
+      display:none;
+      color:#ef5350;
+      font-size:13px;
+      margin-bottom:15px;
+    ">
+      Неверный email или пароль
+    </div>
+
+    <button
+      onclick="p2pLogin()"
+      style="
+        width:100%;
+        height:52px;
+        border:0;
+        border-radius:12px;
+        background:#172033;
+        color:#fff;
+        font-size:15px;
+        font-weight:700;
+        cursor:pointer;
+      "
+    >
+      Войти
+    </button>
+
+  </div>
+</div>
+
+
+<script>
+/*
+  P2PSPARK
+  Временная тестовая авторизация.
+
+  ВАЖНО:
+  Это только прототип.
+  Настоящие пароли и роли нельзя хранить в HTML/JavaScript.
+  Позже подключим серверную авторизацию и базу данных.
+*/
+
+const P2P_TEST_USERS = [
+  {
+    email: "user@p2pspark.com",
+    password: "User123!",
+    role: "USER"
+  },
+  {
+    email: "admin@p2pspark.com",
+    password: "Admin123!",
+    role: "ADMIN"
+  }
+];
+
+function p2pLogin() {
+
+  const email = document.getElementById("loginEmail").value
+    .trim()
+    .toLowerCase();
+
+  const password = document.getElementById("loginPassword").value;
+
+  const error = document.getElementById("loginError");
+
+  const user = P2P_TEST_USERS.find(
+    u => u.email === email && u.password === password
+  );
+
+  if (!user) {
+    error.style.display = "block";
+    return;
+  }
+
+  error.style.display = "none";
+
+  sessionStorage.setItem(
+    "p2pspark_session",
+    JSON.stringify({
+      email: user.email,
+      role: user.role
+    })
+  );
+
+  document.getElementById("loginScreen").style.display = "none";
+
+  p2pApplyRole(user.role);
+}
+
+
+function p2pApplyRole(role) {
+
+  console.log("P2PSPARK ROLE:", role);
+
+  /*
+    USER:
+    Только просмотр своего кабинета.
+
+    ADMIN:
+    В будущем получит отдельную админ-панель.
+  */
+
+  if (role === "USER") {
+
+    document.body.classList.add("p2p-user");
+
+    // Запрещаем редактирование элементов,
+    // которые позже будут иметь эти атрибуты.
+    document
+      .querySelectorAll('[data-admin-only]')
+      .forEach(el => {
+        el.style.display = "none";
+      });
+
+  }
+
+  if (role === "ADMIN") {
+
+    document.body.classList.add("p2p-admin");
+
+    document
+      .querySelectorAll('[data-admin-only]')
+      .forEach(el => {
+        el.style.display = "";
+      });
+  }
+}
+
+
+function p2pCheckSession() {
+
+  const saved = sessionStorage.getItem("p2pspark_session");
+
+  if (!saved) {
+    document.getElementById("loginScreen").style.display = "flex";
+    return;
+  }
+
+  try {
+
+    const session = JSON.parse(saved);
+
+    document.getElementById("loginScreen").style.display = "none";
+
+    p2pApplyRole(session.role);
+
+  } catch (e) {
+
+    sessionStorage.removeItem("p2pspark_session");
+
+  }
+}
+
+
+function p2pLogout() {
+
+  sessionStorage.removeItem("p2pspark_session");
+
+  location.reload();
+
+}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+
+  p2pCheckSession();
+
+});
+</script>
 </body>
 </html>
