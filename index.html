@@ -1,33 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>P2PSPARK</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P2PSPARK — CRM</title>
 
 <style>
 :root{
-  --bg:#f7f8fa;
+  --bg:#f5f6f8;
   --white:#fff;
-  --text:#182033;
-  --muted:#7d879b;
-  --line:#dfe4eb;
-  --dark:#182033;
-  --blue:#3f8cff;
-  --blue2:#eaf3ff;
-  --green:#42ad6d;
-  --red:#d9534f;
-  --yellow:#c18b27;
+  --text:#172033;
+  --muted:#7d8799;
+  --border:#e1e5eb;
+  --active:#eef0f4;
+  --green:#16d47b;
+  --green2:#0eaa62;
+  --danger:#ef5350;
+  --gold:#d8a900;
+  --shadow:0 8px 28px rgba(20,30,50,.07);
 }
 
-*{box-sizing:border-box}
-
-html,body{
+*{
+  box-sizing:border-box;
   margin:0;
-  min-height:100%;
+  padding:0
+}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
   background:var(--bg);
-  color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif
+  color:var(--text)
 }
 
 button,input,select,textarea{
@@ -38,3064 +40,3063 @@ button{
   cursor:pointer
 }
 
-/* LOGIN */
-
-.login{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:25px;
-  background:#f7f8fa
-}
-
-.loginbox{
-  width:min(430px,100%);
-  background:#fff;
-  border:1px solid #dfe3e9;
-  border-radius:25px;
-  padding:32px;
-  box-shadow:0 20px 60px rgba(20,30,50,.10)
-}
-
-.brand{
-  text-align:center;
-  font-size:30px;
-  font-weight:900;
-  letter-spacing:1px
-}
-
-.brand span{
-  color:#182033
-}
-
-.tag{
-  text-align:center;
-  color:#8b94a6;
-  font-size:11px;
-  letter-spacing:2px;
-  margin:7px 0 30px
-}
-
-.loginbox h2{
-  text-align:center;
-  margin:0 0 8px;
-  font-size:22px
-}
-
-.hint{
-  text-align:center;
-  color:#8992a3;
-  font-size:14px;
-  margin-bottom:24px
-}
-
-.field{
-  margin:15px 0
-}
-
-.field label{
-  display:block;
-  color:#1d2638;
-  font-size:14px;
-  font-weight:700;
-  margin-bottom:8px
-}
-
-.field input{
-  width:100%;
-  height:52px;
-  background:#fff;
-  color:#182033;
-  border:1px solid #d7dce4;
-  border-radius:13px;
-  padding:0 15px;
-  outline:none
-}
-
-.field input:focus{
-  border-color:#182033
-}
-
-.primary{
-  width:100%;
-  height:54px;
-  border:0;
-  background:#182033;
-  color:#fff;
-  border-radius:14px;
-  font-size:17px;
-  font-weight:800;
-  margin-top:8px
-}
-
-.login-note{
-  text-align:center;
-  color:#8a93a4;
-  font-size:12px;
-  margin-top:18px
-}
-
-.demo{
-  margin-top:14px;
-  padding:12px;
-  border-radius:12px;
-  background:#f3f5f8;
-  color:#697386;
-  font-size:12px;
-  line-height:1.6
-}
-
-/* APP */
-
 .app{
-  display:none;
+  display:flex;
   min-height:100vh
 }
 
-.app.show{
-  display:flex
-}
-
 .sidebar{
-  width:260px;
   position:fixed;
   left:0;
   top:0;
   bottom:0;
+  width:260px;
   background:#fff;
-  border-right:1px solid var(--line);
-  padding:23px 14px;
-  z-index:10
+  border-right:1px solid var(--border);
+  padding:24px 16px;
+  z-index:20;
+  overflow:auto
 }
 
-.brand.left{
-  text-align:left;
-  padding:5px 12px 27px;
-  font-size:23px
+.logo{
+  font-size:24px;
+  font-weight:900;
+  padding:8px 14px 28px
 }
 
-.nav{
-  display:flex;
-  flex-direction:column;
-  gap:4px
+.logo span{
+  color:var(--green2)
+}
+
+.nav-title{
+  font-size:11px;
+  text-transform:uppercase;
+  color:#a0a8b6;
+  font-weight:800;
+  padding:12px 14px 8px
 }
 
 .nav button{
+  display:flex;
   width:100%;
-  border:1px solid transparent;
-  background:#fff;
-  color:#263044;
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  padding:12px 14px;
+  border-radius:12px;
   text-align:left;
-  padding:13px 14px;
-  border-radius:13px;
-  font-size:14px
+  margin:2px 0;
+  font-weight:650
 }
 
 .nav button:hover,
 .nav button.active{
-  background:#eef4ff;
-  border-color:#dce9ff;
-  color:#2876dc;
-  font-weight:700
+  background:var(--active);
+  color:var(--text)
 }
 
-.logout{
-  position:absolute;
-  bottom:22px;
-  left:14px;
-  right:14px;
-  border:0;
-  background:#fff;
-  color:#667085;
-  text-align:left;
-  padding:12px 14px
+.nav button.admin{
+  color:#8d6b00
 }
 
 .main{
   margin-left:260px;
-  width:calc(100% - 260px)
+  width:calc(100% - 260px);
+  padding:28px 34px
 }
 
-.top{
-  height:72px;
-  background:#fff;
-  border-bottom:1px solid var(--line);
+.topbar{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 28px
+  margin-bottom:28px
 }
 
-.top strong{
-  font-size:18px
+.mobile-menu{
+  display:none;
+  border:1px solid var(--border);
+  background:#fff;
+  border-radius:12px;
+  padding:10px
 }
 
-.user{
+.userbox{
   display:flex;
   align-items:center;
   gap:10px;
-  color:#667085;
-  font-size:14px
+  color:var(--muted)
 }
 
 .avatar{
-  width:40px;
-  height:40px;
+  width:42px;
+  height:42px;
   border-radius:50%;
+  background:#eef0f4;
   display:grid;
   place-items:center;
-  background:#edf1f7;
-  color:#182033;
-  font-weight:800
+  font-weight:800;
+  color:var(--text)
 }
 
-.content{
-  padding:30px;
-  max-width:1350px
-}
-
-.page{
-  display:none
-}
-
-.page.active{
-  display:block
-}
-
-.title{
+h1{
   font-size:34px;
-  font-weight:850;
   margin-bottom:7px
 }
 
-.sub{
-  color:#7d8799;
-  font-size:16px;
-  margin-bottom:25px
+h2{
+  font-size:23px;
+  margin-bottom:18px
 }
 
-/* CARDS */
+.subtitle{
+  color:var(--muted);
+  font-size:16px
+}
 
-.cards{
+.section{
+  display:none
+}
+
+.section.active{
+  display:block
+}
+
+.grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:16px
+  gap:18px;
+  margin:25px 0
 }
 
 .card{
   background:#fff;
-  border:1px solid #dfe4eb;
-  border-radius:19px;
-  padding:22px
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:22px;
+  box-shadow:var(--shadow)
 }
 
-.wide{
-  grid-column:span 2
+.card .label{
+  color:var(--muted);
+  font-weight:650;
+  margin-bottom:13px
 }
 
-.label{
-  color:#7d8799;
-  font-size:16px;
-  font-weight:700
+.big{
+  font-size:30px;
+  font-weight:850
 }
 
-.value{
-  color:#182033;
-  font-size:32px;
-  font-weight:850;
-  margin-top:12px
+.green{
+  color:var(--green2)
 }
 
-.value.green{
-  color:var(--green)
+.gold{
+  color:#b58b00
 }
 
-.card.softblue{
-  background:#fbfdff;
-  border-color:#d8e9df
+.small{
+  font-size:13px;
+  color:var(--muted);
+  margin-top:9px
 }
 
-.card.softgreen{
-  background:#fbfffc;
-  border-color:#d6eadc
-}
-
-/* BUTTONS */
-
-.actions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:20px
-}
-
-.btn{
-  border:1px solid #d5dbe4;
+.table-wrap{
   background:#fff;
-  color:#182033;
-  border-radius:12px;
-  padding:11px 16px;
-  font-weight:750
-}
-
-.btn:hover{
-  background:#f5f7fa
-}
-
-.btn.blue{
-  background:#182033;
-  border-color:#182033;
-  color:#fff
-}
-
-.btn.blue2{
-  background:#3f8cff;
-  border-color:#3f8cff;
-  color:#fff
-}
-
-.btn.red{
-  background:#fff0ef;
-  border-color:#ffd4d1;
-  color:#b52e29
-}
-
-/* TABLE */
-
-.section{
-  margin-top:22px;
-  border:1px solid #dfe4eb;
-  background:#fff;
+  border:1px solid var(--border);
   border-radius:18px;
-  overflow:auto
-}
-
-.section h3{
-  margin:0;
-  padding:18px 20px;
-  border-bottom:1px solid var(--line)
+  overflow:auto;
+  box-shadow:var(--shadow)
 }
 
 table{
   width:100%;
   border-collapse:collapse;
-  min-width:720px
+  min-width:650px
 }
 
 th,td{
   text-align:left;
-  padding:14px 18px;
-  border-bottom:1px solid #edf0f4;
-  font-size:14px
+  padding:15px 17px;
+  border-bottom:1px solid var(--border);
+  white-space:nowrap
 }
 
 th{
-  color:#7d8799;
-  font-weight:650
-}
-
-.pill{
-  padding:5px 10px;
-  border-radius:99px;
   font-size:12px;
-  background:#f0f2f5
+  text-transform:uppercase;
+  color:var(--muted);
+  background:#fafbfc
 }
 
-.ok{
-  background:#eaf8ef;
-  color:#25834d
-}
-
-.warn{
-  background:#fff7e7;
-  color:#a16b00
-}
-
-.danger{
-  background:#fff0ef;
-  color:#b52e29
-}
-
-/* FORM */
-
-.form{
-  display:grid;
-  gap:12px;
-  padding:20px;
-  max-width:650px
-}
-
-.form label{
-  font-size:13px;
-  color:#667085;
-  font-weight:650
-}
-
-.form input,
-.form select,
-.form textarea{
-  width:100%;
-  background:#fff;
-  color:#182033;
-  border:1px solid #d7dce4;
-  border-radius:11px;
-  padding:12px;
-  outline:none
-}
-
-.form textarea{
-  min-height:90px;
-  resize:vertical
-}
-
-/* ADMIN */
-
-.admin-banner{
-  background:#182033;
-  color:#fff;
-  border-radius:18px;
-  padding:18px 20px;
-  margin-bottom:20px
-}
-
-.admin-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-  padding:20px
-}
-
-.admin-grid .field{
-  margin:0
-}
-
-.admin-grid .field label{
-  color:#687286;
-  margin-bottom:7px
-}
-
-.admin-grid .field input,
-.admin-grid .field select{
-  width:100%;
-  height:45px
-}
-
-.user-name{
+.badge{
+  display:inline-flex;
+  padding:6px 9px;
+  border-radius:999px;
+  font-size:12px;
   font-weight:750
 }
 
-.user-email{
-  color:#7b8495;
-  font-size:12px;
-  margin-top:3px
+.badge.green{
+  background:#e8faf1;
+  color:#0eaa62
 }
 
-/* MODALS */
+.badge.red{
+  background:#fff0f0;
+  color:#d64040
+}
 
-.modal{
-  display:none;
+.badge.gray{
+  background:#f0f2f5;
+  color:#687386
+}
+
+.btn{
+  border:0;
+  border-radius:11px;
+  padding:11px 15px;
+  font-weight:750
+}
+
+.btn.primary{
+  background:var(--text);
+  color:#fff
+}
+
+.btn.green{
+  background:var(--green);
+  color:#073d25
+}
+
+.btn.light{
+  background:#eef0f4;
+  color:var(--text)
+}
+
+.btn.danger{
+  background:#fff0f0;
+  color:#d64040
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px
+}
+
+.field label{
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:7px
+}
+
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:11px;
+  padding:12px 13px;
+  outline:none;
+  background:#fff
+}
+
+.field textarea{
+  min-height:100px;
+  resize:vertical
+}
+
+.admin-banner{
+  background:#172033;
+  color:#fff;
+  border-radius:18px;
+  padding:18px 20px;
+  margin-bottom:20px;
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  align-items:center
+}
+
+.empty{
+  text-align:center;
+  color:var(--muted);
+  padding:45px
+}
+
+.login-screen{
   position:fixed;
   inset:0;
-  background:rgba(12,18,30,.52);
-  z-index:100;
-  place-items:center;
-  padding:20px
+  background:var(--bg);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:100
 }
 
-.modal.show{
-  display:grid
-}
-
-.modalbox{
-  width:min(720px,100%);
-  max-height:90vh;
-  overflow:auto;
+.login-card{
+  width:100%;
+  max-width:430px;
   background:#fff;
-  border-radius:22px;
-  padding:24px;
-  box-shadow:0 25px 80px rgba(0,0,0,.2)
+  border:1px solid var(--border);
+  border-radius:25px;
+  padding:34px;
+  box-shadow:0 20px 60px rgba(20,30,50,.12)
 }
 
-.modalbox.smallbox{
-  width:min(520px,100%)
+.login-logo{
+  text-align:center;
+  font-size:29px;
+  font-weight:900;
+  margin-bottom:8px
 }
 
-.modalbox h2{
-  margin:0 0 5px
+.login-sub{
+  text-align:center;
+  color:var(--muted);
+  margin-bottom:30px
 }
 
-.modal-sub{
-  color:#7d8799;
-  font-size:13px;
-  margin-bottom:5px
+.login-card .field{
+  margin-bottom:17px
 }
 
-.close{
-  float:right;
-  border:0;
-  background:#f1f3f6;
-  color:#182033;
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  font-size:23px;
-  line-height:36px
+.login-card .btn{
+  width:100%;
+  height:50px
 }
 
-/* MOBILE */
-
-.mobile{
+.error{
   display:none;
-  border:1px solid #d9dfe8;
-  background:#fff;
-  color:#182033;
-  border-radius:10px;
-  padding:8px 11px
+  color:var(--danger);
+  font-size:13px;
+  margin-bottom:12px
 }
 
-.mobile-modal-nav{
-  margin-top:15px
+/* РЕКВИЗИТЫ */
+
+.payment-card{
+  max-width:700px;
+  margin-top:22px
 }
 
-.mobile-modal-nav .nav button{
-  padding:14px
+.payment-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:22px
 }
 
-.admin-only{
-  display:none
+.payment-title{
+  font-size:20px;
+  font-weight:850
 }
 
-.admin .admin-only{
-  display:block
+.payment-subtitle{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:5px
 }
 
-@media(max-width:950px){
-
-.sidebar{
-  display:none
+.payment-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px
 }
 
-.main{
-  margin-left:0;
-  width:100%
+.payment-info{
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:15px;
+  background:#fafbfc
 }
 
-.mobile{
-  display:block
+.payment-info-label{
+  color:var(--muted);
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:7px
 }
 
-.top{
-  padding:0 16px
+.payment-info-value{
+  font-weight:800;
+  word-break:break-all
 }
 
-.content{
-  padding:22px 16px
+.wallet-box{
+  margin-top:18px;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:16px;
+  background:#fff
 }
 
-.cards{
-  grid-template-columns:1fr 1fr
+.wallet-address{
+  margin-top:8px;
+  padding:13px;
+  background:#f5f6f8;
+  border-radius:11px;
+  font-size:13px;
+  word-break:break-all;
+  font-weight:700
 }
 
-.wide{
-  grid-column:span 2
+.qr-box{
+  margin-top:20px;
+  border:1px dashed #cfd5de;
+  border-radius:16px;
+  padding:18px;
+  text-align:center;
+  background:#fafbfc
 }
 
-.admin-grid{
-  grid-template-columns:1fr 1fr
+.qr-box img{
+  max-width:260px;
+  max-height:260px;
+  width:auto;
+  height:auto;
+  border-radius:12px;
+  object-fit:contain
 }
 
+.qr-placeholder{
+  padding:45px 20px;
+  color:var(--muted);
+  font-size:14px
 }
 
-@media(max-width:600px){
-
-.title{
-  font-size:29px
+.copy-row{
+  display:flex;
+  gap:8px;
+  margin-top:10px
 }
 
-.cards{
-  grid-template-columns:1fr
+.copy-row .btn{
+  flex:0 0 auto
 }
 
-.wide{
-  grid-column:span 1
+/* ADMIN РЕКВИЗИТЫ */
+
+.admin-requisites{
+  margin-top:20px
 }
 
-.admin-grid{
-  grid-template-columns:1fr
+.upload-preview{
+  margin-top:12px;
+  border:1px dashed #cfd5de;
+  border-radius:14px;
+  padding:14px;
+  text-align:center;
+  background:#fafbfc
 }
 
-.loginbox{
-  padding:25px
+.upload-preview img{
+  max-width:220px;
+  max-height:220px;
+  border-radius:12px
 }
 
-.user span{
-  display:none
+.file-input{
+  width:100%;
+  padding:10px;
+  border:1px solid var(--border);
+  border-radius:11px;
+  background:#fff
 }
 
+@media(max-width:900px){
+
+  .sidebar{
+    transform:translateX(-100%);
+    transition:.2s
+  }
+
+  .sidebar.open{
+    transform:translateX(0)
+  }
+
+  .main{
+    margin-left:0;
+    width:100%;
+    padding:20px 16px
+  }
+
+  .mobile-menu{
+    display:block
+  }
+
+  .grid{
+    grid-template-columns:repeat(2,1fr)
+  }
+
+  h1{
+    font-size:29px
+  }
+}
+
+@media(max-width:560px){
+
+  .grid,
+  .form-grid,
+  .payment-grid{
+    grid-template-columns:1fr
+  }
+
+  .card{
+    padding:18px
+  }
+
+  .payment-card{
+    padding:18px
+  }
+
+  .copy-row{
+    flex-direction:column
+  }
+
+  .copy-row .btn{
+    width:100%
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- LOGIN -->
 
-<!-- ================= LOGIN ================= -->
+<div id="loginScreen" class="login-screen">
 
-<section class="login" id="login">
+  <div class="login-card">
 
-<div class="loginbox">
+    <div class="login-logo">
+      P2PSPARK
+    </div>
 
-<div class="brand">
-P2P<span>SPARK</span>
-</div>
-
-<div class="tag">
-PEOPLE • DEALS • OPPORTUNITIES
-</div>
-
-<h2>Вход в аккаунт</h2>
-
-<div class="hint">
-Введите данные, выданные администратором
-</div>
-
-<div class="field">
-
-<label>Почта (Gmail)</label>
-
-<input
-id="email"
-type="email"
-placeholder="user@gmail.com">
-
-</div>
-
-<div class="field">
-
-<label>Пароль</label>
-
-<input
-id="password"
-type="password"
-placeholder="Введите пароль">
-
-</div>
-
-<button
-class="primary"
-onclick="login()">
+    <div class="login-sub">
+      Вход в личный кабинет
+    </div>
 
-Войти →
+    <div id="loginError" class="error">
+      Неверный email или пароль
+    </div>
 
-</button>
+    <div class="field">
+      <label>Email</label>
+      <input
+        id="email"
+        type="email"
+        placeholder="Введите email"
+      >
+    </div>
 
-<div class="login-note">
-Доступ к аккаунту создаёт администратор
-</div>
-
-<div class="demo">
-
-<b>Демо пользователь:</b>
-user@gmail.com / 123456
-
-<br>
-
-<b>Демо администратор:</b>
-admin@p2pspark.com / admin123
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ================= APP ================= -->
+    <div class="field">
+      <label>Пароль</label>
+      <input
+        id="password"
+        type="password"
+        placeholder="Введите пароль"
+      >
+    </div>
 
-<div class="app" id="app">
+    <button class="btn primary" onclick="login()">
+      Войти
+    </button>
 
+    <div class="small" style="text-align:center;margin-top:18px">
+      Тест USER:
+      user@p2pspark.com / User123!
+      <br><br>
+      ADMIN:
+      admin@p2pspark.com / Admin123!
+    </div>
 
-<!-- SIDEBAR -->
+  </div>
 
-<aside class="sidebar">
-
-<div class="brand left">
-P2P<span>SPARK</span>
 </div>
-
-<nav class="nav">
-
-<button class="active" data-page="dashboard">
-📊 Дашборд
-</button>
-
-<button data-page="finance">
-💰 Финансы
-</button>
-
-<button data-page="deals">
-🔄 Сделки
-</button>
 
-<button data-page="requests">
-📋 Заявки
-</button>
 
-<button data-page="disputes">
-⚠️ Споры
-</button>
+<!-- APP -->
 
-<button data-page="requisites">
-💳 Реквизиты
-</button>
+<div id="app" class="app" style="display:none">
 
-<button data-page="devices">
-📱 Устройства
-</button>
+  <aside id="sidebar" class="sidebar">
 
-<button data-page="reports">
-📑 Отчёты
-</button>
+    <div class="logo">
+      P2P<span>SPARK</span>
+    </div>
 
-<button data-page="profile">
-👤 Профиль
-</button>
+    <div class="nav">
 
-<button
-class="admin-only"
-data-page="admin">
+      <div class="nav-title">
+        Основное
+      </div>
 
-🛡️ Админ-панель
+      <button data-page="dashboard" onclick="go('dashboard')">
+        ▣ &nbsp; Дашборд
+      </button>
 
-</button>
+      <button data-page="finance" onclick="go('finance')">
+        ◈ &nbsp; Финансы
+      </button>
 
-</nav>
+      <button data-page="deals" onclick="go('deals')">
+        ↔ &nbsp; Сделки
+      </button>
 
-<button
-class="logout"
-onclick="logout()">
+      <button data-page="requests" onclick="go('requests')">
+        ◌ &nbsp; Заявки
+      </button>
 
-↪ Выйти
+      <button data-page="disputes" onclick="go('disputes')">
+        ⚠ &nbsp; Споры
+      </button>
 
-</button>
 
-</aside>
+      <div class="nav-title">
+        Работа
+      </div>
 
+      <button data-page="requisites" onclick="go('requisites')">
+        ▤ &nbsp; Реквизиты
+      </button>
 
-<!-- MAIN -->
+      <button data-page="devices" onclick="go('devices')">
+        ▣ &nbsp; Устройства
+      </button>
 
-<div class="main">
+      <button data-page="messages" onclick="go('messages')">
+        ✉ &nbsp; Сообщения
+      </button>
 
+      <button data-page="turbo" onclick="go('turbo')">
+        ⚡ &nbsp; Турбозалив
+      </button>
 
-<header class="top">
+      <button data-page="counterparties" onclick="go('counterparties')">
+        ♙ &nbsp; Контрагенты
+      </button>
 
-<button
-class="mobile"
-onclick="openMobile()">
+      <button data-page="reports" onclick="go('reports')">
+        ▥ &nbsp; Отчёты
+      </button>
 
-☰
+      <button data-page="profile" onclick="go('profile')">
+        ◉ &nbsp; Профиль
+      </button>
 
-</button>
 
-<strong id="pageTitle">
-Дашборд
-</strong>
+      <div id="adminNav" style="display:none">
 
-<div class="user">
+        <div class="nav-title">
+          Администрирование
+        </div>
 
-<span id="roleName">
-Пользователь
-</span>
+        <button
+          class="admin"
+          data-page="admin"
+          onclick="go('admin')"
+        >
+          ♛ &nbsp; Админ-панель
+        </button>
 
-<div
-class="avatar"
-id="avatar">
+      </div>
 
-P
 
-</div>
-
-</div>
-
-</header>
+      <div class="nav-title">
+        Аккаунт
+      </div>
 
+      <button onclick="logout()">
+        ↪ &nbsp; Выйти
+      </button>
 
-<main class="content">
+    </div>
 
+  </aside>
 
-<!-- ================= DASHBOARD ================= -->
 
-<section
-class="page active"
-id="dashboard">
-
-<div class="title">
-Дашборд
-</div>
-
-<div class="sub">
-Добро пожаловать в P2PSPARK
-</div>
+  <main class="main">
 
-<div class="cards">
+    <div class="topbar">
 
+      <button
+        class="mobile-menu"
+        onclick="toggleMenu()"
+      >
+        ☰
+      </button>
 
-<div class="card wide softblue">
+      <div></div>
 
-<div class="label">
-Баланс депозита
-</div>
+      <div class="userbox">
 
-<div
-class="value balance">
+        <span id="roleText"></span>
 
-0 USDT
+        <div id="avatar" class="avatar">
+          P
+        </div>
 
-</div>
+      </div>
 
-<div class="sub">
-Обновлено сегодня
-</div>
+    </div>
 
-</div>
 
+    <!-- DASHBOARD -->
 
-<div class="card">
+    <section id="dashboard" class="section active">
 
-<div class="label">
-Активные сделки
-</div>
+      <h1>
+        Дашборд
+      </h1>
 
-<div
-class="value activeDeals">
+      <div class="subtitle">
+        Добро пожаловать в P2PSPARK
+      </div>
 
-0
+      <div class="grid">
 
-</div>
+        <div class="card">
+          <div class="label">
+            Баланс депозита
+          </div>
 
-<div class="sub">
-На текущий момент
-</div>
+          <div id="dDeposit" class="big">
+            0 USDT
+          </div>
 
-</div>
+          <div class="small">
+            Текущий баланс
+          </div>
+        </div>
 
 
-<div class="card">
+        <div class="card">
+          <div class="label">
+            Активные сделки
+          </div>
 
-<div class="label">
-Оборот
-</div>
+          <div id="dDeals" class="big">
+            0
+          </div>
 
-<div
-class="value turnover">
+          <div class="small">
+            На текущий момент
+          </div>
+        </div>
 
-0 USDT
 
-</div>
+        <div class="card">
+          <div class="label">
+            Оборот
+          </div>
 
-<div class="sub">
-За текущий месяц
-</div>
+          <div id="dTurnover" class="big">
+            0 USDT
+          </div>
 
-</div>
+          <div class="small">
+            За текущий месяц
+          </div>
+        </div>
 
 
-<div class="card softgreen">
+        <div class="card">
+          <div class="label">
+            Прибыль
+          </div>
 
-<div class="label">
-Прибыль сегодня
-</div>
+          <div id="dProfit" class="big green">
+            0 USDT
+          </div>
 
-<div
-class="value green profitToday">
+          <div class="small">
+            За текущий месяц
+          </div>
+        </div>
 
-0 USDT
+      </div>
 
-</div>
 
-<div class="sub">
-За сегодня
-</div>
+      <div class="card">
 
-</div>
+        <h2>
+          Последние сделки
+        </h2>
 
+        <div id="dashDeals"></div>
 
-<div class="card softgreen">
+      </div>
 
-<div class="label">
-Прибыль за месяц
-</div>
+    </section>
 
-<div
-class="value green profitMonth">
 
-0 USDT
+    <!-- FINANCE -->
 
-</div>
+    <section id="finance" class="section">
 
-<div class="sub">
-За текущий месяц
-</div>
+      <h1>
+        Финансы
+      </h1>
 
-</div>
+      <div class="subtitle">
+        Ваши финансовые показатели
+      </div>
 
+      <div class="grid">
 
-<div class="card">
+        <div class="card">
+          <div class="label">Депозит</div>
+          <div id="fDeposit" class="big">0 USDT</div>
+        </div>
 
-<div class="label">
-Заявки
-</div>
+        <div class="card">
+          <div class="label">Оборот</div>
+          <div id="fTurnover" class="big">0 USDT</div>
+        </div>
 
-<div
-class="value requestCount">
+        <div class="card">
+          <div class="label">Прибыль</div>
+          <div id="fProfit" class="big green">0 USDT</div>
+        </div>
 
-0
+        <div class="card">
+          <div class="label">Комиссия</div>
+          <div id="fCommission" class="big">0%</div>
+        </div>
 
-</div>
+      </div>
 
-<div class="sub">
-Всего заявок
-</div>
+    </section>
 
-</div>
 
+    <!-- DEALS -->
 
-<div class="card">
+    <section id="deals" class="section">
 
-<div class="label">
-Открытые споры
-</div>
+      <h1>
+        Сделки
+      </h1>
 
-<div
-class="value disputeCount">
+      <div class="subtitle">
+        История и текущие операции
+      </div>
 
-0
+      <div
+        class="table-wrap"
+        style="margin-top:22px"
+      >
 
-</div>
+        <table>
 
-<div class="sub">
-Текущий статус
-</div>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Направление</th>
+              <th>Сумма</th>
+              <th>Статус</th>
+            </tr>
+          </thead>
 
-</div>
+          <tbody id="dealsTable"></tbody>
 
+        </table>
 
-</div>
+      </div>
 
+    </section>
 
-<div class="actions">
 
-<button
-class="btn blue"
-onclick="showPage('requests')">
+    <!-- REQUESTS -->
 
-+ Создать заявку
+    <section id="requests" class="section">
 
-</button>
+      <h1>
+        Заявки
+      </h1>
 
-<button
-class="btn"
-onclick="showPage('finance')">
+      <div class="subtitle">
+        Входящие и исходящие заявки
+      </div>
 
-Финансы
+      <div
+        class="table-wrap"
+        style="margin-top:22px"
+      >
 
-</button>
+        <table>
 
-</div>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Тип</th>
+              <th>Сумма</th>
+              <th>Статус</th>
+            </tr>
+          </thead>
 
-</section>
+          <tbody>
 
+            <tr>
+              <td>#1001</td>
+              <td>Обмен</td>
+              <td>500 USDT</td>
+              <td>
+                <span class="badge green">
+                  Новая
+                </span>
+              </td>
+            </tr>
 
-<!-- ================= FINANCE ================= -->
+            <tr>
+              <td>#1000</td>
+              <td>Вывод</td>
+              <td>250 USDT</td>
+              <td>
+                <span class="badge gray">
+                  Обработана
+                </span>
+              </td>
+            </tr>
 
-<section
-class="page"
-id="finance">
+          </tbody>
 
-<div class="title">
-Финансы
-</div>
+        </table>
 
-<div class="sub">
-Финансовая информация аккаунта
-</div>
+      </div>
 
-<div class="cards">
+    </section>
 
-<div class="card wide">
-<div class="label">Баланс</div>
-<div class="value balance">0 USDT</div>
-</div>
 
-<div class="card">
-<div class="label">Прибыль сегодня</div>
-<div class="value green profitToday">0 USDT</div>
-</div>
+    <!-- DISPUTES -->
 
-<div class="card">
-<div class="label">Прибыль за месяц</div>
-<div class="value green profitMonth">0 USDT</div>
-</div>
+    <section id="disputes" class="section">
 
-<div class="card">
-<div class="label">Оборот</div>
-<div class="value turnover">0 USDT</div>
-</div>
+      <h1>
+        Споры
+      </h1>
 
-</div>
+      <div class="subtitle">
+        Контроль спорных операций
+      </div>
 
-<div class="section">
-
-<h3>
-История операций
-</h3>
-
-<table>
-
-<tr>
-<th>ID</th>
-<th>Тип</th>
-<th>Сумма</th>
-<th>Статус</th>
-</tr>
-
-<tr>
-<td>—</td>
-<td>—</td>
-<td>—</td>
-<td>
-<span class="pill">
-Нет операций
-</span>
-</td>
-</tr>
-
-</table>
+      <div
+        class="card"
+        style="margin-top:22px"
+      >
 
-</div>
+        <div class="empty">
+          Активных споров нет
+        </div>
 
-</section>
+      </div>
 
+    </section>
 
-<!-- ================= DEALS ================= -->
 
-<section
-class="page"
-id="deals">
+    <!-- REQUISITES USER -->
 
-<div class="title">
-Сделки
-</div>
+    <section id="requisites" class="section">
 
-<div class="sub">
-Все сделки пользователя
-</div>
+      <h1>
+        Реквизиты
+      </h1>
 
-<div class="cards">
+      <div class="subtitle">
+        Платёжные реквизиты вашего аккаунта
+      </div>
 
-<div class="card">
-<div class="label">Активные сделки</div>
-<div class="value activeDeals">0</div>
-</div>
 
-<div class="card">
-<div class="label">Оборот</div>
-<div class="value turnover">0 USDT</div>
-</div>
+      <div class="card payment-card">
 
-</div>
+        <div class="payment-head">
 
-<div class="section">
-
-<h3>
-Список сделок
-</h3>
-
-<table>
-
-<tr>
-<th>ID</th>
-<th>Дата</th>
-<th>Тип</th>
-<th>Сумма</th>
-<th>Статус</th>
-</tr>
-
-<tr>
-<td>—</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
-<td>
-<span class="pill">
-Нет сделок
-</span>
-</td>
-</tr>
-
-</table>
+          <div>
 
-</div>
+            <div class="payment-title">
+              Способ оплаты
+            </div>
 
-</section>
+            <div class="payment-subtitle">
+              Реквизиты назначены администратором
+            </div>
 
+          </div>
 
-<!-- ================= REQUESTS ================= -->
+          <span
+            id="paymentStatus"
+            class="badge green"
+          >
+            Активен
+          </span>
 
-<section
-class="page"
-id="requests">
+        </div>
 
-<div class="title">
-Заявки
-</div>
 
-<div class="sub">
-Создание и управление заявками
-</div>
+        <div class="payment-grid">
 
-<div class="actions">
+          <div class="payment-info">
 
-<button
-class="btn blue"
-onclick="createRequest()">
+            <div class="payment-info-label">
+              Кошелёк
+            </div>
 
-+ Новая заявка
+            <div
+              id="paymentMethod"
+              class="payment-info-value"
+            >
+              Trust Wallet
+            </div>
 
-</button>
+          </div>
 
-</div>
 
-<div class="section">
+          <div class="payment-info">
 
-<h3>
-Мои заявки
-</h3>
+            <div class="payment-info-label">
+              Сеть
+            </div>
 
-<table>
+            <div
+              id="paymentNetwork"
+              class="payment-info-value"
+            >
+              TRC20
+            </div>
 
-<tr>
-<th>ID</th>
-<th>Тип</th>
-<th>Сумма</th>
-<th>Статус</th>
-<th>Действие</th>
-</tr>
+          </div>
 
-<tbody id="myRequestsBody">
-</tbody>
+        </div>
 
-</table>
 
-</div>
+        <div class="wallet-box">
 
-</section>
+          <div class="payment-info-label">
+            Адрес кошелька
+          </div>
 
+          <div
+            id="paymentWallet"
+            class="wallet-address"
+          >
+            Не указан
+          </div>
 
-<!-- ================= DISPUTES ================= -->
+          <div class="copy-row">
 
-<section
-class="page"
-id="disputes">
+            <button
+              class="btn light"
+              onclick="copyWallet()"
+            >
+              Копировать адрес
+            </button>
 
-<div class="title">
-Споры
-</div>
+          </div>
 
-<div class="sub">
-Обращения по сделкам
-</div>
+        </div>
 
-<div class="section">
-
-<h3>
-Мои споры
-</h3>
-
-<table>
-
-<tr>
-<th>ID</th>
-<th>Сделка</th>
-<th>Причина</th>
-<th>Статус</th>
-</tr>
-
-<tr>
-<td>—</td>
-<td>—</td>
-<td>—</td>
-<td>
-<span class="pill">
-Нет споров
-</span>
-</td>
-</tr>
-
-</table>
 
-</div>
+        <div class="qr-box">
 
-</section>
+          <div
+            id="qrContent"
+            class="qr-placeholder"
+          >
+            PNG / QR-код пока не добавлен администратором
+          </div>
 
+        </div>
 
-<!-- ================= REQUISITES ================= -->
+      </div>
 
-<section
-class="page"
-id="requisites">
+    </section>
 
-<div class="title">
-Реквизиты
-</div>
 
-<div class="sub">
-Платёжные реквизиты
-</div>
+    <!-- DEVICES -->
 
-<div class="actions">
+    <section id="devices" class="section">
 
-<button
-class="btn blue"
-onclick="openModal('Добавить реквизит')">
+      <h1>
+        Устройства
+      </h1>
 
-+ Добавить реквизит
+      <div class="subtitle">
+        Авторизованные устройства
+      </div>
 
-</button>
+      <div
+        class="table-wrap"
+        style="margin-top:22px"
+      >
 
-</div>
+        <table>
 
-<div class="section">
+          <thead>
+            <tr>
+              <th>Устройство</th>
+              <th>Последний вход</th>
+              <th>Статус</th>
+            </tr>
+          </thead>
 
-<h3>
-Мои реквизиты
-</h3>
+          <tbody>
 
-<table>
+            <tr>
+              <td>Текущее устройство</td>
+              <td>Сейчас</td>
+              <td>
+                <span class="badge green">
+                  Активно
+                </span>
+              </td>
+            </tr>
 
-<tr>
-<th>Тип</th>
-<th>Название</th>
-<th>Статус</th>
-</tr>
+          </tbody>
 
-<tr>
-<td>—</td>
-<td>—</td>
-<td>
-<span class="pill">
-Нет данных
-</span>
-</td>
-</tr>
+        </table>
 
-</table>
+      </div>
 
-</div>
+    </section>
 
-</section>
 
+    <!-- MESSAGES -->
 
-<!-- ================= DEVICES ================= -->
+    <section id="messages" class="section">
 
-<section
-class="page"
-id="devices">
+      <h1>
+        Сообщения
+      </h1>
 
-<div class="title">
-Устройства
-</div>
+      <div class="subtitle">
+        Сообщения и уведомления
+      </div>
 
-<div class="sub">
-Активные сессии
-</div>
+      <div
+        class="card"
+        style="margin-top:22px"
+      >
 
-<div class="section">
+        <h2>
+          Системное сообщение
+        </h2>
 
-<h3>
-Устройства аккаунта
-</h3>
+        <p class="subtitle">
+          Добро пожаловать в P2PSPARK.
+        </p>
 
-<table>
+      </div>
 
-<tr>
-<th>Устройство</th>
-<th>Дата</th>
-<th>Статус</th>
-</tr>
+    </section>
 
-<tr>
-<td>
-Текущее устройство
-</td>
 
-<td>
-Сейчас
-</td>
+    <!-- TURBO -->
 
-<td>
-<span class="pill ok">
-Активно
-</span>
-</td>
-</tr>
+    <section id="turbo" class="section">
 
-</table>
+      <h1>
+        Турбозалив
+      </h1>
 
-</div>
+      <div class="subtitle">
+        Ускоренная обработка заявок
+      </div>
 
-</section>
+      <div
+        class="card"
+        style="margin-top:22px"
+      >
 
+        <h2>
+          Статус
+        </h2>
 
-<!-- ================= REPORTS ================= -->
+        <p>
+          <span class="badge gray">
+            Не активирован
+          </span>
+        </p>
 
-<section
-class="page"
-id="reports">
+        <div style="margin-top:18px">
 
-<div class="title">
-Отчёты
-</div>
+          <button
+            class="btn light"
+            onclick="alert('Функция будет подключена на следующем этапе')"
+          >
+            Настроить
+          </button>
 
-<div class="sub">
-Отчёты по операциям
-</div>
+        </div>
 
-<div class="section">
+      </div>
 
-<h3>
-Создать отчёт
-</h3>
+    </section>
 
-<div class="form">
 
-<label>
-Период
-</label>
+    <!-- COUNTERPARTIES -->
 
-<select>
-<option>Сегодня</option>
-<option>7 дней</option>
-<option>30 дней</option>
-<option>90 дней</option>
-</select>
+    <section id="counterparties" class="section">
 
-<button
-class="btn blue"
-onclick="alert('В рабочей версии отчёт будет сформирован из базы данных.')">
+      <h1>
+        Контрагенты
+      </h1>
 
-Сформировать
+      <div class="subtitle">
+        Ваши контрагенты
+      </div>
 
-</button>
+      <div
+        class="card"
+        style="margin-top:22px"
+      >
 
-</div>
+        <div class="empty">
+          Контрагенты пока отсутствуют
+        </div>
 
-</div>
+      </div>
 
-</section>
+    </section>
 
 
-<!-- ================= PROFILE ================= -->
+    <!-- REPORTS -->
 
-<section
-class="page"
-id="profile">
+    <section id="reports" class="section">
 
-<div class="title">
-Профиль
-</div>
+      <h1>
+        Отчёты
+      </h1>
 
-<div class="sub">
-Данные аккаунта
-</div>
+      <div class="subtitle">
+        Финансовая статистика
+      </div>
 
-<div class="section">
+      <div class="grid">
 
-<h3>
-Основные данные
-</h3>
+        <div class="card">
 
-<div class="form">
+          <div class="label">
+            Сделок за месяц
+          </div>
 
-<label>
-Email
-</label>
+          <div id="rDeals" class="big">
+            0
+          </div>
 
-<input
-id="profileEmail"
-readonly>
+        </div>
 
-<label>
-Имя
-</label>
 
-<input
-id="profileName"
-readonly>
+        <div class="card">
 
-<button
-class="btn blue"
-onclick="alert('Изменение профиля выполняется администратором в текущем прототипе.')">
+          <div class="label">
+            Оборот
+          </div>
 
-Сохранить
+          <div id="rTurnover" class="big">
+            0 USDT
+          </div>
 
-</button>
+        </div>
 
-</div>
+      </div>
 
-</div>
+    </section>
 
-</section>
 
+    <!-- PROFILE -->
 
-<!-- ================= ADMIN ================= -->
+    <section id="profile" class="section">
 
-<section
-class="page admin-only"
-id="admin">
+      <h1>
+        Профиль
+      </h1>
 
-<div class="title">
-Админ-панель
-</div>
+      <div class="subtitle">
+        Настройки аккаунта
+      </div>
 
-<div class="sub">
-Полное управление личными кабинетами пользователей
-</div>
+      <div
+        class="card"
+        style="margin-top:22px"
+      >
 
-<div class="admin-banner">
+        <div class="form-grid">
 
-<b>Администратор</b>
+          <div class="field">
 
-<br>
+            <label>Email</label>
 
-Здесь можно открыть личный кабинет пользователя и изменить его демонстрационные данные.
+            <input
+              id="profileEmail"
+              disabled
+            >
 
-</div>
+          </div>
 
-<div class="actions">
+          <div class="field">
 
-<button
-class="btn blue"
-onclick="openAdminModal()">
+            <label>Роль</label>
 
-+ Создать ЛК
+            <input
+              id="profileRole"
+              disabled
+            >
 
-</button>
+          </div>
 
-</div>
+        </div>
 
-<div class="section">
+      </div>
 
-<h3>
-Пользователи
-</h3>
+    </section>
 
-<table>
 
-<tr>
-<th>ID</th>
-<th>Пользователь</th>
-<th>Баланс</th>
-<th>Прибыль</th>
-<th>Статус</th>
-<th>Действия</th>
-</tr>
+    <!-- ADMIN -->
 
-<tbody id="usersBody">
-</tbody>
+    <section id="admin" class="section">
 
-</table>
+      <h1>
+        Админ-панель
+      </h1>
 
-</div>
+      <div class="subtitle">
+        Управление пользователями P2PSPARK
+      </div>
 
-</section>
 
+      <div class="admin-banner">
 
-</main>
+        <div>
 
-</div>
+          <b>
+            Режим администратора
+          </b>
 
-</div>
+          <div
+            style="opacity:.7;font-size:13px;margin-top:4px"
+          >
+            Изменения доступны только ADMIN
+          </div>
 
+        </div>
 
-<!-- ================= USER MODAL ================= -->
+        <span>
+          👑
+        </span>
 
-<div
-class="modal"
-id="userModal">
+      </div>
 
-<div class="modalbox">
 
-<button
-class="close"
-onclick="closeUserModal()">
+      <!-- ADMIN ACCOUNT -->
 
-×
+      <div
+        class="card"
+        style="margin-bottom:20px"
+      >
 
-</button>
+        <h2>
+          Моя учётная запись ADMIN
+        </h2>
 
-<h2>
-Редактирование ЛК
-</h2>
+        <div
+          class="subtitle"
+          style="margin-bottom:18px"
+        >
+          Здесь можно изменить email и пароль администратора.
+        </div>
 
-<div class="modal-sub" id="editingUserEmail">
-Пользователь
-</div>
+        <div class="form-grid">
 
+          <div class="field">
 
-<div class="admin-grid">
+            <label>
+              Новый email ADMIN
+            </label>
 
+            <input
+              id="adminNewEmail"
+              type="email"
+            >
 
-<div class="field">
+          </div>
 
-<label>
-Имя
-</label>
 
-<input id="editName">
+          <div class="field">
 
-</div>
+            <label>
+              Новый пароль ADMIN
+            </label>
 
+            <input
+              id="adminNewPassword"
+              type="text"
+              placeholder="Минимум 6 символов"
+            >
 
-<div class="field">
+          </div>
 
-<label>
-Email
-</label>
+        </div>
 
-<input id="editEmail">
+        <button
+          class="btn primary"
+          style="margin-top:18px"
+          onclick="changeAdminCredentials()"
+        >
+          Изменить данные ADMIN
+        </button>
 
-</div>
+      </div>
 
 
-<div class="field">
+      <!-- USERS -->
 
-<label>
-Пароль
-</label>
+      <div
+        class="card"
+        style="margin-bottom:20px"
+      >
 
-<input
-id="editPassword"
-type="text">
+        <h2>
+          Пользователи
+        </h2>
 
-</div>
+        <div
+          class="table-wrap"
+          style="box-shadow:none"
+        >
 
+          <table>
 
-<div class="field">
+            <thead>
 
-<label>
-Баланс / депозит
-</label>
+              <tr>
 
-<input
-id="editBalance"
-type="number"
-step="0.01">
+                <th>Email</th>
+                <th>Роль</th>
+                <th>Статус</th>
+                <th>Действие</th>
 
-</div>
+              </tr>
 
+            </thead>
 
-<div class="field">
+            <tbody id="usersTable"></tbody>
 
-<label>
-Прибыль сегодня
-</label>
+          </table>
 
-<input
-id="editProfitToday"
-type="number"
-step="0.01">
+        </div>
 
-</div>
+      </div>
 
 
-<div class="field">
+      <!-- CREATE USER -->
 
-<label>
-Прибыль за месяц
-</label>
+      <div
+        class="card"
+        style="margin-bottom:20px"
+      >
 
-<input
-id="editProfitMonth"
-type="number"
-step="0.01">
+        <h2>
+          Создать пользователя
+        </h2>
 
-</div>
+        <div
+          class="subtitle"
+          style="margin-bottom:18px"
+        >
+          Новый ЛК автоматически получает собственные реквизиты.
+        </div>
 
+        <div class="form-grid">
 
-<div class="field">
+          <div class="field">
 
-<label>
-Оборот
-</label>
+            <label>
+              Email пользователя
+            </label>
 
-<input
-id="editTurnover"
-type="number"
-step="0.01">
+            <input
+              id="newUserEmail"
+              type="email"
+              placeholder="user@example.com"
+            >
 
-</div>
+          </div>
 
 
-<div class="field">
+          <div class="field">
 
-<label>
-Активные сделки
-</label>
+            <label>
+              Пароль пользователя
+            </label>
 
-<input
-id="editActiveDeals"
-type="number"
-min="0">
+            <input
+              id="newUserPassword"
+              type="text"
+              placeholder="Придумайте пароль"
+            >
 
-</div>
+          </div>
 
+        </div>
 
-<div class="field">
 
-<label>
-Открытые споры
-</label>
+        <button
+          class="btn primary"
+          style="margin-top:18px"
+          onclick="createUser()"
+        >
+          Создать USER
+        </button>
 
-<input
-id="editDisputes"
-type="number"
-min="0">
+      </div>
 
-</div>
 
+      <!-- FINANCE -->
 
-<div class="field">
+      <div class="card">
 
-<label>
-Статус аккаунта
-</label>
+        <h2>
+          Управление выбранным пользователем
+        </h2>
 
-<select id="editStatus">
+        <div
+          id="selectedUserText"
+          class="subtitle"
+          style="margin-bottom:18px"
+        >
+          Выберите пользователя выше
+        </div>
 
-<option value="Активен">
-Активен
-</option>
 
-<option value="Заблокирован">
-Заблокирован
-</option>
+        <div class="form-grid">
 
-</select>
+          <div class="field">
+            <label>Баланс депозита</label>
+            <input id="aDeposit" type="number">
+          </div>
 
-</div>
+          <div class="field">
+            <label>Оборот</label>
+            <input id="aTurnover" type="number">
+          </div>
 
-</div>
+          <div class="field">
+            <label>Прибыль</label>
+            <input id="aProfit" type="number">
+          </div>
 
+          <div class="field">
+            <label>Комиссия %</label>
+            <input id="aCommission" type="number">
+          </div>
 
-<div class="actions">
+          <div class="field">
+            <label>Активные сделки</label>
+            <input id="aDeals" type="number">
+          </div>
 
-<button
-class="btn blue"
-onclick="saveEditedUser()">
+        </div>
 
-Сохранить изменения
 
-</button>
+        <div class="actions" style="margin-top:18px">
 
-<button
-class="btn"
-onclick="closeUserModal()">
+          <button
+            class="btn green"
+            onclick="saveFinance()"
+          >
+            Сохранить финансовые данные
+          </button>
 
-Отмена
+          <button
+            class="btn danger"
+            onclick="blockSelected()"
+          >
+            Заблокировать / разблокировать
+          </button>
 
-</button>
+        </div>
 
-</div>
+      </div>
 
-</div>
 
-</div>
+      <!-- PAYMENT SETTINGS -->
 
+      <div
+        class="card admin-requisites"
+      >
 
-<!-- ================= CREATE USER ================= -->
+        <h2>
+          Способ оплаты выбранного пользователя
+        </h2>
 
-<div
-class="modal"
-id="adminModal">
+        <div
+          id="selectedPaymentText"
+          class="subtitle"
+          style="margin-bottom:18px"
+        >
+          Сначала выберите пользователя выше
+        </div>
 
-<div class="modalbox smallbox">
 
-<button
-class="close"
-onclick="closeAdminModal()">
+        <div class="form-grid">
 
-×
+          <div class="field">
 
-</button>
+            <label>
+              Способ оплаты
+            </label>
 
-<h2>
-Создать личный кабинет
-</h2>
+            <select id="aPaymentMethod">
 
-<div class="form">
+              <option value="Trust Wallet">
+                Trust Wallet
+              </option>
 
-<label>
-Имя пользователя
-</label>
+              <option value="Binance">
+                Binance
+              </option>
 
-<input
-id="newName"
-placeholder="Имя">
+              <option value="Bybit">
+                Bybit
+              </option>
 
-<label>
-Email пользователя
-</label>
+              <option value="Другой">
+                Другой
+              </option>
 
-<input
-id="newEmail"
-type="email"
-placeholder="user@gmail.com">
+            </select>
 
-<label>
-Пароль
-</label>
+          </div>
 
-<input
-id="newPass"
-type="text"
-placeholder="Пароль">
 
-<label>
-Начальный баланс
-</label>
+          <div class="field">
 
-<input
-id="newBalance"
-type="number"
-value="0">
+            <label>
+              Сеть
+            </label>
 
-<button
-class="btn blue"
-onclick="saveAdminUser()">
+            <select id="aPaymentNetwork">
 
-Создать ЛК
+              <option value="TRC20">
+                TRC20
+              </option>
 
-</button>
+              <option value="ERC20">
+                ERC20
+              </option>
 
-</div>
+              <option value="BEP20">
+                BEP20
+              </option>
 
-</div>
+              <option value="SOL">
+                SOL
+              </option>
 
-</div>
+              <option value="TON">
+                TON
+              </option>
 
+            </select>
 
-<!-- ================= SIMPLE MODAL ================= -->
+          </div>
 
-<div
-class="modal"
-id="modal">
+        </div>
 
-<div class="modalbox smallbox">
 
-<button
-class="close"
-onclick="closeModal()">
+        <div
+          class="field"
+          style="margin-top:15px"
+        >
 
-×
+          <label>
+            Ссылка / адрес кошелька
+          </label>
 
-</button>
+          <input
+            id="aWallet"
+            type="text"
+            placeholder="Введите адрес или ссылку на кошелёк"
+          >
 
-<h2 id="modalTitle">
-Операция
-</h2>
+        </div>
 
-<div class="form">
 
-<label>
-Сумма
-</label>
+        <div
+          class="field"
+          style="margin-top:15px"
+        >
 
-<input
-type="number"
-placeholder="Введите сумму">
+          <label>
+            PNG / QR-код
+          </label>
 
-<label>
-Комментарий
-</label>
+          <input
+            id="aQrFile"
+            class="file-input"
+            type="file"
+            accept="image/png,image/jpeg,image/webp"
+            onchange="previewQR(event)"
+          >
 
-<textarea
-placeholder="Комментарий"></textarea>
+        </div>
 
-<button
-class="btn blue"
-onclick="closeModal();alert('Форма сохранена в прототипе.')">
 
-Сохранить
+        <div
+          id="adminQrPreview"
+          class="upload-preview"
+          style="display:none"
+        ></div>
 
-</button>
 
-</div>
+        <div
+          class="actions"
+          style="margin-top:18px"
+        >
 
-</div>
+          <button
+            class="btn green"
+            onclick="savePayment()"
+          >
+            Сохранить реквизиты
+          </button>
 
-</div>
+          <button
+            class="btn light"
+            onclick="clearPaymentPreview()"
+          >
+            Убрать PNG
+          </button>
 
+        </div>
 
-<!-- ================= MOBILE MENU ================= -->
+      </div>
 
-<div
-class="modal"
-id="mobileModal">
 
-<div class="modalbox smallbox">
+      <!-- AUDIT -->
 
-<button
-class="close"
-onclick="closeMobile()">
+      <div
+        class="card"
+        style="margin-top:20px"
+      >
 
-×
+        <h2>
+          Журнал действий
+        </h2>
 
-</button>
+        <div id="auditLog"></div>
 
-<div class="brand left">
-P2P<span>SPARK</span>
-</div>
+      </div>
 
-<nav
-class="nav mobile-modal-nav"
-id="mobileNav">
-</nav>
+    </section>
 
-</div>
+  </main>
 
 </div>
 
 
 <script>
 
-/* ================= DATA ================= */
+const KEY="p2pspark_v3_users";
 
-const defaultUsers={
+const DEMO={
 
-"user@gmail.com":{
-  password:"123456",
-  role:"user",
-  name:"Пользователь",
-  balance:0,
-  profitToday:0,
-  profitMonth:0,
-  turnover:0,
-  activeDeals:0,
-  disputes:0,
-  status:"Активен",
-  requests:[]
-},
+  "user@p2pspark.com":{
+    email:"user@p2pspark.com",
+    password:"User123!",
+    role:"USER",
+    status:"active",
 
-"admin@p2pspark.com":{
-  password:"admin123",
-  role:"admin",
-  name:"Администратор",
-  balance:0,
-  profitToday:0,
-  profitMonth:0,
-  turnover:0,
-  activeDeals:0,
-  disputes:0,
-  status:"Активен",
-  requests:[]
-}
+    finance:{
+      deposit:0,
+      turnover:0,
+      profit:0,
+      commission:0,
+      deals:0
+    },
+
+    payment:{
+      method:"Trust Wallet",
+      network:"TRC20",
+      wallet:"",
+      qr:""
+    }
+  },
+
+
+  "admin@p2pspark.com":{
+    email:"admin@p2pspark.com",
+    password:"Admin123!",
+    role:"ADMIN",
+    status:"active",
+
+    finance:{
+      deposit:0,
+      turnover:0,
+      profit:0,
+      commission:0,
+      deals:0
+    },
+
+    payment:{
+      method:"Trust Wallet",
+      network:"TRC20",
+      wallet:"",
+      qr:""
+    }
+  }
 
 };
 
 
 let users=
-JSON.parse(
-localStorage.getItem("p2pspark_users")
-||"null"
-)
-||defaultUsers;
+  JSON.parse(
+    localStorage.getItem(KEY)||"null"
+  )||DEMO;
 
 
-let currentEmail="";
+let session=null;
 
-let editingEmail="";
+let selectedUser=null;
 
-
-const names={
-dashboard:"Дашборд",
-finance:"Финансы",
-deals:"Сделки",
-requests:"Заявки",
-disputes:"Споры",
-requisites:"Реквизиты",
-devices:"Устройства",
-reports:"Отчёты",
-profile:"Профиль",
-admin:"Админ-панель"
-};
+let pendingQR="";
 
 
-/* ================= SAVE ================= */
+function persist(){
 
-function saveUsers(){
-
-localStorage.setItem(
-"p2pspark_users",
-JSON.stringify(users)
-);
+  localStorage.setItem(
+    KEY,
+    JSON.stringify(users)
+  );
 
 }
 
-
-/* ================= LOGIN ================= */
 
 function login(){
 
-const email=
-document
-.getElementById("email")
-.value
-.trim()
-.toLowerCase();
+  const e=
+    document
+      .getElementById("email")
+      .value
+      .trim()
+      .toLowerCase();
 
-const password=
-document
-.getElementById("password")
-.value;
+  const p=
+    document
+      .getElementById("password")
+      .value;
 
-
-if(!email||!password){
-
-alert("Введите email и пароль");
-
-return;
-
-}
+  const u=users[e];
 
 
-const user=users[email];
+  if(
+    !u ||
+    u.password!==p ||
+    u.status==="blocked"
+  ){
+
+    document
+      .getElementById("loginError")
+      .style.display="block";
+
+    return;
+  }
 
 
-if(!user||user.password!==password){
-
-alert("Неверный email или пароль");
-
-return;
-
-}
+  session={
+    email:u.email,
+    role:u.role
+  };
 
 
-if(user.status==="Заблокирован"){
-
-alert("Этот аккаунт заблокирован.");
-
-return;
-
-}
+  sessionStorage.setItem(
+    "p2pspark_session",
+    JSON.stringify(session)
+  );
 
 
-currentEmail=email;
-
-
-document
-.getElementById("login")
-.style.display="none";
-
-
-document
-.getElementById("app")
-.classList
-.add("show");
-
-
-document
-.getElementById("app")
-.classList
-.toggle(
-"admin",
-user.role==="admin"
-);
-
-
-document
-.getElementById("roleName")
-.textContent=
-user.role==="admin"
-?"Администратор"
-:"Пользователь";
-
-
-document
-.getElementById("avatar")
-.textContent=
-(user.name||email)
-.charAt(0)
-.toUpperCase();
-
-
-render();
-
-showPage("dashboard");
+  start();
 
 }
 
 
-/* ================= LOGOUT ================= */
+function start(){
+
+  session=
+    JSON.parse(
+      sessionStorage.getItem(
+        "p2pspark_session"
+      )||"null"
+    );
+
+
+  if(!session){
+
+    document
+      .getElementById("loginScreen")
+      .style.display="flex";
+
+    return;
+  }
+
+
+  const u=users[session.email];
+
+
+  if(!u){
+
+    logout();
+
+    return;
+  }
+
+
+  document
+    .getElementById("loginScreen")
+    .style.display="none";
+
+
+  document
+    .getElementById("app")
+    .style.display="flex";
+
+
+  document
+    .getElementById("roleText")
+    .textContent=
+      session.role==="ADMIN"
+        ?"ADMIN"
+        :"USER";
+
+
+  document
+    .getElementById("avatar")
+    .textContent=
+      session.role==="ADMIN"
+        ?"A"
+        :"U";
+
+
+  document
+    .getElementById("adminNav")
+    .style.display=
+      session.role==="ADMIN"
+        ?"block"
+        :"none";
+
+
+  document
+    .getElementById("profileEmail")
+    .value=u.email;
+
+
+  document
+    .getElementById("profileRole")
+    .value=u.role;
+
+
+  renderAll();
+
+}
+
 
 function logout(){
 
-currentEmail="";
+  sessionStorage.removeItem(
+    "p2pspark_session"
+  );
 
-document
-.getElementById("app")
-.classList
-.remove("show","admin");
-
-
-document
-.getElementById("login")
-.style
-.display="flex";
-
-
-document
-.getElementById("email")
-.value="";
-
-document
-.getElementById("password")
-.value="";
+  location.reload();
 
 }
 
 
-/* ================= NAVIGATION ================= */
+function go(page){
 
-function showPage(id){
+  if(
+    page==="admin" &&
+    session.role!=="ADMIN"
+  ){
 
-if(
-id==="admin" &&
-users[currentEmail]?.role!=="admin"
-){
+    alert("Доступ запрещён");
 
-alert("Доступ запрещён");
-
-return;
-
-}
+    return;
+  }
 
 
-document
-.querySelectorAll(".page")
-.forEach(
-page=>page.classList.remove("active")
-);
+  document
+    .querySelectorAll(".section")
+    .forEach(
+      x=>x.classList.remove("active")
+    );
 
 
-const target=
-document.getElementById(id);
+  document
+    .getElementById(page)
+    .classList.add("active");
 
 
-if(!target)return;
+  document
+    .querySelectorAll(
+      ".nav button[data-page]"
+    )
+    .forEach(
+      x=>
+        x.classList.toggle(
+          "active",
+          x.dataset.page===page
+        )
+    );
 
 
-target.classList.add("active");
+  document
+    .getElementById("sidebar")
+    .classList.remove("open");
 
 
-document
-.querySelectorAll(".nav button")
-.forEach(
-button=>{
-button.classList.toggle(
-"active",
-button.dataset.page===id
-)
-}
-);
+  if(page==="admin"){
+
+    renderAdmin();
+
+  }
 
 
-document
-.getElementById("pageTitle")
-.textContent=
-names[id]||id;
+  if(page==="requisites"){
 
+    renderPayment();
 
-closeMobile();
-
-render();
-
-}
-
-
-/* ================= RENDER ================= */
-
-function render(){
-
-const user=users[currentEmail];
-
-if(!user)return;
-
-
-/* dashboard */
-
-document
-.querySelectorAll(".balance")
-.forEach(
-el=>el.textContent=
-formatMoney(user.balance)
-);
-
-
-document
-.querySelectorAll(".profitToday")
-.forEach(
-el=>el.textContent=
-formatMoney(user.profitToday)
-);
-
-
-document
-.querySelectorAll(".profitMonth")
-.forEach(
-el=>el.textContent=
-formatMoney(user.profitMonth)
-);
-
-
-document
-.querySelectorAll(".turnover")
-.forEach(
-el=>el.textContent=
-formatMoney(user.turnover)
-);
-
-
-document
-.querySelectorAll(".activeDeals")
-.forEach(
-el=>el.textContent=
-Number(user.activeDeals||0)
-);
-
-
-document
-.querySelectorAll(".disputeCount")
-.forEach(
-el=>el.textContent=
-Number(user.disputes||0)
-);
-
-
-document
-.querySelectorAll(".requestCount")
-.forEach(
-el=>el.textContent=
-(user.requests||[]).length
-);
-
-
-/* profile */
-
-const profileEmail=
-document.getElementById("profileEmail");
-
-const profileName=
-document.getElementById("profileName");
-
-
-if(profileEmail)
-profileEmail.value=currentEmail;
-
-
-if(profileName)
-profileName.value=user.name||"";
-
-
-/* requests */
-
-renderRequests();
-
-
-/* admin */
-
-renderUsers();
+  }
 
 }
 
 
-/* ================= MONEY ================= */
+function toggleMenu(){
 
-function formatMoney(value){
-
-return Number(value||0)
-.toLocaleString(
-"ru-RU",
-{
-minimumFractionDigits:0,
-maximumFractionDigits:2
-}
-)
-+" USDT";
+  document
+    .getElementById("sidebar")
+    .classList.toggle("open");
 
 }
 
 
-/* ================= REQUESTS ================= */
+function money(n){
 
-function renderRequests(){
-
-const body=
-document.getElementById(
-"myRequestsBody"
-);
-
-if(!body)return;
-
-
-const user=users[currentEmail];
-
-const requests=user.requests||[];
-
-
-if(!requests.length){
-
-body.innerHTML=`
-
-<tr>
-
-<td>—</td>
-
-<td>Пополнение</td>
-
-<td>—</td>
-
-<td>
-
-<span class="pill">
-Нет заявок
-</span>
-
-</td>
-
-<td>—</td>
-
-</tr>
-
-`;
-
-return;
+  return Number(n||0)
+    .toLocaleString("ru-RU")
+    +" USDT";
 
 }
 
 
-body.innerHTML=
-requests
-.map(
-(request,index)=>`
+function renderAll(){
 
-<tr>
+  const u=users[session.email];
 
-<td>
-#${request.id}
-</td>
-
-<td>
-${request.type||"Пополнение"}
-</td>
-
-<td>
-${formatMoney(request.amount)}
-</td>
-
-<td>
-
-<span class="pill ${
-request.status==="Подтверждено"
-?"ok"
-:"warn"
-}">
-
-${request.status}
-
-</span>
-
-</td>
-
-<td>
-
-<button
-class="btn"
-onclick="editRequest(${index})">
-
-Изменить
-
-</button>
-
-</td>
-
-</tr>
-
-`
-)
-.join("");
-
-}
+  const f=u.finance;
 
 
-function createRequest(){
-
-const amount=
-prompt(
-"Сумма заявки, USDT"
-);
+  document
+    .getElementById("dDeposit")
+    .textContent=money(f.deposit);
 
 
-if(amount===null)return;
+  document
+    .getElementById("dDeals")
+    .textContent=f.deals;
 
 
-const value=Number(amount);
+  document
+    .getElementById("dTurnover")
+    .textContent=money(f.turnover);
 
 
-if(!value||value<=0){
-
-alert(
-"Введите корректную сумму"
-);
-
-return;
-
-}
+  document
+    .getElementById("dProfit")
+    .textContent=money(f.profit);
 
 
-const user=users[currentEmail];
+  document
+    .getElementById("fDeposit")
+    .textContent=money(f.deposit);
 
 
-user.requests=user.requests||[];
+  document
+    .getElementById("fTurnover")
+    .textContent=money(f.turnover);
 
 
-user.requests.push({
-
-id:Date.now()
-.toString()
-.slice(-6),
-
-type:"Пополнение",
-
-amount:value,
-
-status:"На рассмотрении"
-
-});
+  document
+    .getElementById("fProfit")
+    .textContent=money(f.profit);
 
 
-saveUsers();
+  document
+    .getElementById("fCommission")
+    .textContent=
+      Number(f.commission||0)+"%";
 
-render();
 
-alert(
-"Заявка создана."
-);
+  document
+    .getElementById("rDeals")
+    .textContent=f.deals;
+
+
+  document
+    .getElementById("rTurnover")
+    .textContent=money(f.turnover);
+
+
+  document
+    .getElementById("dashDeals")
+    .innerHTML=
+      f.deals
+      ?
+      '<span class="badge green">Есть активные сделки</span>'
+      :
+      '<div class="empty">Активных сделок нет</div>';
+
+
+  document
+    .getElementById("dealsTable")
+    .innerHTML=
+      f.deals
+      ?
+      '<tr>'+
+      '<td>#1001</td>'+
+      '<td>USDT → KZT</td>'+
+      '<td>'+money(
+        Math.min(
+          f.turnover||0,
+          500
+        )
+      )+'</td>'+
+      '<td><span class="badge green">Активна</span></td>'+
+      '</tr>'
+      :
+      '<tr><td colspan="4" class="empty">Сделок пока нет</td></tr>';
+
+
+  renderPayment();
 
 }
 
 
-function editRequest(index){
+function renderPayment(){
 
-const user=users[currentEmail];
+  const u=users[session.email];
 
-const request=
-user.requests[index];
+  if(!u.payment){
 
+    u.payment={
+      method:"Trust Wallet",
+      network:"TRC20",
+      wallet:"",
+      qr:""
+    };
 
-if(!request)return;
+    persist();
 
-
-if(request.status==="Подтверждено"){
-
-alert(
-"Подтверждённую заявку нельзя изменить."
-);
-
-return;
-
-}
+  }
 
 
-const value=
-prompt(
-"Изменить сумму",
-request.amount
-);
+  document
+    .getElementById("paymentMethod")
+    .textContent=
+      u.payment.method ||
+      "Trust Wallet";
 
 
-if(value===null)return;
+  document
+    .getElementById("paymentNetwork")
+    .textContent=
+      u.payment.network ||
+      "TRC20";
 
 
-const amount=Number(value);
+  document
+    .getElementById("paymentWallet")
+    .textContent=
+      u.payment.wallet ||
+      "Не указан";
 
 
-if(!amount||amount<=0){
-
-alert(
-"Введите корректную сумму."
-);
-
-return;
-
-}
+  const qr=
+    document.getElementById(
+      "qrContent"
+    );
 
 
-request.amount=amount;
+  if(u.payment.qr){
 
-saveUsers();
+    qr.innerHTML=
+      '<img src="'+
+      u.payment.qr+
+      '" alt="QR код">';
 
-render();
+  }else{
 
-}
+    qr.innerHTML=
+      '<div class="qr-placeholder">'+
+      'PNG / QR-код пока не добавлен администратором'+
+      '</div>';
 
-
-/* ================= ADMIN USERS ================= */
-
-function renderUsers(){
-
-const body=
-document.getElementById(
-"usersBody"
-);
-
-if(!body)return;
-
-
-if(
-users[currentEmail]?.role!=="admin"
-){
-
-body.innerHTML="";
-
-return;
+  }
 
 }
 
 
-const entries=
-Object.entries(users)
-.filter(
-([email,user])=>
-user.role!=="admin"
-);
+function renderAdmin(){
+
+  if(session.role!=="ADMIN")
+    return;
 
 
-if(!entries.length){
+  const rows=
+    Object.values(users)
+      .map(u=>`
 
-body.innerHTML=`
+      <tr>
 
-<tr>
-<td colspan="6">
-Пользователей пока нет
-</td>
-</tr>
+        <td>
+          ${escapeHtml(u.email)}
+        </td>
 
-`;
+        <td>
+          <span class="badge ${
+            u.role==="ADMIN"
+              ?"green"
+              :"gray"
+          }">
+            ${u.role}
+          </span>
+        </td>
 
-return;
+        <td>
 
-}
+          <span class="badge ${
+            u.status==="active"
+              ?"green"
+              :"red"
+          }">
 
+            ${
+              u.status==="active"
+                ?"Активен"
+                :"Заблокирован"
+            }
 
-body.innerHTML=
-entries
-.map(
-([email,user],index)=>`
+          </span>
 
-<tr>
+        </td>
 
-<td>
-#${1001+index}
-</td>
+        <td>
 
-<td>
+          <button
+            class="btn light"
+            onclick="selectUser('${escapeAttr(u.email)}')"
+          >
+            Управлять
+          </button>
 
-<div class="user-name">
-${escapeHtml(user.name||"Пользователь")}
-</div>
+        </td>
 
-<div class="user-email">
-${escapeHtml(email)}
-</div>
+      </tr>
 
-</td>
-
-<td>
-${formatMoney(user.balance)}
-</td>
-
-<td>
-<span class="pill ok">
-${formatMoney(user.profitMonth)}
-</span>
-</td>
-
-<td>
-
-<span class="pill ${
-user.status==="Активен"
-?"ok"
-:"danger"
-}">
-
-${user.status||"Активен"}
-
-</span>
-
-</td>
-
-<td>
-
-<button
-class="btn blue"
-onclick="openUserEditor('${encodeURIComponent(email)}')">
-
-Управление
-
-</button>
-
-</td>
-
-</tr>
-
-`
-)
-.join("");
-
-}
+    `)
+    .join("");
 
 
-/* ================= CREATE ACCOUNT ================= */
-
-function openAdminModal(){
-
-document
-.getElementById("adminModal")
-.classList
-.add("show");
-
-}
+  document
+    .getElementById("usersTable")
+    .innerHTML=rows;
 
 
-function closeAdminModal(){
+  const logs=
+    JSON.parse(
+      localStorage.getItem(
+        "p2pspark_audit"
+      )||"[]"
+    );
 
-document
-.getElementById("adminModal")
-.classList
-.remove("show");
+
+  document
+    .getElementById("auditLog")
+    .innerHTML=
+      logs.length
+      ?
+      logs
+        .slice()
+        .reverse()
+        .map(x=>`
+
+          <div
+            style="
+              padding:12px 0;
+              border-bottom:1px solid var(--border)
+            "
+          >
+
+            <b>
+              ${escapeHtml(x.admin)}
+            </b>
+
+            — ${escapeHtml(x.text)}
+
+            <div class="small">
+              ${escapeHtml(x.time)}
+            </div>
+
+          </div>
+
+        `)
+        .join("")
+      :
+      '<div class="empty">Журнал пока пуст</div>';
 
 }
 
-
-function saveAdminUser(){
-
-const name=
-document
-.getElementById("newName")
-.value
-.trim();
-
-
-const email=
-document
-.getElementById("newEmail")
-.value
-.trim()
-.toLowerCase();
-
-
-const password=
-document
-.getElementById("newPass")
-.value;
-
-
-const balance=
-Number(
-document
-.getElementById("newBalance")
-.value||0
-);
-
-
-if(!email||!password){
-
-alert(
-"Укажите email и пароль."
-);
-
-return;
-
-}
-
-
-if(users[email]){
-
-alert(
-"Такой аккаунт уже существует."
-);
-
-return;
-
-}
-
-
-users[email]={
-
-password:password,
-
-role:"user",
-
-name:name||"Пользователь",
-
-balance:Math.max(0,balance),
-
-profitToday:0,
-
-profitMonth:0,
-
-turnover:0,
-
-activeDeals:0,
-
-disputes:0,
-
-status:"Активен",
-
-requests:[]
-
-};
-
-
-saveUsers();
-
-closeAdminModal();
-
-document
-.getElementById("newName")
-.value="";
-
-document
-.getElementById("newEmail")
-.value="";
-
-document
-.getElementById("newPass")
-.value="";
-
-document
-.getElementById("newBalance")
-.value="0";
-
-
-renderUsers();
-
-alert(
-"Личный кабинет создан."
-);
-
-}
-
-
-/* ================= EDIT USER ================= */
-
-function openUserEditor(encodedEmail){
-
-const email=
-decodeURIComponent(encodedEmail);
-
-
-const user=users[email];
-
-
-if(!user)return;
-
-
-editingEmail=email;
-
-
-document
-.getElementById("editingUserEmail")
-.textContent=
-email;
-
-
-document
-.getElementById("editName")
-.value=
-user.name||"";
-
-
-document
-.getElementById("editEmail")
-.value=
-email;
-
-
-document
-.getElementById("editPassword")
-.value=
-user.password||"";
-
-
-document
-.getElementById("editBalance")
-.value=
-user.balance||0;
-
-
-document
-.getElementById("editProfitToday")
-.value=
-user.profitToday||0;
-
-
-document
-.getElementById("editProfitMonth")
-.value=
-user.profitMonth||0;
-
-
-document
-.getElementById("editTurnover")
-.value=
-user.turnover||0;
-
-
-document
-.getElementById("editActiveDeals")
-.value=
-user.activeDeals||0;
-
-
-document
-.getElementById("editDisputes")
-.value=
-user.disputes||0;
-
-
-document
-.getElementById("editStatus")
-.value=
-user.status||"Активен";
-
-
-document
-.getElementById("userModal")
-.classList
-.add("show");
-
-}
-
-
-function closeUserModal(){
-
-document
-.getElementById("userModal")
-.classList
-.remove("show");
-
-editingEmail="";
-
-}
-
-
-/* ================= SAVE USER ================= */
-
-function saveEditedUser(){
-
-if(!editingEmail)return;
-
-
-const user=users[editingEmail];
-
-
-if(!user)return;
-
-
-const newName=
-document
-.getElementById("editName")
-.value
-.trim();
-
-
-const newEmail=
-document
-.getElementById("editEmail")
-.value
-.trim()
-.toLowerCase();
-
-
-const password=
-document
-.getElementById("editPassword")
-.value;
-
-
-const balance=
-Number(
-document
-.getElementById("editBalance")
-.value||0
-);
-
-
-const profitToday=
-Number(
-document
-.getElementById("editProfitToday")
-.value||0
-);
-
-
-const profitMonth=
-Number(
-document
-.getElementById("editProfitMonth")
-.value||0
-);
-
-
-const turnover=
-Number(
-document
-.getElementById("editTurnover")
-.value||0
-);
-
-
-const activeDeals=
-Number(
-document
-.getElementById("editActiveDeals")
-.value||0
-);
-
-
-const disputes=
-Number(
-document
-.getElementById("editDisputes")
-.value||0
-);
-
-
-const status=
-document
-.getElementById("editStatus")
-.value;
-
-
-if(!newEmail){
-
-alert(
-"Email не может быть пустым."
-);
-
-return;
-
-}
-
-
-/* email changed */
-
-if(
-newEmail!==editingEmail &&
-users[newEmail]
-){
-
-alert(
-"Этот email уже используется."
-);
-
-return;
-
-}
-
-
-if(newEmail!==editingEmail){
-
-users[newEmail]=user;
-
-delete users[editingEmail];
-
-currentEmail=
-currentEmail===editingEmail
-?newEmail
-:currentEmail;
-
-editingEmail=newEmail;
-
-}
-
-
-user.name=
-newName||"Пользователь";
-
-user.password=
-password||user.password;
-
-user.balance=
-Math.max(0,balance);
-
-user.profitToday=
-Math.max(0,profitToday);
-
-user.profitMonth=
-Math.max(0,profitMonth);
-
-user.turnover=
-Math.max(0,turnover);
-
-user.activeDeals=
-Math.max(0,Math.floor(activeDeals));
-
-user.disputes=
-Math.max(0,Math.floor(disputes));
-
-user.status=
-status;
-
-
-saveUsers();
-
-closeUserModal();
-
-render();
-
-renderUsers();
-
-alert(
-"Изменения пользователя сохранены."
-);
-
-}
-
-
-/* ================= SIMPLE MODAL ================= */
-
-function openModal(title){
-
-document
-.getElementById("modalTitle")
-.textContent=title;
-
-document
-.getElementById("modal")
-.classList
-.add("show");
-
-}
-
-
-function closeModal(){
-
-document
-.getElementById("modal")
-.classList
-.remove("show");
-
-}
-
-
-/* ================= MOBILE ================= */
-
-function openMobile(){
-
-const original=
-document.querySelector(
-".sidebar .nav"
-);
-
-
-const mobile=
-document.getElementById(
-"mobileNav"
-);
-
-
-mobile.innerHTML=
-original.innerHTML;
-
-
-mobile
-.querySelectorAll("button")
-.forEach(
-button=>{
-
-button.onclick=()=>{
-
-showPage(
-button.dataset.page
-);
-
-closeMobile();
-
-};
-
-}
-);
-
-
-document
-.getElementById("mobileModal")
-.classList
-.add("show");
-
-}
-
-
-function closeMobile(){
-
-document
-.getElementById("mobileModal")
-.classList
-.remove("show");
-
-}
-
-
-/* ================= SECURITY HELPER ================= */
 
 function escapeHtml(value){
 
-return String(value)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+  return String(value||"")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
 
-/* ================= NAV EVENTS ================= */
+function escapeAttr(value){
 
-document
-.querySelectorAll(
-".sidebar .nav button"
-)
-.forEach(
-button=>{
-
-button.addEventListener(
-"click",
-()=>showPage(
-button.dataset.page
-)
-);
+  return String(value||"")
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'");
 
 }
+
+
+function changeAdminCredentials(){
+
+  if(session.role!=="ADMIN"){
+
+    alert("Доступ запрещён");
+
+    return;
+  }
+
+
+  const oldEmail=session.email;
+
+
+  const newEmail=
+    document
+      .getElementById("adminNewEmail")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  const newPassword=
+    document
+      .getElementById("adminNewPassword")
+      .value;
+
+
+  if(!newEmail || !newPassword){
+
+    alert(
+      "Заполните новый email и пароль"
+    );
+
+    return;
+  }
+
+
+  if(!/^\S+@\S+\.\S+$/.test(newEmail)){
+
+    alert(
+      "Введите корректный email"
+    );
+
+    return;
+  }
+
+
+  if(newPassword.length<6){
+
+    alert(
+      "Пароль должен содержать минимум 6 символов"
+    );
+
+    return;
+  }
+
+
+  if(
+    newEmail!==oldEmail &&
+    users[newEmail]
+  ){
+
+    alert(
+      "Этот email уже используется"
+    );
+
+    return;
+  }
+
+
+  const admin={
+    ...users[oldEmail],
+    email:newEmail,
+    password:newPassword,
+    role:"ADMIN"
+  };
+
+
+  if(newEmail!==oldEmail){
+
+    delete users[oldEmail];
+
+  }
+
+
+  users[newEmail]=admin;
+
+
+  session.email=newEmail;
+
+
+  sessionStorage.setItem(
+    "p2pspark_session",
+    JSON.stringify(session)
+  );
+
+
+  persist();
+
+
+  addLog(
+    "изменил собственные данные ADMIN"
+  );
+
+
+  document
+    .getElementById("profileEmail")
+    .value=newEmail;
+
+
+  document
+    .getElementById("profileRole")
+    .value="ADMIN";
+
+
+  document
+    .getElementById("adminNewEmail")
+    .value="";
+
+
+  document
+    .getElementById("adminNewPassword")
+    .value="";
+
+
+  renderAdmin();
+
+
+  alert(
+    "Данные ADMIN изменены"
+  );
+
+}
+
+
+function createUser(){
+
+  if(session.role!=="ADMIN"){
+
+    alert("Доступ запрещён");
+
+    return;
+  }
+
+
+  const email=
+    document
+      .getElementById("newUserEmail")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  const password=
+    document
+      .getElementById("newUserPassword")
+      .value;
+
+
+  if(!email || !password){
+
+    alert(
+      "Заполните email и пароль"
+    );
+
+    return;
+  }
+
+
+  if(!/^\S+@\S+\.\S+$/.test(email)){
+
+    alert(
+      "Введите корректный email"
+    );
+
+    return;
+  }
+
+
+  if(password.length<6){
+
+    alert(
+      "Пароль должен содержать минимум 6 символов"
+    );
+
+    return;
+  }
+
+
+  if(users[email]){
+
+    alert(
+      "Пользователь с таким email уже существует"
+    );
+
+    return;
+  }
+
+
+  users[email]={
+
+    email,
+
+    password,
+
+    role:"USER",
+
+    status:"active",
+
+    finance:{
+      deposit:0,
+      turnover:0,
+      profit:0,
+      commission:0,
+      deals:0
+    },
+
+    payment:{
+      method:"Trust Wallet",
+      network:"TRC20",
+      wallet:"",
+      qr:""
+    }
+
+  };
+
+
+  persist();
+
+
+  addLog(
+    "создал USER "+email
+  );
+
+
+  document
+    .getElementById("newUserEmail")
+    .value="";
+
+
+  document
+    .getElementById("newUserPassword")
+    .value="";
+
+
+  renderAdmin();
+
+
+  alert(
+    "Пользователь создан"
+  );
+
+}
+
+
+function selectUser(email){
+
+  selectedUser=email;
+
+
+  const u=users[email];
+
+  const f=u.finance;
+
+
+  document
+    .getElementById("selectedUserText")
+    .textContent=
+      "Выбран: "+email;
+
+
+  document
+    .getElementById("aDeposit")
+    .value=f.deposit;
+
+
+  document
+    .getElementById("aTurnover")
+    .value=f.turnover;
+
+
+  document
+    .getElementById("aProfit")
+    .value=f.profit;
+
+
+  document
+    .getElementById("aCommission")
+    .value=f.commission;
+
+
+  document
+    .getElementById("aDeals")
+    .value=f.deals;
+
+
+  if(!u.payment){
+
+    u.payment={
+      method:"Trust Wallet",
+      network:"TRC20",
+      wallet:"",
+      qr:""
+    };
+
+  }
+
+
+  document
+    .getElementById("selectedPaymentText")
+    .textContent=
+      "Реквизиты пользователя: "+email;
+
+
+  document
+    .getElementById("aPaymentMethod")
+    .value=
+      u.payment.method ||
+      "Trust Wallet";
+
+
+  document
+    .getElementById("aPaymentNetwork")
+    .value=
+      u.payment.network ||
+      "TRC20";
+
+
+  document
+    .getElementById("aWallet")
+    .value=
+      u.payment.wallet ||
+      "";
+
+
+  pendingQR=
+    u.payment.qr ||
+    "";
+
+
+  showAdminQR(
+    pendingQR
+  );
+
+}
+
+
+function saveFinance(){
+
+  if(
+    session.role!=="ADMIN" ||
+    !selectedUser
+  ){
+
+    alert(
+      "Сначала выберите пользователя"
+    );
+
+    return;
+  }
+
+
+  const u=users[selectedUser];
+
+
+  u.finance={
+
+    deposit:
+      Number(
+        document.getElementById("aDeposit").value
+      )||0,
+
+    turnover:
+      Number(
+        document.getElementById("aTurnover").value
+      )||0,
+
+    profit:
+      Number(
+        document.getElementById("aProfit").value
+      )||0,
+
+    commission:
+      Number(
+        document.getElementById("aCommission").value
+      )||0,
+
+    deals:
+      Number(
+        document.getElementById("aDeals").value
+      )||0
+
+  };
+
+
+  persist();
+
+
+  addLog(
+    "изменил финансовые данные пользователя "+
+    selectedUser
+  );
+
+
+  renderAdmin();
+
+
+  alert(
+    "Финансовые данные сохранены"
+  );
+
+
+  if(
+    selectedUser===session.email
+  ){
+
+    renderAll();
+
+  }
+
+}
+
+
+function savePayment(){
+
+  if(
+    session.role!=="ADMIN" ||
+    !selectedUser
+  ){
+
+    alert(
+      "Сначала выберите пользователя"
+    );
+
+    return;
+  }
+
+
+  const u=users[selectedUser];
+
+
+  if(!u.payment){
+
+    u.payment={};
+
+  }
+
+
+  u.payment.method=
+    document
+      .getElementById("aPaymentMethod")
+      .value;
+
+
+  u.payment.network=
+    document
+      .getElementById("aPaymentNetwork")
+      .value;
+
+
+  u.payment.wallet=
+    document
+      .getElementById("aWallet")
+      .value
+      .trim();
+
+
+  u.payment.qr=
+    pendingQR||"";
+
+
+  persist();
+
+
+  addLog(
+    "изменил реквизиты пользователя "+
+    selectedUser
+  );
+
+
+  renderAdmin();
+
+
+  alert(
+    "Реквизиты пользователя сохранены"
+  );
+
+
+  if(
+    selectedUser===session.email
+  ){
+
+    renderPayment();
+
+  }
+
+}
+
+
+function previewQR(event){
+
+  const file=
+    event.target.files[0];
+
+
+  if(!file)
+    return;
+
+
+  if(!file.type.startsWith("image/")){
+
+    alert(
+      "Выберите изображение PNG/JPG/WEBP"
+    );
+
+    return;
+  }
+
+
+  const reader=
+    new FileReader();
+
+
+  reader.onload=function(e){
+
+    pendingQR=e.target.result;
+
+    showAdminQR(pendingQR);
+
+  };
+
+
+  reader.readAsDataURL(file);
+
+}
+
+
+function showAdminQR(src){
+
+  const box=
+    document.getElementById(
+      "adminQrPreview"
+    );
+
+
+  if(!src){
+
+    box.style.display="none";
+    box.innerHTML="";
+
+    return;
+  }
+
+
+  box.style.display="block";
+
+
+  box.innerHTML=
+    '<div class="payment-info-label">'+
+    'Предпросмотр QR-кода'+
+    '</div>'+
+    '<img src="'+
+    src+
+    '" alt="QR код">';
+
+}
+
+
+function clearPaymentPreview(){
+
+  pendingQR="";
+
+
+  const file=
+    document.getElementById(
+      "aQrFile"
+    );
+
+
+  file.value="";
+
+
+  showAdminQR("");
+
+}
+
+
+function copyWallet(){
+
+  const u=users[session.email];
+
+
+  if(
+    !u.payment ||
+    !u.payment.wallet
+  ){
+
+    alert(
+      "Адрес кошелька пока не указан"
+    );
+
+    return;
+  }
+
+
+  navigator.clipboard
+    .writeText(
+      u.payment.wallet
+    )
+    .then(
+      ()=>alert(
+        "Адрес скопирован"
+      )
+    )
+    .catch(
+      ()=>alert(
+        "Не удалось скопировать адрес"
+      )
+    );
+
+}
+
+
+function blockSelected(){
+
+  if(
+    session.role!=="ADMIN" ||
+    !selectedUser
+  ){
+
+    alert(
+      "Сначала выберите пользователя"
+    );
+
+    return;
+  }
+
+
+  if(
+    selectedUser===session.email
+  ){
+
+    alert(
+      "Нельзя заблокировать текущего администратора"
+    );
+
+    return;
+  }
+
+
+  users[selectedUser].status=
+    users[selectedUser].status==="active"
+      ?"blocked"
+      :"active";
+
+
+  persist();
+
+
+  addLog(
+    (
+      users[selectedUser].status==="blocked"
+        ?"заблокировал "
+        :"разблокировал "
+    )+
+    selectedUser
+  );
+
+
+  renderAdmin();
+
+}
+
+
+function addLog(text){
+
+  const logs=
+    JSON.parse(
+      localStorage.getItem(
+        "p2pspark_audit"
+      )||"[]"
+    );
+
+
+  logs.push({
+
+    admin:session.email,
+
+    text:text,
+
+    time:
+      new Date()
+        .toLocaleString("ru-RU")
+
+  });
+
+
+  localStorage.setItem(
+    "p2pspark_audit",
+    JSON.stringify(logs)
+  );
+
+}
+
+
+document.addEventListener(
+  "DOMContentLoaded",
+  start
 );
-
-
-/* ================= START ================= */
-
-render();
 
 </script>
 
