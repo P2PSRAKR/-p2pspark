@@ -7,517 +7,630 @@
 
 <style>
 :root{
---bg:#fff;
---panel:#fff;
---panel2:#f8f8f8;
---line:#e5e5e5;
---text:#111;
---muted:#6f6f6f;
---black:#080808;
---soft:#f3f3f3;
---ok:#167c45;
---warn:#9a6500;
---danger:#b3261e
+  --bg:#f7f8fa;
+  --white:#fff;
+  --text:#182033;
+  --muted:#7d879b;
+  --line:#dfe4eb;
+  --dark:#182033;
+  --blue:#3f8cff;
+  --blue2:#eaf3ff;
+  --green:#42ad6d;
+  --red:#d9534f;
+  --yellow:#c18b27;
 }
 
 *{box-sizing:border-box}
 
 html,body{
-margin:0;
-background:var(--bg);
-color:var(--text);
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif
+  margin:0;
+  min-height:100%;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif
 }
 
-button,input,select{
-font:inherit
+button,input,select,textarea{
+  font:inherit
 }
 
-.screen{
-min-height:100vh
+button{
+  cursor:pointer
 }
 
 /* LOGIN */
 
 .login{
-display:grid;
-place-items:center;
-padding:24px;
-background:#fff
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+  background:#f7f8fa
 }
 
 .loginbox{
-width:min(430px,100%);
-background:#fff;
-border:1px solid #ddd;
-border-radius:24px;
-padding:30px;
-box-shadow:0 18px 60px #00000012
+  width:min(430px,100%);
+  background:#fff;
+  border:1px solid #dfe3e9;
+  border-radius:25px;
+  padding:32px;
+  box-shadow:0 20px 60px rgba(20,30,50,.10)
 }
 
 .brand{
-text-align:center;
-font-size:29px;
-font-weight:900;
-letter-spacing:1px
+  text-align:center;
+  font-size:30px;
+  font-weight:900;
+  letter-spacing:1px
 }
 
 .brand span{
-color:#000
+  color:#182033
 }
 
 .tag{
-text-align:center;
-color:#777;
-font-size:12px;
-letter-spacing:2px;
-margin:6px 0 30px
+  text-align:center;
+  color:#8b94a6;
+  font-size:11px;
+  letter-spacing:2px;
+  margin:7px 0 30px
 }
 
 .loginbox h2{
-text-align:center;
-margin:0 0 8px
+  text-align:center;
+  margin:0 0 8px;
+  font-size:22px
 }
 
 .hint{
-text-align:center;
-color:#777;
-font-size:14px;
-margin-bottom:24px
+  text-align:center;
+  color:#8992a3;
+  font-size:14px;
+  margin-bottom:24px
 }
 
 .field{
-margin:13px 0
+  margin:15px 0
 }
 
 .field label{
-display:block;
-color:#555;
-font-size:13px;
-margin-bottom:7px
+  display:block;
+  color:#1d2638;
+  font-size:14px;
+  font-weight:700;
+  margin-bottom:8px
 }
 
 .field input{
-width:100%;
-background:#fff;
-color:#111;
-border:1px solid #d7d7d7;
-border-radius:12px;
-padding:13px;
-outline:none
+  width:100%;
+  height:52px;
+  background:#fff;
+  color:#182033;
+  border:1px solid #d7dce4;
+  border-radius:13px;
+  padding:0 15px;
+  outline:none
 }
 
-.field input:focus,
-.form input:focus,
-.form select:focus{
-border-color:#111
+.field input:focus{
+  border-color:#182033
 }
 
 .primary{
-width:100%;
-border:0;
-background:#090909;
-color:#fff;
-border-radius:12px;
-padding:14px;
-font-weight:800;
-cursor:pointer;
-margin-top:8px
+  width:100%;
+  height:54px;
+  border:0;
+  background:#182033;
+  color:#fff;
+  border-radius:14px;
+  font-size:17px;
+  font-weight:800;
+  margin-top:8px
 }
 
 .login-note{
-text-align:center;
-color:#888;
-font-size:12px;
-margin-top:18px
+  text-align:center;
+  color:#8a93a4;
+  font-size:12px;
+  margin-top:18px
 }
 
 .demo{
-margin-top:14px;
-padding:10px;
-border-radius:10px;
-background:#f5f5f5;
-color:#666;
-font-size:12px;
-line-height:1.5
+  margin-top:14px;
+  padding:12px;
+  border-radius:12px;
+  background:#f3f5f8;
+  color:#697386;
+  font-size:12px;
+  line-height:1.6
 }
 
 /* APP */
 
 .app{
-display:none;
-min-height:100vh
+  display:none;
+  min-height:100vh
 }
 
 .app.show{
-display:flex
+  display:flex
 }
 
 .sidebar{
-width:260px;
-position:fixed;
-left:0;
-top:0;
-bottom:0;
-background:#fff;
-border-right:1px solid var(--line);
-padding:23px 14px;
-z-index:5
+  width:260px;
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  background:#fff;
+  border-right:1px solid var(--line);
+  padding:23px 14px;
+  z-index:10
 }
 
 .brand.left{
-text-align:left;
-padding:5px 12px 25px;
-font-size:23px
+  text-align:left;
+  padding:5px 12px 27px;
+  font-size:23px
 }
 
 .nav{
-display:flex;
-flex-direction:column;
-gap:4px
+  display:flex;
+  flex-direction:column;
+  gap:4px
 }
 
 .nav button{
-border:1px solid transparent;
-background:#fff;
-color:#222;
-text-align:left;
-padding:13px 14px;
-border-radius:13px;
-cursor:pointer
+  width:100%;
+  border:1px solid transparent;
+  background:#fff;
+  color:#263044;
+  text-align:left;
+  padding:13px 14px;
+  border-radius:13px;
+  font-size:14px
 }
 
-.nav button.active,
-.nav button:hover{
-background:#f1f1f1;
-border-color:#cfcfcf;
-color:#000;
-font-weight:700
+.nav button:hover,
+.nav button.active{
+  background:#eef4ff;
+  border-color:#dce9ff;
+  color:#2876dc;
+  font-weight:700
 }
 
 .logout{
-position:absolute;
-bottom:22px;
-left:14px;
-right:14px;
-border:0;
-background:#fff;
-color:#555;
-text-align:left;
-padding:12px;
-cursor:pointer
+  position:absolute;
+  bottom:22px;
+  left:14px;
+  right:14px;
+  border:0;
+  background:#fff;
+  color:#667085;
+  text-align:left;
+  padding:12px 14px
 }
 
 .main{
-margin-left:260px;
-width:calc(100% - 260px)
+  margin-left:260px;
+  width:calc(100% - 260px)
 }
 
 .top{
-height:70px;
-background:#fff;
-border-bottom:1px solid var(--line);
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 28px
+  height:72px;
+  background:#fff;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 28px
 }
 
 .top strong{
-font-size:17px
+  font-size:18px
 }
 
 .user{
-display:flex;
-align-items:center;
-gap:10px;
-color:#555
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#667085;
+  font-size:14px
 }
 
 .avatar{
-width:38px;
-height:38px;
-border-radius:50%;
-display:grid;
-place-items:center;
-background:#111;
-color:#fff;
-font-weight:800
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#edf1f7;
+  color:#182033;
+  font-weight:800
 }
 
 .content{
-padding:28px;
-max-width:1250px
+  padding:30px;
+  max-width:1350px
 }
 
 .page{
-display:none
+  display:none
 }
 
 .page.active{
-display:block
+  display:block
 }
 
 .title{
-font-size:29px;
-font-weight:850;
-margin-bottom:6px
+  font-size:34px;
+  font-weight:850;
+  margin-bottom:7px
 }
 
 .sub{
-color:#777;
-margin-bottom:21px
+  color:#7d8799;
+  font-size:16px;
+  margin-bottom:25px
 }
 
+/* CARDS */
+
 .cards{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:14px
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px
 }
 
 .card{
-background:#fff;
-border:1px solid #dedede;
-border-radius:17px;
-padding:19px
+  background:#fff;
+  border:1px solid #dfe4eb;
+  border-radius:19px;
+  padding:22px
 }
 
 .wide{
-grid-column:span 2
+  grid-column:span 2
 }
 
 .label{
-font-size:13px;
-color:#777
+  color:#7d8799;
+  font-size:16px;
+  font-weight:700
 }
 
 .value{
-font-size:28px;
-font-weight:850;
-margin-top:8px
+  color:#182033;
+  font-size:32px;
+  font-weight:850;
+  margin-top:12px
 }
 
+.value.green{
+  color:var(--green)
+}
+
+.card.softblue{
+  background:#fbfdff;
+  border-color:#d8e9df
+}
+
+.card.softgreen{
+  background:#fbfffc;
+  border-color:#d6eadc
+}
+
+/* BUTTONS */
+
 .actions{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-top:18px
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:20px
 }
 
 .btn{
-border:1px solid #d4d4d4;
-background:#fff;
-color:#111;
-border-radius:11px;
-padding:11px 15px;
-font-weight:750;
-cursor:pointer
+  border:1px solid #d5dbe4;
+  background:#fff;
+  color:#182033;
+  border-radius:12px;
+  padding:11px 16px;
+  font-weight:750
 }
 
 .btn:hover{
-background:#f5f5f5
+  background:#f5f7fa
 }
 
 .btn.blue{
-background:#090909;
-border-color:#090909;
-color:#fff
+  background:#182033;
+  border-color:#182033;
+  color:#fff
 }
 
+.btn.blue2{
+  background:#3f8cff;
+  border-color:#3f8cff;
+  color:#fff
+}
+
+.btn.red{
+  background:#fff0ef;
+  border-color:#ffd4d1;
+  color:#b52e29
+}
+
+/* TABLE */
+
 .section{
-margin-top:20px;
-border:1px solid #dedede;
-background:#fff;
-border-radius:17px;
-overflow:auto
+  margin-top:22px;
+  border:1px solid #dfe4eb;
+  background:#fff;
+  border-radius:18px;
+  overflow:auto
 }
 
 .section h3{
-margin:0;
-padding:17px 19px;
-border-bottom:1px solid var(--line)
+  margin:0;
+  padding:18px 20px;
+  border-bottom:1px solid var(--line)
 }
 
 table{
-width:100%;
-border-collapse:collapse;
-min-width:700px
+  width:100%;
+  border-collapse:collapse;
+  min-width:720px
 }
 
 th,td{
-text-align:left;
-padding:14px 18px;
-border-bottom:1px solid #eee;
-font-size:14px
+  text-align:left;
+  padding:14px 18px;
+  border-bottom:1px solid #edf0f4;
+  font-size:14px
 }
 
 th{
-color:#777;
-font-weight:600
+  color:#7d8799;
+  font-weight:650
 }
 
 .pill{
-padding:5px 9px;
-border-radius:99px;
-font-size:12px;
-background:#f1f1f1
+  padding:5px 10px;
+  border-radius:99px;
+  font-size:12px;
+  background:#f0f2f5
 }
 
 .ok{
-background:#edf8f1;
-color:var(--ok)
+  background:#eaf8ef;
+  color:#25834d
 }
 
 .warn{
-background:#fff7e5;
-color:var(--warn)
+  background:#fff7e7;
+  color:#a16b00
 }
 
 .danger{
-background:#fff0ef;
-color:var(--danger)
+  background:#fff0ef;
+  color:#b52e29
 }
 
+/* FORM */
+
 .form{
-display:grid;
-gap:12px;
-padding:20px;
-max-width:560px
+  display:grid;
+  gap:12px;
+  padding:20px;
+  max-width:650px
 }
 
 .form label{
-font-size:13px;
-color:#666
+  font-size:13px;
+  color:#667085;
+  font-weight:650
 }
 
 .form input,
-.form select{
-background:#fff;
-color:#111;
-border:1px solid #d7d7d7;
-border-radius:10px;
-padding:12px
+.form select,
+.form textarea{
+  width:100%;
+  background:#fff;
+  color:#182033;
+  border:1px solid #d7dce4;
+  border-radius:11px;
+  padding:12px;
+  outline:none
 }
 
-.mobile{
-display:none;
-border:1px solid #ddd;
-background:#fff;
-color:#111;
-border-radius:9px;
-padding:8px 11px
+.form textarea{
+  min-height:90px;
+  resize:vertical
 }
 
-.admin-only{
-display:none
+/* ADMIN */
+
+.admin-banner{
+  background:#182033;
+  color:#fff;
+  border-radius:18px;
+  padding:18px 20px;
+  margin-bottom:20px
 }
 
-.admin .admin-only{
-display:block
+.admin-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  padding:20px
 }
+
+.admin-grid .field{
+  margin:0
+}
+
+.admin-grid .field label{
+  color:#687286;
+  margin-bottom:7px
+}
+
+.admin-grid .field input,
+.admin-grid .field select{
+  width:100%;
+  height:45px
+}
+
+.user-name{
+  font-weight:750
+}
+
+.user-email{
+  color:#7b8495;
+  font-size:12px;
+  margin-top:3px
+}
+
+/* MODALS */
 
 .modal{
-display:none;
-position:fixed;
-inset:0;
-background:#0008;
-z-index:30;
-place-items:center
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(12,18,30,.52);
+  z-index:100;
+  place-items:center;
+  padding:20px
 }
 
 .modal.show{
-display:grid
+  display:grid
 }
 
 .modalbox{
-width:min(520px,92%);
-background:#fff;
-border:1px solid #ddd;
-border-radius:18px;
-padding:22px;
-box-shadow:0 20px 70px #0003
+  width:min(720px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:#fff;
+  border-radius:22px;
+  padding:24px;
+  box-shadow:0 25px 80px rgba(0,0,0,.2)
+}
+
+.modalbox.smallbox{
+  width:min(520px,100%)
 }
 
 .modalbox h2{
-margin:0 0 5px
+  margin:0 0 5px
+}
+
+.modal-sub{
+  color:#7d8799;
+  font-size:13px;
+  margin-bottom:5px
 }
 
 .close{
-float:right;
-background:none;
-border:0;
-color:#111;
-font-size:25px;
-cursor:pointer
-}
-
-.mobile-menu{
-display:none
+  float:right;
+  border:0;
+  background:#f1f3f6;
+  color:#182033;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  font-size:23px;
+  line-height:36px
 }
 
 /* MOBILE */
 
-@media(max-width:800px){
+.mobile{
+  display:none;
+  border:1px solid #d9dfe8;
+  background:#fff;
+  color:#182033;
+  border-radius:10px;
+  padding:8px 11px
+}
+
+.mobile-modal-nav{
+  margin-top:15px
+}
+
+.mobile-modal-nav .nav button{
+  padding:14px
+}
+
+.admin-only{
+  display:none
+}
+
+.admin .admin-only{
+  display:block
+}
+
+@media(max-width:950px){
 
 .sidebar{
-display:none
+  display:none
 }
 
 .main{
-margin-left:0;
-width:100%
+  margin-left:0;
+  width:100%
 }
 
 .mobile{
-display:block
+  display:block
 }
 
 .top{
-padding:0 15px
+  padding:0 16px
 }
 
 .content{
-padding:20px 15px
+  padding:22px 16px
 }
 
 .cards{
-grid-template-columns:1fr 1fr
+  grid-template-columns:1fr 1fr
 }
 
 .wide{
-grid-column:span 2
+  grid-column:span 2
 }
 
-.mobile-menu{
-display:block
-}
-
-.mobile-menu .nav button{
-background:#fff
+.admin-grid{
+  grid-template-columns:1fr 1fr
 }
 
 }
 
-@media(max-width:500px){
-
-.cards{
-grid-template-columns:1fr
-}
-
-.wide{
-grid-column:span 1
-}
+@media(max-width:600px){
 
 .title{
-font-size:25px
+  font-size:29px
+}
+
+.cards{
+  grid-template-columns:1fr
+}
+
+.wide{
+  grid-column:span 1
+}
+
+.admin-grid{
+  grid-template-columns:1fr
 }
 
 .loginbox{
-padding:24px
+  padding:25px
 }
 
-.top strong{
-font-size:16px
+.user span{
+  display:none
 }
 
 }
@@ -526,9 +639,10 @@ font-size:16px
 
 <body>
 
-<!-- LOGIN -->
 
-<section class="screen login" id="login">
+<!-- ================= LOGIN ================= -->
+
+<section class="login" id="login">
 
 <div class="loginbox">
 
@@ -547,23 +661,33 @@ PEOPLE • DEALS • OPPORTUNITIES
 </div>
 
 <div class="field">
+
 <label>Почта (Gmail)</label>
+
 <input
 id="email"
 type="email"
 placeholder="user@gmail.com">
+
 </div>
 
 <div class="field">
+
 <label>Пароль</label>
+
 <input
 id="password"
 type="password"
 placeholder="Введите пароль">
+
 </div>
 
-<button class="primary" onclick="login()">
+<button
+class="primary"
+onclick="login()">
+
 Войти →
+
 </button>
 
 <div class="login-note">
@@ -571,20 +695,28 @@ placeholder="Введите пароль">
 </div>
 
 <div class="demo">
-<b>Демо:</b>
-пользователь — user@gmail.com / 123456
+
+<b>Демо пользователь:</b>
+user@gmail.com / 123456
+
 <br>
-<b>Админ:</b>
+
+<b>Демо администратор:</b>
 admin@p2pspark.com / admin123
+
 </div>
 
 </div>
+
 </section>
 
 
-<!-- APPLICATION -->
+<!-- ================= APP ================= -->
 
 <div class="app" id="app">
+
+
+<!-- SIDEBAR -->
 
 <aside class="sidebar">
 
@@ -630,27 +762,40 @@ P2P<span>SPARK</span>
 👤 Профиль
 </button>
 
-<button class="admin-only" data-page="admin">
+<button
+class="admin-only"
+data-page="admin">
+
 🛡️ Админ-панель
+
 </button>
 
 </nav>
 
-<button class="logout" onclick="logout()">
+<button
+class="logout"
+onclick="logout()">
+
 ↪ Выйти
+
 </button>
 
 </aside>
 
 
+<!-- MAIN -->
+
 <div class="main">
+
 
 <header class="top">
 
 <button
 class="mobile"
 onclick="openMobile()">
+
 ☰
+
 </button>
 
 <strong id="pageTitle">
@@ -663,8 +808,12 @@ onclick="openMobile()">
 Пользователь
 </span>
 
-<div class="avatar" id="avatar">
+<div
+class="avatar"
+id="avatar">
+
 P
+
 </div>
 
 </div>
@@ -675,7 +824,7 @@ P
 <main class="content">
 
 
-<!-- DASHBOARD -->
+<!-- ================= DASHBOARD ================= -->
 
 <section
 class="page active"
@@ -686,79 +835,171 @@ id="dashboard">
 </div>
 
 <div class="sub">
-Основные показатели аккаунта
+Добро пожаловать в P2PSPARK
 </div>
 
 <div class="cards">
 
-<div class="card wide">
+
+<div class="card wide softblue">
+
 <div class="label">
-Баланс
-</div>
-<div class="value balance">
-0 USDT
-</div>
+Баланс депозита
 </div>
 
-<div class="card">
-<div class="label">
-Прибыль сегодня
-</div>
-<div class="value">
+<div
+class="value balance">
+
 0 USDT
-</div>
+
 </div>
 
-<div class="card">
-<div class="label">
-Прибыль за месяц
-</div>
-<div class="value">
-0 USDT
-</div>
+<div class="sub">
+Обновлено сегодня
 </div>
 
+</div>
+
+
 <div class="card">
+
 <div class="label">
 Активные сделки
 </div>
-<div class="value">
+
+<div
+class="value activeDeals">
+
 0
-</div>
+
 </div>
 
+<div class="sub">
+На текущий момент
+</div>
+
+</div>
+
+
 <div class="card">
+
+<div class="label">
+Оборот
+</div>
+
+<div
+class="value turnover">
+
+0 USDT
+
+</div>
+
+<div class="sub">
+За текущий месяц
+</div>
+
+</div>
+
+
+<div class="card softgreen">
+
+<div class="label">
+Прибыль сегодня
+</div>
+
+<div
+class="value green profitToday">
+
+0 USDT
+
+</div>
+
+<div class="sub">
+За сегодня
+</div>
+
+</div>
+
+
+<div class="card softgreen">
+
+<div class="label">
+Прибыль за месяц
+</div>
+
+<div
+class="value green profitMonth">
+
+0 USDT
+
+</div>
+
+<div class="sub">
+За текущий месяц
+</div>
+
+</div>
+
+
+<div class="card">
+
 <div class="label">
 Заявки
 </div>
-<div class="value" id="requestCount">
+
+<div
+class="value requestCount">
+
 0
-</div>
+
 </div>
 
+<div class="sub">
+Всего заявок
+</div>
+
+</div>
+
+
 <div class="card">
+
 <div class="label">
 Открытые споры
 </div>
-<div class="value">
+
+<div
+class="value disputeCount">
+
 0
+
 </div>
+
+<div class="sub">
+Текущий статус
 </div>
 
 </div>
+
+
+</div>
+
 
 <div class="actions">
 
 <button
 class="btn blue"
 onclick="showPage('requests')">
+
 + Создать заявку
+
 </button>
 
 <button
 class="btn"
 onclick="showPage('finance')">
-Пополнить
+
+Финансы
+
 </button>
 
 </div>
@@ -766,7 +1007,7 @@ onclick="showPage('finance')">
 </section>
 
 
-<!-- FINANCE -->
+<!-- ================= FINANCE ================= -->
 
 <section
 class="page"
@@ -777,53 +1018,30 @@ id="finance">
 </div>
 
 <div class="sub">
-Пополнения, выводы и история операций
+Финансовая информация аккаунта
 </div>
 
 <div class="cards">
 
 <div class="card wide">
-<div class="label">
-Текущий баланс
-</div>
-<div class="value">
-0 USDT
-</div>
+<div class="label">Баланс</div>
+<div class="value balance">0 USDT</div>
 </div>
 
 <div class="card">
-<div class="label">
-Пополнения
-</div>
-<div class="value">
-0
-</div>
+<div class="label">Прибыль сегодня</div>
+<div class="value green profitToday">0 USDT</div>
 </div>
 
 <div class="card">
-<div class="label">
-Выводы
-</div>
-<div class="value">
-0
-</div>
+<div class="label">Прибыль за месяц</div>
+<div class="value green profitMonth">0 USDT</div>
 </div>
 
+<div class="card">
+<div class="label">Оборот</div>
+<div class="value turnover">0 USDT</div>
 </div>
-
-<div class="actions">
-
-<button
-class="btn blue"
-onclick="openModal('Новое пополнение')">
-+ Пополнить
-</button>
-
-<button
-class="btn"
-onclick="openModal('Новый вывод')">
-Вывести
-</button>
 
 </div>
 
@@ -840,7 +1058,6 @@ onclick="openModal('Новый вывод')">
 <th>Тип</th>
 <th>Сумма</th>
 <th>Статус</th>
-<th>Действие</th>
 </tr>
 
 <tr>
@@ -849,10 +1066,9 @@ onclick="openModal('Новый вывод')">
 <td>—</td>
 <td>
 <span class="pill">
-Пусто
+Нет операций
 </span>
 </td>
-<td>—</td>
 </tr>
 
 </table>
@@ -862,7 +1078,7 @@ onclick="openModal('Новый вывод')">
 </section>
 
 
-<!-- DEALS -->
+<!-- ================= DEALS ================= -->
 
 <section
 class="page"
@@ -873,16 +1089,20 @@ id="deals">
 </div>
 
 <div class="sub">
-Все P2P-сделки аккаунта
+Все сделки пользователя
 </div>
 
-<div class="actions">
+<div class="cards">
 
-<button
-class="btn blue"
-onclick="openModal('Новая сделка')">
-+ Новая сделка
-</button>
+<div class="card">
+<div class="label">Активные сделки</div>
+<div class="value activeDeals">0</div>
+</div>
+
+<div class="card">
+<div class="label">Оборот</div>
+<div class="value turnover">0 USDT</div>
+</div>
 
 </div>
 
@@ -921,7 +1141,7 @@ onclick="openModal('Новая сделка')">
 </section>
 
 
-<!-- REQUESTS -->
+<!-- ================= REQUESTS ================= -->
 
 <section
 class="page"
@@ -940,7 +1160,9 @@ id="requests">
 <button
 class="btn blue"
 onclick="createRequest()">
+
 + Новая заявка
+
 </button>
 
 </div>
@@ -961,7 +1183,8 @@ onclick="createRequest()">
 <th>Действие</th>
 </tr>
 
-<tbody id="myRequestsBody"></tbody>
+<tbody id="myRequestsBody">
+</tbody>
 
 </table>
 
@@ -970,7 +1193,7 @@ onclick="createRequest()">
 </section>
 
 
-<!-- DISPUTES -->
+<!-- ================= DISPUTES ================= -->
 
 <section
 class="page"
@@ -1017,7 +1240,7 @@ id="disputes">
 </section>
 
 
-<!-- REQUISITES -->
+<!-- ================= REQUISITES ================= -->
 
 <section
 class="page"
@@ -1036,7 +1259,9 @@ id="requisites">
 <button
 class="btn blue"
 onclick="openModal('Добавить реквизит')">
+
 + Добавить реквизит
+
 </button>
 
 </div>
@@ -1072,7 +1297,7 @@ onclick="openModal('Добавить реквизит')">
 </section>
 
 
-<!-- DEVICES -->
+<!-- ================= DEVICES ================= -->
 
 <section
 class="page"
@@ -1114,7 +1339,6 @@ id="devices">
 Активно
 </span>
 </td>
-
 </tr>
 
 </table>
@@ -1124,7 +1348,7 @@ id="devices">
 </section>
 
 
-<!-- REPORTS -->
+<!-- ================= REPORTS ================= -->
 
 <section
 class="page"
@@ -1151,19 +1375,10 @@ id="reports">
 </label>
 
 <select>
-
-<option>
-Сегодня
-</option>
-
-<option>
-7 дней
-</option>
-
-<option>
-30 дней
-</option>
-
+<option>Сегодня</option>
+<option>7 дней</option>
+<option>30 дней</option>
+<option>90 дней</option>
 </select>
 
 <button
@@ -1181,7 +1396,7 @@ onclick="alert('В рабочей версии отчёт будет сформ�
 </section>
 
 
-<!-- PROFILE -->
+<!-- ================= PROFILE ================= -->
 
 <section
 class="page"
@@ -1209,18 +1424,22 @@ Email
 
 <input
 id="profileEmail"
-value="user@gmail.com">
+readonly>
 
 <label>
 Имя
 </label>
 
 <input
-placeholder="Имя пользователя">
+id="profileName"
+readonly>
 
 <button
-class="btn blue">
+class="btn blue"
+onclick="alert('Изменение профиля выполняется администратором в текущем прототипе.')">
+
 Сохранить
+
 </button>
 
 </div>
@@ -1230,7 +1449,7 @@ class="btn blue">
 </section>
 
 
-<!-- ADMIN -->
+<!-- ================= ADMIN ================= -->
 
 <section
 class="page admin-only"
@@ -1241,7 +1460,17 @@ id="admin">
 </div>
 
 <div class="sub">
-Управление личными кабинетами
+Полное управление личными кабинетами пользователей
+</div>
+
+<div class="admin-banner">
+
+<b>Администратор</b>
+
+<br>
+
+Здесь можно открыть личный кабинет пользователя и изменить его демонстрационные данные.
+
 </div>
 
 <div class="actions">
@@ -1249,7 +1478,9 @@ id="admin">
 <button
 class="btn blue"
 onclick="openAdminModal()">
+
 + Создать ЛК
+
 </button>
 
 </div>
@@ -1264,45 +1495,22 @@ onclick="openAdminModal()">
 
 <tr>
 <th>ID</th>
-<th>Email</th>
+<th>Пользователь</th>
 <th>Баланс</th>
+<th>Прибыль</th>
 <th>Статус</th>
 <th>Действия</th>
 </tr>
 
-<tbody id="usersBody"></tbody>
-
-</table>
-
-</div>
-
-<div class="section">
-
-<h3>
-Последние изменения
-</h3>
-
-<table>
-
-<tr>
-<th>Время</th>
-<th>Действие</th>
-<th>Объект</th>
-<th>Администратор</th>
-</tr>
-
-<tr>
-<td>—</td>
-<td>—</td>
-<td>—</td>
-<td>—</td>
-</tr>
+<tbody id="usersBody">
+</tbody>
 
 </table>
 
 </div>
 
 </section>
+
 
 </main>
 
@@ -1311,18 +1519,287 @@ onclick="openAdminModal()">
 </div>
 
 
-<!-- MODAL -->
+<!-- ================= USER MODAL ================= -->
 
 <div
 class="modal"
-id="modal">
+id="userModal">
 
 <div class="modalbox">
 
 <button
 class="close"
-onclick="closeModal()">
+onclick="closeUserModal()">
+
 ×
+
+</button>
+
+<h2>
+Редактирование ЛК
+</h2>
+
+<div class="modal-sub" id="editingUserEmail">
+Пользователь
+</div>
+
+
+<div class="admin-grid">
+
+
+<div class="field">
+
+<label>
+Имя
+</label>
+
+<input id="editName">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Email
+</label>
+
+<input id="editEmail">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Пароль
+</label>
+
+<input
+id="editPassword"
+type="text">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Баланс / депозит
+</label>
+
+<input
+id="editBalance"
+type="number"
+step="0.01">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Прибыль сегодня
+</label>
+
+<input
+id="editProfitToday"
+type="number"
+step="0.01">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Прибыль за месяц
+</label>
+
+<input
+id="editProfitMonth"
+type="number"
+step="0.01">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Оборот
+</label>
+
+<input
+id="editTurnover"
+type="number"
+step="0.01">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Активные сделки
+</label>
+
+<input
+id="editActiveDeals"
+type="number"
+min="0">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Открытые споры
+</label>
+
+<input
+id="editDisputes"
+type="number"
+min="0">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Статус аккаунта
+</label>
+
+<select id="editStatus">
+
+<option value="Активен">
+Активен
+</option>
+
+<option value="Заблокирован">
+Заблокирован
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="btn blue"
+onclick="saveEditedUser()">
+
+Сохранить изменения
+
+</button>
+
+<button
+class="btn"
+onclick="closeUserModal()">
+
+Отмена
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= CREATE USER ================= -->
+
+<div
+class="modal"
+id="adminModal">
+
+<div class="modalbox smallbox">
+
+<button
+class="close"
+onclick="closeAdminModal()">
+
+×
+
+</button>
+
+<h2>
+Создать личный кабинет
+</h2>
+
+<div class="form">
+
+<label>
+Имя пользователя
+</label>
+
+<input
+id="newName"
+placeholder="Имя">
+
+<label>
+Email пользователя
+</label>
+
+<input
+id="newEmail"
+type="email"
+placeholder="user@gmail.com">
+
+<label>
+Пароль
+</label>
+
+<input
+id="newPass"
+type="text"
+placeholder="Пароль">
+
+<label>
+Начальный баланс
+</label>
+
+<input
+id="newBalance"
+type="number"
+value="0">
+
+<button
+class="btn blue"
+onclick="saveAdminUser()">
+
+Создать ЛК
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= SIMPLE MODAL ================= -->
+
+<div
+class="modal"
+id="modal">
+
+<div class="modalbox smallbox">
+
+<button
+class="close"
+onclick="closeModal()">
+
+×
+
 </button>
 
 <h2 id="modalTitle">
@@ -1343,8 +1820,8 @@ placeholder="Введите сумму">
 Комментарий
 </label>
 
-<input
-placeholder="Комментарий">
+<textarea
+placeholder="Комментарий"></textarea>
 
 <button
 class="btn blue"
@@ -1361,80 +1838,20 @@ onclick="closeModal();alert('Форма сохранена в прототипе
 </div>
 
 
-<!-- ADMIN MODAL -->
-
-<div
-class="modal"
-id="adminModal">
-
-<div class="modalbox">
-
-<button
-class="close"
-onclick="closeAdminModal()">
-×
-</button>
-
-<h2 id="adminTitle">
-Создать ЛК
-</h2>
-
-<div class="form">
-
-<label>
-Email пользователя (Gmail)
-</label>
-
-<input
-id="newEmail"
-type="email"
-placeholder="user@gmail.com">
-
-<label>
-Пароль
-</label>
-
-<input
-id="newPass"
-type="text"
-placeholder="Пароль задаёт администратор">
-
-<label>
-Начальный баланс
-</label>
-
-<input
-id="newBalance"
-type="number"
-placeholder="0">
-
-<button
-class="btn blue"
-onclick="saveAdminUser()">
-
-Создать ЛК
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- MOBILE MENU -->
+<!-- ================= MOBILE MENU ================= -->
 
 <div
 class="modal"
 id="mobileModal">
 
-<div class="modalbox">
+<div class="modalbox smallbox">
 
 <button
 class="close"
 onclick="closeMobile()">
+
 ×
+
 </button>
 
 <div class="brand left">
@@ -1442,7 +1859,7 @@ P2P<span>SPARK</span>
 </div>
 
 <nav
-class="nav"
+class="nav mobile-modal-nav"
 id="mobileNav">
 </nav>
 
@@ -1453,36 +1870,36 @@ id="mobileNav">
 
 <script>
 
-const names={
-dashboard:'Дашборд',
-finance:'Финансы',
-deals:'Сделки',
-requests:'Заявки',
-disputes:'Споры',
-requisites:'Реквизиты',
-devices:'Устройства',
-reports:'Отчёты',
-profile:'Профиль',
-admin:'Админ-панель'
-};
-
+/* ================= DATA ================= */
 
 const defaultUsers={
 
-'user@gmail.com':{
-password:'123456',
-role:'user',
-balance:0,
-name:'Пользователь',
-requests:[]
+"user@gmail.com":{
+  password:"123456",
+  role:"user",
+  name:"Пользователь",
+  balance:0,
+  profitToday:0,
+  profitMonth:0,
+  turnover:0,
+  activeDeals:0,
+  disputes:0,
+  status:"Активен",
+  requests:[]
 },
 
-'admin@p2pspark.com':{
-password:'admin123',
-role:'admin',
-balance:0,
-name:'Администратор',
-requests:[]
+"admin@p2pspark.com":{
+  password:"admin123",
+  role:"admin",
+  name:"Администратор",
+  balance:0,
+  profitToday:0,
+  profitMonth:0,
+  turnover:0,
+  activeDeals:0,
+  disputes:0,
+  status:"Активен",
+  requests:[]
 }
 
 };
@@ -1490,128 +1907,175 @@ requests:[]
 
 let users=
 JSON.parse(
-localStorage.getItem('p2pspark_users')
-||'null'
-)||defaultUsers;
+localStorage.getItem("p2pspark_users")
+||"null"
+)
+||defaultUsers;
 
 
-let currentEmail='';
+let currentEmail="";
 
+let editingEmail="";
+
+
+const names={
+dashboard:"Дашборд",
+finance:"Финансы",
+deals:"Сделки",
+requests:"Заявки",
+disputes:"Споры",
+requisites:"Реквизиты",
+devices:"Устройства",
+reports:"Отчёты",
+profile:"Профиль",
+admin:"Админ-панель"
+};
+
+
+/* ================= SAVE ================= */
 
 function saveUsers(){
 
 localStorage.setItem(
-'p2pspark_users',
+"p2pspark_users",
 JSON.stringify(users)
 );
 
 }
 
 
+/* ================= LOGIN ================= */
+
 function login(){
 
-const e=
+const email=
 document
-.getElementById('email')
+.getElementById("email")
 .value
 .trim()
 .toLowerCase();
 
-const p=
+const password=
 document
-.getElementById('password')
+.getElementById("password")
 .value;
 
 
-if(!e||!p){
+if(!email||!password){
 
-alert('Введите email и пароль');
-
-return;
-
-}
-
-
-if(
-!users[e] ||
-users[e].password!==p
-){
-
-alert('Неверный email или пароль');
+alert("Введите email и пароль");
 
 return;
 
 }
 
 
-currentEmail=e;
-
-const u=users[e];
+const user=users[email];
 
 
-document.getElementById('login')
-.style.display='none';
+if(!user||user.password!==password){
+
+alert("Неверный email или пароль");
+
+return;
+
+}
 
 
-document.getElementById('app')
-.classList.add('show');
+if(user.status==="Заблокирован"){
+
+alert("Этот аккаунт заблокирован.");
+
+return;
+
+}
 
 
-document.getElementById('app')
-.classList.toggle(
-'admin',
-u.role==='admin'
+currentEmail=email;
+
+
+document
+.getElementById("login")
+.style.display="none";
+
+
+document
+.getElementById("app")
+.classList
+.add("show");
+
+
+document
+.getElementById("app")
+.classList
+.toggle(
+"admin",
+user.role==="admin"
 );
 
 
-document.getElementById('roleName')
+document
+.getElementById("roleName")
 .textContent=
-u.role==='admin'
-?'Администратор'
-:'Пользователь';
+user.role==="admin"
+?"Администратор"
+:"Пользователь";
 
 
-document.getElementById('avatar')
+document
+.getElementById("avatar")
 .textContent=
-(u.name||e)
+(user.name||email)
 .charAt(0)
 .toUpperCase();
 
 
-document.getElementById('profileEmail')
-.value=e;
-
-
 render();
+
+showPage("dashboard");
 
 }
 
+
+/* ================= LOGOUT ================= */
 
 function logout(){
 
-currentEmail='';
+currentEmail="";
 
 document
-.getElementById('app')
+.getElementById("app")
 .classList
-.remove('show','admin');
+.remove("show","admin");
+
 
 document
-.getElementById('login')
+.getElementById("login")
 .style
-.display='grid';
+.display="flex";
+
+
+document
+.getElementById("email")
+.value="";
+
+document
+.getElementById("password")
+.value="";
 
 }
 
+
+/* ================= NAVIGATION ================= */
 
 function showPage(id){
 
 if(
-id==='admin' &&
-users[currentEmail]?.role!=='admin'
+id==="admin" &&
+users[currentEmail]?.role!=="admin"
 ){
 
-alert('Доступ запрещён');
+alert("Доступ запрещён");
 
 return;
 
@@ -1619,30 +2083,38 @@ return;
 
 
 document
-.querySelectorAll('.page')
+.querySelectorAll(".page")
 .forEach(
-x=>x.classList.remove('active')
+page=>page.classList.remove("active")
 );
 
 
-document
-.getElementById(id)
-.classList.add('active');
+const target=
+document.getElementById(id);
+
+
+if(!target)return;
+
+
+target.classList.add("active");
 
 
 document
-.querySelectorAll('.nav button')
+.querySelectorAll(".nav button")
 .forEach(
-x=>x.classList.toggle(
-'active',
-x.dataset.page===id
+button=>{
+button.classList.toggle(
+"active",
+button.dataset.page===id
 )
+}
 );
 
 
 document
-.getElementById('pageTitle')
-.textContent=names[id];
+.getElementById("pageTitle")
+.textContent=
+names[id]||id;
 
 
 closeMobile();
@@ -1652,133 +2124,217 @@ render();
 }
 
 
+/* ================= RENDER ================= */
+
 function render(){
 
-const u=users[currentEmail];
+const user=users[currentEmail];
 
-if(!u)return;
+if(!user)return;
 
+
+/* dashboard */
 
 document
-.querySelectorAll('.balance')
+.querySelectorAll(".balance")
 .forEach(
-x=>x.textContent=
-(u.balance||0)+' USDT'
+el=>el.textContent=
+formatMoney(user.balance)
 );
 
 
-const reqs=u.requests||[];
+document
+.querySelectorAll(".profitToday")
+.forEach(
+el=>el.textContent=
+formatMoney(user.profitToday)
+);
 
 
 document
-.getElementById('requestCount')
-.textContent=reqs.length;
+.querySelectorAll(".profitMonth")
+.forEach(
+el=>el.textContent=
+formatMoney(user.profitMonth)
+);
 
+
+document
+.querySelectorAll(".turnover")
+.forEach(
+el=>el.textContent=
+formatMoney(user.turnover)
+);
+
+
+document
+.querySelectorAll(".activeDeals")
+.forEach(
+el=>el.textContent=
+Number(user.activeDeals||0)
+);
+
+
+document
+.querySelectorAll(".disputeCount")
+.forEach(
+el=>el.textContent=
+Number(user.disputes||0)
+);
+
+
+document
+.querySelectorAll(".requestCount")
+.forEach(
+el=>el.textContent=
+(user.requests||[]).length
+);
+
+
+/* profile */
+
+const profileEmail=
+document.getElementById("profileEmail");
+
+const profileName=
+document.getElementById("profileName");
+
+
+if(profileEmail)
+profileEmail.value=currentEmail;
+
+
+if(profileName)
+profileName.value=user.name||"";
+
+
+/* requests */
+
+renderRequests();
+
+
+/* admin */
+
+renderUsers();
+
+}
+
+
+/* ================= MONEY ================= */
+
+function formatMoney(value){
+
+return Number(value||0)
+.toLocaleString(
+"ru-RU",
+{
+minimumFractionDigits:0,
+maximumFractionDigits:2
+}
+)
++" USDT";
+
+}
+
+
+/* ================= REQUESTS ================= */
+
+function renderRequests(){
 
 const body=
 document.getElementById(
-'myRequestsBody'
+"myRequestsBody"
 );
 
+if(!body)return;
 
-if(body){
 
-body.innerHTML=
-reqs.length
+const user=users[currentEmail];
 
-?
+const requests=user.requests||[];
 
-reqs.map(
-(r,i)=>
 
-`<tr>
-<td>#${r.id}</td>
-<td>Пополнение</td>
-<td>${r.amount} USDT</td>
-<td>
-<span class="pill ${
-r.status==='Подтверждено'
-?'ok'
-:'warn'
-}">
-${r.status}
-</span>
-</td>
-<td>
-<button
-class="btn"
-onclick="editRequest(${i})">
-Изменить
-</button>
-</td>
-</tr>`
+if(!requests.length){
 
-).join('')
+body.innerHTML=`
 
-:
+<tr>
 
-`<tr>
 <td>—</td>
+
 <td>Пополнение</td>
+
 <td>—</td>
+
 <td>
+
 <span class="pill">
 Нет заявок
 </span>
+
 </td>
+
 <td>—</td>
-</tr>`;
+
+</tr>
+
+`;
+
+return;
 
 }
 
 
-const ub=
-document.getElementById(
-'usersBody'
-);
-
-
-if(
-ub &&
-users[currentEmail]?.role==='admin'
-){
-
-ub.innerHTML=
-Object.entries(users)
+body.innerHTML=
+requests
 .map(
-([email,x],i)=>
+(request,index)=>`
 
-`<tr>
-
-<td>#${1001+i}</td>
-
-<td>${email}</td>
-
-<td>${x.balance||0} USDT</td>
+<tr>
 
 <td>
-<span class="pill ok">
-Активен
+#${request.id}
+</td>
+
+<td>
+${request.type||"Пополнение"}
+</td>
+
+<td>
+${formatMoney(request.amount)}
+</td>
+
+<td>
+
+<span class="pill ${
+request.status==="Подтверждено"
+?"ok"
+:"warn"
+}">
+
+${request.status}
+
 </span>
+
 </td>
 
 <td>
 
 <button
 class="btn"
-onclick="manageUser('${email}')">
+onclick="editRequest(${index})">
 
-Управление
+Изменить
 
 </button>
 
 </td>
 
-</tr>`
+</tr>
 
-).join('');
-
-}
+`
+)
+.join("");
 
 }
 
@@ -1787,20 +2343,20 @@ function createRequest(){
 
 const amount=
 prompt(
-'Сумма пополнения, USDT'
+"Сумма заявки, USDT"
 );
 
 
 if(amount===null)return;
 
 
-const n=Number(amount);
+const value=Number(amount);
 
 
-if(!n||n<=0){
+if(!value||value<=0){
 
 alert(
-'Введите корректную сумму'
+"Введите корректную сумму"
 );
 
 return;
@@ -1808,21 +2364,23 @@ return;
 }
 
 
-const u=users[currentEmail];
+const user=users[currentEmail];
 
 
-u.requests=u.requests||[];
+user.requests=user.requests||[];
 
 
-u.requests.push({
+user.requests.push({
 
 id:Date.now()
 .toString()
 .slice(-6),
 
-amount:n,
+type:"Пополнение",
 
-status:'На рассмотрении'
+amount:value,
+
+status:"На рассмотрении"
 
 });
 
@@ -1832,26 +2390,27 @@ saveUsers();
 render();
 
 alert(
-'Заявка создана. Баланс пока не изменён.'
+"Заявка создана."
 );
 
 }
 
 
-function editRequest(i){
+function editRequest(index){
 
-const u=users[currentEmail];
+const user=users[currentEmail];
 
-const r=u.requests[i];
+const request=
+user.requests[index];
 
 
-if(
-!r ||
-r.status==='Подтверждено'
-){
+if(!request)return;
+
+
+if(request.status==="Подтверждено"){
 
 alert(
-'Эту заявку нельзя изменить'
+"Подтверждённую заявку нельзя изменить."
 );
 
 return;
@@ -1859,23 +2418,23 @@ return;
 }
 
 
-const v=
+const value=
 prompt(
-'Изменить сумму, USDT',
-r.amount
+"Изменить сумму",
+request.amount
 );
 
 
-if(v===null)return;
+if(value===null)return;
 
 
-const n=Number(v);
+const amount=Number(value);
 
 
-if(!n||n<=0){
+if(!amount||amount<=0){
 
 alert(
-'Введите корректную сумму'
+"Введите корректную сумму."
 );
 
 return;
@@ -1883,7 +2442,7 @@ return;
 }
 
 
-r.amount=n;
+request.amount=amount;
 
 saveUsers();
 
@@ -1892,42 +2451,130 @@ render();
 }
 
 
-function openModal(t){
+/* ================= ADMIN USERS ================= */
 
-document
-.getElementById('modalTitle')
-.textContent=t;
+function renderUsers(){
 
-document
-.getElementById('modal')
-.classList
-.add('show');
+const body=
+document.getElementById(
+"usersBody"
+);
 
-}
+if(!body)return;
 
 
-function closeModal(){
-
-document
-.getElementById('modal')
-.classList
-.remove('show');
-
-}
-
-
-function openAdminModal(
-t='Создать ЛК'
+if(
+users[currentEmail]?.role!=="admin"
 ){
 
-document
-.getElementById('adminTitle')
-.textContent=t;
+body.innerHTML="";
+
+return;
+
+}
+
+
+const entries=
+Object.entries(users)
+.filter(
+([email,user])=>
+user.role!=="admin"
+);
+
+
+if(!entries.length){
+
+body.innerHTML=`
+
+<tr>
+<td colspan="6">
+Пользователей пока нет
+</td>
+</tr>
+
+`;
+
+return;
+
+}
+
+
+body.innerHTML=
+entries
+.map(
+([email,user],index)=>`
+
+<tr>
+
+<td>
+#${1001+index}
+</td>
+
+<td>
+
+<div class="user-name">
+${escapeHtml(user.name||"Пользователь")}
+</div>
+
+<div class="user-email">
+${escapeHtml(email)}
+</div>
+
+</td>
+
+<td>
+${formatMoney(user.balance)}
+</td>
+
+<td>
+<span class="pill ok">
+${formatMoney(user.profitMonth)}
+</span>
+</td>
+
+<td>
+
+<span class="pill ${
+user.status==="Активен"
+?"ok"
+:"danger"
+}">
+
+${user.status||"Активен"}
+
+</span>
+
+</td>
+
+<td>
+
+<button
+class="btn blue"
+onclick="openUserEditor('${encodeURIComponent(email)}')">
+
+Управление
+
+</button>
+
+</td>
+
+</tr>
+
+`
+)
+.join("");
+
+}
+
+
+/* ================= CREATE ACCOUNT ================= */
+
+function openAdminModal(){
 
 document
-.getElementById('adminModal')
+.getElementById("adminModal")
 .classList
-.add('show');
+.add("show");
 
 }
 
@@ -1935,39 +2582,48 @@ document
 function closeAdminModal(){
 
 document
-.getElementById('adminModal')
+.getElementById("adminModal")
 .classList
-.remove('show');
+.remove("show");
 
 }
 
 
 function saveAdminUser(){
 
+const name=
+document
+.getElementById("newName")
+.value
+.trim();
+
+
 const email=
 document
-.getElementById('newEmail')
+.getElementById("newEmail")
 .value
 .trim()
 .toLowerCase();
 
-const pass=
+
+const password=
 document
-.getElementById('newPass')
+.getElementById("newPass")
 .value;
+
 
 const balance=
 Number(
 document
-.getElementById('newBalance')
+.getElementById("newBalance")
 .value||0
 );
 
 
-if(!email||!pass){
+if(!email||!password){
 
 alert(
-'Укажите email и пароль'
+"Укажите email и пароль."
 );
 
 return;
@@ -1978,7 +2634,7 @@ return;
 if(users[email]){
 
 alert(
-'Такой аккаунт уже существует'
+"Такой аккаунт уже существует."
 );
 
 return;
@@ -1988,16 +2644,25 @@ return;
 
 users[email]={
 
-password:pass,
+password:password,
 
-role:'user',
+role:"user",
 
-balance:Math.max(
-0,
-balance
-),
+name:name||"Пользователь",
 
-name:'Пользователь',
+balance:Math.max(0,balance),
+
+profitToday:0,
+
+profitMonth:0,
+
+turnover:0,
+
+activeDeals:0,
+
+disputes:0,
+
+status:"Активен",
 
 requests:[]
 
@@ -2008,40 +2673,227 @@ saveUsers();
 
 closeAdminModal();
 
-render();
+document
+.getElementById("newName")
+.value="";
+
+document
+.getElementById("newEmail")
+.value="";
+
+document
+.getElementById("newPass")
+.value="";
+
+document
+.getElementById("newBalance")
+.value="0";
+
+
+renderUsers();
 
 alert(
-'Личный кабинет создан.'
+"Личный кабинет создан."
 );
 
 }
 
 
-function manageUser(email){
+/* ================= EDIT USER ================= */
 
-const u=users[email];
+function openUserEditor(encodedEmail){
+
+const email=
+decodeURIComponent(encodedEmail);
 
 
-const value=
-prompt(
-'Изменить баланс пользователя, USDT',
-u.balance||0
+const user=users[email];
+
+
+if(!user)return;
+
+
+editingEmail=email;
+
+
+document
+.getElementById("editingUserEmail")
+.textContent=
+email;
+
+
+document
+.getElementById("editName")
+.value=
+user.name||"";
+
+
+document
+.getElementById("editEmail")
+.value=
+email;
+
+
+document
+.getElementById("editPassword")
+.value=
+user.password||"";
+
+
+document
+.getElementById("editBalance")
+.value=
+user.balance||0;
+
+
+document
+.getElementById("editProfitToday")
+.value=
+user.profitToday||0;
+
+
+document
+.getElementById("editProfitMonth")
+.value=
+user.profitMonth||0;
+
+
+document
+.getElementById("editTurnover")
+.value=
+user.turnover||0;
+
+
+document
+.getElementById("editActiveDeals")
+.value=
+user.activeDeals||0;
+
+
+document
+.getElementById("editDisputes")
+.value=
+user.disputes||0;
+
+
+document
+.getElementById("editStatus")
+.value=
+user.status||"Активен";
+
+
+document
+.getElementById("userModal")
+.classList
+.add("show");
+
+}
+
+
+function closeUserModal(){
+
+document
+.getElementById("userModal")
+.classList
+.remove("show");
+
+editingEmail="";
+
+}
+
+
+/* ================= SAVE USER ================= */
+
+function saveEditedUser(){
+
+if(!editingEmail)return;
+
+
+const user=users[editingEmail];
+
+
+if(!user)return;
+
+
+const newName=
+document
+.getElementById("editName")
+.value
+.trim();
+
+
+const newEmail=
+document
+.getElementById("editEmail")
+.value
+.trim()
+.toLowerCase();
+
+
+const password=
+document
+.getElementById("editPassword")
+.value;
+
+
+const balance=
+Number(
+document
+.getElementById("editBalance")
+.value||0
 );
 
 
-if(value===null)return;
+const profitToday=
+Number(
+document
+.getElementById("editProfitToday")
+.value||0
+);
 
 
-const n=Number(value);
+const profitMonth=
+Number(
+document
+.getElementById("editProfitMonth")
+.value||0
+);
 
 
-if(
-!Number.isFinite(n) ||
-n<0
-){
+const turnover=
+Number(
+document
+.getElementById("editTurnover")
+.value||0
+);
+
+
+const activeDeals=
+Number(
+document
+.getElementById("editActiveDeals")
+.value||0
+);
+
+
+const disputes=
+Number(
+document
+.getElementById("editDisputes")
+.value||0
+);
+
+
+const status=
+document
+.getElementById("editStatus")
+.value;
+
+
+if(!newEmail){
 
 alert(
-'Некорректная сумма'
+"Email не может быть пустым."
 );
 
 return;
@@ -2049,25 +2901,150 @@ return;
 }
 
 
-u.balance=n;
+/* email changed */
+
+if(
+newEmail!==editingEmail &&
+users[newEmail]
+){
+
+alert(
+"Этот email уже используется."
+);
+
+return;
+
+}
+
+
+if(newEmail!==editingEmail){
+
+users[newEmail]=user;
+
+delete users[editingEmail];
+
+currentEmail=
+currentEmail===editingEmail
+?newEmail
+:currentEmail;
+
+editingEmail=newEmail;
+
+}
+
+
+user.name=
+newName||"Пользователь";
+
+user.password=
+password||user.password;
+
+user.balance=
+Math.max(0,balance);
+
+user.profitToday=
+Math.max(0,profitToday);
+
+user.profitMonth=
+Math.max(0,profitMonth);
+
+user.turnover=
+Math.max(0,turnover);
+
+user.activeDeals=
+Math.max(0,Math.floor(activeDeals));
+
+user.disputes=
+Math.max(0,Math.floor(disputes));
+
+user.status=
+status;
+
 
 saveUsers();
 
+closeUserModal();
+
 render();
 
+renderUsers();
+
 alert(
-'Баланс изменён.'
+"Изменения пользователя сохранены."
 );
 
 }
 
 
-function openMobile(){
+/* ================= SIMPLE MODAL ================= */
+
+function openModal(title){
 
 document
-.getElementById('mobileModal')
+.getElementById("modalTitle")
+.textContent=title;
+
+document
+.getElementById("modal")
 .classList
-.add('show');
+.add("show");
+
+}
+
+
+function closeModal(){
+
+document
+.getElementById("modal")
+.classList
+.remove("show");
+
+}
+
+
+/* ================= MOBILE ================= */
+
+function openMobile(){
+
+const original=
+document.querySelector(
+".sidebar .nav"
+);
+
+
+const mobile=
+document.getElementById(
+"mobileNav"
+);
+
+
+mobile.innerHTML=
+original.innerHTML;
+
+
+mobile
+.querySelectorAll("button")
+.forEach(
+button=>{
+
+button.onclick=()=>{
+
+showPage(
+button.dataset.page
+);
+
+closeMobile();
+
+};
+
+}
+);
+
+
+document
+.getElementById("mobileModal")
+.classList
+.add("show");
 
 }
 
@@ -2075,53 +3052,50 @@ document
 function closeMobile(){
 
 document
-.getElementById('mobileModal')
+.getElementById("mobileModal")
 .classList
-.remove('show');
+.remove("show");
 
 }
 
 
+/* ================= SECURITY HELPER ================= */
+
+function escapeHtml(value){
+
+return String(value)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* ================= NAV EVENTS ================= */
+
 document
 .querySelectorAll(
-'.sidebar .nav button'
+".sidebar .nav button"
 )
 .forEach(
-b=>b.addEventListener(
-'click',
+button=>{
+
+button.addEventListener(
+"click",
 ()=>showPage(
-b.dataset.page
+button.dataset.page
 )
-)
+);
+
+}
 );
 
 
-const nav=
-document.querySelector(
-'.sidebar .nav'
-);
+/* ================= START ================= */
 
-
-const mobileNav=
-document.getElementById(
-'mobileNav'
-);
-
-
-mobileNav.innerHTML=
-nav.innerHTML;
-
-
-mobileNav
-.querySelectorAll('button')
-.forEach(
-b=>b.addEventListener(
-'click',
-()=>showPage(
-b.dataset.page
-)
-)
-);
+render();
 
 </script>
 
