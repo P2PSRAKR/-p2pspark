@@ -2,1174 +2,3839 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Реквизиты — CRM</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<title>P2PSPARK CRM</title>
 
 <style>
+:root{
+ --bg:#f4f6f8;
+ --card:#fff;
+ --text:#101820;
+ --muted:#718096;
+ --line:#e2e7ec;
+ --blue:#2563eb;
+ --blue2:#eaf1ff;
+ --green:#16a34a;
+ --green2:#dcfce7;
+ --red:#dc2626;
+ --red2:#fee2e2;
+ --orange:#ea580c;
+ --dark:#111827;
+ --shadow:0 8px 30px rgba(15,23,42,.06);
+}
+
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+ box-sizing:border-box;
 }
 
-body{
-    background:#f5f7f7;
-    color:#111;
+html,body{
+ margin:0;
+ padding:0;
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+ background:var(--bg);
+ color:var(--text);
 }
 
-.header{
-    height:72px;
-    background:#0c1715;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 28px;
+button,input,select{
+ font:inherit;
 }
 
-.logo{
-    font-size:22px;
-    font-weight:800;
-    letter-spacing:.5px;
+button{
+ cursor:pointer;
 }
 
-.header-right{
-    display:flex;
-    align-items:center;
-    gap:18px;
-}
-
-.avatar{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    background:#d9b65c;
-    color:#111;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:800;
-}
-
-.layout{
-    display:flex;
-    min-height:calc(100vh - 72px);
+.app{
+ min-height:100vh;
 }
 
 .sidebar{
-    width:240px;
-    background:#101d1a;
-    color:#fff;
-    padding:25px 15px;
+ position:fixed;
+ left:0;
+ top:0;
+ bottom:0;
+ width:250px;
+ background:#fff;
+ border-right:1px solid var(--line);
+ padding:25px 15px;
+ z-index:50;
+ overflow-y:auto;
 }
 
-.menu-title{
-    color:#899691;
-    font-size:12px;
-    text-transform:uppercase;
-    margin:15px 14px 8px;
+.logo{
+ font-size:25px;
+ font-weight:900;
+ letter-spacing:.5px;
+ padding:5px 14px 25px;
 }
 
-.menu-item{
-    padding:13px 15px;
-    border-radius:10px;
-    margin-bottom:5px;
-    cursor:pointer;
-    color:#cbd3d0;
+.logo span{
+ color:var(--blue);
 }
 
-.menu-item:hover,
-.menu-item.active{
-    background:#1e302b;
-    color:#fff;
+.nav-title{
+ font-size:11px;
+ text-transform:uppercase;
+ letter-spacing:1.2px;
+ color:#9aa3b2;
+ margin:18px 13px 7px;
 }
 
-.content{
-    flex:1;
-    padding:30px;
-    max-width:1400px;
-    margin:auto;
-    width:100%;
+.nav button{
+ width:100%;
+ display:block;
+ border:0;
+ background:transparent;
+ text-align:left;
+ padding:12px 13px;
+ border-radius:11px;
+ color:#657083;
+ margin:3px 0;
+ font-weight:650;
 }
 
-.page-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
+.nav button:hover,
+.nav button.active{
+ background:var(--blue2);
+ color:var(--blue);
 }
 
-h1{
-    font-size:30px;
+.nav button.admin{
+ color:#7c3aed;
+}
+
+.logout{
+ width:100%;
+ border:0;
+ background:#f1f3f5;
+ border-radius:11px;
+ padding:12px;
+ margin-top:20px;
+ color:#555;
+ font-weight:700;
+}
+
+.main{
+ margin-left:250px;
+ padding:30px;
+ max-width:1550px;
+}
+
+.top{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:25px;
+}
+
+.top h1{
+ margin:0;
+ font-size:30px;
 }
 
 .subtitle{
-    color:#7c8784;
-    margin-top:5px;
+ color:var(--muted);
+ margin-top:5px;
 }
 
-.add-btn{
-    border:0;
-    background:#111;
-    color:#fff;
-    padding:13px 20px;
-    border-radius:10px;
-    font-size:15px;
-    cursor:pointer;
+.userbox{
+ display:flex;
+ align-items:center;
+ gap:11px;
 }
 
-.add-btn:hover{
-    background:#26312f;
+.avatar{
+ width:43px;
+ height:43px;
+ border-radius:50%;
+ background:var(--dark);
+ color:#fff;
+ display:grid;
+ place-items:center;
+ font-weight:800;
+}
+
+.mobile-menu{
+ display:none;
+ border:1px solid var(--line);
+ background:#fff;
+ border-radius:10px;
+ padding:9px 12px;
+}
+
+.section{
+ display:none;
+}
+
+.section.active{
+ display:block;
+}
+
+.grid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:18px;
 }
 
 .card{
-    background:#fff;
-    border:1px solid #e0e5e3;
-    border-radius:16px;
-    overflow:hidden;
+ background:var(--card);
+ border:1px solid var(--line);
+ border-radius:17px;
+ padding:21px;
+ box-shadow:var(--shadow);
+ margin-bottom:18px;
 }
 
-.table{
-    width:100%;
-    border-collapse:collapse;
+.label{
+ font-size:13px;
+ color:var(--muted);
+ font-weight:650;
 }
 
-.table th{
-    text-align:left;
-    color:#7b8582;
-    font-size:13px;
-    font-weight:500;
-    padding:17px 20px;
-    background:#fafbfb;
-    border-bottom:1px solid #e7ebea;
+.big{
+ font-size:28px;
+ font-weight:850;
+ margin-top:8px;
 }
 
-.table td{
-    padding:18px 20px;
-    border-bottom:1px solid #edf0ef;
+.green{
+ color:var(--green);
 }
 
-.table tr:last-child td{
-    border-bottom:0;
+.red{
+ color:var(--red);
 }
 
-.status{
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    padding:6px 10px;
-    border-radius:20px;
-    font-size:12px;
-}
-
-.status.on{
-    background:#e6f5ec;
-    color:#178348;
-}
-
-.status.off{
-    background:#f2f3f3;
-    color:#777;
+.small{
+ font-size:13px;
+ color:var(--muted);
 }
 
 .actions{
-    display:flex;
-    gap:8px;
+ display:flex;
+ gap:10px;
+ flex-wrap:wrap;
 }
 
-.action-btn{
-    border:1px solid #ddd;
-    background:#fff;
-    border-radius:8px;
-    padding:8px 11px;
-    cursor:pointer;
+.btn{
+ border:0;
+ border-radius:10px;
+ padding:11px 16px;
+ font-weight:750;
 }
 
-.action-btn:hover{
-    background:#f4f5f5;
+.primary{
+ background:var(--blue);
+ color:#fff;
 }
 
-.empty{
-    text-align:center;
-    padding:70px 20px;
-    color:#8a9491;
+.light{
+ background:#eef2f7;
+ color:#253044;
+}
+
+.success{
+ background:var(--green2);
+ color:#15803d;
+}
+
+.danger{
+ background:var(--red2);
+ color:#b91c1c;
+}
+
+.orange{
+ background:#ffedd5;
+ color:#c2410c;
+}
+
+.table-wrap{
+ overflow:auto;
+ background:#fff;
+ border:1px solid var(--line);
+ border-radius:17px;
+}
+
+.table{
+ width:100%;
+ border-collapse:collapse;
+ min-width:850px;
+}
+
+.table th,
+.table td{
+ padding:15px 17px;
+ border-bottom:1px solid var(--line);
+ text-align:left;
+}
+
+.table th{
+ font-size:12px;
+ text-transform:uppercase;
+ color:#8a94a5;
+ white-space:nowrap;
+}
+
+.table tr:last-child td{
+ border-bottom:0;
+}
+
+.badge{
+ display:inline-block;
+ padding:5px 9px;
+ border-radius:999px;
+ font-size:12px;
+ font-weight:750;
+}
+
+.badge.green{
+ background:var(--green2);
+ color:#15803d;
+}
+
+.badge.red{
+ background:var(--red2);
+ color:#b91c1c;
+}
+
+.badge.gray{
+ background:#eef2f7;
+ color:#667085;
+}
+
+.badge.orange{
+ background:#ffedd5;
+ color:#c2410c;
+}
+
+/* LOGIN */
+
+.login-screen{
+ min-height:100vh;
+ display:grid;
+ place-items:center;
+ padding:20px;
+ background:linear-gradient(145deg,#f6f8fb,#eaf0f8);
+}
+
+.login-card{
+ width:100%;
+ max-width:450px;
+ background:#fff;
+ border:1px solid var(--line);
+ border-radius:25px;
+ padding:34px;
+ box-shadow:0 25px 70px rgba(15,23,42,.12);
+}
+
+.login-logo{
+ text-align:center;
+ font-size:31px;
+ font-weight:950;
+ letter-spacing:1px;
+}
+
+.login-logo span{
+ color:var(--blue);
+}
+
+.login-sub{
+ text-align:center;
+ color:var(--muted);
+ letter-spacing:3px;
+ font-size:10px;
+ font-weight:750;
+ margin:8px 0 30px;
+}
+
+.login-card h2{
+ text-align:center;
+ font-size:27px;
+ margin:0 0 8px;
+}
+
+.field{
+ margin-top:15px;
+}
+
+.field label{
+ display:block;
+ font-size:13px;
+ font-weight:750;
+ margin-bottom:7px;
+}
+
+.field input,
+.field select{
+ width:100%;
+ border:1px solid #d8dee8;
+ background:#fff;
+ border-radius:11px;
+ padding:12px 13px;
+ outline:none;
+}
+
+.field input:focus,
+.field select:focus{
+ border-color:var(--blue);
+ box-shadow:0 0 0 3px rgba(37,99,235,.1);
+}
+
+.login-card .btn{
+ width:100%;
+ margin-top:20px;
+ height:50px;
+}
+
+.error{
+ display:none;
+ background:var(--red2);
+ color:#b91c1c;
+ border-radius:10px;
+ padding:10px 12px;
+ margin-top:15px;
+ font-size:13px;
+}
+
+.demo{
+ margin-top:20px;
+ padding:12px;
+ border-radius:10px;
+ background:#f7f8fa;
+ color:#6b7280;
+ font-size:12px;
+ line-height:1.7;
 }
 
 /* MODAL */
 
-.overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.48);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    z-index:1000;
-}
-
-.overlay.show{
-    display:flex;
-}
-
 .modal{
-    width:100%;
-    max-width:650px;
-    max-height:92vh;
-    overflow-y:auto;
-    background:#fff;
-    border-radius:18px;
-    padding:25px;
-    box-shadow:0 20px 60px rgba(0,0,0,.25);
+ display:none;
+ position:fixed;
+ inset:0;
+ background:rgba(15,23,42,.58);
+ z-index:100;
+ padding:20px;
+ overflow:auto;
 }
 
-.modal-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
+.modal.show{
+ display:grid;
+ place-items:center;
 }
 
-.modal-header h2{
-    font-size:25px;
+.modalbox{
+ width:100%;
+ max-width:850px;
+ background:#fff;
+ border-radius:20px;
+ padding:25px;
+ position:relative;
+ max-height:94vh;
+ overflow:auto;
+ box-shadow:0 30px 90px rgba(0,0,0,.25);
 }
 
 .close{
-    width:38px;
-    height:38px;
-    border:0;
-    border-radius:50%;
-    background:#f2f3f3;
-    font-size:24px;
-    cursor:pointer;
+ position:absolute;
+ right:15px;
+ top:13px;
+ border:0;
+ background:#eef2f7;
+ width:37px;
+ height:37px;
+ border-radius:50%;
+ font-size:22px;
 }
 
-.form-group{
-    margin-bottom:19px;
-}
-
-label{
-    display:block;
-    font-size:14px;
-    font-weight:600;
-    margin-bottom:8px;
-}
-
-input,
-select{
-    width:100%;
-    height:48px;
-    border:1px solid #dce1df;
-    border-radius:10px;
-    padding:0 14px;
-    font-size:15px;
-    outline:none;
-    background:#fff;
-}
-
-input:focus,
-select:focus{
-    border-color:#222;
+.modalbox h2{
+ margin-top:0;
+ padding-right:40px;
 }
 
 .section-title{
-    font-size:19px;
-    font-weight:700;
-    margin:28px 0 18px;
+ font-size:17px;
+ font-weight:850;
+ margin:25px 0 13px;
+ padding-bottom:9px;
+ border-bottom:1px solid var(--line);
 }
 
-.grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
+.form-grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:15px;
 }
 
-.pause{
-    display:grid;
-    grid-template-columns:1fr 35px 1fr;
-    align-items:center;
-    gap:8px;
-}
-
-.pause span{
-    text-align:center;
-    font-size:20px;
+.three-grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:15px;
 }
 
 .checkbox-row{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin:18px 0;
+ display:flex;
+ align-items:center;
+ gap:9px;
+ margin-top:15px;
 }
 
 .checkbox-row input{
-    width:20px;
-    height:20px;
+ width:19px;
+ height:19px;
 }
 
 .checkbox-row label{
-    margin:0;
-    font-weight:500;
+ margin:0;
+ font-size:14px;
+ font-weight:600;
+}
+
+.pause{
+ display:grid;
+ grid-template-columns:1fr 30px 1fr;
+ align-items:center;
+ gap:7px;
+}
+
+.pause span{
+ text-align:center;
+ font-size:20px;
 }
 
 .modal-footer{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin-top:28px;
+ display:flex;
+ gap:10px;
+ margin-top:25px;
 }
 
-.cancel,
-.save{
-    height:50px;
-    border-radius:10px;
-    font-size:15px;
-    cursor:pointer;
+.empty{
+ text-align:center;
+ color:var(--muted);
+ padding:38px;
 }
 
-.cancel{
-    background:#fff;
-    border:1px solid #d8dddb;
+/* REQUISITES */
+
+.requisite-toolbar{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:15px;
+ flex-wrap:wrap;
+ margin:20px 0;
 }
 
-.save{
-    background:#111;
-    color:#fff;
-    border:0;
+.search{
+ width:280px;
+ max-width:100%;
+ border:1px solid var(--line);
+ background:#fff;
+ border-radius:11px;
+ padding:12px 14px;
+ outline:none;
 }
 
-.save:hover{
-    background:#26312f;
+.requisite-grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:17px;
 }
 
-@media(max-width:800px){
+.requisite-card{
+ background:#fff;
+ border:1px solid var(--line);
+ border-radius:17px;
+ padding:19px;
+ box-shadow:var(--shadow);
+}
 
-    .sidebar{
-        display:none;
-    }
+.requisite-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:flex-start;
+ gap:10px;
+}
 
-    .content{
-        padding:18px 12px;
-    }
+.requisite-bank{
+ font-size:20px;
+ font-weight:850;
+}
 
-    .page-top{
-        align-items:flex-start;
-        gap:15px;
-    }
+.requisite-device{
+ color:var(--muted);
+ font-size:13px;
+ margin-top:4px;
+}
 
-    h1{
-        font-size:25px;
-    }
+.requisite-stats{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px;
+ margin:18px 0;
+}
 
-    .add-btn{
-        white-space:nowrap;
-    }
+.stat{
+ background:#f7f8fa;
+ border-radius:11px;
+ padding:12px;
+}
 
-    .table{
-        min-width:850px;
-    }
+.stat-title{
+ font-size:11px;
+ color:var(--muted);
+}
 
-    .card{
-        overflow-x:auto;
-    }
+.stat-value{
+ font-weight:800;
+ margin-top:4px;
+}
 
-    .modal{
-        padding:20px;
-    }
+.requisite-info{
+ font-size:13px;
+ color:#606b78;
+ line-height:1.7;
+}
 
-    .grid{
-        grid-template-columns:1fr;
-    }
+.requisite-actions{
+ display:flex;
+ gap:7px;
+ margin-top:15px;
+}
+
+.requisite-actions button{
+ flex:1;
+}
+
+/* ADMIN */
+
+.admin-head{
+ background:var(--dark);
+ color:#fff;
+ border-radius:17px;
+ padding:21px;
+ margin-bottom:18px;
+}
+
+.admin-head h2{
+ margin:0 0 5px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+ .grid{
+  grid-template-columns:repeat(2,1fr);
+ }
+
+ .requisite-grid{
+  grid-template-columns:repeat(2,1fr);
+ }
+}
+
+@media(max-width:900px){
+
+ .sidebar{
+  transform:translateX(-100%);
+  transition:.2s;
+ }
+
+ .sidebar.open{
+  transform:translateX(0);
+ }
+
+ .main{
+  margin-left:0;
+  padding:20px 15px;
+ }
+
+ .mobile-menu{
+  display:block;
+ }
+
+ .top{
+  gap:10px;
+ }
+
+ .top h1{
+  font-size:25px;
+ }
+
+ .requisite-grid{
+  grid-template-columns:1fr;
+ }
+}
+
+@media(max-width:600px){
+
+ .grid,
+ .form-grid,
+ .three-grid{
+  grid-template-columns:1fr;
+ }
+
+ .card{
+  padding:17px;
+ }
+
+ .top{
+  align-items:flex-start;
+ }
+
+ .userbox{
+  display:none;
+ }
+
+ .login-card{
+  padding:25px;
+ }
+
+ .actions .btn{
+  width:100%;
+ }
+
+ .modalbox{
+  padding:20px;
+ }
+
+ .requisite-toolbar{
+  align-items:stretch;
+ }
+
+ .search{
+  width:100%;
+ }
 }
 </style>
 </head>
 
 <body>
 
-<header class="header">
-    <div class="logo">CRM</div>
+<!-- ================= LOGIN ================= -->
 
-    <div class="header-right">
-        <span>Администратор</span>
-        <div class="avatar">A</div>
-    </div>
-</header>
+<div id="loginScreen" class="login-screen">
 
+ <div class="login-card">
 
-<div class="layout">
+  <div class="login-logo">
+   P2P<span>SPARK</span>
+  </div>
 
-    <aside class="sidebar">
+  <div class="login-sub">
+   PEOPLE • DEALS • OPPORTUNITIES
+  </div>
 
-        <div class="menu-title">Основное</div>
+  <h2>Вход в аккаунт</h2>
 
-        <div class="menu-item">Дашборд</div>
-        <div class="menu-item active">Реквизиты</div>
-        <div class="menu-item">Пополнения</div>
-        <div class="menu-item">Сделки</div>
-        <div class="menu-item">Пользователи</div>
+  <div class="subtitle" style="text-align:center">
+   Введите данные, выданные администратором
+  </div>
 
-        <div class="menu-title">Настройки</div>
+  <div id="loginError" class="error">
+   Неверный email или пароль
+  </div>
 
-        <div class="menu-item">Профиль</div>
-        <div class="menu-item">Настройки</div>
+  <div class="field">
+   <label>Почта</label>
+   <input
+    id="loginEmail"
+    type="email"
+    placeholder="example@gmail.com"
+   >
+  </div>
 
-    </aside>
+  <div class="field">
+   <label>Пароль</label>
+   <input
+    id="loginPassword"
+    type="password"
+    placeholder="Введите пароль"
+   >
+  </div>
 
+  <button class="btn primary" onclick="login()">
+   Войти →
+  </button>
 
-    <main class="content">
+  <div class="small" style="text-align:center;margin-top:18px">
+   Доступ к аккаунту создаёт администратор
+  </div>
 
-        <div class="page-top">
+  <div class="demo">
+   <b>Демо USER:</b> user@p2pspark.com / User123!<br>
+   <b>Демо ADMIN:</b> admin@p2pspark.com / Admin123!
+  </div>
 
-            <div>
-                <h1>Реквизиты</h1>
-                <div class="subtitle">
-                    Управление банковскими реквизитами
-                </div>
-            </div>
-
-            <button class="add-btn" onclick="openModal()">
-                ＋ Добавить реквизит
-            </button>
-
-        </div>
-
-
-        <div class="card">
-
-            <table class="table">
-
-                <thead>
-                    <tr>
-                        <th>Устройство</th>
-                        <th>Банк</th>
-                        <th>Суточный лимит</th>
-                        <th>Сделок</th>
-                        <th>Статус</th>
-                        <th>Действия</th>
-                    </tr>
-                </thead>
-
-                <tbody id="requisitesTable"></tbody>
-
-            </table>
-
-            <div id="empty" class="empty">
-                Реквизиты ещё не добавлены.<br>
-                Нажмите «Добавить реквизит».
-            </div>
-
-        </div>
-
-    </main>
+ </div>
 
 </div>
 
 
-<!-- MODAL -->
+<!-- ================= APP ================= -->
 
-<div class="overlay" id="modal">
+<div id="app" class="app" style="display:none">
 
-    <div class="modal">
+ <aside id="sidebar" class="sidebar">
 
-        <div class="modal-header">
+  <div class="logo">
+   P2P<span>SPARK</span>
+  </div>
 
-            <h2 id="modalTitle">Добавьте реквизиты</h2>
+  <nav class="nav">
 
-            <button class="close" onclick="closeModal()">
-                ×
-            </button>
+   <div class="nav-title">
+    Основное
+   </div>
 
-        </div>
+   <button data-page="dashboard" onclick="go('dashboard')">
+    ▣ &nbsp; Дашборд
+   </button>
 
+   <button data-page="finance" onclick="go('finance')">
+    ◈ &nbsp; Финансы
+   </button>
 
-        <form id="requisiteForm">
+   <button data-page="deals" onclick="go('deals')">
+    ↔ &nbsp; Сделки
+   </button>
 
-            <!-- УСТРОЙСТВО -->
+   <button data-page="requests" onclick="go('requests')">
+    ◌ &nbsp; Заявки
+   </button>
 
-            <div class="form-group">
+   <button data-page="disputes" onclick="go('disputes')">
+    ⚠ &nbsp; Споры
+   </button>
 
-                <label>Устройство</label>
 
-                <select id="device" required>
+   <div class="nav-title">
+    Работа
+   </div>
 
-                    <option value="">
-                        Выберите устройство
-                    </option>
+   <button data-page="requisites" onclick="go('requisites')">
+    ▤ &nbsp; Реквизиты
+   </button>
 
-                    <option value="iPhone">
-                        iPhone
-                    </option>
+   <button data-page="devices" onclick="go('devices')">
+    ▣ &nbsp; Устройства
+   </button>
 
-                    <option value="Android">
-                        Android
-                    </option>
+   <button data-page="messages" onclick="go('messages')">
+    ✉ &nbsp; Сообщения
+   </button>
 
-                    <option value="Web">
-                        Web
-                    </option>
+   <button data-page="turbo" onclick="go('turbo')">
+    ⚡ &nbsp; Турбозалив
+   </button>
 
-                </select>
+   <button data-page="counterparties" onclick="go('counterparties')">
+    ♙ &nbsp; Контрагенты
+   </button>
 
-            </div>
+   <button data-page="reports" onclick="go('reports')">
+    ▥ &nbsp; Отчёты
+   </button>
 
+   <button data-page="profile" onclick="go('profile')">
+    ◉ &nbsp; Профиль
+   </button>
 
-            <!-- БАНК -->
 
-            <div class="form-group">
+   <div id="adminNav" style="display:none">
 
-                <label>Банк</label>
+    <div class="nav-title">
+     Администрирование
+    </div>
 
-                <select id="bank" required>
+    <button class="admin" data-page="admin" onclick="go('admin')">
+     ♛ &nbsp; Админ-панель
+    </button>
 
-                    <option value="">
-                        Выберите банк
-                    </option>
+   </div>
 
-                    <option value="Kaspi Bank">
-                        Kaspi Bank
-                    </option>
 
-                    <option value="Halyk Bank">
-                        Halyk Bank
-                    </option>
+   <div class="nav-title">
+    Аккаунт
+   </div>
 
-                    <option value="ForteBank">
-                        ForteBank
-                    </option>
+   <button onclick="logout()">
+    ↪ &nbsp; Выйти
+   </button>
 
-                    <option value="Jusan Bank">
-                        Jusan Bank
-                    </option>
+  </nav>
 
-                    <option value="Freedom Bank">
-                        Freedom Bank
-                    </option>
+ </aside>
 
-                    <option value="Bereke Bank">
-                        Bereke Bank
-                    </option>
 
-                    <option value="Другой">
-                        Другой
-                    </option>
+ <main class="main">
 
-                </select>
+  <div class="top">
 
-            </div>
+   <div style="display:flex;align-items:center;gap:12px">
 
+    <button class="mobile-menu" onclick="toggleMenu()">
+     ☰
+    </button>
 
-            <!-- ВХОДЯЩИЙ ТРАФИК -->
+    <div>
 
-            <div class="section-title">
-                Настройки входящего трафика
-            </div>
+     <h1 id="pageTitle">
+      Дашборд
+     </h1>
 
-
-            <div class="grid">
-
-                <div class="form-group">
-
-                    <label>Суточный лимит</label>
-
-                    <input
-                        type="number"
-                        id="dailyLimit"
-                        value="15000"
-                        min="0"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>Суточное количество сделок</label>
-
-                    <input
-                        type="number"
-                        id="dailyDeals"
-                        value="30"
-                        min="0"
-                        required
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Максимальная сумма сделки на реквизит
-                </label>
-
-                <input
-                    type="number"
-                    id="maxDeal"
-                    value="15000"
-                    min="0"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Минимальная сумма сделки на реквизит
-                </label>
-
-                <input
-                    type="number"
-                    id="minDeal"
-                    value="100"
-                    min="0"
-                    required
-                >
-
-            </div>
-
-
-            <!-- ВРЕМЯ -->
-
-            <div class="section-title">
-                Время работы профиля
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Пауза между сделками
-                </label>
-
-                <div class="pause">
-
-                    <input
-                        type="number"
-                        id="pauseHours"
-                        value="0"
-                        min="0"
-                        placeholder="Часы"
-                    >
-
-                    <span>:</span>
-
-                    <input
-                        type="number"
-                        id="pauseMinutes"
-                        value="0"
-                        min="0"
-                        max="59"
-                        placeholder="Минуты"
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Часовой пояс
-                </label>
-
-                <select id="timezone">
-
-                    <option value="">
-                        Выберите часовой пояс
-                    </option>
-
-                    <option value="UTC+5">
-                        UTC+5 — Казахстан
-                    </option>
-
-                    <option value="UTC+4">
-                        UTC+4
-                    </option>
-
-                    <option value="UTC+3">
-                        UTC+3 — Москва
-                    </option>
-
-                    <option value="UTC+6">
-                        UTC+6
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="checkbox-row">
-
-                <input
-                    type="checkbox"
-                    id="always"
-                    checked
-                >
-
-                <label for="always">
-                    Работает всегда
-                </label>
-
-            </div>
-
-
-            <div class="checkbox-row">
-
-                <input
-                    type="checkbox"
-                    id="separateLimits"
-                >
-
-                <label for="separateLimits">
-                    Лимиты для каждой карты отдельно
-                </label>
-
-            </div>
-
-
-            <!-- ПОДТВЕРЖДЕНИЕ -->
-
-            <div class="form-group">
-
-                <label>
-                    Тип подтверждения сделок
-                </label>
-
-                <select id="confirmation">
-
-                    <option value="Push-уведомления">
-                        Push-уведомления для подтверждения
-                    </option>
-
-                    <option value="SMS">
-                        SMS
-                    </option>
-
-                    <option value="Вручную">
-                        Вручную
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="modal-footer">
-
-                <button
-                    type="button"
-                    class="cancel"
-                    onclick="closeModal()"
-                >
-                    Отмена
-                </button>
-
-                <button
-                    type="submit"
-                    class="save"
-                >
-                    Сохранить
-                </button>
-
-            </div>
-
-        </form>
+     <div class="subtitle">
+      P2PSPARK CRM
+     </div>
 
     </div>
+
+   </div>
+
+
+   <div class="userbox">
+
+    <div>
+     <b id="topEmail"></b>
+     <div class="small" id="roleText"></div>
+    </div>
+
+    <div class="avatar" id="avatar">
+     U
+    </div>
+
+   </div>
+
+  </div>
+
+
+  <!-- ================= DASHBOARD ================= -->
+
+  <section id="dashboard" class="section active">
+
+   <div class="grid">
+
+    <div class="card">
+     <div class="label">Баланс депозита</div>
+     <div id="dDeposit" class="big">0 USDT</div>
+     <div class="small">Текущий баланс</div>
+    </div>
+
+    <div class="card">
+     <div class="label">Активные сделки</div>
+     <div id="dDeals" class="big">0</div>
+     <div class="small">На текущий момент</div>
+    </div>
+
+    <div class="card">
+     <div class="label">Оборот</div>
+     <div id="dTurnover" class="big">0 USDT</div>
+     <div class="small">За текущий месяц</div>
+    </div>
+
+    <div class="card">
+     <div class="label">Прибыль</div>
+     <div id="dProfit" class="big green">0 USDT</div>
+     <div class="small">За текущий месяц</div>
+    </div>
+
+   </div>
+
+
+   <div class="card">
+
+    <h2>Последние сделки</h2>
+
+    <div id="dashDeals" class="empty">
+     Пока нет сделок
+    </div>
+
+   </div>
+
+  </section>
+
+
+  <!-- ================= FINANCE ================= -->
+
+  <section id="finance" class="section">
+
+   <h2>Финансы</h2>
+
+   <div class="subtitle">
+    Пополнения и финансовые показатели
+   </div>
+
+   <div class="grid" style="margin-top:20px">
+
+    <div class="card">
+     <div class="label">Баланс</div>
+     <div id="fDeposit" class="big">0 USDT</div>
+    </div>
+
+    <div class="card">
+     <div class="label">Оборот</div>
+     <div id="fTurnover" class="big">0 USDT</div>
+    </div>
+
+    <div class="card">
+     <div class="label">Прибыль</div>
+     <div id="fProfit" class="big green">0 USDT</div>
+    </div>
+
+    <div class="card">
+     <div class="label">Комиссия</div>
+     <div id="fCommission" class="big">0%</div>
+    </div>
+
+   </div>
+
+
+   <div class="card">
+
+    <h2>Пополнить депозит</h2>
+
+    <div class="form-grid">
+
+     <div class="field">
+      <label>Сумма USDT</label>
+      <input id="depositAmount" type="number" min="0" placeholder="100">
+     </div>
+
+     <div class="field">
+      <label>Комментарий</label>
+      <input id="depositComment" placeholder="Комментарий">
+     </div>
+
+    </div>
+
+    <button
+     class="btn primary"
+     style="margin-top:18px"
+     onclick="createDeposit()"
+    >
+     + Создать заявку на пополнение
+    </button>
+
+   </div>
+
+  </section>
+
+
+  <!-- ================= DEALS ================= -->
+
+  <section id="deals" class="section">
+
+   <h2>Сделки</h2>
+
+   <div class="subtitle">
+    История и текущие операции
+   </div>
+
+   <div class="table-wrap" style="margin-top:20px">
+
+    <table class="table">
+
+     <thead>
+      <tr>
+       <th>ID</th>
+       <th>Направление</th>
+       <th>Сумма</th>
+       <th>Реквизит</th>
+       <th>Статус</th>
+      </tr>
+     </thead>
+
+     <tbody id="dealsTable"></tbody>
+
+    </table>
+
+   </div>
+
+  </section>
+
+
+  <!-- ================= REQUESTS ================= -->
+
+  <section id="requests" class="section">
+
+   <h2>Заявки</h2>
+
+   <div class="subtitle">
+    Входящие и исходящие заявки
+   </div>
+
+   <div class="card" style="margin-top:20px">
+
+    <div class="empty">
+     Новых заявок нет
+    </div>
+
+   </div>
+
+  </section>
+
+
+  <!-- ================= DISPUTES ================= -->
+
+  <section id="disputes" class="section">
+
+   <h2>Споры</h2>
+
+   <div class="card" style="margin-top:20px">
+
+    <div class="empty">
+     Активных споров нет
+    </div>
+
+   </div>
+
+  </section>
+
+
+  <!-- ================= REQUISITES ================= -->
+
+  <section id="requisites" class="section">
+
+   <div style="display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap">
+
+    <div>
+
+     <h2 style="margin-bottom:5px">
+      Реквизиты
+     </h2>
+
+     <div class="subtitle">
+      Управление банковскими реквизитами
+     </div>
+
+    </div>
+
+    <button
+     class="btn primary"
+     onclick="openRequisiteModal()"
+    >
+     ＋ Добавить реквизит
+    </button>
+
+   </div>
+
+
+   <div class="requisite-toolbar">
+
+    <input
+     class="search"
+     id="requisiteSearch"
+     placeholder="Поиск по банку или устройству..."
+     oninput="renderRequisites()"
+    >
+
+    <select
+     class="search"
+     id="requisiteFilter"
+     onchange="renderRequisites()"
+    >
+
+     <option value="all">
+      Все реквизиты
+     </option>
+
+     <option value="active">
+      Только активные
+     </option>
+
+     <option value="blocked">
+      Только выключенные
+     </option>
+
+    </select>
+
+   </div>
+
+
+   <div id="requisiteGrid" class="requisite-grid"></div>
+
+   <div id="requisiteEmpty" class="card empty" style="display:none">
+    Реквизиты ещё не добавлены.
+   </div>
+
+  </section>
+
+
+  <!-- ================= DEVICES ================= -->
+
+  <section id="devices" class="section">
+
+   <h2>Устройства</h2>
+
+   <div class="card" style="margin-top:20px">
+
+    <div class="empty">
+     Текущее устройство · Активно
+    </div>
+
+   </div>
+
+  </section>
+
+
+  <!-- ================= MESSAGES ================= -->
+
+  <section id="messages" class="section">
+
+   <h2>Сообщения</h2>
+
+   <div class="card" style="margin-top:20px">
+
+    <h3>Системное сообщение</h3>
+
+    <div class="subtitle">
+     Добро пожаловать в P2PSPARK.
+    </div>
+
+   </div>
+
+  </section>
+
+
+  <!-- ================= TURBO ================= -->
+
+  <section id="turbo" class="section">
+
+   <h2>Турбозалив</h2>
+
+   <div class="card" style="margin-top:20px">
+
+    <div class="empty">
+     Турбозалив готов к подключению.
+    </div>
+
+   </div>
+
+  </section>
+
+
+  <!-- ================= COUNTERPARTIES ================= -->
+
+  <section id="counterparties" class="section">
+
+   <h2>Контрагенты</h2>
+
+   <div class="card" style="margin-top:20px">
+
+    <div class="empty">
+     Контрагенты пока отсутствуют.
+    </div>
+
+   </div>
+
+  </section>
+
+
+  <!-- ================= REPORTS ================= -->
+
+  <section id="reports" class="section">
+
+   <h2>Отчёты</h2>
+
+   <div class="card" style="margin-top:20px">
+
+    <button
+     class="btn primary"
+     onclick="generateReport()"
+    >
+     Сформировать отчёт
+    </button>
+
+   </div>
+
+  </section>
+
+
+  <!-- ================= PROFILE ================= -->
+
+  <section id="profile" class="section">
+
+   <h2>Профиль</h2>
+
+   <div class="card" style="margin-top:20px">
+
+    <div class="form-grid">
+
+     <div class="field">
+      <label>Email</label>
+      <input id="profileEmail" disabled>
+     </div>
+
+     <div class="field">
+      <label>Роль</label>
+      <input id="profileRole" disabled>
+     </div>
+
+     <div class="field">
+      <label>Статус</label>
+      <input id="profileStatus" disabled>
+     </div>
+
+    </div>
+
+   </div>
+
+  </section>
+
+
+  <!-- ================= ADMIN ================= -->
+
+  <section id="admin" class="section">
+
+   <div class="admin-head">
+
+    <h2>
+     Админ-панель
+    </h2>
+
+    <div>
+     Полное управление пользователями P2PSPARK
+    </div>
+
+   </div>
+
+
+   <div class="card">
+
+    <h2>
+     Создать новый ЛК
+    </h2>
+
+    <div class="subtitle">
+     Новый пользователь получает отдельный аккаунт.
+    </div>
+
+    <div class="form-grid" style="margin-top:18px">
+
+     <div class="field">
+      <label>Имя пользователя</label>
+      <input id="newName" placeholder="Имя">
+     </div>
+
+     <div class="field">
+      <label>Email</label>
+      <input id="newEmail" type="email" placeholder="user@gmail.com">
+     </div>
+
+     <div class="field">
+      <label>Пароль</label>
+      <input id="newPassword" type="text" placeholder="Минимум 6 символов">
+     </div>
+
+    </div>
+
+    <button
+     class="btn primary"
+     style="margin-top:18px"
+     onclick="createUser()"
+    >
+     Создать USER
+    </button>
+
+   </div>
+
+
+   <div class="card">
+
+    <h2>
+     Пользователи
+    </h2>
+
+    <div class="table-wrap" style="margin-top:15px">
+
+     <table class="table">
+
+      <thead>
+
+       <tr>
+        <th>Имя</th>
+        <th>Email</th>
+        <th>Роль</th>
+        <th>Статус</th>
+        <th>Действие</th>
+       </tr>
+
+      </thead>
+
+      <tbody id="usersTable"></tbody>
+
+     </table>
+
+    </div>
+
+   </div>
+
+
+   <div class="card">
+
+    <h2>
+     Журнал действий
+    </h2>
+
+    <div id="auditLog" class="small">
+     Пока нет действий
+    </div>
+
+   </div>
+
+  </section>
+
+ </main>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- MODAL: REQUISITE -->
+<!-- ===================================================== -->
+
+<div id="requisiteModal" class="modal">
+
+ <div class="modalbox">
+
+  <button
+   class="close"
+   onclick="closeRequisiteModal()"
+  >
+   ×
+  </button>
+
+
+  <h2 id="requisiteModalTitle">
+   Добавьте реквизиты
+  </h2>
+
+  <div class="subtitle">
+   Настройте параметры входящего трафика
+  </div>
+
+
+  <!-- DEVICE -->
+
+  <div class="section-title">
+   Основные данные
+  </div>
+
+
+  <div class="form-grid">
+
+   <div class="field">
+
+    <label>
+     Устройство
+    </label>
+
+    <select id="rDevice">
+
+     <option value="">
+      Выберите устройство
+     </option>
+
+     <option>
+      iPhone
+     </option>
+
+     <option>
+      Android
+     </option>
+
+     <option>
+      Web
+     </option>
+
+     <option>
+      Другое
+     </option>
+
+    </select>
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     Банк
+    </label>
+
+    <select id="rBank">
+
+     <option value="">
+      Выберите банк
+     </option>
+
+     <option>
+      Kaspi Bank
+     </option>
+
+     <option>
+      Halyk Bank
+     </option>
+
+     <option>
+      ForteBank
+     </option>
+
+     <option>
+      Jusan Bank
+     </option>
+
+     <option>
+      Freedom Bank
+     </option>
+
+     <option>
+      Bereke Bank
+     </option>
+
+     <option>
+      Bank CenterCredit
+     </option>
+
+     <option>
+      Другой
+     </option>
+
+    </select>
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     Номер карты / счёта
+    </label>
+
+    <input
+     id="rAccount"
+     placeholder="Введите реквизит"
+    >
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     Имя получателя
+    </label>
+
+    <input
+     id="rHolder"
+     placeholder="ФИО получателя"
+    >
+
+   </div>
+
+  </div>
+
+
+  <!-- TRAFFIC -->
+
+  <div class="section-title">
+   Настройки входящего трафика
+  </div>
+
+
+  <div class="form-grid">
+
+   <div class="field">
+
+    <label>
+     Суточный лимит
+    </label>
+
+    <input
+     id="rDailyLimit"
+     type="number"
+     min="0"
+     value="15000"
+    >
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     Суточное количество сделок
+    </label>
+
+    <input
+     id="rDailyDeals"
+     type="number"
+     min="0"
+     value="30"
+    >
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     Максимальная сумма сделки на реквизит
+    </label>
+
+    <input
+     id="rMaxDeal"
+     type="number"
+     min="0"
+     value="15000"
+    >
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     Минимальная сумма сделки на реквизит
+    </label>
+
+    <input
+     id="rMinDeal"
+     type="number"
+     min="0"
+     value="100"
+    >
+
+   </div>
+
+  </div>
+
+
+  <!-- TIME -->
+
+  <div class="section-title">
+   Время работы профиля
+  </div>
+
+
+  <div class="field">
+
+   <label>
+    Пауза между сделками
+   </label>
+
+   <div class="pause">
+
+    <input
+     id="rPauseHours"
+     type="number"
+     min="0"
+     value="0"
+     placeholder="Часы"
+    >
+
+    <span>:</span>
+
+    <input
+     id="rPauseMinutes"
+     type="number"
+     min="0"
+     max="59"
+     value="0"
+     placeholder="Минуты"
+    >
+
+   </div>
+
+  </div>
+
+
+  <div class="field">
+
+   <label>
+    Часовой пояс
+   </label>
+
+   <select id="rTimezone">
+
+    <option value="">
+     Выберите часовой пояс
+    </option>
+
+    <option value="UTC+5">
+     UTC+5 — Казахстан
+    </option>
+
+    <option value="UTC+4">
+     UTC+4
+    </option>
+
+    <option value="UTC+3">
+     UTC+3 — Москва
+    </option>
+
+    <option value="UTC+6">
+     UTC+6
+    </option>
+
+   </select>
+
+  </div>
+
+
+  <div class="checkbox-row">
+
+   <input
+    type="checkbox"
+    id="rAlways"
+    checked
+   >
+
+   <label for="rAlways">
+    Работает всегда
+   </label>
+
+  </div>
+
+
+  <div class="checkbox-row">
+
+   <input
+    type="checkbox"
+    id="rSeparateLimits"
+   >
+
+   <label for="rSeparateLimits">
+    Лимиты для каждой карты отдельно
+   </label>
+
+  </div>
+
+
+  <!-- CONFIRMATION -->
+
+  <div class="section-title">
+   Подтверждение
+  </div>
+
+
+  <div class="field">
+
+   <label>
+    Тип подтверждения сделок
+   </label>
+
+   <select id="rConfirmation">
+
+    <option value="Push-уведомления">
+     Push-уведомления для подтверждения
+    </option>
+
+    <option value="SMS">
+     SMS
+    </option>
+
+    <option value="Вручную">
+     Вручную
+    </option>
+
+   </select>
+
+  </div>
+
+
+  <!-- STATUS -->
+
+  <div class="field">
+
+   <label>
+    Статус реквизита
+   </label>
+
+   <select id="rStatus">
+
+    <option value="active">
+     Активен
+    </option>
+
+    <option value="blocked">
+     Выключен
+    </option>
+
+   </select>
+
+  </div>
+
+
+  <div class="modal-footer">
+
+   <button
+    class="btn light"
+    onclick="closeRequisiteModal()"
+   >
+    Отмена
+   </button>
+
+   <button
+    class="btn primary"
+    onclick="saveRequisite()"
+   >
+    Сохранить
+   </button>
+
+  </div>
+
+ </div>
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- MODAL: ADMIN USER -->
+<!-- ===================================================== -->
+
+<div id="manageModal" class="modal">
+
+ <div class="modalbox">
+
+  <button
+   class="close"
+   onclick="closeManage()"
+  >
+   ×
+  </button>
+
+  <h2>
+   Управление ЛК
+  </h2>
+
+  <div id="manageEmail" class="subtitle"></div>
+
+
+  <div class="section-title">
+   Аккаунт
+  </div>
+
+
+  <div class="form-grid">
+
+   <div class="field">
+    <label>Имя</label>
+    <input id="mName">
+   </div>
+
+   <div class="field">
+    <label>Email</label>
+    <input id="mEmail" type="email">
+   </div>
+
+   <div class="field">
+    <label>Новый пароль</label>
+    <input
+     id="mPassword"
+     type="text"
+     placeholder="Оставьте пустым"
+    >
+   </div>
+
+   <div class="field">
+    <label>Статус</label>
+
+    <select id="mStatus">
+     <option value="active">
+      Активен
+     </option>
+     <option value="blocked">
+      Заблокирован
+     </option>
+    </select>
+
+   </div>
+
+  </div>
+
+
+  <div class="section-title">
+   Финансы
+  </div>
+
+
+  <div class="form-grid">
+
+   <div class="field">
+    <label>Баланс депозита</label>
+    <input id="mDeposit" type="number">
+   </div>
+
+   <div class="field">
+    <label>Оборот</label>
+    <input id="mTurnover" type="number">
+   </div>
+
+   <div class="field">
+    <label>Прибыль</label>
+    <input id="mProfit" type="number">
+   </div>
+
+   <div class="field">
+    <label>Комиссия %</label>
+    <input id="mCommission" type="number">
+   </div>
+
+   <div class="field">
+    <label>Активные сделки</label>
+    <input id="mDeals" type="number">
+   </div>
+
+  </div>
+
+
+  <div class="section-title">
+   Быстрые настройки
+  </div>
+
+
+  <div class="actions">
+
+   <button
+    class="btn success"
+    onclick="changeBalance(100)"
+   >
+    +100 USDT
+   </button>
+
+   <button
+    class="btn success"
+    onclick="changeBalance(500)"
+   >
+    +500 USDT
+   </button>
+
+   <button
+    class="btn danger"
+    onclick="changeBalance(-100)"
+   >
+    −100 USDT
+   </button>
+
+  </div>
+
+
+  <div class="modal-footer">
+
+   <button
+    class="btn light"
+    onclick="closeManage()"
+   >
+    Отмена
+   </button>
+
+   <button
+    class="btn primary"
+    onclick="saveManagedUser()"
+   >
+    Сохранить всё
+   </button>
+
+  </div>
+
+ </div>
 
 </div>
 
 
 <script>
 
-let requisites =
-    JSON.parse(localStorage.getItem("crm_requisites")) || [];
+/* =========================================================
+   DATABASE
+========================================================= */
 
-let editIndex = null;
+const USER_KEY="p2pspark_users_v6";
 
+const REQ_KEY="p2pspark_requisites_v6";
 
-/* ОТКРЫТЬ */
+const AUDIT_KEY="p2pspark_audit_v6";
 
-function openModal(index = null){
-
-    editIndex = index;
-
-    document
-        .getElementById("modal")
-        .classList.add("show");
-
-    if(index !== null){
-
-        document.getElementById("modalTitle")
-            .innerText = "Редактировать реквизит";
-
-        const item = requisites[index];
-
-        document.getElementById("device").value =
-            item.device;
-
-        document.getElementById("bank").value =
-            item.bank;
-
-        document.getElementById("dailyLimit").value =
-            item.dailyLimit;
-
-        document.getElementById("dailyDeals").value =
-            item.dailyDeals;
-
-        document.getElementById("maxDeal").value =
-            item.maxDeal;
-
-        document.getElementById("minDeal").value =
-            item.minDeal;
-
-        document.getElementById("pauseHours").value =
-            item.pauseHours;
-
-        document.getElementById("pauseMinutes").value =
-            item.pauseMinutes;
-
-        document.getElementById("timezone").value =
-            item.timezone;
-
-        document.getElementById("always").checked =
-            item.always;
-
-        document.getElementById("separateLimits").checked =
-            item.separateLimits;
-
-        document.getElementById("confirmation").value =
-            item.confirmation;
-
-    }else{
-
-        document.getElementById("modalTitle")
-            .innerText = "Добавьте реквизиты";
-
-        document.getElementById("requisiteForm").reset();
-
-        document.getElementById("dailyLimit").value = 15000;
-        document.getElementById("dailyDeals").value = 30;
-        document.getElementById("maxDeal").value = 15000;
-        document.getElementById("minDeal").value = 100;
-        document.getElementById("pauseHours").value = 0;
-        document.getElementById("pauseMinutes").value = 0;
-        document.getElementById("always").checked = true;
-        document.getElementById("confirmation").value =
-            "Push-уведомления";
-
-    }
-
-}
+const SESSION_KEY="p2pspark_session_v6";
 
 
-/* ЗАКРЫТЬ */
+const DEFAULT_USERS={
 
-function closeModal(){
+ "user@p2pspark.com":{
+  name:"Пользователь",
+  email:"user@p2pspark.com",
+  password:"User123!",
+  role:"USER",
+  status:"active",
 
-    document
-        .getElementById("modal")
-        .classList.remove("show");
+  finance:{
+   deposit:0,
+   turnover:0,
+   profit:0,
+   commission:0,
+   deals:0
+  }
 
-    editIndex = null;
+ },
+
+ "admin@p2pspark.com":{
+  name:"Администратор",
+  email:"admin@p2pspark.com",
+  password:"Admin123!",
+  role:"ADMIN",
+  status:"active",
+
+  finance:{
+   deposit:0,
+   turnover:0,
+   profit:0,
+   commission:0,
+   deals:0
+  }
+
+ }
+
+};
+
+
+let users=
+ JSON.parse(localStorage.getItem(USER_KEY)||"null")
+ || DEFAULT_USERS;
+
+
+let requisites=
+ JSON.parse(localStorage.getItem(REQ_KEY)||"[]");
+
+
+let session=
+ JSON.parse(sessionStorage.getItem(SESSION_KEY)||"null");
+
+
+let editRequisiteIndex=null;
+
+let managedEmail=null;
+
+
+/* =========================================================
+   SAVE
+========================================================= */
+
+function saveUsers(){
+
+ localStorage.setItem(
+  USER_KEY,
+  JSON.stringify(users)
+ );
 
 }
 
 
-/* СОХРАНЕНИЕ */
+function saveRequisites(){
 
-document
-.getElementById("requisiteForm")
-.addEventListener("submit", function(e){
+ localStorage.setItem(
+  REQ_KEY,
+  JSON.stringify(requisites)
+ );
 
-    e.preventDefault();
-
-
-    const item = {
-
-        id:
-            editIndex !== null
-                ? requisites[editIndex].id
-                : Date.now(),
-
-        device:
-            document.getElementById("device").value,
-
-        bank:
-            document.getElementById("bank").value,
-
-        dailyLimit:
-            Number(
-                document.getElementById("dailyLimit").value
-            ),
-
-        dailyDeals:
-            Number(
-                document.getElementById("dailyDeals").value
-            ),
-
-        maxDeal:
-            Number(
-                document.getElementById("maxDeal").value
-            ),
-
-        minDeal:
-            Number(
-                document.getElementById("minDeal").value
-            ),
-
-        pauseHours:
-            Number(
-                document.getElementById("pauseHours").value
-            ),
-
-        pauseMinutes:
-            Number(
-                document.getElementById("pauseMinutes").value
-            ),
-
-        timezone:
-            document.getElementById("timezone").value,
-
-        always:
-            document.getElementById("always").checked,
-
-        separateLimits:
-            document.getElementById("separateLimits").checked,
-
-        confirmation:
-            document.getElementById("confirmation").value,
-
-        active:true
-
-    };
+}
 
 
-    if(editIndex !== null){
+function audit(text){
 
-        requisites[editIndex] = item;
+ let logs=
+  JSON.parse(
+   localStorage.getItem(AUDIT_KEY)||"[]"
+  );
 
-    }else{
+ logs.unshift({
 
-        requisites.push(item);
+  text:text,
 
-    }
+  time:
+   new Date().toLocaleString("ru-RU")
 
+ });
 
-    localStorage.setItem(
-        "crm_requisites",
-        JSON.stringify(requisites)
-    );
+ localStorage.setItem(
+  AUDIT_KEY,
+  JSON.stringify(logs.slice(0,100))
+ );
 
-
-    closeModal();
-
-    render();
-
-});
+}
 
 
-/* ОТОБРАЖЕНИЕ */
+/* =========================================================
+   LOGIN
+========================================================= */
+
+function login(){
+
+ const email=
+  document
+   .getElementById("loginEmail")
+   .value
+   .trim()
+   .toLowerCase();
+
+ const password=
+  document
+   .getElementById("loginPassword")
+   .value;
+
+ const error=
+  document.getElementById("loginError");
+
+ const user=users[email];
+
+
+ if(
+  !user ||
+  user.password!==password ||
+  user.status==="blocked"
+ ){
+
+  error.style.display="block";
+
+  return;
+
+ }
+
+
+ error.style.display="none";
+
+
+ session={
+  email:email,
+  role:user.role
+ };
+
+
+ sessionStorage.setItem(
+  SESSION_KEY,
+  JSON.stringify(session)
+ );
+
+
+ start();
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+function start(){
+
+ if(!session){
+
+  document.getElementById(
+   "loginScreen"
+  ).style.display="grid";
+
+  return;
+
+ }
+
+
+ const user=users[session.email];
+
+
+ if(!user){
+
+  logout();
+
+  return;
+
+ }
+
+
+ document.getElementById(
+  "loginScreen"
+ ).style.display="none";
+
+
+ document.getElementById(
+  "app"
+ ).style.display="block";
+
+
+ document.getElementById(
+  "adminNav"
+ ).style.display=
+  user.role==="ADMIN"
+   ?"block"
+   :"none";
+
+
+ document.getElementById(
+  "topEmail"
+ ).textContent=user.email;
+
+
+ document.getElementById(
+  "roleText"
+ ).textContent=
+  user.role==="ADMIN"
+   ?"ADMIN"
+   :"USER";
+
+
+ document.getElementById(
+  "avatar"
+ ).textContent=
+  (user.name||user.email)
+   .charAt(0)
+   .toUpperCase();
+
+
+ document.getElementById(
+  "profileEmail"
+ ).value=user.email;
+
+
+ document.getElementById(
+  "profileRole"
+ ).value=user.role;
+
+
+ document.getElementById(
+  "profileStatus"
+ ).value=
+  user.status==="blocked"
+   ?"Заблокирован"
+   :"Активен";
+
+
+ render();
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function go(page){
+
+ if(
+  page==="admin" &&
+  session.role!=="ADMIN"
+ ){
+
+  alert("Доступ запрещён");
+
+  return;
+
+ }
+
+
+ document
+  .querySelectorAll(".section")
+  .forEach(
+   x=>x.classList.remove("active")
+  );
+
+
+ const target=
+  document.getElementById(page);
+
+
+ if(!target)return;
+
+
+ target.classList.add("active");
+
+
+ document
+  .querySelectorAll(
+   ".nav button[data-page]"
+  )
+  .forEach(
+   x=>
+    x.classList.toggle(
+     "active",
+     x.dataset.page===page
+    )
+  );
+
+
+ const names={
+
+  dashboard:"Дашборд",
+  finance:"Финансы",
+  deals:"Сделки",
+  requests:"Заявки",
+  disputes:"Споры",
+  requisites:"Реквизиты",
+  devices:"Устройства",
+  messages:"Сообщения",
+  turbo:"Турбозалив",
+  counterparties:"Контрагенты",
+  reports:"Отчёты",
+  profile:"Профиль",
+  admin:"Админ-панель"
+
+ };
+
+
+ document.getElementById(
+  "pageTitle"
+ ).textContent=
+  names[page]||page;
+
+
+ document
+  .getElementById("sidebar")
+  .classList.remove("open");
+
+
+ render();
+
+}
+
+
+function toggleMenu(){
+
+ document
+  .getElementById("sidebar")
+  .classList.toggle("open");
+
+}
+
+
+function logout(){
+
+ sessionStorage.removeItem(
+  SESSION_KEY
+ );
+
+ location.reload();
+
+}
+
+
+/* =========================================================
+   RENDER
+========================================================= */
 
 function render(){
 
-    const table =
-        document.getElementById("requisitesTable");
+ if(!session)return;
 
-    const empty =
-        document.getElementById("empty");
+ const user=users[session.email];
 
+ if(!user)return;
 
-    table.innerHTML = "";
-
-
-    if(requisites.length === 0){
-
-        empty.style.display = "block";
-
-        return;
-
-    }
+ const f=user.finance||{};
 
 
-    empty.style.display = "none";
+ document.getElementById(
+  "dDeposit"
+ ).textContent=money(f.deposit);
 
 
-    requisites.forEach((item,index)=>{
-
-        const row =
-            document.createElement("tr");
-
-
-        row.innerHTML = `
-
-            <td>
-                <strong>${escapeHtml(item.device)}</strong>
-            </td>
-
-            <td>
-                ${escapeHtml(item.bank)}
-            </td>
-
-            <td>
-                ${formatNumber(item.dailyLimit)}
-            </td>
-
-            <td>
-                ${formatNumber(item.dailyDeals)}
-            </td>
-
-            <td>
-
-                <span
-                    class="status ${item.active ? "on" : "off"}"
-                >
-
-                    ${item.active ? "● Активен" : "● Выключен"}
-
-                </span>
-
-            </td>
-
-            <td>
-
-                <div class="actions">
-
-                    <button
-                        class="action-btn"
-                        onclick="toggleRequisite(${index})"
-                    >
-                        ${item.active ? "Выключить" : "Включить"}
-                    </button>
-
-                    <button
-                        class="action-btn"
-                        onclick="openModal(${index})"
-                    >
-                        Изменить
-                    </button>
-
-                    <button
-                        class="action-btn"
-                        onclick="deleteRequisite(${index})"
-                    >
-                        Удалить
-                    </button>
-
-                </div>
-
-            </td>
-
-        `;
+ document.getElementById(
+  "fDeposit"
+ ).textContent=money(f.deposit);
 
 
-        table.appendChild(row);
+ document.getElementById(
+  "dTurnover"
+ ).textContent=money(f.turnover);
 
-    });
+
+ document.getElementById(
+  "fTurnover"
+ ).textContent=money(f.turnover);
+
+
+ document.getElementById(
+  "dProfit"
+ ).textContent=money(f.profit);
+
+
+ document.getElementById(
+  "fProfit"
+ ).textContent=money(f.profit);
+
+
+ document.getElementById(
+  "dDeals"
+ ).textContent=f.deals||0;
+
+
+ document.getElementById(
+  "fCommission"
+ ).textContent=
+  (f.commission||0)+"%";
+
+
+ renderDeals();
+
+ renderRequisites();
+
+ if(user.role==="ADMIN"){
+  renderAdmin();
+ }
 
 }
 
 
-/* ВКЛЮЧИТЬ / ВЫКЛЮЧИТЬ */
+/* =========================================================
+   MONEY
+========================================================= */
 
-function toggleRequisite(index){
+function money(value){
 
-    requisites[index].active =
-        !requisites[index].active;
+ return Number(value||0)
+  .toLocaleString("ru-RU")
+  +" USDT";
+
+}
 
 
-    localStorage.setItem(
-        "crm_requisites",
-        JSON.stringify(requisites)
+/* =========================================================
+   DEALS
+========================================================= */
+
+function renderDeals(){
+
+ const rows=`
+
+ <tr>
+  <td>#1001</td>
+  <td>Обмен</td>
+  <td>500 USDT</td>
+  <td>Kaspi Bank</td>
+  <td>
+   <span class="badge green">
+    Новая
+   </span>
+  </td>
+ </tr>
+
+ <tr>
+  <td>#1000</td>
+  <td>Вывод</td>
+  <td>250 USDT</td>
+  <td>Halyk Bank</td>
+  <td>
+   <span class="badge gray">
+    Обработана
+   </span>
+  </td>
+ </tr>
+
+ `;
+
+
+ document.getElementById(
+  "dealsTable"
+ ).innerHTML=rows;
+
+
+ document.getElementById(
+  "dashDeals"
+ ).innerHTML=
+  `<div class="table-wrap">
+   <table class="table">
+    <tbody>${rows}</tbody>
+   </table>
+  </div>`;
+
+}
+
+
+/* =========================================================
+   REQUISITES
+========================================================= */
+
+function openRequisiteModal(index=null){
+
+ editRequisiteIndex=index;
+
+
+ document
+  .getElementById("requisiteModal")
+  .classList.add("show");
+
+
+ if(index===null){
+
+  document.getElementById(
+   "requisiteModalTitle"
+  ).textContent=
+   "Добавьте реквизиты";
+
+
+  resetRequisiteForm();
+
+  return;
+
+ }
+
+
+ const r=requisites[index];
+
+
+ document.getElementById(
+  "requisiteModalTitle"
+ ).textContent=
+  "Редактировать реквизит";
+
+
+ document.getElementById("rDevice").value=
+  r.device||"";
+
+
+ document.getElementById("rBank").value=
+  r.bank||"";
+
+
+ document.getElementById("rAccount").value=
+  r.account||"";
+
+
+ document.getElementById("rHolder").value=
+  r.holder||"";
+
+
+ document.getElementById("rDailyLimit").value=
+  r.dailyLimit??15000;
+
+
+ document.getElementById("rDailyDeals").value=
+  r.dailyDeals??30;
+
+
+ document.getElementById("rMaxDeal").value=
+  r.maxDeal??15000;
+
+
+ document.getElementById("rMinDeal").value=
+  r.minDeal??100;
+
+
+ document.getElementById("rPauseHours").value=
+  r.pauseHours??0;
+
+
+ document.getElementById("rPauseMinutes").value=
+  r.pauseMinutes??0;
+
+
+ document.getElementById("rTimezone").value=
+  r.timezone||"";
+
+
+ document.getElementById("rAlways").checked=
+  !!r.always;
+
+
+ document.getElementById("rSeparateLimits").checked=
+  !!r.separateLimits;
+
+
+ document.getElementById("rConfirmation").value=
+  r.confirmation||
+  "Push-уведомления";
+
+
+ document.getElementById("rStatus").value=
+  r.status||"active";
+
+}
+
+
+function resetRequisiteForm(){
+
+ document.getElementById(
+  "rDevice"
+ ).value="";
+
+
+ document.getElementById(
+  "rBank"
+ ).value="";
+
+
+ document.getElementById(
+  "rAccount"
+ ).value="";
+
+
+ document.getElementById(
+  "rHolder"
+ ).value="";
+
+
+ document.getElementById(
+  "rDailyLimit"
+ ).value=15000;
+
+
+ document.getElementById(
+  "rDailyDeals"
+ ).value=30;
+
+
+ document.getElementById(
+  "rMaxDeal"
+ ).value=15000;
+
+
+ document.getElementById(
+  "rMinDeal"
+ ).value=100;
+
+
+ document.getElementById(
+  "rPauseHours"
+ ).value=0;
+
+
+ document.getElementById(
+  "rPauseMinutes"
+ ).value=0;
+
+
+ document.getElementById(
+  "rTimezone"
+ ).value="UTC+5";
+
+
+ document.getElementById(
+  "rAlways"
+ ).checked=true;
+
+
+ document.getElementById(
+  "rSeparateLimits"
+ ).checked=false;
+
+
+ document.getElementById(
+  "rConfirmation"
+ ).value=
+  "Push-уведомления";
+
+
+ document.getElementById(
+  "rStatus"
+ ).value="active";
+
+}
+
+
+function closeRequisiteModal(){
+
+ document
+  .getElementById("requisiteModal")
+  .classList.remove("show");
+
+ editRequisiteIndex=null;
+
+}
+
+
+function saveRequisite(){
+
+ const device=
+  document.getElementById(
+   "rDevice"
+  ).value;
+
+ const bank=
+  document.getElementById(
+   "rBank"
+  ).value;
+
+ const account=
+  document.getElementById(
+   "rAccount"
+  ).value.trim();
+
+
+ if(!device){
+  alert("Выберите устройство");
+  return;
+ }
+
+
+ if(!bank){
+  alert("Выберите банк");
+  return;
+ }
+
+
+ if(!account){
+  alert("Введите номер карты / счёта");
+  return;
+ }
+
+
+ const minDeal=
+  Number(
+   document.getElementById(
+    "rMinDeal"
+   ).value
+  )||0;
+
+
+ const maxDeal=
+  Number(
+   document.getElementById(
+    "rMaxDeal"
+   ).value
+  )||0;
+
+
+ if(minDeal>maxDeal){
+
+  alert(
+   "Минимальная сумма не может быть больше максимальной"
+  );
+
+  return;
+
+ }
+
+
+ const item={
+
+  id:
+   editRequisiteIndex!==null
+    ?requisites[editRequisiteIndex].id
+    :Date.now(),
+
+  device:device,
+
+  bank:bank,
+
+  account:account,
+
+  holder:
+   document.getElementById(
+    "rHolder"
+   ).value.trim(),
+
+  dailyLimit:
+   Number(
+    document.getElementById(
+     "rDailyLimit"
+    ).value
+   )||0,
+
+  dailyDeals:
+   Number(
+    document.getElementById(
+     "rDailyDeals"
+    ).value
+   )||0,
+
+  maxDeal:maxDeal,
+
+  minDeal:minDeal,
+
+  pauseHours:
+   Number(
+    document.getElementById(
+     "rPauseHours"
+    ).value
+   )||0,
+
+  pauseMinutes:
+   Number(
+    document.getElementById(
+     "rPauseMinutes"
+    ).value
+   )||0,
+
+  timezone:
+   document.getElementById(
+    "rTimezone"
+   ).value,
+
+  always:
+   document.getElementById(
+    "rAlways"
+   ).checked,
+
+  separateLimits:
+   document.getElementById(
+    "rSeparateLimits"
+   ).checked,
+
+  confirmation:
+   document.getElementById(
+    "rConfirmation"
+   ).value,
+
+  status:
+   document.getElementById(
+    "rStatus"
+   ).value
+
+ };
+
+
+ if(editRequisiteIndex!==null){
+
+  requisites[
+   editRequisiteIndex
+  ]=item;
+
+  audit(
+   "изменил реквизит: "
+   +bank
+  );
+
+ }else{
+
+  requisites.push(item);
+
+  audit(
+   "добавил реквизит: "
+   +bank
+  );
+
+ }
+
+
+ saveRequisites();
+
+ closeRequisiteModal();
+
+ renderRequisites();
+
+}
+
+
+function renderRequisites(){
+
+ const grid=
+  document.getElementById(
+   "requisiteGrid"
+  );
+
+ const empty=
+  document.getElementById(
+   "requisiteEmpty"
+  );
+
+
+ const search=
+  (
+   document.getElementById(
+    "requisiteSearch"
+   )?.value||""
+  )
+  .toLowerCase();
+
+
+ const filter=
+  document.getElementById(
+   "requisiteFilter"
+  )?.value||"all";
+
+
+ const list=
+  requisites.filter(r=>{
+
+   const text=
+    (
+     r.bank+" "+
+     r.device+" "+
+     r.account+" "+
+     r.holder
+    ).toLowerCase();
+
+
+   const searchOk=
+    text.includes(search);
+
+
+   const filterOk=
+    filter==="all"
+     ||
+    (
+     filter==="active" &&
+     r.status==="active"
+    )
+     ||
+    (
+     filter==="blocked" &&
+     r.status==="blocked"
     );
 
 
-    render();
+   return searchOk&&filterOk;
+
+  });
+
+
+ grid.innerHTML="";
+
+
+ if(list.length===0){
+
+  empty.style.display="block";
+
+  return;
+
+ }
+
+
+ empty.style.display="none";
+
+
+ list.forEach(r=>{
+
+  const realIndex=
+   requisites.findIndex(
+    x=>x.id===r.id
+   );
+
+
+  const card=
+   document.createElement("div");
+
+  card.className="requisite-card";
+
+
+  const status=
+   r.status==="active"
+    ?`
+      <span class="badge green">
+       ● Активен
+      </span>
+     `
+    :`
+      <span class="badge red">
+       ● Выключен
+      </span>
+     `;
+
+
+  card.innerHTML=`
+
+   <div class="requisite-head">
+
+    <div>
+
+     <div class="requisite-bank">
+      ${esc(r.bank)}
+     </div>
+
+     <div class="requisite-device">
+      📱 ${esc(r.device)}
+     </div>
+
+    </div>
+
+    ${status}
+
+   </div>
+
+
+   <div class="requisite-stats">
+
+    <div class="stat">
+
+     <div class="stat-title">
+      Суточный лимит
+     </div>
+
+     <div class="stat-value">
+      ${formatNumber(r.dailyLimit)}
+     </div>
+
+    </div>
+
+
+    <div class="stat">
+
+     <div class="stat-title">
+      Сделок в сутки
+     </div>
+
+     <div class="stat-value">
+      ${formatNumber(r.dailyDeals)}
+     </div>
+
+    </div>
+
+
+    <div class="stat">
+
+     <div class="stat-title">
+      Макс. сделка
+     </div>
+
+     <div class="stat-value">
+      ${formatNumber(r.maxDeal)}
+     </div>
+
+    </div>
+
+
+    <div class="stat">
+
+     <div class="stat-title">
+      Мин. сделка
+     </div>
+
+     <div class="stat-value">
+      ${formatNumber(r.minDeal)}
+     </div>
+
+    </div>
+
+   </div>
+
+
+   <div class="requisite-info">
+
+    <div>
+     <b>Реквизит:</b>
+     ${esc(r.account)}
+    </div>
+
+    ${
+     r.holder
+      ?`<div>
+          <b>Получатель:</b>
+          ${esc(r.holder)}
+        </div>`
+      :""
+    }
+
+    <div>
+     <b>Пауза:</b>
+     ${r.pauseHours||0} ч.
+     ${r.pauseMinutes||0} мин.
+    </div>
+
+    <div>
+     <b>Часовой пояс:</b>
+     ${esc(r.timezone||"—")}
+    </div>
+
+    <div>
+     <b>Подтверждение:</b>
+     ${esc(r.confirmation||"—")}
+    </div>
+
+    <div>
+     <b>Лимиты карт:</b>
+     ${r.separateLimits?"Отдельно":"Общий лимит"}
+    </div>
+
+   </div>
+
+
+   <div class="requisite-actions">
+
+    <button
+     class="btn light"
+     onclick="openRequisiteModal(${realIndex})"
+    >
+     Изменить
+    </button>
+
+    <button
+     class="btn ${r.status==="active"?"orange":"success"}"
+     onclick="toggleRequisite(${realIndex})"
+    >
+     ${r.status==="active"?"Выключить":"Включить"}
+    </button>
+
+    <button
+     class="btn danger"
+     onclick="deleteRequisite(${realIndex})"
+    >
+     Удалить
+    </button>
+
+   </div>
+
+  `;
+
+
+  grid.appendChild(card);
+
+ });
 
 }
 
 
-/* УДАЛЕНИЕ */
+function toggleRequisite(index){
+
+ requisites[index].status=
+  requisites[index].status==="active"
+   ?"blocked"
+   :"active";
+
+
+ saveRequisites();
+
+
+ audit(
+  (
+   requisites[index].status==="active"
+    ?"включил "
+    :"выключил "
+  )
+  +"реквизит "
+  +requisites[index].bank
+ );
+
+
+ renderRequisites();
+
+}
+
 
 function deleteRequisite(index){
 
-    if(
-        confirm(
-            "Удалить этот реквизит?"
-        )
-    ){
-
-        requisites.splice(index,1);
+ const r=requisites[index];
 
 
-        localStorage.setItem(
-            "crm_requisites",
-            JSON.stringify(requisites)
-        );
+ if(
+  !confirm(
+   "Удалить реквизит "+r.bank+"?"
+  )
+ )return;
 
 
-        render();
+ requisites.splice(index,1);
 
-    }
+ saveRequisites();
 
-}
+ audit(
+  "удалил реквизит: "
+  +r.bank
+ );
 
-
-/* ФОРМАТ ЧИСЕЛ */
-
-function formatNumber(number){
-
-    return new Intl.NumberFormat(
-        "ru-RU"
-    ).format(number);
+ renderRequisites();
 
 }
 
 
-/* ЗАЩИТА HTML */
+/* =========================================================
+   ADMIN
+========================================================= */
 
-function escapeHtml(value){
+function renderAdmin(){
 
-    return String(value)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+ const body=
+  document.getElementById(
+   "usersTable"
+  );
+
+
+ body.innerHTML="";
+
+
+ Object.values(users).forEach(
+  user=>{
+
+   const tr=
+    document.createElement("tr");
+
+
+   tr.innerHTML=`
+
+    <td>
+     ${esc(user.name)}
+    </td>
+
+    <td>
+     ${esc(user.email)}
+    </td>
+
+    <td>
+     ${esc(user.role)}
+    </td>
+
+    <td>
+
+     <span class="badge ${
+      user.status==="active"
+       ?"green"
+       :"red"
+     }">
+
+      ${
+       user.status==="active"
+        ?"Активен"
+        :"Заблокирован"
+      }
+
+     </span>
+
+    </td>
+
+    <td>
+
+     <button
+      class="btn light"
+      onclick="openManage('${escAttr(user.email)}')"
+     >
+      Управлять
+     </button>
+
+    </td>
+
+   `;
+
+
+   body.appendChild(tr);
+
+  }
+ );
+
+
+ const logs=
+  JSON.parse(
+   localStorage.getItem(
+    AUDIT_KEY
+   )||"[]"
+  );
+
+
+ document.getElementById(
+  "auditLog"
+ ).innerHTML=
+  logs.length
+   ?logs.map(
+    x=>`
+     <div
+      style="
+       padding:9px 0;
+       border-bottom:1px solid #eee
+      "
+     >
+      <b>
+       ${esc(x.time)}
+      </b>
+      —
+      ${esc(x.text)}
+     </div>
+    `
+   ).join("")
+   :"Пока нет действий";
 
 }
 
 
-/* КЛИК ПО ФОНУ */
+function createUser(){
 
-document
-.getElementById("modal")
-.addEventListener("click",function(e){
-
-    if(e.target === this){
-
-        closeModal();
-
-    }
-
-});
+ if(session.role!=="ADMIN")return;
 
 
-/* ЗАПУСК */
+ const name=
+  document.getElementById(
+   "newName"
+  ).value.trim();
 
-render();
+
+ const email=
+  document.getElementById(
+   "newEmail"
+  ).value
+   .trim()
+   .toLowerCase();
+
+
+ const password=
+  document.getElementById(
+   "newPassword"
+  ).value;
+
+
+ if(!name||!email||!password){
+
+  alert(
+   "Заполните имя, email и пароль"
+  );
+
+  return;
+
+ }
+
+
+ if(
+  !/^\S+@\S+\.\S+$/.test(email)
+ ){
+
+  alert("Введите корректный email");
+
+  return;
+
+ }
+
+
+ if(password.length<6){
+
+  alert(
+   "Пароль минимум 6 символов"
+  );
+
+  return;
+
+ }
+
+
+ if(users[email]){
+
+  alert(
+   "Такой email уже существует"
+  );
+
+  return;
+
+ }
+
+
+ users[email]={
+
+  name:name,
+
+  email:email,
+
+  password:password,
+
+  role:"USER",
+
+  status:"active",
+
+  finance:{
+
+   deposit:0,
+
+   turnover:0,
+
+   profit:0,
+
+   commission:0,
+
+   deals:0
+
+  }
+
+ };
+
+
+ saveUsers();
+
+
+ audit(
+  "создал новый ЛК USER: "
+  +email
+ );
+
+
+ document.getElementById(
+  "newName"
+ ).value="";
+
+
+ document.getElementById(
+  "newEmail"
+ ).value="";
+
+
+ document.getElementById(
+  "newPassword"
+ ).value="";
+
+
+ renderAdmin();
+
+
+ alert("ЛК создан");
+
+}
+
+
+function openManage(email){
+
+ managedEmail=email;
+
+
+ const user=users[email];
+
+ const f=user.finance||{};
+
+
+ document.getElementById(
+  "manageEmail"
+ ).textContent=
+  "Редактирование: "+email;
+
+
+ document.getElementById(
+  "mName"
+ ).value=user.name||"";
+
+
+ document.getElementById(
+  "mEmail"
+ ).value=user.email;
+
+
+ document.getElementById(
+  "mPassword"
+ ).value="";
+
+
+ document.getElementById(
+  "mStatus"
+ ).value=
+  user.status||"active";
+
+
+ document.getElementById(
+  "mDeposit"
+ ).value=
+  f.deposit||0;
+
+
+ document.getElementById(
+  "mTurnover"
+ ).value=
+  f.turnover||0;
+
+
+ document.getElementById(
+  "mProfit"
+ ).value=
+  f.profit||0;
+
+
+ document.getElementById(
+  "mCommission"
+ ).value=
+  f.commission||0;
+
+
+ document.getElementById(
+  "mDeals"
+ ).value=
+  f.deals||0;
+
+
+ document
+  .getElementById("manageModal")
+  .classList.add("show");
+
+}
+
+
+function closeManage(){
+
+ document
+  .getElementById("manageModal")
+  .classList.remove("show");
+
+ managedEmail=null;
+
+}
+
+
+function saveManagedUser(){
+
+ if(!managedEmail)return;
+
+
+ const old=users[managedEmail];
+
+
+ const newEmail=
+  document.getElementById(
+   "mEmail"
+  ).value
+   .trim()
+   .toLowerCase();
+
+
+ if(!newEmail){
+
+  alert("Email обязателен");
+
+  return;
+
+ }
+
+
+ if(
+  newEmail!==managedEmail &&
+  users[newEmail]
+ ){
+
+  alert(
+   "Новый email уже занят"
+  );
+
+  return;
+
+ }
+
+
+ old.name=
+  document.getElementById(
+   "mName"
+  ).value.trim()
+  ||"Пользователь";
+
+
+ old.status=
+  document.getElementById(
+   "mStatus"
+  ).value;
+
+
+ const password=
+  document.getElementById(
+   "mPassword"
+  ).value;
+
+
+ if(password){
+
+  if(password.length<6){
+
+   alert(
+    "Пароль минимум 6 символов"
+   );
+
+   return;
+
+  }
+
+  old.password=password;
+
+ }
+
+
+ old.finance={
+
+  deposit:
+   Number(
+    document.getElementById(
+     "mDeposit"
+    ).value
+   )||0,
+
+  turnover:
+   Number(
+    document.getElementById(
+     "mTurnover"
+    ).value
+   )||0,
+
+  profit:
+   Number(
+    document.getElementById(
+     "mProfit"
+    ).value
+   )||0,
+
+  commission:
+   Number(
+    document.getElementById(
+     "mCommission"
+    ).value
+   )||0,
+
+  deals:
+   Number(
+    document.getElementById(
+     "mDeals"
+    ).value
+   )||0
+
+ };
+
+
+ if(
+  newEmail!==managedEmail
+ ){
+
+  delete users[managedEmail];
+
+  old.email=newEmail;
+
+  users[newEmail]=old;
+
+ }
+
+
+ saveUsers();
+
+
+ audit(
+  "изменил данные ЛК: "
+  +old.email
+ );
+
+
+ closeManage();
+
+ render();
+
+ alert(
+  "Данные пользователя сохранены"
+ );
+
+}
+
+
+/* =========================================================
+   QUICK BALANCE
+========================================================= */
+
+function changeBalance(amount){
+
+ if(!managedEmail)return;
+
+
+ const user=users[managedEmail];
+
+
+ user.finance.deposit=
+  Number(user.finance.deposit||0)
+  +Number(amount);
+
+
+ if(user.finance.deposit<0){
+
+  user.finance.deposit=0;
+
+ }
+
+
+ saveUsers();
+
+
+ audit(
+  "изменил баланс "
+  +managedEmail
+  +" на "
+  +amount
+  +" USDT"
+ );
+
+
+ openManage(managedEmail);
+
+ renderAdmin();
+
+}
+
+
+/* =========================================================
+   DEPOSIT
+========================================================= */
+
+function createDeposit(){
+
+ const amount=
+  Number(
+   document.getElementById(
+    "depositAmount"
+   ).value
+  );
+
+
+ if(!amount||amount<=0){
+
+  alert(
+   "Введите сумму пополнения"
+  );
+
+  return;
+
+ }
+
+
+ audit(
+  "создал заявку на пополнение "
+  +amount
+  +" USDT"
+ );
+
+
+ document.getElementById(
+  "depositAmount"
+ ).value="";
+
+
+ document.getElementById(
+  "depositComment"
+ ).value="";
+
+
+ alert(
+  "Заявка на пополнение создана"
+ );
+
+}
+
+
+/* =========================================================
+   REPORT
+========================================================= */
+
+function generateReport(){
+
+ const user=users[session.email];
+
+ const f=user.finance||{};
+
+
+ const report=
+
+ `P2PSPARK CRM
+Отчёт
+
+Пользователь: ${user.email}
+
+Баланс: ${f.deposit||0} USDT
+Оборот: ${f.turnover||0} USDT
+Прибыль: ${f.profit||0} USDT
+Активные сделки: ${f.deals||0}
+Комиссия: ${f.commission||0}%
+
+Реквизитов: ${requisites.length}
+`;
+
+ const blob=
+  new Blob(
+   [report],
+   {type:"text/plain"}
+  );
+
+
+ const url=
+  URL.createObjectURL(blob);
+
+
+ const a=
+  document.createElement("a");
+
+
+ a.href=url;
+
+ a.download=
+  "p2pspark-report.txt";
+
+
+ a.click();
+
+
+ URL.revokeObjectURL(url);
+
+}
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function formatNumber(value){
+
+ return Number(value||0)
+  .toLocaleString("ru-RU");
+
+}
+
+
+function esc(value){
+
+ return String(value??"")
+  .replace(/[&<>"']/g,m=>({
+
+   "&":"&amp;",
+   "<":"&lt;",
+   ">":"&gt;",
+   '"':"&quot;",
+   "'":"&#039;"
+
+  }[m]));
+
+}
+
+
+function escAttr(value){
+
+ return String(value??"")
+  .replace(/\\/g,"\\\\")
+  .replace(/'/g,"\\'");
+
+}
+
+
+/* =========================================================
+   MODAL EVENTS
+========================================================= */
+
+document.addEventListener(
+ "keydown",
+ function(e){
+
+  if(e.key==="Escape"){
+
+   closeRequisiteModal();
+
+   closeManage();
+
+  }
+
+ }
+);
+
+
+document.getElementById(
+ "requisiteModal"
+).addEventListener(
+ "click",
+ function(e){
+
+  if(e.target===this){
+
+   closeRequisiteModal();
+
+  }
+
+ }
+);
+
+
+document.getElementById(
+ "manageModal"
+).addEventListener(
+ "click",
+ function(e){
+
+  if(e.target===this){
+
+   closeManage();
+
+  }
+
+ }
+);
+
+
+/* =========================================================
+   START
+========================================================= */
+
+start();
 
 </script>
 
 </body>
-</html> 
-
+</html>
