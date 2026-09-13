@@ -3,43 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>P2PSPARK CRM</title>
+<title>P2PSPARK</title>
 
 <style>
 *{box-sizing:border-box}
+
 body{
  margin:0;
  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
  background:#f4f6f8;
- color:#111827
+ color:#111827;
 }
-button,input,select{font:inherit}
-button{cursor:pointer}
+
+button,input,select{
+ font:inherit;
+}
+
+button{
+ cursor:pointer;
+}
 
 .sidebar{
  position:fixed;
- left:0;top:0;bottom:0;
+ left:0;
+ top:0;
+ bottom:0;
  width:245px;
  background:#fff;
  border-right:1px solid #e2e7ec;
  padding:22px 14px;
  overflow:auto;
- z-index:50
+ z-index:50;
 }
+
 .logo{
  font-size:25px;
  font-weight:900;
- padding:5px 14px 25px
+ padding:5px 14px 25px;
 }
-.logo span{color:#2563eb}
+
+.logo span{
+ color:#2563eb;
+}
 
 .nav-title{
  color:#9aa3b2;
  font-size:11px;
  text-transform:uppercase;
  margin:20px 13px 7px;
- letter-spacing:1px
+ letter-spacing:1px;
 }
+
 .nav button{
  width:100%;
  border:0;
@@ -49,41 +63,57 @@ button{cursor:pointer}
  border-radius:10px;
  margin:2px 0;
  color:#64748b;
- font-weight:700
+ font-weight:700;
 }
-.nav button:hover,.nav button.active{
+
+.nav button:hover,
+.nav button.active{
  background:#eaf1ff;
- color:#2563eb
+ color:#2563eb;
 }
-.nav button.admin{color:#7c3aed}
+
+.nav button.admin{
+ color:#7c3aed;
+}
 
 .main{
  margin-left:245px;
  padding:28px;
- max-width:1500px
+ max-width:1500px;
 }
 
 .top{
  display:flex;
  justify-content:space-between;
  align-items:center;
- margin-bottom:25px
+ margin-bottom:25px;
 }
-.top h1{margin:0;font-size:29px}
-.subtitle{color:#718096;margin-top:5px}
+
+.top h1{
+ margin:0;
+ font-size:29px;
+}
+
+.subtitle{
+ color:#718096;
+ margin-top:5px;
+}
 
 .userbox{
  display:flex;
  align-items:center;
- gap:10px
+ gap:10px;
 }
+
 .avatar{
- width:42px;height:42px;
- display:grid;place-items:center;
+ width:42px;
+ height:42px;
+ display:grid;
+ place-items:center;
  border-radius:50%;
  background:#111827;
  color:#fff;
- font-weight:800
+ font-weight:800;
 }
 
 .mobile-menu{
@@ -91,16 +121,21 @@ button{cursor:pointer}
  border:1px solid #ddd;
  background:#fff;
  border-radius:10px;
- padding:8px 11px
+ padding:8px 11px;
 }
 
-.section{display:none}
-.section.active{display:block}
+.section{
+ display:none;
+}
+
+.section.active{
+ display:block;
+}
 
 .grid{
  display:grid;
  grid-template-columns:repeat(4,1fr);
- gap:18px
+ gap:18px;
 }
 
 .card{
@@ -109,72 +144,78 @@ button{cursor:pointer}
  border-radius:17px;
  padding:21px;
  margin-bottom:18px;
- box-shadow:0 8px 30px rgba(15,23,42,.05)
+ box-shadow:0 8px 30px rgba(15,23,42,.05);
 }
 
 .label{
  color:#718096;
  font-size:13px;
- font-weight:700
+ font-weight:700;
 }
+
 .big{
  font-size:29px;
  font-weight:900;
- margin-top:8px
+ margin-top:8px;
 }
-.green{color:#16a34a}
-.red{color:#dc2626}
-.small{font-size:13px;color:#718096}
+
+.green{
+ color:#16a34a;
+}
+
+.red{
+ color:#dc2626;
+}
+
+.small{
+ font-size:13px;
+ color:#718096;
+}
 
 .btn{
  border:0;
  border-radius:10px;
  padding:11px 16px;
- font-weight:750
+ font-weight:750;
 }
-.primary{background:#2563eb;color:white}
-.light{background:#eef2f7;color:#263244}
-.success{background:#dcfce7;color:#15803d}
-.danger{background:#fee2e2;color:#b91c1c}
-.orange{background:#ffedd5;color:#c2410c}
+
+.primary{
+ background:#2563eb;
+ color:white;
+}
+
+.light{
+ background:#eef2f7;
+ color:#263244;
+}
+
+.success{
+ background:#dcfce7;
+ color:#15803d;
+}
+
+.danger{
+ background:#fee2e2;
+ color:#b91c1c;
+}
+
+.orange{
+ background:#ffedd5;
+ color:#c2410c;
+}
 
 .actions{
  display:flex;
  gap:10px;
- flex-wrap:wrap
+ flex-wrap:wrap;
 }
 
-.table-wrap{
- overflow:auto;
- background:#fff;
- border:1px solid #e1e6ec;
- border-radius:17px
+.empty{
+ text-align:center;
+ color:#718096;
+ padding:50px 20px;
 }
-.table{
- width:100%;
- min-width:750px;
- border-collapse:collapse
-}
-.table th,.table td{
- padding:14px 17px;
- text-align:left;
- border-bottom:1px solid #e5e7eb
-}
-.table th{
- color:#8993a3;
- font-size:12px;
- text-transform:uppercase
-}
-.badge{
- display:inline-block;
- padding:5px 9px;
- border-radius:999px;
- font-size:12px;
- font-weight:800
-}
-.badge.green{background:#dcfce7;color:#15803d}
-.badge.red{background:#fee2e2;color:#b91c1c}
-.badge.gray{background:#eef2f7;color:#64748b}
+
 
 /* LOGIN */
 
@@ -183,58 +224,75 @@ button{cursor:pointer}
  display:grid;
  place-items:center;
  padding:20px;
- background:linear-gradient(145deg,#f6f8fb,#e9eef6)
+ background:linear-gradient(145deg,#f6f8fb,#e9eef6);
 }
+
 .login-card{
  width:100%;
  max-width:440px;
  background:white;
  border-radius:24px;
  padding:32px;
- box-shadow:0 25px 70px rgba(15,23,42,.12)
+ box-shadow:0 25px 70px rgba(15,23,42,.12);
 }
+
 .login-logo{
  text-align:center;
  font-size:30px;
- font-weight:950
+ font-weight:950;
 }
-.login-logo span{color:#2563eb}
+
+.login-logo span{
+ color:#2563eb;
+}
+
 .login-sub{
  text-align:center;
  font-size:10px;
  letter-spacing:3px;
  color:#718096;
  font-weight:800;
- margin:7px 0 28px
+ margin:7px 0 28px;
 }
+
 .login-card h2{
  text-align:center;
- margin:0 0 5px
+ margin:0 0 5px;
 }
-.field{margin-top:15px}
+
+.field{
+ margin-top:15px;
+}
+
 .field label{
  display:block;
  font-size:13px;
  font-weight:750;
- margin-bottom:7px
+ margin-bottom:7px;
 }
-.field input,.field select{
+
+.field input,
+.field select{
  width:100%;
  padding:12px 13px;
  border:1px solid #d7dde6;
  border-radius:11px;
  outline:none;
- background:white
+ background:white;
 }
-.field input:focus,.field select:focus{
+
+.field input:focus,
+.field select:focus{
  border-color:#2563eb;
- box-shadow:0 0 0 3px rgba(37,99,235,.1)
+ box-shadow:0 0 0 3px rgba(37,99,235,.1);
 }
+
 .login-card .btn{
  width:100%;
  height:50px;
- margin-top:20px
+ margin-top:20px;
 }
+
 .error{
  display:none;
  background:#fee2e2;
@@ -242,8 +300,9 @@ button{cursor:pointer}
  padding:10px;
  border-radius:10px;
  margin-top:15px;
- font-size:13px
+ font-size:13px;
 }
+
 .demo{
  margin-top:18px;
  background:#f7f8fa;
@@ -251,8 +310,9 @@ button{cursor:pointer}
  padding:12px;
  font-size:12px;
  line-height:1.7;
- color:#667085
+ color:#667085;
 }
+
 
 /* REQUISITES */
 
@@ -262,8 +322,9 @@ button{cursor:pointer}
  align-items:center;
  gap:12px;
  flex-wrap:wrap;
- margin:20px 0
+ margin:20px 0;
 }
+
 .search{
  width:290px;
  max-width:100%;
@@ -271,67 +332,103 @@ button{cursor:pointer}
  border:1px solid #dfe4ea;
  background:#fff;
  border-radius:11px;
- outline:none
+ outline:none;
 }
+
 .requisite-grid{
  display:grid;
  grid-template-columns:repeat(3,1fr);
- gap:17px
+ gap:17px;
 }
+
 .requisite-card{
  background:#fff;
  border:1px solid #e1e6ec;
  border-radius:17px;
  padding:19px;
- box-shadow:0 8px 30px rgba(15,23,42,.05)
+ box-shadow:0 8px 30px rgba(15,23,42,.05);
 }
+
 .requisite-head{
  display:flex;
  justify-content:space-between;
- gap:10px
+ gap:10px;
 }
+
 .requisite-bank{
  font-size:19px;
- font-weight:850
+ font-weight:850;
 }
+
 .requisite-device{
  color:#718096;
  font-size:13px;
- margin-top:4px
+ margin-top:4px;
 }
+
 .requisite-stats{
  display:grid;
  grid-template-columns:1fr 1fr;
  gap:9px;
- margin:17px 0
+ margin:17px 0;
 }
+
 .stat{
  background:#f7f8fa;
  padding:11px;
- border-radius:10px
+ border-radius:10px;
 }
+
 .stat-title{
  color:#718096;
- font-size:11px
+ font-size:11px;
 }
+
 .stat-value{
  font-weight:850;
- margin-top:4px
+ margin-top:4px;
 }
+
 .requisite-info{
  font-size:13px;
  line-height:1.7;
- color:#5f6b7a
+ color:#5f6b7a;
 }
+
 .requisite-actions{
  display:flex;
  gap:7px;
- margin-top:15px
+ margin-top:15px;
 }
+
 .requisite-actions .btn{
  flex:1;
- padding:9px 8px
+ padding:9px 8px;
 }
+
+.badge{
+ display:inline-block;
+ padding:5px 9px;
+ border-radius:999px;
+ font-size:12px;
+ font-weight:800;
+}
+
+.badge.green{
+ background:#dcfce7;
+ color:#15803d;
+}
+
+.badge.red{
+ background:#fee2e2;
+ color:#b91c1c;
+}
+
+.badge.gray{
+ background:#eef2f7;
+ color:#64748b;
+}
+
 
 /* MODAL */
 
@@ -342,12 +439,14 @@ button{cursor:pointer}
  background:rgba(15,23,42,.6);
  z-index:100;
  padding:20px;
- overflow:auto
+ overflow:auto;
 }
+
 .modal.show{
  display:grid;
- place-items:center
+ place-items:center;
 }
+
 .modalbox{
  width:100%;
  max-width:850px;
@@ -356,63 +455,76 @@ button{cursor:pointer}
  background:white;
  border-radius:20px;
  padding:25px;
- position:relative
+ position:relative;
 }
+
 .close{
  position:absolute;
  right:15px;
  top:13px;
- width:37px;height:37px;
+ width:37px;
+ height:37px;
  border:0;
  border-radius:50%;
  background:#eef2f7;
- font-size:22px
+ font-size:22px;
 }
-.modalbox h2{margin-top:0;padding-right:45px}
+
+.modalbox h2{
+ margin-top:0;
+ padding-right:45px;
+}
+
 .section-title{
  font-size:17px;
  font-weight:850;
  margin:24px 0 13px;
  padding-bottom:9px;
- border-bottom:1px solid #e5e7eb
+ border-bottom:1px solid #e5e7eb;
 }
+
 .form-grid{
  display:grid;
  grid-template-columns:repeat(2,1fr);
- gap:15px
+ gap:15px;
 }
+
 .pause{
  display:grid;
  grid-template-columns:1fr 30px 1fr;
  gap:7px;
- align-items:center
+ align-items:center;
 }
-.pause span{text-align:center;font-size:20px}
+
+.pause span{
+ text-align:center;
+ font-size:20px;
+}
+
 .checkbox-row{
  display:flex;
  gap:9px;
  align-items:center;
- margin-top:15px
+ margin-top:15px;
 }
+
 .checkbox-row input{
  width:19px;
- height:19px
+ height:19px;
 }
+
 .checkbox-row label{
  margin:0;
  font-size:14px;
- font-weight:650
+ font-weight:650;
 }
+
 .modal-footer{
  display:flex;
  gap:10px;
- margin-top:25px
+ margin-top:25px;
 }
-.empty{
- text-align:center;
- color:#718096;
- padding:35px
-}
+
 
 /* ADMIN */
 
@@ -421,47 +533,96 @@ button{cursor:pointer}
  color:#fff;
  padding:21px;
  border-radius:17px;
- margin-bottom:18px
+ margin-bottom:18px;
 }
-.admin-head h2{margin:0 0 5px}
+
+.admin-head h2{
+ margin:0 0 5px;
+}
+
 
 /* MOBILE */
 
 @media(max-width:1100px){
- .grid{grid-template-columns:repeat(2,1fr)}
- .requisite-grid{grid-template-columns:repeat(2,1fr)}
+
+ .grid{
+  grid-template-columns:repeat(2,1fr);
+ }
+
+ .requisite-grid{
+  grid-template-columns:repeat(2,1fr);
+ }
 }
 
 @media(max-width:900px){
+
  .sidebar{
   transform:translateX(-100%);
-  transition:.2s
+  transition:.2s;
  }
- .sidebar.open{transform:translateX(0)}
+
+ .sidebar.open{
+  transform:translateX(0);
+ }
+
  .main{
   margin-left:0;
-  padding:20px 15px
+  padding:20px 15px;
  }
- .mobile-menu{display:block}
- .requisite-grid{grid-template-columns:1fr}
+
+ .mobile-menu{
+  display:block;
+ }
+
+ .requisite-grid{
+  grid-template-columns:1fr;
+ }
 }
 
 @media(max-width:600px){
- .grid,.form-grid{grid-template-columns:1fr}
- .userbox{display:none}
- .top{align-items:flex-start}
- .top h1{font-size:24px}
- .login-card{padding:25px}
- .modalbox{padding:20px}
- .requisite-actions{flex-wrap:wrap}
- .requisite-actions .btn{min-width:30%}
+
+ .grid,
+ .form-grid{
+  grid-template-columns:1fr;
+ }
+
+ .userbox{
+  display:none;
+ }
+
+ .top{
+  align-items:flex-start;
+ }
+
+ .top h1{
+  font-size:24px;
+ }
+
+ .login-card{
+  padding:25px;
+ }
+
+ .modalbox{
+  padding:20px;
+ }
+
+ .requisite-actions{
+  flex-wrap:wrap;
+ }
+
+ .requisite-actions .btn{
+  min-width:30%;
+ }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= LOGIN ================= -->
+
+<!-- =====================================================
+LOGIN
+===================================================== -->
 
 <div id="loginScreen" class="login-screen">
 
@@ -487,30 +648,42 @@ button{cursor:pointer}
 
   <div class="field">
    <label>Email</label>
-   <input id="loginEmail" type="email"
-          placeholder="example@gmail.com">
+   <input
+    id="loginEmail"
+    type="email"
+    placeholder="example@gmail.com">
   </div>
 
   <div class="field">
    <label>Пароль</label>
-   <input id="loginPassword" type="password"
-          placeholder="Введите пароль">
+   <input
+    id="loginPassword"
+    type="password"
+    placeholder="Введите пароль">
   </div>
 
-  <button class="btn primary" onclick="login()">
+  <button
+   class="btn primary"
+   onclick="login()">
    Войти →
   </button>
 
   <div class="demo">
-   <b>USER:</b> user@p2pspark.com / User123!<br>
-   <b>ADMIN:</b> admin@p2pspark.com / Admin123!
+   <b>USER:</b>
+   user@p2pspark.com / User123!<br>
+
+   <b>ADMIN:</b>
+   admin@p2pspark.com / Admin123!
   </div>
 
  </div>
+
 </div>
 
 
-<!-- ================= APP ================= -->
+<!-- =====================================================
+APP
+===================================================== -->
 
 <div id="app" style="display:none">
 
@@ -522,68 +695,85 @@ button{cursor:pointer}
 
  <nav class="nav">
 
-  <div class="nav-title">Основное</div>
+  <div class="nav-title">
+   Основное
+  </div>
 
-  <button data-page="dashboard"
-          onclick="go('dashboard')">
+  <button
+   data-page="dashboard"
+   onclick="go('dashboard')">
    ▣ &nbsp; Дашборд
   </button>
 
-  <button data-page="finance"
-          onclick="go('finance')">
+  <button
+   data-page="finance"
+   onclick="go('finance')">
    ◈ &nbsp; Финансы
   </button>
 
-  <button data-page="deals"
-          onclick="go('deals')">
+  <!-- СДЕЛКИ ОСТАВЛЕНЫ, НО СТРАНИЦА ПУСТАЯ -->
+  <button
+   data-page="deals"
+   onclick="go('deals')">
    ↔ &nbsp; Сделки
   </button>
 
-  <button data-page="requests"
-          onclick="go('requests')">
+  <button
+   data-page="requests"
+   onclick="go('requests')">
    ◌ &nbsp; Заявки
   </button>
 
-  <button data-page="disputes"
-          onclick="go('disputes')">
+  <button
+   data-page="disputes"
+   onclick="go('disputes')">
    ⚠ &nbsp; Споры
   </button>
 
 
-  <div class="nav-title">Работа</div>
+  <div class="nav-title">
+   Работа
+  </div>
 
-  <button data-page="requisites"
-          onclick="go('requisites')">
+  <button
+   data-page="requisites"
+   onclick="go('requisites')">
    ▤ &nbsp; Реквизиты
   </button>
 
-  <button data-page="devices"
-          onclick="go('devices')">
+  <button
+   data-page="devices"
+   onclick="go('devices')">
    ▣ &nbsp; Устройства
   </button>
 
-  <button data-page="messages"
-          onclick="go('messages')">
+  <button
+   data-page="messages"
+   onclick="go('messages')">
    ✉ &nbsp; Сообщения
   </button>
 
-  <button data-page="turbo"
-          onclick="go('turbo')">
+  <button
+   data-page="turbo"
+   onclick="go('turbo')">
    ⚡ &nbsp; Турбозалив
   </button>
 
-  <button data-page="counterparties"
-          onclick="go('counterparties')">
+  <button
+   data-page="counterparties"
+   onclick="go('counterparties')">
    ♙ &nbsp; Контрагенты
   </button>
 
-  <button data-page="reports"
-          onclick="go('reports')">
+  <button
+   data-page="reports"
+   onclick="go('reports')">
    ▥ &nbsp; Отчёты
   </button>
 
-  <button data-page="profile"
-          onclick="go('profile')">
+  <button
+   data-page="profile"
+   onclick="go('profile')">
    ◉ &nbsp; Профиль
   </button>
 
@@ -594,110 +784,187 @@ button{cursor:pointer}
     Администрирование
    </div>
 
-   <button class="admin"
-           data-page="admin"
-           onclick="go('admin')">
+   <button
+    class="admin"
+    data-page="admin"
+    onclick="go('admin')">
     ♛ &nbsp; Админ-панель
    </button>
 
   </div>
 
 
-  <div class="nav-title">Аккаунт</div>
+  <div class="nav-title">
+   Аккаунт
+  </div>
 
   <button onclick="logout()">
    ↪ &nbsp; Выйти
   </button>
 
  </nav>
+
 </aside>
 
 
 <main class="main">
 
+
  <div class="top">
 
   <div style="display:flex;gap:12px;align-items:center">
 
-   <button class="mobile-menu"
-           onclick="toggleMenu()">
+   <button
+    class="mobile-menu"
+    onclick="toggleMenu()">
     ☰
    </button>
 
    <div>
-    <h1 id="pageTitle">Дашборд</h1>
-    <div class="subtitle">P2PSPARK CRM</div>
+
+    <h1 id="pageTitle">
+     Дашборд
+    </h1>
+
+    <div class="subtitle">
+     P2PSPARK
+    </div>
+
    </div>
 
   </div>
+
 
   <div class="userbox">
 
    <div>
+
     <b id="topEmail"></b>
-    <div class="small" id="roleText"></div>
+
+    <div
+     class="small"
+     id="roleText">
+    </div>
+
    </div>
 
-   <div class="avatar" id="avatar">U</div>
+   <div
+    class="avatar"
+    id="avatar">
+    U
+   </div>
 
   </div>
 
  </div>
 
 
-<!-- ================= DASHBOARD ================= -->
+<!-- =====================================================
+DASHBOARD
+===================================================== -->
 
-<section id="dashboard" class="section active">
+<section
+ id="dashboard"
+ class="section active">
 
  <div class="grid">
 
   <div class="card">
-   <div class="label">Баланс депозита</div>
-   <div id="dDeposit" class="big">0 USDT</div>
-   <div class="small">Текущий баланс</div>
+
+   <div class="label">
+    Баланс депозита
+   </div>
+
+   <div
+    id="dDeposit"
+    class="big">
+    0 USDT
+   </div>
+
+   <div class="small">
+    Текущий баланс
+   </div>
+
   </div>
 
-  <div class="card">
-   <div class="label">Активные сделки</div>
-   <div id="dDeals" class="big">0</div>
-   <div class="small">На текущий момент</div>
-  </div>
 
   <div class="card">
-   <div class="label">Оборот</div>
-   <div id="dTurnover" class="big">0 USDT</div>
-   <div class="small">За текущий месяц</div>
+
+   <div class="label">
+    Активные сделки
+   </div>
+
+   <div
+    id="dDeals"
+    class="big">
+    0
+   </div>
+
+   <div class="small">
+    На текущий момент
+   </div>
+
   </div>
 
+
   <div class="card">
-   <div class="label">Прибыль</div>
-   <div id="dProfit" class="big green">0 USDT</div>
-   <div class="small">За текущий месяц</div>
+
+   <div class="label">
+    Оборот
+   </div>
+
+   <div
+    id="dTurnover"
+    class="big">
+    0 USDT
+   </div>
+
+   <div class="small">
+    За текущий месяц
+   </div>
+
+  </div>
+
+
+  <div class="card">
+
+   <div class="label">
+    Прибыль
+   </div>
+
+   <div
+    id="dProfit"
+    class="big green">
+    0 USDT
+   </div>
+
+   <div class="small">
+    За текущий месяц
+   </div>
+
   </div>
 
  </div>
 
- <!-- Последних сделок здесь НЕТ -->
 
  <div class="card">
 
-  <h2>Быстрые действия</h2>
+  <h2>
+   Быстрые действия
+  </h2>
 
   <div class="actions">
 
-   <button class="btn primary"
-           onclick="go('requisites')">
+   <button
+    class="btn primary"
+    onclick="go('requisites')">
     ＋ Добавить реквизит
    </button>
 
-   <button class="btn light"
-           onclick="go('finance')">
+   <button
+    class="btn light"
+    onclick="go('finance')">
     Пополнить депозит
-   </button>
-
-   <button class="btn light"
-           onclick="go('deals')">
-    Открыть сделки
    </button>
 
   </div>
@@ -707,9 +974,13 @@ button{cursor:pointer}
 </section>
 
 
-<!-- ================= FINANCE ================= -->
+<!-- =====================================================
+FINANCE
+===================================================== -->
 
-<section id="finance" class="section">
+<section
+ id="finance"
+ class="section">
 
  <h2>Финансы</h2>
 
@@ -717,26 +988,53 @@ button{cursor:pointer}
   Пополнения и финансовые показатели
  </div>
 
- <div class="grid" style="margin-top:20px">
+
+ <div
+  class="grid"
+  style="margin-top:20px">
 
   <div class="card">
-   <div class="label">Баланс</div>
-   <div id="fDeposit" class="big">0 USDT</div>
+   <div class="label">
+    Баланс
+   </div>
+   <div
+    id="fDeposit"
+    class="big">
+    0 USDT
+   </div>
   </div>
 
   <div class="card">
-   <div class="label">Оборот</div>
-   <div id="fTurnover" class="big">0 USDT</div>
+   <div class="label">
+    Оборот
+   </div>
+   <div
+    id="fTurnover"
+    class="big">
+    0 USDT
+   </div>
   </div>
 
   <div class="card">
-   <div class="label">Прибыль</div>
-   <div id="fProfit" class="big green">0 USDT</div>
+   <div class="label">
+    Прибыль
+   </div>
+   <div
+    id="fProfit"
+    class="big green">
+    0 USDT
+   </div>
   </div>
 
   <div class="card">
-   <div class="label">Комиссия</div>
-   <div id="fCommission" class="big">0%</div>
+   <div class="label">
+    Комиссия
+   </div>
+   <div
+    id="fCommission"
+    class="big">
+    0%
+   </div>
   </div>
 
  </div>
@@ -744,27 +1042,44 @@ button{cursor:pointer}
 
  <div class="card">
 
-  <h2>Пополнить депозит</h2>
+  <h2>
+   Пополнить депозит
+  </h2>
 
   <div class="form-grid">
 
    <div class="field">
-    <label>Сумма USDT</label>
-    <input id="depositAmount"
-           type="number"
-           placeholder="100">
+
+    <label>
+     Сумма USDT
+    </label>
+
+    <input
+     id="depositAmount"
+     type="number"
+     placeholder="100">
+
    </div>
 
+
    <div class="field">
-    <label>Комментарий</label>
-    <input id="depositComment"
-           placeholder="Комментарий">
+
+    <label>
+     Комментарий
+    </label>
+
+    <input
+     id="depositComment"
+     placeholder="Комментарий">
+
    </div>
 
   </div>
 
-  <button class="btn primary"
-          onclick="createDeposit()">
+
+  <button
+   class="btn primary"
+   onclick="createDeposit()">
    + Создать заявку
   </button>
 
@@ -773,100 +1088,77 @@ button{cursor:pointer}
 </section>
 
 
-<!-- ================= DEALS ================= -->
+<!-- =====================================================
+DEALS — ПУСТАЯ СТРАНИЦА
+===================================================== -->
 
-<section id="deals" class="section">
+<section
+ id="deals"
+ class="section">
 
- <h2>Сделки</h2>
-
- <div class="subtitle">
-  История операций
- </div>
-
- <div class="table-wrap" style="margin-top:20px">
-
-  <table class="table">
-
-   <thead>
-    <tr>
-     <th>ID</th>
-     <th>Направление</th>
-     <th>Сумма</th>
-     <th>Реквизит</th>
-     <th>Статус</th>
-    </tr>
-   </thead>
-
-   <tbody>
-
-    <tr>
-     <td>#1001</td>
-     <td>Обмен</td>
-     <td>500 USDT</td>
-     <td>Kaspi Bank</td>
-     <td>
-      <span class="badge green">Новая</span>
-     </td>
-    </tr>
-
-    <tr>
-     <td>#1000</td>
-     <td>Вывод</td>
-     <td>250 USDT</td>
-     <td>Halyk Bank</td>
-     <td>
-      <span class="badge gray">Обработана</span>
-     </td>
-    </tr>
-
-   </tbody>
-
-  </table>
-
- </div>
+ <!-- НИЧЕГО НЕ ПОКАЗЫВАЕМ -->
 
 </section>
 
 
-<!-- ================= REQUESTS ================= -->
+<!-- =====================================================
+REQUESTS
+===================================================== -->
 
-<section id="requests" class="section">
+<section
+ id="requests"
+ class="section">
 
  <h2>Заявки</h2>
 
  <div class="card">
+
   <div class="empty">
    Новых заявок нет
   </div>
+
  </div>
 
 </section>
 
 
-<!-- ================= DISPUTES ================= -->
+<!-- =====================================================
+DISPUTES
+===================================================== -->
 
-<section id="disputes" class="section">
+<section
+ id="disputes"
+ class="section">
 
  <h2>Споры</h2>
 
  <div class="card">
+
   <div class="empty">
    Активных споров нет
   </div>
+
  </div>
 
 </section>
 
 
-<!-- ================= REQUISITES ================= -->
+<!-- =====================================================
+REQUISITES
+===================================================== -->
 
-<section id="requisites" class="section">
+<section
+ id="requisites"
+ class="section">
 
- <div style="display:flex;
-             justify-content:space-between;
-             align-items:center;
-             gap:15px;
-             flex-wrap:wrap">
+
+ <div
+  style="
+   display:flex;
+   justify-content:space-between;
+   align-items:center;
+   gap:15px;
+   flex-wrap:wrap">
 
   <div>
 
@@ -880,9 +1172,13 @@ button{cursor:pointer}
 
   </div>
 
-  <button class="btn primary"
-          onclick="openRequisiteModal()">
+
+  <button
+   class="btn primary"
+   onclick="openRequisiteModal()">
+
    ＋ Добавить реквизит
+
   </button>
 
  </div>
@@ -890,14 +1186,17 @@ button{cursor:pointer}
 
  <div class="requisite-toolbar">
 
-  <input id="requisiteSearch"
-         class="search"
-         placeholder="Поиск по банку, устройству..."
-         oninput="renderRequisites()">
+  <input
+   id="requisiteSearch"
+   class="search"
+   placeholder="Поиск по банку, устройству..."
+   oninput="renderRequisites()">
 
-  <select id="requisiteFilter"
-          class="search"
-          onchange="renderRequisites()">
+
+  <select
+   id="requisiteFilter"
+   class="search"
+   onchange="renderRequisites()">
 
    <option value="all">
     Все реквизиты
@@ -916,12 +1215,16 @@ button{cursor:pointer}
  </div>
 
 
- <div id="requisiteGrid"
-      class="requisite-grid"></div>
+ <div
+  id="requisiteGrid"
+  class="requisite-grid">
+ </div>
 
- <div id="requisiteEmpty"
-      class="card empty"
-      style="display:none">
+
+ <div
+  id="requisiteEmpty"
+  class="card empty"
+  style="display:none">
 
   Реквизиты ещё не добавлены.
 
@@ -930,33 +1233,41 @@ button{cursor:pointer}
 </section>
 
 
-<!-- ================= DEVICES ================= -->
+<!-- =====================================================
+DEVICES
+===================================================== -->
 
-<section id="devices" class="section">
+<section
+ id="devices"
+ class="section">
 
  <h2>Устройства</h2>
 
  <div class="card">
+
   <div class="empty">
-   Устройство подключено и активно.
+   Устройства пока не добавлены
   </div>
+
  </div>
 
 </section>
 
 
-<!-- ================= MESSAGES ================= -->
+<!-- =====================================================
+MESSAGES
+===================================================== -->
 
-<section id="messages" class="section">
+<section
+ id="messages"
+ class="section">
 
  <h2>Сообщения</h2>
 
  <div class="card">
 
-  <h3>Системное сообщение</h3>
-
-  <div class="subtitle">
-   Добро пожаловать в P2PSPARK CRM.
+  <div class="empty">
+   Сообщений нет
   </div>
 
  </div>
@@ -964,16 +1275,20 @@ button{cursor:pointer}
 </section>
 
 
-<!-- ================= TURBO ================= -->
+<!-- =====================================================
+TURBO
+===================================================== -->
 
-<section id="turbo" class="section">
+<section
+ id="turbo"
+ class="section">
 
  <h2>Турбозалив</h2>
 
  <div class="card">
 
   <div class="empty">
-   Турбозалив готов к настройке.
+   Турбозалив готов к настройке
   </div>
 
  </div>
@@ -981,16 +1296,20 @@ button{cursor:pointer}
 </section>
 
 
-<!-- ================= COUNTERPARTIES ================= -->
+<!-- =====================================================
+COUNTERPARTIES
+===================================================== -->
 
-<section id="counterparties" class="section">
+<section
+ id="counterparties"
+ class="section">
 
  <h2>Контрагенты</h2>
 
  <div class="card">
 
   <div class="empty">
-   Контрагенты пока отсутствуют.
+   Контрагенты пока отсутствуют
   </div>
 
  </div>
@@ -998,16 +1317,21 @@ button{cursor:pointer}
 </section>
 
 
-<!-- ================= REPORTS ================= -->
+<!-- =====================================================
+REPORTS
+===================================================== -->
 
-<section id="reports" class="section">
+<section
+ id="reports"
+ class="section">
 
  <h2>Отчёты</h2>
 
  <div class="card">
 
-  <button class="btn primary"
-          onclick="generateReport()">
+  <button
+   class="btn primary"
+   onclick="generateReport()">
    Сформировать отчёт
   </button>
 
@@ -1016,9 +1340,13 @@ button{cursor:pointer}
 </section>
 
 
-<!-- ================= PROFILE ================= -->
+<!-- =====================================================
+PROFILE
+===================================================== -->
 
-<section id="profile" class="section">
+<section
+ id="profile"
+ class="section">
 
  <h2>Профиль</h2>
 
@@ -1027,18 +1355,35 @@ button{cursor:pointer}
   <div class="form-grid">
 
    <div class="field">
+
     <label>Email</label>
-    <input id="profileEmail" disabled>
+
+    <input
+     id="profileEmail"
+     disabled>
+
    </div>
 
+
    <div class="field">
+
     <label>Роль</label>
-    <input id="profileRole" disabled>
+
+    <input
+     id="profileRole"
+     disabled>
+
    </div>
 
+
    <div class="field">
+
     <label>Статус</label>
-    <input id="profileStatus" disabled>
+
+    <input
+     id="profileStatus"
+     disabled>
+
    </div>
 
   </div>
@@ -1048,13 +1393,19 @@ button{cursor:pointer}
 </section>
 
 
-<!-- ================= ADMIN ================= -->
+<!-- =====================================================
+ADMIN
+===================================================== -->
 
-<section id="admin" class="section">
+<section
+ id="admin"
+ class="section">
 
  <div class="admin-head">
 
-  <h2>Админ-панель</h2>
+  <h2>
+   Админ-панель
+  </h2>
 
   <div>
    Управление пользователями и финансами
@@ -1065,35 +1416,63 @@ button{cursor:pointer}
 
  <div class="card">
 
-  <h2>Создать новый ЛК</h2>
+  <h2>
+   Создать новый ЛК
+  </h2>
+
 
   <div class="form-grid">
 
    <div class="field">
-    <label>Имя</label>
-    <input id="newName" placeholder="Имя">
+
+    <label>
+     Имя
+    </label>
+
+    <input
+     id="newName"
+     placeholder="Имя">
+
    </div>
 
-   <div class="field">
-    <label>Email</label>
-    <input id="newEmail"
-           type="email"
-           placeholder="user@gmail.com">
-   </div>
 
    <div class="field">
-    <label>Пароль</label>
-    <input id="newPassword"
-           type="text"
-           placeholder="Минимум 6 символов">
+
+    <label>
+     Email
+    </label>
+
+    <input
+     id="newEmail"
+     type="email"
+     placeholder="user@gmail.com">
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     Пароль
+    </label>
+
+    <input
+     id="newPassword"
+     type="text"
+     placeholder="Минимум 6 символов">
+
    </div>
 
   </div>
 
-  <button class="btn primary"
-          style="margin-top:18px"
-          onclick="createUser()">
+
+  <button
+   class="btn primary"
+   style="margin-top:18px"
+   onclick="createUser()">
+
    Создать USER
+
   </button>
 
  </div>
@@ -1101,7 +1480,9 @@ button{cursor:pointer}
 
  <div class="card">
 
-  <h2>Пользователи</h2>
+  <h2>
+   Пользователи
+  </h2>
 
   <div class="table-wrap">
 
@@ -1119,7 +1500,9 @@ button{cursor:pointer}
 
     </thead>
 
-    <tbody id="usersTable"></tbody>
+    <tbody
+     id="usersTable">
+    </tbody>
 
    </table>
 
@@ -1130,10 +1513,13 @@ button{cursor:pointer}
 
  <div class="card">
 
-  <h2>Журнал действий</h2>
+  <h2>
+   Журнал действий
+  </h2>
 
-  <div id="auditLog"
-       class="small">
+  <div
+   id="auditLog"
+   class="small">
    Пока нет действий
   </div>
 
@@ -1145,18 +1531,22 @@ button{cursor:pointer}
 </div>
 
 
-<!-- ===================================================== -->
-<!-- REQUISITE MODAL -->
-<!-- ===================================================== -->
+<!-- =====================================================
+REQUISITE MODAL
+===================================================== -->
 
-<div id="requisiteModal" class="modal">
+<div
+ id="requisiteModal"
+ class="modal">
 
  <div class="modalbox">
 
-  <button class="close"
-          onclick="closeRequisiteModal()">
+  <button
+   class="close"
+   onclick="closeRequisiteModal()">
    ×
   </button>
+
 
   <h2 id="requisiteModalTitle">
    Добавьте реквизиты
@@ -1174,9 +1564,12 @@ button{cursor:pointer}
 
   <div class="form-grid">
 
+
    <div class="field">
 
-    <label>Устройство</label>
+    <label>
+     Устройство
+    </label>
 
     <select id="rDevice">
 
@@ -1184,10 +1577,21 @@ button{cursor:pointer}
       Выберите устройство
      </option>
 
-     <option>iPhone</option>
-     <option>Android</option>
-     <option>Web</option>
-     <option>Другое</option>
+     <option>
+      iPhone
+     </option>
+
+     <option>
+      Android
+     </option>
+
+     <option>
+      Web
+     </option>
+
+     <option>
+      Другое
+     </option>
 
     </select>
 
@@ -1196,7 +1600,9 @@ button{cursor:pointer}
 
    <div class="field">
 
-    <label>Банк</label>
+    <label>
+     Банк
+    </label>
 
     <select id="rBank">
 
@@ -1204,14 +1610,37 @@ button{cursor:pointer}
       Выберите банк
      </option>
 
-     <option>Kaspi Bank</option>
-     <option>Halyk Bank</option>
-     <option>ForteBank</option>
-     <option>Jusan Bank</option>
-     <option>Freedom Bank</option>
-     <option>Bereke Bank</option>
-     <option>Bank CenterCredit</option>
-     <option>Другой</option>
+     <option>
+      Kaspi Bank
+     </option>
+
+     <option>
+      Halyk Bank
+     </option>
+
+     <option>
+      ForteBank
+     </option>
+
+     <option>
+      Jusan Bank
+     </option>
+
+     <option>
+      Freedom Bank
+     </option>
+
+     <option>
+      Bereke Bank
+     </option>
+
+     <option>
+      Bank CenterCredit
+     </option>
+
+     <option>
+      Другой
+     </option>
 
     </select>
 
@@ -1220,20 +1649,26 @@ button{cursor:pointer}
 
    <div class="field">
 
-    <label>Номер карты / счёта</label>
+    <label>
+     Номер карты / счёта
+    </label>
 
-    <input id="rAccount"
-           placeholder="Введите реквизит">
+    <input
+     id="rAccount"
+     placeholder="Введите реквизит">
 
    </div>
 
 
    <div class="field">
 
-    <label>Имя получателя</label>
+    <label>
+     Имя получателя
+    </label>
 
-    <input id="rHolder"
-           placeholder="ФИО получателя">
+    <input
+     id="rHolder"
+     placeholder="ФИО получателя">
 
    </div>
 
@@ -1247,46 +1682,59 @@ button{cursor:pointer}
 
   <div class="form-grid">
 
+
    <div class="field">
 
-    <label>Суточный лимит</label>
+    <label>
+     Суточный лимит
+    </label>
 
-    <input id="rDailyLimit"
-           type="number"
-           value="15000">
+    <input
+     id="rDailyLimit"
+     type="number"
+     value="15000">
 
    </div>
 
 
    <div class="field">
 
-    <label>Суточное количество сделок</label>
+    <label>
+     Суточное количество сделок
+    </label>
 
-    <input id="rDailyDeals"
-           type="number"
-           value="30">
-
-   </div>
-
-
-   <div class="field">
-
-    <label>Максимальная сумма сделки на реквизит</label>
-
-    <input id="rMaxDeal"
-           type="number"
-           value="15000">
+    <input
+     id="rDailyDeals"
+     type="number"
+     value="30">
 
    </div>
 
 
    <div class="field">
 
-    <label>Минимальная сумма сделки на реквизит</label>
+    <label>
+     Максимальная сумма сделки на реквизит
+    </label>
 
-    <input id="rMinDeal"
-           type="number"
-           value="100">
+    <input
+     id="rMaxDeal"
+     type="number"
+     value="15000">
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     Минимальная сумма сделки на реквизит
+    </label>
+
+    <input
+     id="rMinDeal"
+     type="number"
+     value="100">
 
    </div>
 
@@ -1300,22 +1748,26 @@ button{cursor:pointer}
 
   <div class="field">
 
-   <label>Пауза между сделками</label>
+   <label>
+    Пауза между сделками
+   </label>
 
    <div class="pause">
 
-    <input id="rPauseHours"
-           type="number"
-           min="0"
-           value="0">
+    <input
+     id="rPauseHours"
+     type="number"
+     min="0"
+     value="0">
 
     <span>:</span>
 
-    <input id="rPauseMinutes"
-           type="number"
-           min="0"
-           max="59"
-           value="0">
+    <input
+     id="rPauseMinutes"
+     type="number"
+     min="0"
+     max="59"
+     value="0">
 
    </div>
 
@@ -1324,7 +1776,9 @@ button{cursor:pointer}
 
   <div class="field">
 
-   <label>Часовой пояс</label>
+   <label>
+    Часовой пояс
+   </label>
 
    <select id="rTimezone">
 
@@ -1355,9 +1809,10 @@ button{cursor:pointer}
 
   <div class="checkbox-row">
 
-   <input id="rAlways"
-          type="checkbox"
-          checked>
+   <input
+    id="rAlways"
+    type="checkbox"
+    checked>
 
    <label for="rAlways">
     Работает всегда
@@ -1368,8 +1823,9 @@ button{cursor:pointer}
 
   <div class="checkbox-row">
 
-   <input id="rSeparateLimits"
-          type="checkbox">
+   <input
+    id="rSeparateLimits"
+    type="checkbox">
 
    <label for="rSeparateLimits">
     Лимиты для каждой карты отдельно
@@ -1406,7 +1862,9 @@ button{cursor:pointer}
 
   <div class="field">
 
-   <label>Статус реквизита</label>
+   <label>
+    Статус реквизита
+   </label>
 
    <select id="rStatus">
 
@@ -1425,39 +1883,50 @@ button{cursor:pointer}
 
   <div class="modal-footer">
 
-   <button class="btn light"
-           onclick="closeRequisiteModal()">
+   <button
+    class="btn light"
+    onclick="closeRequisiteModal()">
     Отмена
    </button>
 
-   <button class="btn primary"
-           onclick="saveRequisite()">
+   <button
+    class="btn primary"
+    onclick="saveRequisite()">
     Сохранить
    </button>
 
   </div>
 
  </div>
+
 </div>
 
 
-<!-- ===================================================== -->
-<!-- ADMIN USER MODAL -->
-<!-- ===================================================== -->
+<!-- =====================================================
+ADMIN MODAL
+===================================================== -->
 
-<div id="manageModal" class="modal">
+<div
+ id="manageModal"
+ class="modal">
 
  <div class="modalbox">
 
-  <button class="close"
-          onclick="closeManage()">
+  <button
+   class="close"
+   onclick="closeManage()">
    ×
   </button>
 
-  <h2>Управление ЛК</h2>
 
-  <div id="manageEmail"
-       class="subtitle"></div>
+  <h2>
+   Управление ЛК
+  </h2>
+
+  <div
+   id="manageEmail"
+   class="subtitle">
+  </div>
 
 
   <div class="section-title">
@@ -1468,28 +1937,59 @@ button{cursor:pointer}
   <div class="form-grid">
 
    <div class="field">
-    <label>Имя</label>
+
+    <label>
+     Имя
+    </label>
+
     <input id="mName">
+
    </div>
 
-   <div class="field">
-    <label>Email</label>
-    <input id="mEmail" type="email">
-   </div>
 
    <div class="field">
-    <label>Новый пароль</label>
-    <input id="mPassword"
-           type="text"
-           placeholder="Оставьте пустым">
+
+    <label>
+     Email
+    </label>
+
+    <input
+     id="mEmail"
+     type="email">
+
    </div>
 
+
    <div class="field">
-    <label>Статус</label>
+
+    <label>
+     Новый пароль
+    </label>
+
+    <input
+     id="mPassword"
+     type="text"
+     placeholder="Оставьте пустым">
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     Статус
+    </label>
 
     <select id="mStatus">
-     <option value="active">Активен</option>
-     <option value="blocked">Заблокирован</option>
+
+     <option value="active">
+      Активен
+     </option>
+
+     <option value="blocked">
+      Заблокирован
+     </option>
+
     </select>
 
    </div>
@@ -1539,18 +2039,21 @@ button{cursor:pointer}
 
   <div class="actions">
 
-   <button class="btn success"
-           onclick="changeBalance(100)">
+   <button
+    class="btn success"
+    onclick="changeBalance(100)">
     +100 USDT
    </button>
 
-   <button class="btn success"
-           onclick="changeBalance(500)">
+   <button
+    class="btn success"
+    onclick="changeBalance(500)">
     +500 USDT
    </button>
 
-   <button class="btn danger"
-           onclick="changeBalance(-100)">
+   <button
+    class="btn danger"
+    onclick="changeBalance(-100)">
     −100 USDT
    </button>
 
@@ -1559,32 +2062,35 @@ button{cursor:pointer}
 
   <div class="modal-footer">
 
-   <button class="btn light"
-           onclick="closeManage()">
+   <button
+    class="btn light"
+    onclick="closeManage()">
     Отмена
    </button>
 
-   <button class="btn primary"
-           onclick="saveManagedUser()">
+   <button
+    class="btn primary"
+    onclick="saveManagedUser()">
     Сохранить всё
    </button>
 
   </div>
 
  </div>
+
 </div>
 
 
 <script>
 
-/* =========================================================
- DATABASE
-========================================================= */
+/* =====================================================
+DATABASE
+===================================================== */
 
-const USER_KEY="p2pspark_users_v7";
-const REQ_KEY="p2pspark_requisites_v7";
-const AUDIT_KEY="p2pspark_audit_v7";
-const SESSION_KEY="p2pspark_session_v7";
+const USER_KEY="p2pspark_users_v8";
+const REQ_KEY="p2pspark_requisites_v8";
+const AUDIT_KEY="p2pspark_audit_v8";
+const SESSION_KEY="p2pspark_session_v8";
 
 
 const DEFAULT_USERS={
@@ -1595,6 +2101,7 @@ const DEFAULT_USERS={
   password:"User123!",
   role:"USER",
   status:"active",
+
   finance:{
    deposit:0,
    turnover:0,
@@ -1604,12 +2111,14 @@ const DEFAULT_USERS={
   }
  },
 
+
  "admin@p2pspark.com":{
   name:"Администратор",
   email:"admin@p2pspark.com",
   password:"Admin123!",
   role:"ADMIN",
   status:"active",
+
   finance:{
    deposit:0,
    turnover:0,
@@ -1623,77 +2132,109 @@ const DEFAULT_USERS={
 
 
 let users=
- JSON.parse(localStorage.getItem(USER_KEY))
+ JSON.parse(
+  localStorage.getItem(USER_KEY)
+ )
  || DEFAULT_USERS;
 
+
 let requisites=
- JSON.parse(localStorage.getItem(REQ_KEY))
+ JSON.parse(
+  localStorage.getItem(REQ_KEY)
+ )
  || [];
 
+
 let session=
- JSON.parse(sessionStorage.getItem(SESSION_KEY))
+ JSON.parse(
+  sessionStorage.getItem(SESSION_KEY)
+ )
  || null;
+
 
 let editRequisiteIndex=null;
 let managedEmail=null;
 
 
-/* =========================================================
- SAVE
-========================================================= */
+/* =====================================================
+SAVE
+===================================================== */
 
 function saveUsers(){
+
  localStorage.setItem(
   USER_KEY,
   JSON.stringify(users)
  );
+
 }
 
+
 function saveRequisites(){
+
  localStorage.setItem(
   REQ_KEY,
   JSON.stringify(requisites)
  );
+
 }
+
 
 function audit(text){
 
  let logs=
   JSON.parse(
-   localStorage.getItem(AUDIT_KEY)||"[]"
+   localStorage.getItem(AUDIT_KEY)
+   ||"[]"
   );
 
  logs.unshift({
+
   text:text,
-  time:new Date().toLocaleString("ru-RU")
+
+  time:
+   new Date()
+   .toLocaleString("ru-RU")
+
  });
 
  localStorage.setItem(
   AUDIT_KEY,
-  JSON.stringify(logs.slice(0,100))
+  JSON.stringify(
+   logs.slice(0,100)
+  )
  );
 
 }
 
 
-/* =========================================================
- LOGIN
-========================================================= */
+/* =====================================================
+LOGIN
+===================================================== */
 
 function login(){
 
  const email=
-  document.getElementById("loginEmail")
-  .value.trim().toLowerCase();
+  document
+  .getElementById("loginEmail")
+  .value
+  .trim()
+  .toLowerCase();
+
 
  const password=
-  document.getElementById("loginPassword")
+  document
+  .getElementById("loginPassword")
   .value;
 
+
  const error=
-  document.getElementById("loginError");
+  document
+  .getElementById("loginError");
+
 
  const user=users[email];
+
 
  if(
   !user ||
@@ -1702,74 +2243,110 @@ function login(){
  ){
 
   error.style.display="block";
+
   return;
  }
 
+
  error.style.display="none";
+
 
  session={
   email:email,
   role:user.role
  };
 
+
  sessionStorage.setItem(
   SESSION_KEY,
   JSON.stringify(session)
  );
 
+
  start();
+
 }
 
 
 function start(){
 
  if(!session){
-  document.getElementById("loginScreen")
+
+  document
+   .getElementById("loginScreen")
    .style.display="grid";
+
   return;
  }
+
 
  const user=users[session.email];
 
+
  if(!user){
+
   logout();
+
   return;
  }
 
- document.getElementById("loginScreen")
+
+ document
+  .getElementById("loginScreen")
   .style.display="none";
 
- document.getElementById("app")
+
+ document
+  .getElementById("app")
   .style.display="block";
 
- document.getElementById("adminNav")
-  .style.display=
-   user.role==="ADMIN"?"block":"none";
 
- document.getElementById("topEmail")
+ document
+  .getElementById("adminNav")
+  .style.display=
+   user.role==="ADMIN"
+    ?"block"
+    :"none";
+
+
+ document
+  .getElementById("topEmail")
   .textContent=user.email;
 
- document.getElementById("roleText")
+
+ document
+  .getElementById("roleText")
   .textContent=user.role;
 
- document.getElementById("avatar")
+
+ document
+  .getElementById("avatar")
   .textContent=
    (user.name||user.email)
    .charAt(0)
    .toUpperCase();
 
- document.getElementById("profileEmail")
+
+ document
+  .getElementById("profileEmail")
   .value=user.email;
 
- document.getElementById("profileRole")
+
+ document
+  .getElementById("profileRole")
   .value=user.role;
 
- document.getElementById("profileStatus")
+
+ document
+  .getElementById("profileStatus")
   .value=
    user.status==="blocked"
-    ?"Заблокирован":"Активен";
+    ?"Заблокирован"
+    :"Активен";
+
 
  render();
+
 }
 
 
@@ -1780,12 +2357,13 @@ function logout(){
  );
 
  location.reload();
+
 }
 
 
-/* =========================================================
- NAVIGATION
-========================================================= */
+/* =====================================================
+NAVIGATION
+===================================================== */
 
 function go(page){
 
@@ -1793,9 +2371,12 @@ function go(page){
   page==="admin" &&
   session.role!=="ADMIN"
  ){
+
   alert("Доступ запрещён");
+
   return;
  }
+
 
  document
   .querySelectorAll(".section")
@@ -1803,11 +2384,16 @@ function go(page){
    x=>x.classList.remove("active")
   );
 
- const target=document.getElementById(page);
+
+ const target=
+  document.getElementById(page);
+
 
  if(!target)return;
 
+
  target.classList.add("active");
+
 
  document
   .querySelectorAll(
@@ -1820,7 +2406,9 @@ function go(page){
    )
   );
 
+
  const names={
+
   dashboard:"Дашборд",
   finance:"Финансы",
   deals:"Сделки",
@@ -1834,68 +2422,100 @@ function go(page){
   reports:"Отчёты",
   profile:"Профиль",
   admin:"Админ-панель"
+
  };
 
- document.getElementById("pageTitle")
-  .textContent=names[page]||page;
 
- document.getElementById("sidebar")
+ document
+  .getElementById("pageTitle")
+  .textContent=
+   names[page]||page;
+
+
+ document
+  .getElementById("sidebar")
   .classList.remove("open");
 
+
  render();
+
 }
 
 
 function toggleMenu(){
 
- document.getElementById("sidebar")
+ document
+  .getElementById("sidebar")
   .classList.toggle("open");
+
 }
 
 
-/* =========================================================
- RENDER DASHBOARD
-========================================================= */
+/* =====================================================
+RENDER
+===================================================== */
 
 function render(){
 
  if(!session)return;
 
+
  const user=users[session.email];
+
 
  if(!user)return;
 
+
  const f=user.finance||{};
 
- document.getElementById("dDeposit")
+
+ document
+  .getElementById("dDeposit")
   .textContent=money(f.deposit);
 
- document.getElementById("dDeals")
+
+ document
+  .getElementById("dDeals")
   .textContent=f.deals||0;
 
- document.getElementById("dTurnover")
+
+ document
+  .getElementById("dTurnover")
   .textContent=money(f.turnover);
 
- document.getElementById("dProfit")
+
+ document
+  .getElementById("dProfit")
   .textContent=money(f.profit);
 
- document.getElementById("fDeposit")
+
+ document
+  .getElementById("fDeposit")
   .textContent=money(f.deposit);
 
- document.getElementById("fTurnover")
+
+ document
+  .getElementById("fTurnover")
   .textContent=money(f.turnover);
 
- document.getElementById("fProfit")
+
+ document
+  .getElementById("fProfit")
   .textContent=money(f.profit);
 
- document.getElementById("fCommission")
+
+ document
+  .getElementById("fCommission")
   .textContent=(f.commission||0)+"%";
 
+
  renderRequisites();
+
 
  if(user.role==="ADMIN"){
   renderAdmin();
  }
+
 }
 
 
@@ -1904,81 +2524,105 @@ function money(value){
  return Number(value||0)
   .toLocaleString("ru-RU")
   +" USDT";
+
 }
 
 
-/* =========================================================
- REQUISITES
-========================================================= */
+/* =====================================================
+REQUISITES
+===================================================== */
 
 function openRequisiteModal(index=null){
 
  editRequisiteIndex=index;
 
- document.getElementById("requisiteModal")
+
+ document
+  .getElementById("requisiteModal")
   .classList.add("show");
+
 
  if(index===null){
 
-  document.getElementById(
-   "requisiteModalTitle"
-  ).textContent="Добавьте реквизиты";
+  document
+   .getElementById("requisiteModalTitle")
+   .textContent=
+    "Добавьте реквизиты";
 
   resetRequisiteForm();
 
   return;
  }
 
+
  const r=requisites[index];
 
- document.getElementById(
-  "requisiteModalTitle"
- ).textContent="Редактировать реквизит";
+
+ document
+  .getElementById("requisiteModalTitle")
+  .textContent=
+   "Редактировать реквизит";
+
 
  document.getElementById("rDevice").value=
   r.device||"";
 
+
  document.getElementById("rBank").value=
   r.bank||"";
+
 
  document.getElementById("rAccount").value=
   r.account||"";
 
+
  document.getElementById("rHolder").value=
   r.holder||"";
+
 
  document.getElementById("rDailyLimit").value=
   r.dailyLimit??15000;
 
+
  document.getElementById("rDailyDeals").value=
   r.dailyDeals??30;
+
 
  document.getElementById("rMaxDeal").value=
   r.maxDeal??15000;
 
+
  document.getElementById("rMinDeal").value=
   r.minDeal??100;
+
 
  document.getElementById("rPauseHours").value=
   r.pauseHours??0;
 
+
  document.getElementById("rPauseMinutes").value=
   r.pauseMinutes??0;
+
 
  document.getElementById("rTimezone").value=
   r.timezone||"UTC+5";
 
+
  document.getElementById("rAlways").checked=
   !!r.always;
+
 
  document.getElementById("rSeparateLimits").checked=
   !!r.separateLimits;
 
+
  document.getElementById("rConfirmation").value=
   r.confirmation||"Push-уведомления";
 
+
  document.getElementById("rStatus").value=
   r.status||"active";
+
 }
 
 
@@ -2000,61 +2644,91 @@ function resetRequisiteForm(){
  document.getElementById("rConfirmation").value=
   "Push-уведомления";
  document.getElementById("rStatus").value="active";
+
 }
 
 
 function closeRequisiteModal(){
 
- document.getElementById("requisiteModal")
+ document
+  .getElementById("requisiteModal")
   .classList.remove("show");
 
  editRequisiteIndex=null;
+
 }
 
 
 function saveRequisite(){
 
  const device=
-  document.getElementById("rDevice").value;
+  document
+  .getElementById("rDevice")
+  .value;
+
 
  const bank=
-  document.getElementById("rBank").value;
+  document
+  .getElementById("rBank")
+  .value;
+
 
  const account=
-  document.getElementById("rAccount")
-  .value.trim();
+  document
+  .getElementById("rAccount")
+  .value
+  .trim();
+
 
  if(!device){
+
   alert("Выберите устройство");
+
   return;
  }
+
 
  if(!bank){
+
   alert("Выберите банк");
+
   return;
  }
 
+
  if(!account){
+
   alert("Введите номер карты / счёта");
+
   return;
  }
+
 
  const minDeal=
   Number(
-   document.getElementById("rMinDeal").value
+   document
+   .getElementById("rMinDeal")
+   .value
   )||0;
+
 
  const maxDeal=
   Number(
-   document.getElementById("rMaxDeal").value
+   document
+   .getElementById("rMaxDeal")
+   .value
   )||0;
 
+
  if(minDeal>maxDeal){
+
   alert(
    "Минимальная сумма не может быть больше максимальной"
   );
+
   return;
  }
+
 
  const item={
 
@@ -2064,50 +2738,74 @@ function saveRequisite(){
     :Date.now(),
 
   device:device,
+
   bank:bank,
+
   account:account,
 
   holder:
-   document.getElementById("rHolder")
-   .value.trim(),
+   document
+   .getElementById("rHolder")
+   .value
+   .trim(),
 
   dailyLimit:
    Number(
-    document.getElementById("rDailyLimit").value
+    document
+    .getElementById("rDailyLimit")
+    .value
    )||0,
 
   dailyDeals:
    Number(
-    document.getElementById("rDailyDeals").value
+    document
+    .getElementById("rDailyDeals")
+    .value
    )||0,
 
   maxDeal:maxDeal,
+
   minDeal:minDeal,
 
   pauseHours:
    Number(
-    document.getElementById("rPauseHours").value
+    document
+    .getElementById("rPauseHours")
+    .value
    )||0,
 
   pauseMinutes:
    Number(
-    document.getElementById("rPauseMinutes").value
+    document
+    .getElementById("rPauseMinutes")
+    .value
    )||0,
 
   timezone:
-   document.getElementById("rTimezone").value,
+   document
+   .getElementById("rTimezone")
+   .value,
 
   always:
-   document.getElementById("rAlways").checked,
+   document
+   .getElementById("rAlways")
+   .checked,
 
   separateLimits:
-   document.getElementById("rSeparateLimits").checked,
+   document
+   .getElementById("rSeparateLimits")
+   .checked,
 
   confirmation:
-   document.getElementById("rConfirmation").value,
+   document
+   .getElementById("rConfirmation")
+   .value,
 
   status:
-   document.getElementById("rStatus").value
+   document
+   .getElementById("rStatus")
+   .value
+
  };
 
 
@@ -2126,33 +2824,44 @@ function saveRequisite(){
   audit(
    "Добавлен реквизит: "+bank
   );
+
  }
+
 
  saveRequisites();
 
  closeRequisiteModal();
 
  renderRequisites();
+
 }
 
 
 function renderRequisites(){
 
  const grid=
-  document.getElementById("requisiteGrid");
+  document
+  .getElementById("requisiteGrid");
+
 
  const empty=
-  document.getElementById("requisiteEmpty");
+  document
+  .getElementById("requisiteEmpty");
+
 
  const search=
   (
-   document.getElementById("requisiteSearch")
+   document
+   .getElementById("requisiteSearch")
    ?.value||""
   ).toLowerCase();
 
+
  const filter=
-  document.getElementById("requisiteFilter")
+  document
+  .getElementById("requisiteFilter")
   ?.value||"all";
+
 
  const list=
   requisites.filter(r=>{
@@ -2165,32 +2874,41 @@ function renderRequisites(){
      r.holder
     ).toLowerCase();
 
+
    const searchOK=
     text.includes(search);
 
+
    const filterOK=
     filter==="all" ||
+
     (
      filter==="active" &&
      r.status==="active"
     ) ||
+
     (
      filter==="blocked" &&
      r.status==="blocked"
     );
 
+
    return searchOK&&filterOK;
+
   });
 
 
  grid.innerHTML="";
+
 
  if(list.length===0){
 
   empty.style.display="block";
 
   return;
+
  }
+
 
  empty.style.display="none";
 
@@ -2202,14 +2920,20 @@ function renderRequisites(){
     x=>x.id===r.id
    );
 
+
   const card=
    document.createElement("div");
 
-  card.className="requisite-card";
+
+  card.className=
+   "requisite-card";
+
 
   const status=
    r.status==="active"
+
     ?'<span class="badge green">● Активен</span>'
+
     :'<span class="badge red">● Выключен</span>';
 
 
@@ -2237,39 +2961,54 @@ function renderRequisites(){
    <div class="requisite-stats">
 
     <div class="stat">
+
      <div class="stat-title">
       Суточный лимит
      </div>
+
      <div class="stat-value">
       ${num(r.dailyLimit)}
      </div>
+
     </div>
 
+
     <div class="stat">
+
      <div class="stat-title">
       Сделок в сутки
      </div>
+
      <div class="stat-value">
       ${num(r.dailyDeals)}
      </div>
+
     </div>
 
+
     <div class="stat">
+
      <div class="stat-title">
       Максимальная сделка
      </div>
+
      <div class="stat-value">
       ${num(r.maxDeal)}
      </div>
+
     </div>
 
+
     <div class="stat">
+
      <div class="stat-title">
       Минимальная сделка
      </div>
+
      <div class="stat-value">
       ${num(r.minDeal)}
      </div>
+
     </div>
 
    </div>
@@ -2282,6 +3021,7 @@ function renderRequisites(){
      ${esc(r.account)}
     </div>
 
+
     ${
      r.holder
       ?`
@@ -2293,30 +3033,39 @@ function renderRequisites(){
       :""
     }
 
+
     <div>
      <b>Пауза:</b>
      ${r.pauseHours||0} ч.
      ${r.pauseMinutes||0} мин.
     </div>
 
+
     <div>
      <b>Часовой пояс:</b>
      ${esc(r.timezone||"—")}
     </div>
+
 
     <div>
      <b>Подтверждение:</b>
      ${esc(r.confirmation||"—")}
     </div>
 
+
     <div>
      <b>Лимиты карт:</b>
-     ${r.separateLimits?"Отдельно":"Общий лимит"}
+     ${r.separateLimits
+      ?"Отдельно"
+      :"Общий лимит"}
     </div>
+
 
     <div>
      <b>Работа:</b>
-     ${r.always?"Всегда":"По расписанию"}
+     ${r.always
+      ?"Всегда"
+      :"По расписанию"}
     </div>
 
    </div>
@@ -2330,11 +3079,23 @@ function renderRequisites(){
      Изменить
     </button>
 
+
     <button
-     class="btn ${r.status==="active"?"orange":"success"}"
+     class="btn ${
+      r.status==="active"
+       ?"orange"
+       :"success"
+     }"
      onclick="toggleRequisite(${index})">
-     ${r.status==="active"?"Выключить":"Включить"}
+
+     ${
+      r.status==="active"
+       ?"Выключить"
+       :"Включить"
+     }
+
     </button>
+
 
     <button
      class="btn danger"
@@ -2346,8 +3107,11 @@ function renderRequisites(){
 
   `;
 
+
   grid.appendChild(card);
+
  });
+
 }
 
 
@@ -2358,18 +3122,25 @@ function toggleRequisite(index){
    ?"blocked"
    :"active";
 
+
  saveRequisites();
 
+
  audit(
+
   (
    requisites[index].status==="active"
     ?"Включён "
     :"Выключен "
   )
-  +"реквизит "+requisites[index].bank
+  +"реквизит "+
+  requisites[index].bank
+
  );
 
+
  renderRequisites();
+
 }
 
 
@@ -2377,54 +3148,72 @@ function deleteRequisite(index){
 
  const r=requisites[index];
 
+
  if(
   !confirm(
    "Удалить реквизит "+r.bank+"?"
   )
  )return;
 
+
  requisites.splice(index,1);
 
+
  saveRequisites();
+
 
  audit(
   "Удалён реквизит: "+r.bank
  );
 
+
  renderRequisites();
+
 }
 
 
-/* =========================================================
- ADMIN
-========================================================= */
+/* =====================================================
+ADMIN
+===================================================== */
 
 function renderAdmin(){
 
  const body=
-  document.getElementById("usersTable");
+  document
+  .getElementById("usersTable");
+
 
  body.innerHTML="";
 
 
- Object.values(users).forEach(user=>{
+ Object.values(users)
+ .forEach(user=>{
 
   const tr=
-   document.createElement("tr");
+   document
+   .createElement("tr");
+
 
   tr.innerHTML=`
 
-   <td>${esc(user.name)}</td>
+   <td>
+    ${esc(user.name)}
+   </td>
 
-   <td>${esc(user.email)}</td>
+   <td>
+    ${esc(user.email)}
+   </td>
 
-   <td>${esc(user.role)}</td>
+   <td>
+    ${esc(user.role)}
+   </td>
 
    <td>
 
     <span class="badge ${
      user.status==="active"
-      ?"green":"red"
+      ?"green"
+      :"red"
     }">
 
      ${
@@ -2442,97 +3231,167 @@ function renderAdmin(){
     <button
      class="btn light"
      onclick="openManage('${escAttr(user.email)}')">
+
      Управлять
+
     </button>
 
    </td>
 
   `;
 
+
   body.appendChild(tr);
+
  });
 
 
  const logs=
   JSON.parse(
-   localStorage.getItem(AUDIT_KEY)||"[]"
+   localStorage.getItem(AUDIT_KEY)
+   ||"[]"
   );
 
- document.getElementById("auditLog")
+
+ document
+  .getElementById("auditLog")
   .innerHTML=
+
    logs.length
+
     ?logs.map(x=>`
-      <div style="
-       padding:8px 0;
-       border-bottom:1px solid #eee">
-       <b>${esc(x.time)}</b>
-       — ${esc(x.text)}
+
+      <div
+       style="
+        padding:8px 0;
+        border-bottom:1px solid #eee">
+
+       <b>
+        ${esc(x.time)}
+       </b>
+
+       —
+       ${esc(x.text)}
+
       </div>
+
      `).join("")
+
     :"Пока нет действий";
+
 }
 
 
 function createUser(){
 
  const name=
-  document.getElementById("newName")
-  .value.trim();
+  document
+  .getElementById("newName")
+  .value
+  .trim();
+
 
  const email=
-  document.getElementById("newEmail")
-  .value.trim().toLowerCase();
+  document
+  .getElementById("newEmail")
+  .value
+  .trim()
+  .toLowerCase();
+
 
  const password=
-  document.getElementById("newPassword")
+  document
+  .getElementById("newPassword")
   .value;
 
+
  if(!name||!email||!password){
+
   alert("Заполните все поля");
+
   return;
  }
+
 
  if(password.length<6){
-  alert("Пароль должен быть минимум 6 символов");
+
+  alert(
+   "Пароль должен быть минимум 6 символов"
+  );
+
   return;
  }
 
+
  if(users[email]){
-  alert("Такой email уже существует");
+
+  alert(
+   "Такой email уже существует"
+  );
+
   return;
  }
+
 
  users[email]={
 
   name:name,
+
   email:email,
+
   password:password,
+
   role:"USER",
+
   status:"active",
 
   finance:{
+
    deposit:0,
+
    turnover:0,
+
    profit:0,
+
    commission:0,
+
    deals:0
+
   }
 
  };
 
+
  saveUsers();
+
 
  audit(
   "Создан новый ЛК: "+email
  );
 
- document.getElementById("newName").value="";
- document.getElementById("newEmail").value="";
- document.getElementById("newPassword").value="";
+
+ document
+  .getElementById("newName")
+  .value="";
+
+
+ document
+  .getElementById("newEmail")
+  .value="";
+
+
+ document
+  .getElementById("newPassword")
+  .value="";
+
 
  renderAdmin();
 
- alert("ЛК успешно создан");
+
+ alert(
+  "ЛК успешно создан"
+ );
+
 }
 
 
@@ -2540,50 +3399,78 @@ function openManage(email){
 
  managedEmail=email;
 
+
  const user=users[email];
+
  const f=user.finance||{};
 
- document.getElementById("manageEmail")
-  .textContent="Редактирование: "+email;
 
- document.getElementById("mName")
+ document
+  .getElementById("manageEmail")
+  .textContent=
+   "Редактирование: "+email;
+
+
+ document
+  .getElementById("mName")
   .value=user.name||"";
 
- document.getElementById("mEmail")
+
+ document
+  .getElementById("mEmail")
   .value=user.email;
 
- document.getElementById("mPassword")
+
+ document
+  .getElementById("mPassword")
   .value="";
 
- document.getElementById("mStatus")
+
+ document
+  .getElementById("mStatus")
   .value=user.status||"active";
 
- document.getElementById("mDeposit")
+
+ document
+  .getElementById("mDeposit")
   .value=f.deposit||0;
 
- document.getElementById("mTurnover")
+
+ document
+  .getElementById("mTurnover")
   .value=f.turnover||0;
 
- document.getElementById("mProfit")
+
+ document
+  .getElementById("mProfit")
   .value=f.profit||0;
 
- document.getElementById("mCommission")
+
+ document
+  .getElementById("mCommission")
   .value=f.commission||0;
 
- document.getElementById("mDeals")
+
+ document
+  .getElementById("mDeals")
   .value=f.deals||0;
 
- document.getElementById("manageModal")
+
+ document
+  .getElementById("manageModal")
   .classList.add("show");
+
 }
 
 
 function closeManage(){
 
- document.getElementById("manageModal")
+ document
+  .getElementById("manageModal")
   .classList.remove("show");
 
  managedEmail=null;
+
 }
 
 
@@ -2591,45 +3478,72 @@ function saveManagedUser(){
 
  if(!managedEmail)return;
 
+
  const user=users[managedEmail];
 
+
  const newEmail=
-  document.getElementById("mEmail")
-  .value.trim().toLowerCase();
+  document
+  .getElementById("mEmail")
+  .value
+  .trim()
+  .toLowerCase();
+
 
  if(!newEmail){
+
   alert("Email обязателен");
+
   return;
  }
+
 
  if(
   newEmail!==managedEmail &&
   users[newEmail]
  ){
-  alert("Этот email уже занят");
+
+  alert(
+   "Этот email уже занят"
+  );
+
   return;
  }
 
+
  user.name=
-  document.getElementById("mName")
-  .value.trim()||"Пользователь";
+  document
+  .getElementById("mName")
+  .value
+  .trim()
+  ||"Пользователь";
+
 
  user.status=
-  document.getElementById("mStatus")
+  document
+  .getElementById("mStatus")
   .value;
 
+
  const password=
-  document.getElementById("mPassword")
+  document
+  .getElementById("mPassword")
   .value;
+
 
  if(password){
 
   if(password.length<6){
-   alert("Пароль минимум 6 символов");
+
+   alert(
+    "Пароль минимум 6 символов"
+   );
+
    return;
   }
 
   user.password=password;
+
  }
 
 
@@ -2637,27 +3551,37 @@ function saveManagedUser(){
 
   deposit:
    Number(
-    document.getElementById("mDeposit").value
+    document
+    .getElementById("mDeposit")
+    .value
    )||0,
 
   turnover:
    Number(
-    document.getElementById("mTurnover").value
+    document
+    .getElementById("mTurnover")
+    .value
    )||0,
 
   profit:
    Number(
-    document.getElementById("mProfit").value
+    document
+    .getElementById("mProfit")
+    .value
    )||0,
 
   commission:
    Number(
-    document.getElementById("mCommission").value
+    document
+    .getElementById("mCommission")
+    .value
    )||0,
 
   deals:
    Number(
-    document.getElementById("mDeals").value
+    document
+    .getElementById("mDeals")
+    .value
    )||0
 
  };
@@ -2670,19 +3594,26 @@ function saveManagedUser(){
   user.email=newEmail;
 
   users[newEmail]=user;
+
  }
 
+
  saveUsers();
+
 
  audit(
   "Изменён ЛК: "+user.email
  );
 
+
  closeManage();
 
  render();
 
- alert("Данные сохранены");
+ alert(
+  "Данные сохранены"
+ );
+
 }
 
 
@@ -2690,83 +3621,120 @@ function changeBalance(amount){
 
  if(!managedEmail)return;
 
+
  const user=users[managedEmail];
+
 
  user.finance.deposit=
   Number(user.finance.deposit||0)
   +Number(amount);
 
+
  if(user.finance.deposit<0)
   user.finance.deposit=0;
 
+
  saveUsers();
 
+
  audit(
-  "Изменён баланс "+managedEmail+
-  " на "+amount+" USDT"
+  "Изменён баланс "+
+  managedEmail+
+  " на "+
+  amount+
+  " USDT"
  );
+
 
  openManage(managedEmail);
 
  renderAdmin();
+
 }
 
 
-/* =========================================================
- FINANCE
-========================================================= */
+/* =====================================================
+FINANCE
+===================================================== */
 
 function createDeposit(){
 
  const amount=
   Number(
-   document.getElementById("depositAmount")
+   document
+   .getElementById("depositAmount")
    .value
   );
 
+
  if(!amount||amount<=0){
+
   alert("Введите сумму");
+
   return;
  }
 
+
  audit(
   "Создана заявка на пополнение "+
-  amount+" USDT"
+  amount+
+  " USDT"
  );
 
- document.getElementById("depositAmount")
+
+ document
+  .getElementById("depositAmount")
   .value="";
 
- document.getElementById("depositComment")
+
+ document
+  .getElementById("depositComment")
   .value="";
 
- alert("Заявка создана");
+
+ alert(
+  "Заявка создана"
+ );
+
 }
 
 
-/* =========================================================
- REPORT
-========================================================= */
+/* =====================================================
+REPORT
+===================================================== */
 
 function generateReport(){
 
  const user=users[session.email];
+
  const f=user.finance||{};
+
 
  const report=
  `P2PSPARK CRM
-Отчёт
 
-Пользователь: ${user.email}
+Пользователь:
+${user.email}
 
-Баланс: ${f.deposit||0} USDT
-Оборот: ${f.turnover||0} USDT
-Прибыль: ${f.profit||0} USDT
-Сделки: ${f.deals||0}
-Комиссия: ${f.commission||0}%
+Баланс:
+${f.deposit||0} USDT
 
-Реквизитов: ${requisites.length}
+Оборот:
+${f.turnover||0} USDT
+
+Прибыль:
+${f.profit||0} USDT
+
+Сделки:
+${f.deals||0}
+
+Комиссия:
+${f.commission||0}%
+
+Реквизитов:
+${requisites.length}
 `;
+
 
  const blob=
   new Blob(
@@ -2774,87 +3742,113 @@ function generateReport(){
    {type:"text/plain"}
   );
 
+
  const url=
   URL.createObjectURL(blob);
 
- const a=document.createElement("a");
+
+ const a=
+  document.createElement("a");
+
 
  a.href=url;
- a.download="p2pspark-report.txt";
+
+ a.download=
+  "p2pspark-report.txt";
+
+
  a.click();
 
+
  URL.revokeObjectURL(url);
+
 }
 
 
-/* =========================================================
- HELPERS
-========================================================= */
+/* =====================================================
+HELPERS
+===================================================== */
 
 function num(v){
 
  return Number(v||0)
   .toLocaleString("ru-RU");
+
 }
+
 
 function esc(v){
 
  return String(v??"")
-  .replace(/[&<>"']/g,m=>({
-   "&":"&amp;",
-   "<":"&lt;",
-   ">":"&gt;",
-   '"':"&quot;",
-   "'":"&#039;"
-  }[m]));
+  .replace(
+   /[&<>"']/g,
+   m=>({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#039;"
+   }[m])
+  );
+
 }
+
 
 function escAttr(v){
 
  return String(v??"")
   .replace(/\\/g,"\\\\")
   .replace(/'/g,"\\'");
+
 }
 
 
-/* =========================================================
- MODAL
-========================================================= */
+/* =====================================================
+MODALS
+===================================================== */
 
 document.addEventListener(
  "keydown",
  e=>{
 
   if(e.key==="Escape"){
+
    closeRequisiteModal();
+
    closeManage();
+
   }
 
- }
-);
+ });
 
-document.getElementById("requisiteModal")
+
+document
+ .getElementById("requisiteModal")
  .addEventListener(
   "click",
   function(e){
+
    if(e.target===this)
     closeRequisiteModal();
-  }
- );
 
-document.getElementById("manageModal")
+  });
+
+
+document
+ .getElementById("manageModal")
  .addEventListener(
   "click",
   function(e){
+
    if(e.target===this)
     closeManage();
-  }
- );
+
+  });
 
 
-/* =========================================================
- START
-========================================================= */
+/* =====================================================
+START
+===================================================== */
 
 start();
 
