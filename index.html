@@ -38,84 +38,82 @@ position:fixed;
 left:0;
 top:0;
 bottom:0;
-width:285px;
+width:265px;
 background:#fff;
 border-right:1px solid var(--line);
-padding:25px 22px 22px;
+padding:25px 15px;
 z-index:20;
 display:flex;
 flex-direction:column;
-overflow-y:auto;
-overflow-x:hidden;
--webkit-overflow-scrolling:touch;
-scrollbar-width:thin
+overflow:hidden
 }
 
 .logo{
-font-size:28px;
+font-size:25px;
 font-weight:900;
 letter-spacing:.5px;
-padding:10px 18px 28px;
-flex:0 0 auto
+padding:4px 14px 22px
 }
 
 .logo span{color:var(--blue)}
 
 .nav-segment{
-min-height:0;
-padding:0 0 8px
+overflow:visible;
+padding:0
 }
 
-.nav-top,.nav-bottom{display:block}
+.nav-top,
+.nav-bottom{
+display:block;
+flex:none;
+border:0
+}
 
 .nav-title{
 font-size:11px;
 text-transform:uppercase;
-letter-spacing:1.6px;
-color:#9aa3b2;
-margin:18px 14px 8px
+letter-spacing:1.4px;
+color:#a0a8b5;
+margin:18px 13px 8px
 }
 
-.nav-top .nav-title{display:none}
+.nav-segment:first-child .nav-title{
+margin-top:8px
+}
 
 .nav button{
-display:block;
+display:flex;
+align-items:center;
 width:100%;
 border:0;
-background:transparent;
+background:#fff;
 text-align:left;
-padding:13px 14px;
-border-radius:12px;
-color:#657083;
+padding:13px;
+border-radius:10px;
+color:#172033;
 margin:2px 0;
-font-weight:600;
-font-size:16px
+font-weight:650;
+font-size:15px;
+transition:.15s
 }
 
-.nav button:hover,
+.nav button:hover{
+background:#fff;
+color:var(--blue)
+}
+
 .nav button.active{
-background:#eef0f4;
-color:#101827
+background:#fff;
+color:var(--blue);
+font-weight:800
 }
 
 .nav button.admin{
-color:#2563eb;
-background:#eaf1ff
-}
-
-.nav button.admin:hover,
-.nav button.admin.active{
-background:#dbe8ff;
-color:#2563eb
-}
-
-.nav-bottom{
-padding-top:0;
-padding-bottom:8px
+color:#7c3aed
 }
 
 .main{
-margin-left:285px;
+margin-left:265px;
 padding:30px;
 max-width:1500px
 }
@@ -259,7 +257,9 @@ text-transform:uppercase;
 color:#8a94a5
 }
 
-.table tr:last-child td{border-bottom:0}
+.table tr:last-child td{
+border-bottom:0
+}
 
 .badge{
 display:inline-block;
@@ -353,7 +353,9 @@ font-size:27px;
 margin:0 0 8px
 }
 
-.login-card .field{margin-top:17px}
+.login-card .field{
+margin-top:17px
+}
 
 .login-card .btn{
 width:100%;
@@ -409,7 +411,9 @@ border-radius:50%;
 font-size:22px
 }
 
-.modalbox h2{margin-top:0}
+.modalbox h2{
+margin-top:0
+}
 
 .section-title{
 font-size:16px;
@@ -444,6 +448,25 @@ color:var(--muted);
 padding:35px
 }
 
+.dashboard-actions{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px
+}
+
+.dashboard-actions .btn{
+height:52px;
+font-size:15px
+}
+
+.deposit-qr{
+width:220px;
+height:220px;
+object-fit:contain;
+border-radius:14px;
+border:1px solid var(--line)
+}
+
 @media(max-width:900px){
 
 .sidebar{
@@ -451,21 +474,11 @@ transform:translateX(-100%);
 transition:.2s;
 height:100dvh;
 max-height:100dvh;
-width:min(88vw,330px);
-padding:22px 18px 20px
+padding-bottom:20px
 }
 
 .sidebar.open{
 transform:translateX(0)
-}
-
-.nav-segment{
-min-height:0
-}
-
-.nav-top,
-.nav-bottom{
-display:block
 }
 
 .main{
@@ -488,6 +501,7 @@ font-size:25px
 .grid{
 grid-template-columns:repeat(2,1fr)
 }
+
 }
 
 @media(max-width:560px){
@@ -516,6 +530,11 @@ padding:25px
 .actions .btn{
 width:100%
 }
+
+.dashboard-actions{
+grid-template-columns:1fr
+}
+
 }
 </style>
 
@@ -546,8 +565,7 @@ PEOPLE • DEALS • OPPORTUNITIES
 
 <div class="field">
 <label>Почта (Gmail)</label>
-<input
-id="loginEmail"
+<input id="loginEmail"
 type="email"
 autocomplete="username"
 placeholder="example@gmail.com">
@@ -555,8 +573,7 @@ placeholder="example@gmail.com">
 
 <div class="field">
 <label>Пароль</label>
-<input
-id="loginPassword"
+<input id="loginPassword"
 type="password"
 autocomplete="current-password"
 placeholder="Введите пароль">
@@ -582,26 +599,41 @@ placeholder="Введите пароль">
 P2P<span>SPARK</span>
 </div>
 
+
 <div class="nav-segment nav-top">
 
-<button data-page="dashboard" onclick="go('dashboard')">
+<div class="nav-title">
+Основное
+</div>
+
+<button data-page="dashboard"
+onclick="go('dashboard')">
 ▣ &nbsp; Дашборд
+<span style="margin-left:auto;color:#a6afbc">›</span>
 </button>
 
-<button data-page="finance" onclick="go('finance')">
+<button data-page="finance"
+onclick="go('finance')">
 ◈ &nbsp; Финансы
+<span style="margin-left:auto;color:#a6afbc">›</span>
 </button>
 
-<button data-page="deals" onclick="go('deals')">
+<button data-page="deals"
+onclick="go('deals')">
 ↔ &nbsp; Сделки
+<span style="margin-left:auto;color:#a6afbc">›</span>
 </button>
 
-<button data-page="requests" onclick="go('requests')">
+<button data-page="requests"
+onclick="go('requests')">
 ◌ &nbsp; Заявки
+<span style="margin-left:auto;color:#a6afbc">›</span>
 </button>
 
-<button data-page="disputes" onclick="go('disputes')">
+<button data-page="disputes"
+onclick="go('disputes')">
 ⚠ &nbsp; Споры
+<span style="margin-left:auto;color:#a6afbc">›</span>
 </button>
 
 </div>
@@ -609,34 +641,51 @@ P2P<span>SPARK</span>
 
 <div class="nav-segment nav-bottom">
 
-<button data-page="requisites" onclick="go('requisites')">
+<div class="nav-title">
+Работа
+</div>
+
+<button data-page="requisites"
+onclick="go('requisites')">
 ▤ &nbsp; Реквизиты
+<span style="margin-left:auto;color:#a6afbc">›</span>
 </button>
 
-<button data-page="devices" onclick="go('devices')">
+<button data-page="devices"
+onclick="go('devices')">
 ▣ &nbsp; Устройства
+<span style="margin-left:auto;color:#a6afbc">›</span>
 </button>
 
-<button data-page="messages" onclick="go('messages')">
+<button data-page="messages"
+onclick="go('messages')">
 ✉ &nbsp; Сообщения
+<span style="margin-left:auto;color:#a6afbc">›</span>
 </button>
 
-<button data-page="turbo" onclick="go('turbo')">
+<button data-page="turbo"
+onclick="go('turbo')">
 ⚡ &nbsp; Турбозалив
+<span style="margin-left:auto;color:#a6afbc">›</span>
 </button>
 
-<button data-page="counterparties" onclick="go('counterparties')">
+<button data-page="counterparties"
+onclick="go('counterparties')">
 ♙ &nbsp; Контрагенты
+<span style="margin-left:auto;color:#a6afbc">›</span>
 </button>
 
-<button data-page="reports" onclick="go('reports')">
+<button data-page="reports"
+onclick="go('reports')">
 ▥ &nbsp; Отчёты
+<span style="margin-left:auto;color:#a6afbc">›</span>
 </button>
 
-<button data-page="profile" onclick="go('profile')">
+<button data-page="profile"
+onclick="go('profile')">
 ◉ &nbsp; Профиль
+<span style="margin-left:auto;color:#a6afbc">›</span>
 </button>
-
 
 <div id="adminNav" style="display:none">
 
@@ -644,22 +693,22 @@ P2P<span>SPARK</span>
 Администрирование
 </div>
 
-<button
-class="admin"
+<button class="admin"
 data-page="admin"
 onclick="go('admin')">
-
 ♛ &nbsp; Админ-панель
-
+<span style="margin-left:auto;color:#a6afbc">›</span>
 </button>
 
 </div>
 
-
-<div style="height:1px;background:var(--line);margin:18px 8px 12px"></div>
+<div class="nav-title">
+Аккаунт
+</div>
 
 <button onclick="logout()">
 ↪ &nbsp; Выйти
+<span style="margin-left:auto;color:#a6afbc">›</span>
 </button>
 
 </div>
@@ -673,35 +722,23 @@ onclick="go('admin')">
 
 <div style="display:flex;align-items:center;gap:12px">
 
-<button
-class="mobile-menu"
+<button class="mobile-menu"
 onclick="toggleMenu()">
 ☰
 </button>
 
 <div>
-
-<h1 id="pageTitle">
-Дашборд
-</h1>
-
-<div class="subtitle">
-P2PSPARK
+<h1 id="pageTitle">Дашборд</h1>
+<div class="subtitle">P2PSPARK</div>
 </div>
 
 </div>
-
-</div>
-
 
 <div class="userbox">
 
 <div>
-
 <b id="topEmail"></b>
-
 <div class="small" id="roleText"></div>
-
 </div>
 
 <div class="avatar" id="avatar">
@@ -718,71 +755,44 @@ U
 <div class="grid">
 
 <div class="card">
-
-<div class="label">
-Баланс депозита
+<div class="label">Баланс депозита</div>
+<div id="dDeposit" class="big">0 USDT</div>
+<div class="small">Текущий баланс</div>
 </div>
-
-<div id="dDeposit" class="big">
-0 USDT
-</div>
-
-<div class="small">
-Текущий баланс
-</div>
-
-</div>
-
 
 <div class="card">
-
-<div class="label">
-Активные сделки
+<div class="label">Активные сделки</div>
+<div id="dDeals" class="big">0</div>
+<div class="small">На текущий момент</div>
 </div>
-
-<div id="dDeals" class="big">
-0
-</div>
-
-<div class="small">
-На текущий момент
-</div>
-
-</div>
-
 
 <div class="card">
-
-<div class="label">
-Оборот
+<div class="label">Оборот</div>
+<div id="dTurnover" class="big">0 USDT</div>
+<div class="small">За текущий месяц</div>
 </div>
-
-<div id="dTurnover" class="big">
-0 USDT
-</div>
-
-<div class="small">
-За текущий месяц
-</div>
-
-</div>
-
 
 <div class="card">
-
-<div class="label">
-Прибыль
-</div>
-
-<div id="dProfit" class="big green">
-0 USDT
-</div>
-
-<div class="small">
-За текущий месяц
+<div class="label">Прибыль</div>
+<div id="dProfit" class="big green">0 USDT</div>
+<div class="small">За текущий месяц</div>
 </div>
 
 </div>
+
+
+<div class="dashboard-actions">
+
+<button class="btn primary"
+onclick="go('deposit')">
+＋ &nbsp; Пополнить
+</button>
+
+<button class="btn"
+style="background:#fff;color:var(--blue);border:1px solid #cfe0ff"
+onclick="go('withdraw')">
+↑ &nbsp; Вывести
+</button>
 
 </div>
 
@@ -800,46 +810,23 @@ U
 <div class="grid" style="margin-top:20px">
 
 <div class="card">
-
 <div class="label">Депозит</div>
-
-<div id="fDeposit" class="big">
-0 USDT
+<div id="fDeposit" class="big">0 USDT</div>
 </div>
-
-</div>
-
 
 <div class="card">
-
 <div class="label">Оборот</div>
-
-<div id="fTurnover" class="big">
-0 USDT
+<div id="fTurnover" class="big">0 USDT</div>
 </div>
-
-</div>
-
 
 <div class="card">
-
 <div class="label">Прибыль</div>
-
-<div id="fProfit" class="big green">
-0 USDT
+<div id="fProfit" class="big green">0 USDT</div>
 </div>
-
-</div>
-
 
 <div class="card">
-
 <div class="label">Комиссия</div>
-
-<div id="fCommission" class="big">
-0%
-</div>
-
+<div id="fCommission" class="big">0%</div>
 </div>
 
 </div>
@@ -926,36 +913,14 @@ U
 <div class="form-grid">
 
 <div>
-
-<div class="label">
-Способ оплаты
+<div class="label">Способ оплаты</div>
+<div id="pMethod" class="big" style="font-size:20px">—</div>
 </div>
-
-<div
-id="pMethod"
-class="big"
-style="font-size:20px">
-—
-</div>
-
-</div>
-
 
 <div>
-
-<div class="label">
-Сеть
+<div class="label">Сеть</div>
+<div id="pNetwork" class="big" style="font-size:20px">—</div>
 </div>
-
-<div
-id="pNetwork"
-class="big"
-style="font-size:20px">
-—
-</div>
-
-</div>
-
 
 <div style="grid-column:1/-1">
 
@@ -963,25 +928,21 @@ style="font-size:20px">
 Кошелёк / реквизит
 </div>
 
-<div
-id="pWallet"
+<div id="pWallet"
 style="margin-top:7px;word-break:break-all;font-weight:700">
 —
 </div>
 
 </div>
 
-
-<div
-id="pWalletLinkWrap"
+<div id="pWalletLinkWrap"
 style="grid-column:1/-1;display:none">
 
 <div class="label">
 Ссылка на крипто-кошелёк
 </div>
 
-<a
-id="pWalletLink"
+<a id="pWalletLink"
 href="#"
 target="_blank"
 rel="noopener noreferrer"
@@ -992,18 +953,13 @@ style="display:block;margin-top:7px;word-break:break-all;font-weight:700;color:v
 
 </div>
 
-
 <img id="pQr" class="preview">
 
-
-<button
-id="copyWalletBtn"
+<button id="copyWalletBtn"
 class="btn light"
 style="margin-top:15px"
 onclick="copyWallet()">
-
 Скопировать реквизит
-
 </button>
 
 </div>
@@ -1079,12 +1035,9 @@ onclick="copyWallet()">
 
 <div class="card" style="margin-top:20px">
 
-<button
-class="btn primary"
+<button class="btn primary"
 onclick="alert('Раздел отчётов будет подключён следующим этапом')">
-
 Сформировать отчёт
-
 </button>
 
 </div>
@@ -1101,38 +1054,192 @@ onclick="alert('Раздел отчётов будет подключён сле
 <div class="form-grid">
 
 <div class="field">
-
 <label>Email</label>
-
-<input
-id="profileEmail"
-disabled>
-
+<input id="profileEmail" disabled>
 </div>
 
-
 <div class="field">
-
 <label>Роль</label>
+<input id="profileRole" disabled>
+</div>
 
-<input
-id="profileRole"
-disabled>
+<div class="field">
+<label>Статус</label>
+<input id="profileStatus" disabled>
+</div>
 
 </div>
 
+</div>
+
+</section>
+
+
+<section id="deposit" class="section">
+
+<h2>Пополнение</h2>
+
+<div class="subtitle">
+Реквизиты для пополнения, назначенные администратором
+</div>
+
+<div class="card" style="margin-top:20px">
+
+<div id="depositEmpty" class="empty">
+Реквизиты для пополнения ещё не добавлены администратором
+</div>
+
+<div id="depositData" style="display:none">
+
+<div id="depositQrWrap"
+style="display:none;text-align:center;margin-bottom:20px">
+
+<img id="depositQr"
+class="deposit-qr"
+alt="QR-код для пополнения">
+
+</div>
+
+
+<div class="form-grid">
+
+<div>
+
+<div class="label">
+Способ оплаты
+</div>
+
+<div id="depositMethod"
+class="big"
+style="font-size:20px">
+—
+</div>
+
+</div>
+
+
+<div>
+
+<div class="label">
+Сеть
+</div>
+
+<div id="depositNetwork"
+class="big"
+style="font-size:20px">
+—
+</div>
+
+</div>
+
+</div>
+
+
+<div style="margin-top:18px">
+
+<div class="label">
+Крипто-кошелёк
+</div>
+
+<div id="depositWallet"
+style="margin-top:7px;word-break:break-all;font-weight:750">
+—
+</div>
+
+</div>
+
+
+<div id="depositLinkWrap"
+style="display:none;margin-top:18px">
+
+<div class="label">
+Ссылка на крипто-кошелёк
+</div>
+
+<a id="depositLink"
+href="#"
+target="_blank"
+rel="noopener noreferrer"
+style="display:block;margin-top:7px;word-break:break-all;font-weight:750;color:var(--blue);text-decoration:none">
+</a>
+
+</div>
+
+
+<button class="btn light"
+style="margin-top:18px"
+onclick="copyDepositWallet()">
+Скопировать кошелёк
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="withdraw" class="section">
+
+<h2>Вывод</h2>
+
+<div class="subtitle">
+Укажите сумму и адрес кошелька для вывода
+</div>
+
+<div class="card" style="margin-top:20px">
 
 <div class="field">
 
-<label>Статус</label>
+<label>
+Сумма, USDT
+</label>
 
-<input
-id="profileStatus"
-disabled>
+<input id="withdrawAmount"
+type="number"
+min="0"
+step="any"
+placeholder="Например: 100">
 
 </div>
 
+
+<div class="field" style="margin-top:15px">
+
+<label>
+Сеть
+</label>
+
+<select id="withdrawNetwork">
+
+<option>TRC20</option>
+<option>ERC20</option>
+<option>BEP20</option>
+<option>SOL</option>
+<option>TON</option>
+
+</select>
+
 </div>
+
+
+<div class="field" style="margin-top:15px">
+
+<label>
+Адрес кошелька
+</label>
+
+<input id="withdrawWallet"
+placeholder="Введите адрес кошелька">
+
+</div>
+
+
+<button class="btn primary"
+style="margin-top:18px"
+onclick="submitWithdraw()">
+Создать заявку на вывод
+</button>
 
 </div>
 
@@ -1143,9 +1250,7 @@ disabled>
 
 <div class="admin-head">
 
-<h2>
-Админ-панель
-</h2>
+<h2>Админ-панель</h2>
 
 <div>
 Полное управление пользователями P2PSPARK
@@ -1164,10 +1269,7 @@ disabled>
 Каждому новому USER автоматически создаются финансовые данные и реквизиты.
 </div>
 
-
-<div
-class="form-grid"
-style="margin-top:18px">
+<div class="form-grid" style="margin-top:18px">
 
 <div class="field">
 
@@ -1175,8 +1277,7 @@ style="margin-top:18px">
 Имя пользователя
 </label>
 
-<input
-id="newName"
+<input id="newName"
 placeholder="Имя">
 
 </div>
@@ -1188,8 +1289,7 @@ placeholder="Имя">
 Email (Gmail)
 </label>
 
-<input
-id="newEmail"
+<input id="newEmail"
 type="email"
 placeholder="user@gmail.com">
 
@@ -1202,8 +1302,7 @@ placeholder="user@gmail.com">
 Пароль
 </label>
 
-<input
-id="newPassword"
+<input id="newPassword"
 type="text"
 placeholder="Минимум 6 символов">
 
@@ -1212,13 +1311,10 @@ placeholder="Минимум 6 символов">
 </div>
 
 
-<button
-class="btn primary"
+<button class="btn primary"
 style="margin-top:18px"
 onclick="createUser()">
-
 Создать USER
-
 </button>
 
 </div>
@@ -1230,8 +1326,7 @@ onclick="createUser()">
 Пользователи
 </h2>
 
-<div
-class="table-wrap"
+<div class="table-wrap"
 style="margin-top:15px">
 
 <table class="table">
@@ -1263,12 +1358,8 @@ style="margin-top:15px">
 Журнал действий
 </h2>
 
-<div
-id="auditLog"
-class="small">
-
+<div id="auditLog" class="small">
 Пока нет действий
-
 </div>
 
 </div>
@@ -1284,8 +1375,7 @@ class="small">
 
 <div class="modalbox">
 
-<button
-class="close"
+<button class="close"
 onclick="closeManage()">
 ×
 </button>
@@ -1294,8 +1384,7 @@ onclick="closeManage()">
 Управление ЛК
 </h2>
 
-<div
-class="subtitle"
+<div class="subtitle"
 id="manageEmail">
 </div>
 
@@ -1307,39 +1396,23 @@ id="manageEmail">
 <div class="form-grid">
 
 <div class="field">
-
 <label>Имя</label>
-
 <input id="mName">
-
 </div>
 
-
 <div class="field">
-
 <label>Email</label>
-
-<input
-id="mEmail"
-type="email">
-
+<input id="mEmail" type="email">
 </div>
 
-
 <div class="field">
-
 <label>Новый пароль</label>
-
-<input
-id="mPassword"
+<input id="mPassword"
 type="text"
 placeholder="Оставьте пустым, чтобы не менять">
-
 </div>
 
-
 <div class="field">
-
 <label>Статус</label>
 
 <select id="mStatus">
@@ -1366,72 +1439,38 @@ placeholder="Оставьте пустым, чтобы не менять">
 <div class="form-grid">
 
 <div class="field">
-
-<label>
-Баланс депозита
-</label>
-
-<input
-id="mDeposit"
+<label>Баланс депозита</label>
+<input id="mDeposit"
 type="number"
 step="any">
-
 </div>
 
-
 <div class="field">
-
-<label>
-Оборот
-</label>
-
-<input
-id="mTurnover"
+<label>Оборот</label>
+<input id="mTurnover"
 type="number"
 step="any">
-
 </div>
 
-
 <div class="field">
-
-<label>
-Прибыль
-</label>
-
-<input
-id="mProfit"
+<label>Прибыль</label>
+<input id="mProfit"
 type="number"
 step="any">
-
 </div>
 
-
 <div class="field">
-
-<label>
-Комиссия %
-</label>
-
-<input
-id="mCommission"
+<label>Комиссия %</label>
+<input id="mCommission"
 type="number"
 step="any">
-
 </div>
 
-
 <div class="field">
-
-<label>
-Активные сделки
-</label>
-
-<input
-id="mDeals"
+<label>Активные сделки</label>
+<input id="mDeals"
 type="number"
 step="1">
-
 </div>
 
 </div>
@@ -1480,57 +1519,51 @@ step="1">
 </div>
 
 
-<div
-class="field"
+<div class="field"
 style="grid-column:1/-1">
 
 <label>
 Кошелёк / реквизит
 </label>
 
-<input
-id="mWallet"
+<input id="mWallet"
 placeholder="Например: T...">
 
 </div>
 
 
-<div
-class="field"
+<div class="field"
 style="grid-column:1/-1">
 
 <label>
 Личная ссылка на крипто-кошелёк
 </label>
 
-<input
-id="mWalletLink"
+<input id="mWalletLink"
 type="url"
 placeholder="https://...">
 
 </div>
 
 
-<div
-class="field"
+<div class="field"
 style="grid-column:1/-1">
 
 <label>
 Личный QR-код пользователя
 </label>
 
-<input
-id="mQrFile"
+<input id="mQrFile"
 type="file"
 accept="image/png,image/jpeg,image/webp"
 onchange="previewQr(event)"
-style="padding:10px;background:#eef2f7;border-radius:10px">
+style="padding:10px;background:#fff;border-radius:10px">
 
-<div
-class="small"
+<div class="small"
 style="margin-top:7px">
 
-Выберите QR-код из галереи. QR сохраняется только для выбранного пользователя.
+Выберите QR-код из галереи.
+QR сохраняется только для выбранного пользователя.
 
 </div>
 
@@ -1539,40 +1572,27 @@ style="margin-top:7px">
 </div>
 
 
-<img
-id="mQrPreview"
+<img id="mQrPreview"
 class="preview">
 
 
-<div
-class="actions"
+<div class="actions"
 style="margin-top:22px">
 
-<button
-class="btn primary"
+<button class="btn primary"
 onclick="saveManagedUser()">
-
 Сохранить всё
-
 </button>
 
-
-<button
-class="btn light"
+<button class="btn light"
 onclick="clearQr()">
-
 Удалить PNG
-
 </button>
 
-
-<button
-class="btn danger"
+<button class="btn danger"
 id="blockBtn"
 onclick="toggleManagedStatus()">
-
 Заблокировать / разблокировать
-
 </button>
 
 </div>
@@ -1643,8 +1663,7 @@ async function login(){
 
 const email=
 document.getElementById("loginEmail")
-.value
-.trim()
+.value.trim()
 .toLowerCase();
 
 const password=
@@ -1655,25 +1674,19 @@ if(!email||!password)
 return setLoginError("Введите email и пароль");
 
 const {data,error}=
-await supabaseClient.auth.signInWithPassword({
+await supabaseClient.auth
+.signInWithPassword({
 email,
 password
 });
 
 if(error){
-
 console.error(error);
-
-return setLoginError(
-"Неверный email или пароль"
-);
-
+return setLoginError("Неверный email или пароль")
 }
 
 if(!data.user)
-return setLoginError(
-"Не удалось войти"
-);
+return setLoginError("Не удалось войти");
 
 await start();
 
@@ -1682,8 +1695,7 @@ await start();
 
 async function loadProfile(){
 
-if(!currentUser)
-return false;
+if(!currentUser)return false;
 
 const {data,error}=
 await supabaseClient
@@ -1742,7 +1754,6 @@ return;
 
 }
 
-
 if(!(await loadProfile())){
 
 await supabaseClient.auth.signOut();
@@ -1750,7 +1761,6 @@ await supabaseClient.auth.signOut();
 return;
 
 }
-
 
 if(currentProfile.status==="blocked"){
 
@@ -1764,13 +1774,11 @@ return;
 
 }
 
-
 document.getElementById("loginScreen")
 .style.display="none";
 
 document.getElementById("app")
 .style.display="block";
-
 
 document.getElementById("adminNav")
 .style.display=
@@ -1778,20 +1786,17 @@ currentProfile.role==="ADMIN"
 ?"block"
 :"none";
 
-
 document.getElementById("topEmail")
 .textContent=
 currentProfile.email||
 currentUser.email||
 "";
 
-
 document.getElementById("roleText")
 .textContent=
 currentProfile.role==="ADMIN"
 ?"ADMIN"
 :"USER";
-
 
 document.getElementById("avatar")
 .textContent=
@@ -1801,26 +1806,22 @@ currentProfile.email||
 .charAt(0)
 .toUpperCase();
 
-
 document.getElementById("profileEmail")
 .value=
 currentProfile.email||
 currentUser.email||
 "";
 
-
 document.getElementById("profileRole")
 .value=
 currentProfile.role||
 "USER";
-
 
 document.getElementById("profileStatus")
 .value=
 currentProfile.status==="blocked"
 ?"Заблокирован"
 :"Активен";
-
 
 render();
 
@@ -1838,10 +1839,8 @@ location.reload();
 
 function toggleMenu(){
 
-document
-.getElementById("sidebar")
-.classList
-.toggle("open");
+document.getElementById("sidebar")
+.classList.toggle("open");
 
 }
 
@@ -1849,16 +1848,14 @@ document
 function go(page){
 
 if(
-page==="admin"&&
+page==="admin" &&
 currentProfile?.role!=="ADMIN"
 ){
 
 alert("Доступ запрещён");
-
 return;
 
 }
-
 
 document
 .querySelectorAll(".section")
@@ -1866,17 +1863,12 @@ document
 x=>x.classList.remove("active")
 );
 
-
 document
 .getElementById(page)
-.classList
-.add("active");
-
+.classList.add("active");
 
 document
-.querySelectorAll(
-".nav button[data-page]"
-)
+.querySelectorAll(".nav button[data-page]")
 .forEach(
 x=>
 x.classList.toggle(
@@ -1884,7 +1876,6 @@ x.classList.toggle(
 x.dataset.page===page
 )
 );
-
 
 document.getElementById("pageTitle")
 .textContent=
@@ -1894,15 +1885,18 @@ page==="admin"
 page==="dashboard"
 ?"Дашборд"
 :
+page==="deposit"
+?"Пополнение"
+:
+page==="withdraw"
+?"Вывод"
+:
 page.charAt(0).toUpperCase()+
 page.slice(1);
 
-
 document
 .getElementById("sidebar")
-.classList
-.remove("open");
-
+.classList.remove("open");
 
 render();
 
@@ -1911,49 +1905,40 @@ render();
 
 function render(){
 
-if(!currentProfile)
-return;
+if(!currentProfile)return;
 
 const f=currentProfile;
-
 
 ["dDeposit","fDeposit"]
 .forEach(
 id=>
 document.getElementById(id)
-.textContent=
-money(f.deposit)
+.textContent=money(f.deposit)
 );
-
 
 ["dTurnover","fTurnover"]
 .forEach(
 id=>
 document.getElementById(id)
-.textContent=
-money(f.turnover)
+.textContent=money(f.turnover)
 );
-
 
 ["dProfit","fProfit"]
 .forEach(
 id=>
 document.getElementById(id)
-.textContent=
-money(f.profit)
+.textContent=money(f.profit)
 );
-
 
 document.getElementById("dDeals")
 .textContent=f.deals||0;
 
-
 document.getElementById("fCommission")
-.textContent=
-(f.commission||0)+"%";
-
+.textContent=(f.commission||0)+"%";
 
 renderPayment(currentRequisite);
+
+renderDeposit(currentRequisite);
 
 renderDeals();
 
@@ -1965,8 +1950,7 @@ renderAdmin();
 
 function renderDeals(){
 
-document.getElementById("dealsTable")
-.innerHTML=
+const rows=
 
 '<tr>'+
 '<td>#1001</td>'+
@@ -1982,6 +1966,9 @@ document.getElementById("dealsTable")
 '<td><span class="badge gray">Обработана</span></td>'+
 '</tr>';
 
+document.getElementById("dealsTable")
+.innerHTML=rows;
+
 }
 
 
@@ -1989,37 +1976,23 @@ function renderPayment(p){
 
 p=p||{};
 
-
 document.getElementById("pMethod")
-.textContent=
-p.payment_method||"—";
-
+.textContent=p.payment_method||"—";
 
 document.getElementById("pNetwork")
-.textContent=
-p.network||"—";
-
+.textContent=p.network||"—";
 
 document.getElementById("pWallet")
-.textContent=
-p.wallet||
-"Не указан";
-
+.textContent=p.wallet||"Не указан";
 
 const wrap=
-document.getElementById(
-"pWalletLinkWrap"
-);
+document.getElementById("pWalletLinkWrap");
 
 const link=
-document.getElementById(
-"pWalletLink"
-);
+document.getElementById("pWalletLink");
 
 const walletLink=
-(p.wallet_link||"")
-.trim();
-
+(p.wallet_link||"").trim();
 
 if(walletLink){
 
@@ -2039,7 +2012,6 @@ link.textContent="";
 
 }
 
-
 const img=
 document.getElementById("pQr");
 
@@ -2054,6 +2026,150 @@ img.src=p.qr_url;
 }
 
 
+function renderDeposit(p){
+
+p=p||{};
+
+const has=
+!!(
+p.payment_method||
+p.network||
+p.wallet||
+p.wallet_link||
+p.qr_url
+);
+
+document.getElementById("depositEmpty")
+.style.display=
+has?"none":"block";
+
+document.getElementById("depositData")
+.style.display=
+has?"block":"none";
+
+if(!has)return;
+
+document.getElementById("depositMethod")
+.textContent=
+p.payment_method||"—";
+
+document.getElementById("depositNetwork")
+.textContent=
+p.network||"—";
+
+document.getElementById("depositWallet")
+.textContent=
+p.wallet||"Не указан";
+
+const qrWrap=
+document.getElementById("depositQrWrap");
+
+qrWrap.style.display=
+p.qr_url
+?"block"
+:"none";
+
+if(p.qr_url)
+document.getElementById("depositQr")
+.src=p.qr_url;
+
+const linkWrap=
+document.getElementById("depositLinkWrap");
+
+const link=
+document.getElementById("depositLink");
+
+const url=
+(p.wallet_link||"").trim();
+
+if(url){
+
+linkWrap.style.display="block";
+
+link.href=url;
+
+link.textContent=url;
+
+}else{
+
+linkWrap.style.display="none";
+
+link.removeAttribute("href");
+
+link.textContent="";
+
+}
+
+}
+
+
+async function copyDepositWallet(){
+
+const w=
+currentRequisite?.wallet||"";
+
+if(!w)
+return alert(
+"Крипто-кошелёк не указан администратором"
+);
+
+try{
+
+await navigator.clipboard
+.writeText(w);
+
+alert(
+"Адрес кошелька скопирован"
+);
+
+}catch(e){
+
+alert(w);
+
+}
+
+}
+
+
+function submitWithdraw(){
+
+const amount=
+Number(
+document.getElementById(
+"withdrawAmount"
+).value
+)||0;
+
+const network=
+document.getElementById(
+"withdrawNetwork"
+).value;
+
+const wallet=
+document.getElementById(
+"withdrawWallet"
+).value.trim();
+
+if(amount<=0)
+return alert(
+"Введите сумму вывода"
+);
+
+if(!wallet)
+return alert(
+"Введите адрес кошелька"
+);
+
+alert(
+"Заявка на вывод создана\n\n"+
+"Сумма: "+amount+" USDT\n"+
+"Сеть: "+network+"\n"+
+"Кошелёк: "+wallet
+);
+
+}
+
+
 async function copyWallet(){
 
 const w=
@@ -2063,7 +2179,6 @@ if(!w)
 return alert(
 "Реквизит не указан"
 );
-
 
 try{
 
@@ -2088,7 +2203,6 @@ async function renderAdmin(){
 if(currentProfile?.role!=="ADMIN")
 return;
 
-
 const {data,error}=
 await supabaseClient
 .from("profiles")
@@ -2100,7 +2214,6 @@ await supabaseClient
 {ascending:false}
 );
 
-
 const body=
 document.getElementById(
 "usersTable"
@@ -2108,15 +2221,12 @@ document.getElementById(
 
 body.innerHTML="";
 
-
 if(error){
 
 body.innerHTML=
-'<tr>'+
-'<td colspan="5">'+
+'<tr><td colspan="5">'+
 'Ошибка загрузки пользователей'+
-'</td>'+
-'</tr>';
+'</td></tr>';
 
 console.error(error);
 
@@ -2124,15 +2234,12 @@ return;
 
 }
 
-
 (data||[]).forEach(u=>{
 
 const tr=
 document.createElement("tr");
 
-
 tr.innerHTML=
-
 '<td>'+
 esc(u.name||"—")+
 '</td>'+
@@ -2145,8 +2252,7 @@ esc(u.email||"—")+
 esc(u.role||"USER")+
 '</td>'+
 
-'<td>'+
-'<span class="badge '+
+'<td><span class="badge '+
 (u.status==="active"
 ?"green"
 :"red")+
@@ -2154,23 +2260,18 @@ esc(u.role||"USER")+
 (u.status==="active"
 ?"Активен"
 :"Заблокирован")+
-'</span>'+
-'</td>'+
+'</span></td>'+
 
-'<td>'+
-'<button class="btn light" '+
+'<td><button class="btn light" '+
 'onclick="openManage(\''+
 escAttr(u.id)+
 '\')">'+
 'Управлять'+
-'</button>'+
-'</td>';
-
+'</button></td>';
 
 body.appendChild(tr);
 
 });
-
 
 document.getElementById("auditLog")
 .innerHTML=
@@ -2184,47 +2285,40 @@ async function createUser(){
 if(currentProfile?.role!=="ADMIN")
 return;
 
-
 const name=
-document.getElementById("newName")
-.value
-.trim();
-
+document.getElementById(
+"newName"
+).value.trim();
 
 const email=
-document.getElementById("newEmail")
-.value
-.trim()
+document.getElementById(
+"newEmail"
+).value.trim()
 .toLowerCase();
 
-
 const password=
-document.getElementById("newPassword")
-.value;
-
+document.getElementById(
+"newPassword"
+).value;
 
 if(!name||!email||!password)
 return alert(
 "Заполните имя, email и пароль"
 );
 
-
 if(!/^\S+@\S+\.\S+$/.test(email))
 return alert(
 "Введите корректный email"
 );
-
 
 if(password.length<6)
 return alert(
 "Пароль минимум 6 символов"
 );
 
-
 const {data,error}=
 await supabaseClient
-.functions
-.invoke(
+.functions.invoke(
 "create-user",
 {
 body:{
@@ -2234,7 +2328,6 @@ password
 }
 }
 );
-
 
 if(error){
 
@@ -2248,7 +2341,6 @@ return alert(
 
 }
 
-
 if(!data?.ok)
 return alert(
 "Ошибка создания USER: "+
@@ -2256,19 +2348,19 @@ return alert(
 "Неизвестная ошибка")
 );
 
+document.getElementById(
+"newName"
+).value="";
 
-document.getElementById("newName")
-.value="";
+document.getElementById(
+"newEmail"
+).value="";
 
-document.getElementById("newEmail")
-.value="";
-
-document.getElementById("newPassword")
-.value="";
-
+document.getElementById(
+"newPassword"
+).value="";
 
 await renderAdmin();
-
 
 alert(
 "USER успешно создан. Он может войти по выданным email и паролю."
@@ -2282,9 +2374,7 @@ async function openManage(id){
 if(currentProfile?.role!=="ADMIN")
 return;
 
-
 managedId=id;
-
 
 const {data:u,error}=
 await supabaseClient
@@ -2293,12 +2383,10 @@ await supabaseClient
 .eq("id",id)
 .single();
 
-
 if(error||!u)
 return alert(
 "Пользователь не найден"
 );
-
 
 const {data:p}=
 await supabaseClient
@@ -2312,97 +2400,73 @@ await supabaseClient
 .limit(1)
 .maybeSingle();
 
-
 const r=p||{};
 
-
-document.getElementById("manageEmail")
-.textContent=
+document.getElementById(
+"manageEmail"
+).textContent=
 "Редактирование: "+
 (u.email||"");
-
 
 document.getElementById("mName")
 .value=u.name||"";
 
-
 document.getElementById("mEmail")
 .value=u.email||"";
-
 
 document.getElementById("mPassword")
 .value="";
 
-
 document.getElementById("mStatus")
 .value=u.status||"active";
-
 
 document.getElementById("mDeposit")
 .value=u.deposit||0;
 
-
 document.getElementById("mTurnover")
 .value=u.turnover||0;
-
 
 document.getElementById("mProfit")
 .value=u.profit||0;
 
-
 document.getElementById("mCommission")
 .value=u.commission||0;
-
 
 document.getElementById("mDeals")
 .value=u.deals||0;
 
-
 document.getElementById("mMethod")
-.value=
-r.payment_method||
+.value=r.payment_method||
 "Trust Wallet";
 
-
 document.getElementById("mNetwork")
-.value=
-r.network||
+.value=r.network||
 "TRC20";
 
-
 document.getElementById("mWallet")
-.value=
-r.wallet||"";
-
+.value=r.wallet||"";
 
 document.getElementById("mWalletLink")
-.value=
-r.wallet_link||"";
-
+.value=r.wallet_link||"";
 
 qrData=r.qr_url||"";
 
 showQrPreview();
 
-
 document.getElementById(
 "manageModal"
-)
-.classList
-.add("show");
+).classList.add("show");
 
 }
 
 
 function closeManage(){
 
-document
-.getElementById("manageModal")
-.classList
-.remove("show");
+document.getElementById(
+"manageModal"
+).classList.remove("show");
 
 managedId=null;
-
 qrData="";
 
 }
@@ -2410,78 +2474,78 @@ qrData="";
 
 async function saveManagedUser(){
 
-if(!managedId)
-return;
-
+if(!managedId)return;
 
 const newEmail=
-document.getElementById("mEmail")
-.value
-.trim()
+document.getElementById(
+"mEmail"
+).value.trim()
 .toLowerCase();
 
-
 const walletLink=
-document.getElementById("mWalletLink")
-.value
-.trim();
-
+document.getElementById(
+"mWalletLink"
+).value.trim();
 
 if(!newEmail)
 return alert(
 "Email обязателен"
 );
 
-
 if(
-walletLink&&
+walletLink &&
 !/^https?:\/\//i.test(walletLink)
 )
 return alert(
 "Ссылка на кошелёк должна начинаться с http:// или https://"
 );
 
-
 const profileUpdate={
 
 name:
-document.getElementById("mName")
-.value
-.trim()||
+document.getElementById(
+"mName"
+).value.trim()||
 "Пользователь",
 
 status:
-document.getElementById("mStatus")
-.value,
+document.getElementById(
+"mStatus"
+).value,
 
 deposit:
 Number(
-document.getElementById("mDeposit")
-.value
+document.getElementById(
+"mDeposit"
+).value
 )||0,
 
 turnover:
 Number(
-document.getElementById("mTurnover")
-.value
+document.getElementById(
+"mTurnover"
+).value
 )||0,
 
 profit:
 Number(
-document.getElementById("mProfit")
-.value
+document.getElementById(
+"mProfit"
+).value
 )||0,
 
 commission:
 Number(
-document.getElementById("mCommission")
-.value
+document.getElementById(
+"mCommission"
+).value
 )||0,
 
 deals:
 Number(
-document.getElementById("mDeals")
-.value
+document.getElementById(
+"mDeals"
+).value
 )||0,
 
 updated_at:
@@ -2489,13 +2553,11 @@ new Date().toISOString()
 
 };
 
-
 const {error:e1}=
 await supabaseClient
 .from("profiles")
 .update(profileUpdate)
 .eq("id",managedId);
-
 
 if(e1)
 return alert(
@@ -2503,23 +2565,24 @@ return alert(
 e1.message
 );
 
-
 const req={
 
 user_id:managedId,
 
 payment_method:
-document.getElementById("mMethod")
-.value,
+document.getElementById(
+"mMethod"
+).value,
 
 network:
-document.getElementById("mNetwork")
-.value,
+document.getElementById(
+"mNetwork"
+).value,
 
 wallet:
-document.getElementById("mWallet")
-.value
-.trim(),
+document.getElementById(
+"mWallet"
+).value.trim(),
 
 wallet_link:
 walletLink,
@@ -2532,7 +2595,6 @@ new Date().toISOString()
 
 };
 
-
 const {data:existing}=
 await supabaseClient
 .from("requisites")
@@ -2541,9 +2603,7 @@ await supabaseClient
 .limit(1)
 .maybeSingle();
 
-
 let e2;
-
 
 if(existing){
 
@@ -2566,13 +2626,11 @@ await supabaseClient
 
 }
 
-
 if(e2)
 return alert(
 "Профиль сохранён, но реквизиты не сохранились: "+
 e2.message
 );
-
 
 closeManage();
 
@@ -2589,9 +2647,7 @@ alert(
 
 async function toggleManagedStatus(){
 
-if(!managedId)
-return;
-
+if(!managedId)return;
 
 const {data:u}=
 await supabaseClient
@@ -2600,37 +2656,29 @@ await supabaseClient
 .eq("id",managedId)
 .single();
 
-
-if(!u)
-return;
-
+if(!u)return;
 
 if(u.role==="ADMIN")
 return alert(
 "ADMIN нельзя заблокировать"
 );
 
-
 const next=
 u.status==="active"
 ?"blocked"
 :"active";
-
 
 const {error}=
 await supabaseClient
 .from("profiles")
 .update({
 status:next,
-updated_at:
-new Date().toISOString()
+updated_at:new Date().toISOString()
 })
 .eq("id",managedId);
 
-
 if(error)
 return alert(error.message);
-
 
 await openManage(managedId);
 
@@ -2641,36 +2689,28 @@ renderAdmin();
 
 function previewQr(e){
 
-const file=e.target.files[0];
+const file=
+e.target.files[0];
 
-if(!file)
-return;
-
+if(!file)return;
 
 if(!file.type.startsWith("image/"))
 return alert(
 "Выберите изображение QR-кода"
 );
 
-
 if(file.size>2*1024*1024)
 return alert(
 "Изображение должно быть до 2 МБ"
 );
 
-
 const reader=
 new FileReader();
 
-
 reader.onload=()=>{
-
 qrData=reader.result;
-
 showQrPreview();
-
 };
-
 
 reader.readAsDataURL(file);
 
@@ -2684,12 +2724,10 @@ document.getElementById(
 "mQrPreview"
 );
 
-
 img.style.display=
 qrData
 ?"block"
 :"none";
-
 
 if(qrData)
 img.src=qrData;
@@ -2713,20 +2751,17 @@ showQrPreview();
 document.addEventListener(
 "keydown",
 e=>{
-
 if(e.key==="Escape")
 closeManage();
-
 }
 );
 
 
-supabaseClient.auth.onAuthStateChange(
+supabaseClient.auth
+.onAuthStateChange(
 (_event,session)=>{
-
 if(session&&!currentUser)
 start();
-
 }
 );
 
