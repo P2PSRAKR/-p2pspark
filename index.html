@@ -4,41 +4,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>P2PSPARK</title>
-
 <style>
-:root{
-  --bg:#f5f7fa;
-  --card:#fff;
-  --text:#101827;
-  --muted:#697386;
-  --line:#e4e8ee;
-  --blue:#2563eb;
-  --blue2:#eaf1ff;
-  --green:#16a34a;
-  --red:#dc2626;
-  --dark:#111827
-}
+:root{--bg:#f5f7fa;--card:#fff;--text:#101827;--muted:#697386;--line:#e4e8ee;--blue:#2563eb;--blue2:#eaf1ff;--green:#16a34a;--red:#dc2626;--dark:#111827}
 
 *{box-sizing:border-box}
 
-body{
+html,body{
   margin:0;
+  width:100%;
+  min-height:100%;
+}
+
+body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
   background:var(--bg);
-  color:var(--text)
+  color:var(--text);
+  overflow-x:hidden;
 }
 
-button,input,select{
-  font:inherit
-}
+button,input,select{font:inherit}
+button{cursor:pointer}
 
-button{
-  cursor:pointer
-}
-
-.app{
-  min-height:100vh
-}
+.app{min-height:100vh}
 
 .sidebar{
   position:fixed;
@@ -46,10 +33,16 @@ button{
   top:0;
   bottom:0;
   width:245px;
+  height:100vh;
   background:#fff;
   border-right:0;
   padding:25px 15px;
-  z-index:20
+  z-index:20;
+  overflow-y:auto;
+  overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior:contain;
+  scrollbar-width:thin;
 }
 
 .logo{
@@ -59,9 +52,7 @@ button{
   padding:4px 14px 28px
 }
 
-.logo span{
-  color:var(--blue)
-}
+.logo span{color:var(--blue)}
 
 .nav-title{
   font-size:11px;
@@ -90,14 +81,13 @@ button{
   color:var(--blue)
 }
 
-.nav button.admin{
-  color:#7c3aed
-}
+.nav button.admin{color:#7c3aed}
 
 .main{
   margin-left:245px;
   padding:30px;
-  max-width:1500px
+  max-width:1500px;
+  min-width:0;
 }
 
 .top{
@@ -142,13 +132,8 @@ button{
   padding:9px 12px
 }
 
-.section{
-  display:none
-}
-
-.section.active{
-  display:block
-}
+.section{display:none}
+.section.active{display:block}
 
 .grid{
   display:grid;
@@ -177,13 +162,8 @@ button{
   margin-top:8px
 }
 
-.green{
-  color:var(--green)
-}
-
-.red{
-  color:var(--red)
-}
+.green{color:var(--green)}
+.red{color:var(--red)}
 
 .small{
   font-size:13px;
@@ -223,60 +203,6 @@ button{
   flex-wrap:wrap
 }
 
-.dashboard-actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-  margin-top:22px;
-  margin-bottom:18px
-}
-
-.dashboard-action{
-  border:0;
-  border-radius:17px;
-  padding:18px 20px;
-  background:#fff;
-  display:flex;
-  align-items:center;
-  gap:15px;
-  text-align:left;
-  box-shadow:0 6px 25px rgba(16,24,40,.04);
-  min-height:82px
-}
-
-.dashboard-action .action-icon{
-  width:46px;
-  height:46px;
-  border-radius:13px;
-  display:grid;
-  place-items:center;
-  font-size:28px;
-  font-weight:800
-}
-
-.deposit-action .action-icon{
-  background:#eaf1ff;
-  color:#2563eb
-}
-
-.withdraw-action .action-icon{
-  background:#ecfdf3;
-  color:#16a34a
-}
-
-.dashboard-action b{
-  display:block;
-  font-size:17px;
-  color:#101827
-}
-
-.dashboard-action small{
-  display:block;
-  margin-top:4px;
-  color:#697386;
-  font-size:13px
-}
-
 .table-wrap{
   overflow:auto;
   background:#fff;
@@ -303,9 +229,7 @@ button{
   color:#8a94a5
 }
 
-.table tr:last-child td{
-  border-bottom:0
-}
+.table tr:last-child td{border-bottom:0}
 
 .badge{
   display:inline-block;
@@ -399,9 +323,7 @@ button{
   margin:0 0 8px
 }
 
-.login-card .field{
-  margin-top:17px
-}
+.login-card .field{margin-top:17px}
 
 .login-card .btn{
   width:100%;
@@ -457,9 +379,7 @@ button{
   font-size:22px
 }
 
-.modalbox h2{
-  margin-top:0
-}
+.modalbox h2{margin-top:0}
 
 .section-title{
   font-size:16px;
@@ -486,12 +406,6 @@ button{
 
 .admin-head h2{
   margin:0 0 5px
-}
-
-.empty{
-  text-align:center;
-  color:var(--muted);
-  padding:35px
 }
 
 .dashboard-actions{
@@ -556,9 +470,7 @@ button{
   margin-bottom:18px
 }
 
-.requisites-head h2{
-  margin:0
-}
+.requisites-head h2{margin:0}
 
 .add-req-btn{
   border:0;
@@ -569,9 +481,7 @@ button{
   font-weight:800
 }
 
-.req-toolbar{
-  margin:16px 0
-}
+.req-toolbar{margin:16px 0}
 
 .req-toolbar input{
   width:100%;
@@ -602,9 +512,7 @@ button{
   gap:12px
 }
 
-.req-card h3{
-  margin:0 0 6px
-}
+.req-card h3{margin:0 0 6px}
 
 .req-meta{
   color:#697386;
@@ -644,17 +552,11 @@ button{
   color:#697386
 }
 
-.req-modal-box{
-  max-width:700px
-}
+.req-modal-box{max-width:700px}
 
-.req-field{
-  margin-top:16px
-}
+.req-field{margin-top:16px}
 
-.req-settings-title{
-  margin-top:26px
-}
+.req-settings-title{margin-top:26px}
 
 .two-fields{
   display:grid;
@@ -664,8 +566,7 @@ button{
 
 .req-save{
   width:100%;
-  margin-top:24px;
-  height:50px
+  margin-top:24px
 }
 
 @media(max-width:560px){
@@ -700,7 +601,8 @@ button{
 
   .sidebar{
     transform:translateX(-100%);
-    transition:.2s
+    transition:.2s;
+    box-shadow:8px 0 30px rgba(15,23,42,.08)
   }
 
   .sidebar.open{
@@ -766,19 +668,18 @@ button{
 <div id="loginScreen" class="login-screen">
   <div class="login-card">
 
-    <div class="login-logo">
-      P2PSPARK
-    </div>
+    <div class="login-logo">P2PSPARK</div>
 
     <div class="login-sub">
       PEOPLE • DEALS • OPPORTUNITIES
     </div>
 
-    <h2>
-      Вход в аккаунт
-    </h2>
+    <h2>Вход в аккаунт</h2>
 
-    <div class="subtitle" style="text-align:center">
+    <div
+      class="subtitle"
+      style="text-align:center"
+    >
       Введите данные, выданные администратором
     </div>
 
@@ -806,21 +707,33 @@ button{
       >
     </div>
 
-    <button class="btn primary" onclick="login()">
+    <button
+      class="btn primary"
+      onclick="login()"
+    >
       Войти →
     </button>
 
-    <div class="small" style="text-align:center;margin-top:18px">
+    <div
+      class="small"
+      style="text-align:center;margin-top:18px"
+    >
       Доступ к аккаунту создаёт администратор
     </div>
 
   </div>
 </div>
 
+<div
+  id="app"
+  class="app"
+  style="display:none"
+>
 
-<div id="app" class="app" style="display:none">
-
-  <aside id="sidebar" class="sidebar">
+  <aside
+    id="sidebar"
+    class="sidebar"
+  >
 
     <div class="logo">
       P2P<span>SPARK</span>
@@ -832,61 +745,98 @@ button{
         Основное
       </div>
 
-      <button data-page="dashboard" onclick="go('dashboard')">
+      <button
+        data-page="dashboard"
+        onclick="go('dashboard')"
+      >
         ▣ &nbsp; Дашборд
       </button>
 
-      <button data-page="finance" onclick="go('finance')">
+      <button
+        data-page="finance"
+        onclick="go('finance')"
+      >
         ◈ &nbsp; Финансы
       </button>
 
-      <button data-page="deals" onclick="go('deals')">
+      <button
+        data-page="deals"
+        onclick="go('deals')"
+      >
         ↔ &nbsp; Сделки
       </button>
 
-      <button data-page="requests" onclick="go('requests')">
+      <button
+        data-page="requests"
+        onclick="go('requests')"
+      >
         ◌ &nbsp; Заявки
       </button>
 
-      <button data-page="disputes" onclick="go('disputes')">
+      <button
+        data-page="disputes"
+        onclick="go('disputes')"
+      >
         ⚠ &nbsp; Споры
       </button>
-
 
       <div class="nav-title">
         Работа
       </div>
 
-      <button data-page="requisites" onclick="go('requisites')">
+      <button
+        data-page="requisites"
+        onclick="go('requisites')"
+      >
         ▤ &nbsp; Реквизиты
       </button>
 
-      <button data-page="devices" onclick="go('devices')">
+      <button
+        data-page="devices"
+        onclick="go('devices')"
+      >
         ▣ &nbsp; Устройства
       </button>
 
-      <button data-page="messages" onclick="go('messages')">
+      <button
+        data-page="messages"
+        onclick="go('messages')"
+      >
         ✉ &nbsp; Сообщения
       </button>
 
-      <button data-page="turbo" onclick="go('turbo')">
+      <button
+        data-page="turbo"
+        onclick="go('turbo')"
+      >
         ⚡ &nbsp; Турбозалив
       </button>
 
-      <button data-page="counterparties" onclick="go('counterparties')">
+      <button
+        data-page="counterparties"
+        onclick="go('counterparties')"
+      >
         ♙ &nbsp; Контрагенты
       </button>
 
-      <button data-page="reports" onclick="go('reports')">
+      <button
+        data-page="reports"
+        onclick="go('reports')"
+      >
         ▥ &nbsp; Отчёты
       </button>
 
-      <button data-page="profile" onclick="go('profile')">
+      <button
+        data-page="profile"
+        onclick="go('profile')"
+      >
         ◉ &nbsp; Профиль
       </button>
 
-
-      <div id="adminNav" style="display:none">
+      <div
+        id="adminNav"
+        style="display:none"
+      >
 
         <div class="nav-title">
           Администрирование
@@ -902,7 +852,6 @@ button{
 
       </div>
 
-
       <div class="nav-title">
         Аккаунт
       </div>
@@ -912,15 +861,15 @@ button{
       </button>
 
     </div>
-
   </aside>
-
 
   <main class="main">
 
     <div class="top">
 
-      <div style="display:flex;align-items:center;gap:12px">
+      <div
+        style="display:flex;align-items:center;gap:12px"
+      >
 
         <button
           class="mobile-menu"
@@ -942,7 +891,6 @@ button{
         </div>
 
       </div>
-
 
       <div class="userbox">
 
@@ -968,7 +916,6 @@ button{
 
     </div>
 
-
     <section
       id="dashboard"
       class="section active"
@@ -977,6 +924,7 @@ button{
       <div class="grid">
 
         <div class="card">
+
           <div class="label">
             Баланс депозита
           </div>
@@ -991,10 +939,11 @@ button{
           <div class="small">
             Текущий баланс
           </div>
+
         </div>
 
-
         <div class="card">
+
           <div class="label">
             Активные сделки
           </div>
@@ -1009,10 +958,11 @@ button{
           <div class="small">
             На текущий момент
           </div>
+
         </div>
 
-
         <div class="card">
+
           <div class="label">
             Оборот
           </div>
@@ -1027,10 +977,11 @@ button{
           <div class="small">
             За текущий месяц
           </div>
+
         </div>
 
-
         <div class="card">
+
           <div class="label">
             Прибыль
           </div>
@@ -1045,10 +996,10 @@ button{
           <div class="small">
             За текущий месяц
           </div>
+
         </div>
 
       </div>
-
 
       <div class="dashboard-actions">
 
@@ -1062,19 +1013,11 @@ button{
           </span>
 
           <span>
-
-            <b>
-              Пополнить
-            </b>
-
-            <small>
-              Пополнить баланс
-            </small>
-
+            <b>Пополнить</b>
+            <small>Пополнить баланс</small>
           </span>
 
         </button>
-
 
         <button
           class="dashboard-action withdraw-action"
@@ -1086,15 +1029,8 @@ button{
           </span>
 
           <span>
-
-            <b>
-              Вывести
-            </b>
-
-            <small>
-              Вывести средства
-            </small>
-
+            <b>Вывести</b>
+            <small>Вывести средства</small>
           </span>
 
         </button>
@@ -1103,15 +1039,12 @@ button{
 
     </section>
 
-
     <section
       id="finance"
       class="section"
     >
 
-      <h2>
-        Финансы
-      </h2>
+      <h2>Финансы</h2>
 
       <div class="subtitle">
         Ваши финансовые показатели
@@ -1123,10 +1056,7 @@ button{
       >
 
         <div class="card">
-          <div class="label">
-            Депозит
-          </div>
-
+          <div class="label">Депозит</div>
           <div
             id="fDeposit"
             class="big"
@@ -1135,12 +1065,8 @@ button{
           </div>
         </div>
 
-
         <div class="card">
-          <div class="label">
-            Оборот
-          </div>
-
+          <div class="label">Оборот</div>
           <div
             id="fTurnover"
             class="big"
@@ -1149,12 +1075,8 @@ button{
           </div>
         </div>
 
-
         <div class="card">
-          <div class="label">
-            Прибыль
-          </div>
-
+          <div class="label">Прибыль</div>
           <div
             id="fProfit"
             class="big green"
@@ -1163,12 +1085,8 @@ button{
           </div>
         </div>
 
-
         <div class="card">
-          <div class="label">
-            Комиссия
-          </div>
-
+          <div class="label">Комиссия</div>
           <div
             id="fCommission"
             class="big"
@@ -1181,15 +1099,12 @@ button{
 
     </section>
 
-
     <section
       id="deals"
       class="section"
     >
 
-      <h2>
-        Сделки
-      </h2>
+      <h2>Сделки</h2>
 
       <div class="subtitle">
         История и текущие операции
@@ -1211,15 +1126,12 @@ button{
 
     </section>
 
-
     <section
       id="requests"
       class="section"
     >
 
-      <h2>
-        Заявки
-      </h2>
+      <h2>Заявки</h2>
 
       <div class="subtitle">
         Входящие и исходящие заявки
@@ -1238,15 +1150,12 @@ button{
 
     </section>
 
-
     <section
       id="disputes"
       class="section"
     >
 
-      <h2>
-        Споры
-      </h2>
+      <h2>Споры</h2>
 
       <div
         class="card"
@@ -1261,23 +1170,19 @@ button{
 
     </section>
 
-
     <section
       id="requisites"
       class="section"
     ></section>
 
-
-    <!-- ПОПОЛНЕНИЕ -->
+    <!-- DEPOSIT -->
 
     <section
       id="deposit"
       class="section"
     >
 
-      <h2>
-        Пополнение
-      </h2>
+      <h2>Пополнение</h2>
 
       <div class="subtitle">
         Реквизиты для пополнения
@@ -1297,7 +1202,6 @@ button{
           >
 
         </div>
-
 
         <div
           class="form-grid"
@@ -1320,13 +1224,14 @@ button{
 
           </div>
 
+          <!-- ТОЛЬКО КОШЕЛЁК -->
 
           <div
             style="grid-column:1/-1"
           >
 
             <div class="label">
-              Кошелёк / реквизит
+              Кошелёк
             </div>
 
             <div
@@ -1338,6 +1243,7 @@ button{
 
           </div>
 
+          <!-- ССЫЛКА НА КРИПТО-КОШЕЛЁК -->
 
           <div
             id="depositLinkWrap"
@@ -1360,7 +1266,6 @@ button{
 
         </div>
 
-
         <div
           class="actions"
           style="margin-top:18px"
@@ -1373,7 +1278,6 @@ button{
             Скопировать кошелёк
           </button>
 
-
           <button
             class="btn primary"
             onclick="openDepositLink()"
@@ -1382,7 +1286,6 @@ button{
           </button>
 
         </div>
-
 
         <div
           id="depositEmpty"
@@ -1396,15 +1299,12 @@ button{
 
     </section>
 
-
     <section
       id="withdraw"
       class="section"
     >
 
-      <h2>
-        Вывод
-      </h2>
+      <h2>Вывод</h2>
 
       <div class="subtitle">
         Создайте заявку на вывод средств
@@ -1433,7 +1333,6 @@ button{
 
           </div>
 
-
           <div class="field">
 
             <label>
@@ -1441,31 +1340,14 @@ button{
             </label>
 
             <select id="withdrawNetwork">
-
-              <option>
-                TRC20
-              </option>
-
-              <option>
-                ERC20
-              </option>
-
-              <option>
-                BEP20
-              </option>
-
-              <option>
-                SOL
-              </option>
-
-              <option>
-                TON
-              </option>
-
+              <option>TRC20</option>
+              <option>ERC20</option>
+              <option>BEP20</option>
+              <option>SOL</option>
+              <option>TON</option>
             </select>
 
           </div>
-
 
           <div
             class="field"
@@ -1483,7 +1365,6 @@ button{
 
           </div>
 
-
           <div
             class="field"
             style="grid-column:1/-1"
@@ -1500,7 +1381,6 @@ button{
             >
 
           </div>
-
 
           <div
             class="field"
@@ -1528,7 +1408,6 @@ button{
 
         </div>
 
-
         <button
           class="btn primary"
           style="margin-top:20px"
@@ -1541,15 +1420,12 @@ button{
 
     </section>
 
-
     <section
       id="devices"
       class="section"
     >
 
-      <h2>
-        Устройства
-      </h2>
+      <h2>Устройства</h2>
 
       <div
         class="card"
@@ -1564,15 +1440,12 @@ button{
 
     </section>
 
-
     <section
       id="messages"
       class="section"
     >
 
-      <h2>
-        Сообщения
-      </h2>
+      <h2>Сообщения</h2>
 
       <div
         class="card"
@@ -1591,15 +1464,12 @@ button{
 
     </section>
 
-
     <section
       id="turbo"
       class="section"
     >
 
-      <h2>
-        Турбозалив
-      </h2>
+      <h2>Турбозалив</h2>
 
       <div
         class="card"
@@ -1614,15 +1484,12 @@ button{
 
     </section>
 
-
     <section
       id="counterparties"
       class="section"
     >
 
-      <h2>
-        Контрагенты
-      </h2>
+      <h2>Контрагенты</h2>
 
       <div
         class="card"
@@ -1637,15 +1504,12 @@ button{
 
     </section>
 
-
     <section
       id="reports"
       class="section"
     >
 
-      <h2>
-        Отчёты
-      </h2>
+      <h2>Отчёты</h2>
 
       <div
         class="card"
@@ -1663,15 +1527,12 @@ button{
 
     </section>
 
-
     <section
       id="profile"
       class="section"
     >
 
-      <h2>
-        Профиль
-      </h2>
+      <h2>Профиль</h2>
 
       <div
         class="card"
@@ -1682,9 +1543,7 @@ button{
 
           <div class="field">
 
-            <label>
-              Email
-            </label>
+            <label>Email</label>
 
             <input
               id="profileEmail"
@@ -1693,12 +1552,9 @@ button{
 
           </div>
 
-
           <div class="field">
 
-            <label>
-              Роль
-            </label>
+            <label>Роль</label>
 
             <input
               id="profileRole"
@@ -1707,12 +1563,9 @@ button{
 
           </div>
 
-
           <div class="field">
 
-            <label>
-              Статус
-            </label>
+            <label>Статус</label>
 
             <input
               id="profileStatus"
@@ -1726,7 +1579,6 @@ button{
       </div>
 
     </section>
-
 
     <section
       id="admin"
@@ -1744,7 +1596,6 @@ button{
         </div>
 
       </div>
-
 
       <div class="card">
 
@@ -1774,7 +1625,6 @@ button{
 
           </div>
 
-
           <div class="field">
 
             <label>
@@ -1788,7 +1638,6 @@ button{
             >
 
           </div>
-
 
           <div class="field">
 
@@ -1806,7 +1655,6 @@ button{
 
         </div>
 
-
         <button
           class="btn primary"
           style="margin-top:18px"
@@ -1816,7 +1664,6 @@ button{
         </button>
 
       </div>
-
 
       <div class="card">
 
@@ -1851,7 +1698,6 @@ button{
 
       </div>
 
-
       <div class="card">
 
         <h2>
@@ -1870,9 +1716,9 @@ button{
     </section>
 
   </main>
-
 </div>
 
+<!-- ADMIN REQUISITES MODAL -->
 
 <div
   id="reqModal"
@@ -1892,7 +1738,6 @@ button{
       Добавьте реквизиты
     </h2>
 
-
     <div class="field req-field">
 
       <label>
@@ -1900,27 +1745,21 @@ button{
       </label>
 
       <select id="rqDevice">
-
         <option value="">
           Выберите устройство
         </option>
-
         <option>
           Основное устройство
         </option>
-
         <option>
           iPhone
         </option>
-
         <option>
           Android
         </option>
-
       </select>
 
     </div>
-
 
     <div class="field req-field">
 
@@ -1929,40 +1768,31 @@ button{
       </label>
 
       <select id="rqBank">
-
         <option value="">
           Выберите банк
         </option>
-
         <option>
           Kaspi Bank
         </option>
-
         <option>
           Halyk Bank
         </option>
-
         <option>
           Jusan Bank
         </option>
-
         <option>
           Freedom Bank
         </option>
-
         <option>
           Другой
         </option>
-
       </select>
 
     </div>
 
-
     <div class="section-title req-settings-title">
       Настройки входящего трафика
     </div>
-
 
     <div class="two-fields">
 
@@ -1981,7 +1811,6 @@ button{
 
       </div>
 
-
       <div class="field">
 
         <label>
@@ -1999,7 +1828,6 @@ button{
 
     </div>
 
-
     <div class="field req-field">
 
       <label>
@@ -2014,7 +1842,6 @@ button{
       >
 
     </div>
-
 
     <div class="field req-field">
 
@@ -2031,11 +1858,9 @@ button{
 
     </div>
 
-
     <div class="section-title req-settings-title">
       Время работы профиля
     </div>
-
 
     <div class="two-fields">
 
@@ -2054,7 +1879,6 @@ button{
 
       </div>
 
-
       <div class="field">
 
         <label>
@@ -2072,7 +1896,6 @@ button{
 
     </div>
 
-
     <div class="field req-field">
 
       <label>
@@ -2080,28 +1903,22 @@ button{
       </label>
 
       <select id="rqTimezone">
-
         <option value="Asia/Almaty">
           UTC+5 — Алматы
         </option>
-
         <option value="UTC">
           UTC
         </option>
-
         <option value="Europe/Moscow">
           UTC+3 — Москва
         </option>
-
       </select>
 
     </div>
 
-
     <div class="section-title req-settings-title">
       Крипто-реквизит
     </div>
-
 
     <div class="two-fields">
 
@@ -2112,27 +1929,13 @@ button{
         </label>
 
         <select id="rqMethod">
-
-          <option>
-            Bybit
-          </option>
-
-          <option>
-            Trust Wallet
-          </option>
-
-          <option>
-            Binance
-          </option>
-
-          <option>
-            Другой
-          </option>
-
+          <option>Bybit</option>
+          <option>Trust Wallet</option>
+          <option>Binance</option>
+          <option>Другой</option>
         </select>
 
       </div>
-
 
       <div class="field">
 
@@ -2141,33 +1944,16 @@ button{
         </label>
 
         <select id="rqNetwork">
-
-          <option>
-            TRC20
-          </option>
-
-          <option>
-            ERC20
-          </option>
-
-          <option>
-            BEP20
-          </option>
-
-          <option>
-            SOL
-          </option>
-
-          <option>
-            TON
-          </option>
-
+          <option>TRC20</option>
+          <option>ERC20</option>
+          <option>BEP20</option>
+          <option>SOL</option>
+          <option>TON</option>
         </select>
 
       </div>
 
     </div>
-
 
     <div class="field req-field">
 
@@ -2182,7 +1968,6 @@ button{
 
     </div>
 
-
     <div class="field req-field">
 
       <label>
@@ -2196,7 +1981,6 @@ button{
       >
 
     </div>
-
 
     <div class="field req-field">
 
@@ -2219,7 +2003,6 @@ button{
 
     </div>
 
-
     <button
       class="btn primary req-save"
       onclick="saveReqModal()"
@@ -2228,9 +2011,9 @@ button{
     </button>
 
   </div>
-
 </div>
 
+<!-- MANAGE USER MODAL -->
 
 <div
   id="manageModal"
@@ -2255,11 +2038,9 @@ button{
       id="manageEmail"
     ></div>
 
-
     <div class="section-title">
       1. Аккаунт
     </div>
-
 
     <div class="form-grid">
 
@@ -2273,7 +2054,6 @@ button{
 
       </div>
 
-
       <div class="field">
 
         <label>
@@ -2286,7 +2066,6 @@ button{
         >
 
       </div>
-
 
       <div class="field">
 
@@ -2302,7 +2081,6 @@ button{
 
       </div>
 
-
       <div class="field">
 
         <label>
@@ -2310,26 +2088,21 @@ button{
         </label>
 
         <select id="mStatus">
-
           <option value="active">
             Активен
           </option>
-
           <option value="blocked">
             Заблокирован
           </option>
-
         </select>
 
       </div>
 
     </div>
 
-
     <div class="section-title">
       2. Финансы
     </div>
-
 
     <div class="form-grid">
 
@@ -2347,7 +2120,6 @@ button{
 
       </div>
 
-
       <div class="field">
 
         <label>
@@ -2361,7 +2133,6 @@ button{
         >
 
       </div>
-
 
       <div class="field">
 
@@ -2377,7 +2148,6 @@ button{
 
       </div>
 
-
       <div class="field">
 
         <label>
@@ -2391,7 +2161,6 @@ button{
         >
 
       </div>
-
 
       <div class="field">
 
@@ -2409,11 +2178,9 @@ button{
 
     </div>
 
-
     <div class="section-title">
       3. Реквизиты / способ оплаты
     </div>
-
 
     <div class="form-grid">
 
@@ -2424,27 +2191,13 @@ button{
         </label>
 
         <select id="mMethod">
-
-          <option>
-            Trust Wallet
-          </option>
-
-          <option>
-            Binance
-          </option>
-
-          <option>
-            Bybit
-          </option>
-
-          <option>
-            Другой
-          </option>
-
+          <option>Trust Wallet</option>
+          <option>Binance</option>
+          <option>Bybit</option>
+          <option>Другой</option>
         </select>
 
       </div>
-
 
       <div class="field">
 
@@ -2453,31 +2206,14 @@ button{
         </label>
 
         <select id="mNetwork">
-
-          <option>
-            TRC20
-          </option>
-
-          <option>
-            ERC20
-          </option>
-
-          <option>
-            BEP20
-          </option>
-
-          <option>
-            SOL
-          </option>
-
-          <option>
-            TON
-          </option>
-
+          <option>TRC20</option>
+          <option>ERC20</option>
+          <option>BEP20</option>
+          <option>SOL</option>
+          <option>TON</option>
         </select>
 
       </div>
-
 
       <div
         class="field"
@@ -2495,7 +2231,6 @@ button{
 
       </div>
 
-
       <div
         class="field"
         style="grid-column:1/-1"
@@ -2512,7 +2247,6 @@ button{
         >
 
       </div>
-
 
       <div
         class="field"
@@ -2542,12 +2276,10 @@ button{
 
     </div>
 
-
     <img
       id="mQrPreview"
       class="preview"
     >
-
 
     <div
       class="actions"
@@ -2579,24 +2311,21 @@ button{
     </div>
 
   </div>
-
 </div>
-
 
 <script>
 
 const SUPABASE_URL =
-  "https://crjqzqulqjqclqajohzb.supabase.co";
+"https://crjqzqulqjqclqajohzb.supabase.co";
 
 const SUPABASE_PUBLISHABLE_KEY =
-  "sb_publishable_HMPc8KbTKRB51sq-tRqFJw_5jni_ag8";
+"sb_publishable_HMPc8KbTKRB51sq-tRqFJw_5jni_ag8";
 
 const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-  );
-
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
 
 let currentUser = null;
 let currentProfile = null;
@@ -2604,311 +2333,199 @@ let currentRequisite = null;
 let managedId = null;
 let qrData = "";
 
-
 function money(n){
-  return Number(n||0)
-    .toLocaleString("ru-RU")+" USDT"
+  return Number(n||0).toLocaleString("ru-RU")+" USDT";
 }
-
 
 function esc(s){
-  return String(s??"")
-    .replace(
-      /[&<>"']/g,
-      m => ({
-        "&":"&amp;",
-        "<":"&lt;",
-        ">":"&gt;",
-        '"':"&quot;",
-        "'":"&#039;"
-      }[m])
-    )
+  return String(s??"").replace(
+    /[&<>"']/g,
+    m=>({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[m])
+  );
 }
-
 
 function escAttr(s){
   return String(s??"")
     .replace(/\\/g,"\\\\")
-    .replace(/'/g,"\\'")
+    .replace(/'/g,"\\'");
 }
-
 
 function setLoginError(text){
-  const e =
-    document.getElementById("loginError");
-
-  e.textContent = text;
-  e.style.display = "block"
+  const e=document.getElementById("loginError");
+  e.textContent=text;
+  e.style.display="block";
 }
-
 
 async function login(){
 
-  const email =
-    document
-      .getElementById("loginEmail")
-      .value
-      .trim()
-      .toLowerCase();
+  const email=
+    document.getElementById("loginEmail")
+    .value.trim().toLowerCase();
 
-  const password =
-    document
-      .getElementById("loginPassword")
-      .value;
+  const password=
+    document.getElementById("loginPassword").value;
 
   if(!email||!password)
-    return setLoginError(
-      "Введите email и пароль"
-    );
+    return setLoginError("Введите email и пароль");
 
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .auth
-      .signInWithPassword({
-        email,
-        password
-      });
-
+  const {data,error}=
+    await supabaseClient.auth.signInWithPassword({
+      email,
+      password
+    });
 
   if(error){
-
     console.error(error);
-
-    return setLoginError(
-      "Неверный email или пароль"
-    );
-
+    return setLoginError("Неверный email или пароль");
   }
 
-
   if(!data.user)
-    return setLoginError(
-      "Не удалось войти"
-    );
-
+    return setLoginError("Не удалось войти");
 
   await start();
-
 }
-
 
 async function loadProfile(){
 
   if(!currentUser)
     return false;
 
-
-  const {
-    data,
-    error
-  } =
+  const {data,error}=
     await supabaseClient
       .from("profiles")
       .select("*")
       .eq("id",currentUser.id)
       .single();
 
-
   if(error){
-
     console.error(error);
-
     alert(
       "Профиль пользователя не найден в Supabase. Сначала создайте профиль для этого аккаунта."
     );
-
     return false;
-
   }
 
+  currentProfile=data;
 
-  currentProfile =
-    data;
-
-
-  const {
-    data:req
-  } =
+  const {data:req}=
     await supabaseClient
       .from("requisites")
       .select("*")
-      .eq(
-        "user_id",
-        currentUser.id
-      )
-      .order(
-        "created_at",
-        {
-          ascending:false
-        }
-      )
+      .eq("user_id",currentUser.id)
+      .order("created_at",{ascending:false})
       .limit(1)
       .maybeSingle();
 
-
-  currentRequisite =
-    req||null;
-
+  currentRequisite=req||null;
 
   return true;
-
 }
-
 
 async function start(){
 
-  const {data} =
-    await supabaseClient
-      .auth
-      .getSession();
+  const {data}=
+    await supabaseClient.auth.getSession();
 
-
-  currentUser =
-    data.session?.user||null;
-
+  currentUser=data.session?.user||null;
 
   if(!currentUser){
 
-    document
-      .getElementById("loginScreen")
+    document.getElementById("loginScreen")
       .style.display="grid";
 
-    document
-      .getElementById("app")
+    document.getElementById("app")
       .style.display="none";
 
     return;
-
   }
-
 
   if(!(await loadProfile())){
-
-    await supabaseClient
-      .auth
-      .signOut();
-
+    await supabaseClient.auth.signOut();
     return;
-
   }
 
-
-  if(
-    currentProfile.status ===
-    "blocked"
-  ){
+  if(currentProfile.status==="blocked"){
 
     alert(
       "Ваш аккаунт заблокирован администратором"
     );
 
-    await supabaseClient
-      .auth
-      .signOut();
+    await supabaseClient.auth.signOut();
 
     return;
-
   }
 
-
-  document
-    .getElementById("loginScreen")
+  document.getElementById("loginScreen")
     .style.display="none";
 
-
-  document
-    .getElementById("app")
+  document.getElementById("app")
     .style.display="block";
 
-
-  document
-    .getElementById("adminNav")
-    .style.display =
+  document.getElementById("adminNav")
+    .style.display=
       currentProfile.role==="ADMIN"
-        ? "block"
-        : "none";
+      ?"block"
+      :"none";
 
-
-  document
-    .getElementById("topEmail")
-    .textContent =
-      currentProfile.email ||
-      currentUser.email ||
+  document.getElementById("topEmail")
+    .textContent=
+      currentProfile.email||
+      currentUser.email||
       "";
 
-
-  document
-    .getElementById("roleText")
-    .textContent =
+  document.getElementById("roleText")
+    .textContent=
       currentProfile.role==="ADMIN"
-        ? "ADMIN"
-        : "USER";
+      ?"ADMIN"
+      :"USER";
 
-
-  document
-    .getElementById("avatar")
-    .textContent =
+  document.getElementById("avatar")
+    .textContent=
       (
-        currentProfile.name ||
-        currentProfile.email ||
+        currentProfile.name||
+        currentProfile.email||
         "U"
       )
       .charAt(0)
       .toUpperCase();
 
-
-  document
-    .getElementById("profileEmail")
-    .value =
-      currentProfile.email ||
-      currentUser.email ||
+  document.getElementById("profileEmail")
+    .value=
+      currentProfile.email||
+      currentUser.email||
       "";
 
-
-  document
-    .getElementById("profileRole")
-    .value =
-      currentProfile.role ||
+  document.getElementById("profileRole")
+    .value=
+      currentProfile.role||
       "USER";
 
-
-  document
-    .getElementById("profileStatus")
-    .value =
+  document.getElementById("profileStatus")
+    .value=
       currentProfile.status==="blocked"
-        ? "Заблокирован"
-        : "Активен";
-
+      ?"Заблокирован"
+      :"Активен";
 
   render();
-
 }
-
 
 async function logout(){
-
-  await supabaseClient
-    .auth
-    .signOut();
-
+  await supabaseClient.auth.signOut();
   location.reload();
-
 }
-
 
 function toggleMenu(){
 
   document
     .getElementById("sidebar")
-    .classList
-    .toggle("open");
-
+    .classList.toggle("open");
 }
-
 
 function go(page){
 
@@ -2916,47 +2533,34 @@ function go(page){
     page==="admin" &&
     currentProfile?.role!=="ADMIN"
   ){
-
-    alert(
-      "Доступ запрещён"
-    );
-
+    alert("Доступ запрещён");
     return;
-
   }
-
 
   document
     .querySelectorAll(".section")
     .forEach(
-      x =>
-        x.classList.remove(
-          "active"
-        )
+      x=>x.classList.remove("active")
     );
 
+  const target=
+    document.getElementById(page);
+
+  if(!target)
+    return;
+
+  target.classList.add("active");
 
   document
-    .getElementById(page)
-    .classList
-    .add("active");
-
-
-  document
-    .querySelectorAll(
-      ".nav button[data-page]"
-    )
+    .querySelectorAll(".nav button[data-page]")
     .forEach(
-      x =>
-        x.classList.toggle(
-          "active",
-          x.dataset.page===page
-        )
+      x=>x.classList.toggle(
+        "active",
+        x.dataset.page===page
+      )
     );
-
 
   const titles={
-
     dashboard:"Дашборд",
     finance:"Финансы",
     deals:"Сделки",
@@ -2972,320 +2576,206 @@ function go(page){
     reports:"Отчёты",
     profile:"Профиль",
     admin:"Админ-панель"
-
   };
 
-
-  document
-    .getElementById("pageTitle")
-    .textContent =
+  document.getElementById("pageTitle")
+    .textContent=
       titles[page]||page;
 
-
-  document
-    .getElementById("sidebar")
-    .classList
-    .remove("open");
-
+  document.getElementById("sidebar")
+    .classList.remove("open");
 
   render();
 
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
-
 
 function render(){
 
   if(!currentProfile)
     return;
 
+  const f=currentProfile;
 
-  const f =
-    currentProfile;
+  ["dDeposit","fDeposit"]
+    .forEach(
+      id=>
+        document.getElementById(id)
+        .textContent=
+        money(f.deposit)
+    );
 
+  ["dTurnover","fTurnover"]
+    .forEach(
+      id=>
+        document.getElementById(id)
+        .textContent=
+        money(f.turnover)
+    );
 
-  [
-    "dDeposit",
-    "fDeposit"
-  ]
-  .forEach(
-    id =>
-      document
-        .getElementById(id)
-        .textContent =
-          money(f.deposit)
-  );
+  ["dProfit","fProfit"]
+    .forEach(
+      id=>
+        document.getElementById(id)
+        .textContent=
+        money(f.profit)
+    );
 
+  document.getElementById("dDeals")
+    .textContent=f.deals||0;
 
-  [
-    "dTurnover",
-    "fTurnover"
-  ]
-  .forEach(
-    id =>
-      document
-        .getElementById(id)
-        .textContent =
-          money(f.turnover)
-  );
-
-
-  [
-    "dProfit",
-    "fProfit"
-  ]
-  .forEach(
-    id =>
-      document
-        .getElementById(id)
-        .textContent =
-          money(f.profit)
-  );
-
-
-  document
-    .getElementById("dDeals")
-    .textContent =
-      f.deals||0;
-
-
-  document
-    .getElementById("fCommission")
-    .textContent =
+  document.getElementById("fCommission")
+    .textContent=
       (f.commission||0)+"%";
 
-
-  renderPayment(
-    currentRequisite
-  );
-
+  renderPayment(currentRequisite);
 
   renderDeals();
 
-
-  if(
-    f.role==="ADMIN"
-  )
+  if(f.role==="ADMIN")
     renderAdmin();
-
 }
-
 
 function renderDeals(){
 
-  const deals =
-    document.getElementById(
-      "dealsTable"
-    );
-
+  const deals=
+    document.getElementById("dealsTable");
 
   if(deals)
-    deals.innerHTML =
-      "Пока нет сделок";
+    deals.innerHTML="Пока нет сделок";
 
-
-  const dash =
-    document.getElementById(
-      "dashDeals"
-    );
-
+  const dash=
+    document.getElementById("dashDeals");
 
   if(dash)
-    dash.innerHTML =
-      "Пока нет сделок";
-
+    dash.innerHTML="Пока нет сделок";
 }
-
 
 function renderPayment(p){
 
   p=p||{};
 
-
-  const pm =
-    document.getElementById(
-      "pMethod"
-    );
-
+  const pm=
+    document.getElementById("pMethod");
 
   if(pm)
-    pm.textContent =
+    pm.textContent=
       p.payment_method||"—";
 
-
-  const pn =
-    document.getElementById(
-      "pNetwork"
-    );
-
+  const pn=
+    document.getElementById("pNetwork");
 
   if(pn)
-    pn.textContent =
+    pn.textContent=
       p.network||"—";
 
-
-  const pw =
-    document.getElementById(
-      "pWallet"
-    );
-
+  const pw=
+    document.getElementById("pWallet");
 
   if(pw)
-    pw.textContent =
+    pw.textContent=
       p.wallet||"Не указан";
 
-
-  const img =
-    document.getElementById(
-      "pQr"
-    );
-
+  const img=
+    document.getElementById("pQr");
 
   if(img){
 
-    img.style.display =
+    img.style.display=
       p.qr_url
-        ? "block"
-        : "none";
-
+      ?"block"
+      :"none";
 
     if(p.qr_url)
-      img.src =
-        p.qr_url;
-
+      img.src=p.qr_url;
   }
 
-
-  const dn =
-    document.getElementById(
-      "depositNetwork"
-    );
-
+  const dn=
+    document.getElementById("depositNetwork");
 
   if(dn)
-    dn.textContent =
+    dn.textContent=
       p.network||"—";
 
-
-  const dm =
-    document.getElementById(
-      "depositMethod"
-    );
-
+  const dm=
+    document.getElementById("depositMethod");
 
   if(dm)
-    dm.textContent =
+    dm.textContent=
       p.payment_method||"—";
 
-
-  const dw =
-    document.getElementById(
-      "depositWallet"
-    );
-
+  const dw=
+    document.getElementById("depositWallet");
 
   if(dw)
-    dw.textContent =
+    dw.textContent=
       p.wallet||"Не указан";
 
-
-  const dq =
-    document.getElementById(
-      "depositQr"
-    );
-
+  const dq=
+    document.getElementById("depositQr");
 
   if(dq){
 
-    dq.style.display =
+    dq.style.display=
       p.qr_url
-        ? "block"
-        : "none";
-
+      ?"block"
+      :"none";
 
     if(p.qr_url)
-      dq.src =
-        p.qr_url;
-
+      dq.src=p.qr_url;
   }
 
+  const dlw=
+    document.getElementById("depositLinkWrap");
 
-  const dlw =
-    document.getElementById(
-      "depositLinkWrap"
-    );
-
-
-  const dl =
-    document.getElementById(
-      "depositWalletLink"
-    );
-
+  const dl=
+    document.getElementById("depositWalletLink");
 
   if(dlw&&dl){
 
-    const link =
-      (
-        p.wallet_link||""
-      ).trim();
-
+    const link=
+      (p.wallet_link||"").trim();
 
     if(link){
 
-      dlw.style.display =
-        "block";
+      dlw.style.display="block";
 
-      dl.href =
-        link;
+      dl.href=link;
 
-      dl.textContent =
-        link;
+      dl.textContent=link;
 
     }else{
 
-      dlw.style.display =
-        "none";
+      dlw.style.display="none";
 
-      dl.removeAttribute(
-        "href"
-      );
+      dl.removeAttribute("href");
 
-      dl.textContent =
-        "";
-
+      dl.textContent="";
     }
-
   }
 
-
   renderReqList(p);
-
 }
-
 
 function renderReqList(p){
 
-  const list =
-    document.getElementById(
-      "reqList"
-    );
-
+  const list=
+    document.getElementById("reqList");
 
   if(!list)
     return;
 
-
-  const addBtn =
-    document.getElementById(
-      "addReqBtn"
-    );
-
+  const addBtn=
+    document.getElementById("addReqBtn");
 
   if(addBtn)
-    addBtn.style.display =
+    addBtn.style.display=
       currentProfile?.role==="ADMIN"
-        ? "block"
-        : "none";
-
+      ?"block"
+      :"none";
 
   if(
     !p ||
@@ -3297,119 +2787,100 @@ function renderReqList(p){
     )
   ){
 
-    list.innerHTML =
+    list.innerHTML=
       '<div class="req-empty">Реквизитов пока нет</div>';
 
     return;
-
   }
 
-
-  const settings =
+  const settings=
     JSON.parse(
       localStorage.getItem(
-        "p2pspark_req_settings_" +
-        (
-          currentUser?.id||""
-        )
+        "p2pspark_req_settings_"+
+        (currentUser?.id||"")
       )||"{}"
     );
 
-
-  list.innerHTML =
+  list.innerHTML=
     '<div class="req-card" data-search="'+
     esc(
-      (p.payment_method||"")+
-      " "+
-      (p.network||"")+
-      " "+
-      (p.wallet||"")+
-      " "+
-      (settings.bank||"")+
-      " "+
+      (p.payment_method||"")+" "+
+      (p.network||"")+" "+
+      (p.wallet||"")+" "+
+      (settings.bank||"")+" "+
       (settings.device||"")
     )+
     '">'+
 
     '<div class="req-card-top">'+
 
-    '<div>'+
+      '<div>'+
 
-    '<h3>'+
-    (
-      esc(
-        settings.bank||
-        p.payment_method||
-        "Реквизит"
-      )
-    )+
-    '</h3>'+
+        '<h3>'+
+          (
+            esc(
+              settings.bank||
+              p.payment_method||
+              "Реквизит"
+            )
+          )+
+        '</h3>'+
 
-    '<div class="req-meta">'+
-    esc(
-      settings.device||
-      "Основной реквизит"
-    )+
-    ' · '+
-    esc(
-      p.network||
-      "Сеть не указана"
-    )+
-    '</div>'+
+        '<div class="req-meta">'+
+          esc(
+            settings.device||
+            "Основной реквизит"
+          )+
+          ' · '+
+          esc(
+            p.network||
+            "Сеть не указана"
+          )+
+        '</div>'+
 
-    '</div>'+
+      '</div>'+
 
-    '<span class="badge green">Активен</span>'+
+      '<span class="badge green">Активен</span>'+
 
     '</div>'+
 
     '<div class="req-values">'+
 
-    '<div class="req-value">'+
-    '<span>Суточный лимит</span>'+
-    '<b>'+
-    esc(
-      settings.dailyLimit||"—"
-    )+
-    '</b>'+
-    '</div>'+
+      '<div class="req-value">'+
+        '<span>Суточный лимит</span>'+
+        '<b>'+
+          esc(settings.dailyLimit||"—")+
+        '</b>'+
+      '</div>'+
 
-    '<div class="req-value">'+
-    '<span>Сделок в сутки</span>'+
-    '<b>'+
-    esc(
-      settings.dailyDeals||"—"
-    )+
-    '</b>'+
-    '</div>'+
+      '<div class="req-value">'+
+        '<span>Сделок в сутки</span>'+
+        '<b>'+
+          esc(settings.dailyDeals||"—")+
+        '</b>'+
+      '</div>'+
 
-    '<div class="req-value">'+
-    '<span>Мин. сумма</span>'+
-    '<b>'+
-    esc(
-      settings.minDeal||"—"
-    )+
-    '</b>'+
-    '</div>'+
+      '<div class="req-value">'+
+        '<span>Мин. сумма</span>'+
+        '<b>'+
+          esc(settings.minDeal||"—")+
+        '</b>'+
+      '</div>'+
 
-    '<div class="req-value">'+
-    '<span>Макс. сумма</span>'+
-    '<b>'+
-    esc(
-      settings.maxDeal||"—"
-    )+
-    '</b>'+
-    '</div>'+
+      '<div class="req-value">'+
+        '<span>Макс. сумма</span>'+
+        '<b>'+
+          esc(settings.maxDeal||"—")+
+        '</b>'+
+      '</div>'+
 
     '</div>'+
 
     '<div style="margin-top:16px;word-break:break-all">'+
-    '<span class="label">Кошелёк</span>'+
-    '<div style="margin-top:5px;font-weight:750">'+
-    esc(
-      p.wallet||"Не указан"
-    )+
-    '</div>'+
+      '<span class="label">Кошелёк</span>'+
+      '<div style="margin-top:5px;font-weight:750">'+
+        esc(p.wallet||"Не указан")+
+      '</div>'+
     '</div>'+
 
     (
@@ -3423,157 +2894,96 @@ function renderReqList(p){
     )+
 
     '</div>';
-
 }
-
 
 function filterReqs(){
 
-  const q =
+  const q=
     (
-      document.getElementById(
-        "reqSearch"
-      )?.value||""
-    )
-    .toLowerCase();
-
+      document.getElementById("reqSearch")
+      ?.value||""
+    ).toLowerCase();
 
   document
-    .querySelectorAll(
-      "#reqList .req-card"
-    )
+    .querySelectorAll("#reqList .req-card")
     .forEach(
-      x =>
-        x.style.display =
+      x=>
+        x.style.display=
           x.dataset.search
-            .toLowerCase()
-            .includes(q)
-            ? "block"
-            : "none"
+          .toLowerCase()
+          .includes(q)
+          ?"block"
+          :"none"
     );
-
 }
-
 
 let reqQrData="";
 
-
 function openReqModal(){
 
-  if(
-    currentProfile?.role!=="ADMIN"
-  )
+  if(currentProfile?.role!=="ADMIN")
     return alert(
       "Добавлять реквизиты может только администратор"
     );
 
-
   document
-    .getElementById(
-      "reqModal"
-    )
-    .classList
-    .add("show");
-
+    .getElementById("reqModal")
+    .classList.add("show");
 }
-
 
 function closeReqModal(){
 
   document
-    .getElementById(
-      "reqModal"
-    )
-    .classList
-    .remove("show");
-
+    .getElementById("reqModal")
+    .classList.remove("show");
 }
-
 
 function previewReqQr(e){
 
-  const file =
-    e.target.files[0];
-
+  const file=e.target.files[0];
 
   if(!file)
     return;
 
-
-  if(
-    !file.type.startsWith(
-      "image/"
-    )
-  )
+  if(!file.type.startsWith("image/"))
     return alert(
       "Выберите изображение QR-кода"
     );
 
-
-  if(
-    file.size >
-    2*1024*1024
-  )
+  if(file.size>2*1024*1024)
     return alert(
       "Изображение должно быть до 2 МБ"
     );
 
-
-  const r =
-    new FileReader();
-
+  const r=new FileReader();
 
   r.onload=()=>{
 
-    reqQrData =
-      r.result;
+    reqQrData=r.result;
 
+    const img=
+      document.getElementById("rqQrPreview");
 
-    const img =
-      document.getElementById(
-        "rqQrPreview"
-      );
+    img.src=reqQrData;
 
-
-    img.src =
-      reqQrData;
-
-    img.style.display =
-      "block";
-
+    img.style.display="block";
   };
 
-
   r.readAsDataURL(file);
-
 }
-
 
 async function saveReqModal(){
 
-  if(
-    currentProfile?.role!=="ADMIN"
-  )
+  if(currentProfile?.role!=="ADMIN")
     return;
 
+  const wallet=
+    document.getElementById("rqWallet")
+    .value.trim();
 
-  const wallet =
-    document
-      .getElementById(
-        "rqWallet"
-      )
-      .value
-      .trim();
-
-
-  const link =
-    document
-      .getElementById(
-        "rqWalletLink"
-      )
-      .value
-      .trim();
-
+  const link=
+    document.getElementById("rqWalletLink")
+    .value.trim();
 
   if(
     link &&
@@ -3583,69 +2993,41 @@ async function saveReqModal(){
       "Ссылка должна начинаться с http:// или https://"
     );
 
-
   const req={
-
-    user_id:
-      currentUser.id,
-
+    user_id:currentUser.id,
     payment_method:
-      document.getElementById(
-        "rqMethod"
-      ).value,
-
+      document.getElementById("rqMethod").value,
     network:
-      document.getElementById(
-        "rqNetwork"
-      ).value,
-
+      document.getElementById("rqNetwork").value,
     wallet,
-
-    wallet_link:
-      link,
-
-    qr_url:
-      reqQrData||null,
-
-    updated_at:
-      new Date().toISOString()
-
+    wallet_link:link,
+    qr_url:reqQrData||null,
+    updated_at:new Date().toISOString()
   };
 
-
-  const {
-    data:existing
-  } =
+  const {data:existing}=
     await supabaseClient
       .from("requisites")
       .select("id")
-      .eq(
-        "user_id",
-        currentUser.id
-      )
+      .eq("user_id",currentUser.id)
       .limit(1)
       .maybeSingle();
 
-
-  const error =
+  const error=
     existing
-      ?
+    ?
       (
         await supabaseClient
           .from("requisites")
           .update(req)
-          .eq(
-            "id",
-            existing.id
-          )
+          .eq("id",existing.id)
       ).error
-      :
+    :
       (
         await supabaseClient
           .from("requisites")
           .insert(req)
       ).error;
-
 
   if(error)
     return alert(
@@ -3653,81 +3035,49 @@ async function saveReqModal(){
       error.message
     );
 
-
   localStorage.setItem(
-
     "p2pspark_req_settings_"+
     currentUser.id,
 
     JSON.stringify({
 
       device:
-        document.getElementById(
-          "rqDevice"
-        ).value,
+        document.getElementById("rqDevice").value,
 
       bank:
-        document.getElementById(
-          "rqBank"
-        ).value,
+        document.getElementById("rqBank").value,
 
       dailyLimit:
-        document.getElementById(
-          "rqDailyLimit"
-        ).value,
+        document.getElementById("rqDailyLimit").value,
 
       dailyDeals:
-        document.getElementById(
-          "rqDailyDeals"
-        ).value,
+        document.getElementById("rqDailyDeals").value,
 
       maxDeal:
-        document.getElementById(
-          "rqMaxDeal"
-        ).value,
+        document.getElementById("rqMaxDeal").value,
 
       minDeal:
-        document.getElementById(
-          "rqMinDeal"
-        ).value,
+        document.getElementById("rqMinDeal").value,
 
       pauseH:
-        document.getElementById(
-          "rqPauseH"
-        ).value,
+        document.getElementById("rqPauseH").value,
 
       pauseM:
-        document.getElementById(
-          "rqPauseM"
-        ).value,
+        document.getElementById("rqPauseM").value,
 
       timezone:
-        document.getElementById(
-          "rqTimezone"
-        ).value
+        document.getElementById("rqTimezone").value
 
     })
-
   );
-
 
   reqQrData="";
 
-
-  document
-    .getElementById(
-      "rqQrFile"
-    )
+  document.getElementById("rqQrFile")
     .value="";
 
-
-  document
-    .getElementById(
-      "rqQrPreview"
-    )
-    .style
-    .display="none";
-
+  document.getElementById("rqQrPreview")
+    .style.display="none";
 
   closeReqModal();
 
@@ -3735,164 +3085,112 @@ async function saveReqModal(){
 
   render();
 
-  alert(
-    "Реквизиты сохранены"
-  );
-
+  alert("Реквизиты сохранены");
 }
-
 
 async function copyDepositWallet(){
 
-  const w =
+  const w=
     currentRequisite?.wallet||"";
-
 
   if(!w)
     return alert(
       "Кошелёк не указан"
     );
 
-
   try{
 
-    await navigator.clipboard
-      .writeText(w);
+    await navigator.clipboard.writeText(w);
 
-    alert(
-      "Кошелёк скопирован"
-    );
+    alert("Кошелёк скопирован");
 
   }catch(e){
 
     alert(w);
-
   }
-
 }
-
 
 function openDepositLink(){
 
-  const l =
+  const l=
     (
-      currentRequisite
-        ?.wallet_link||""
+      currentRequisite?.wallet_link||
+      ""
     ).trim();
-
 
   if(!l)
     return alert(
       "Ссылка на крипто-кошелёк не указана"
     );
 
-
   window.open(
     l,
     "_blank",
     "noopener,noreferrer"
   );
-
 }
-
 
 let withdrawQrData="";
 
-
 function previewWithdrawQr(e){
 
-  const file =
-    e.target.files[0];
-
+  const file=e.target.files[0];
 
   if(!file)
     return;
 
-
-  if(
-    !file.type.startsWith(
-      "image/"
-    )
-  )
+  if(!file.type.startsWith("image/"))
     return alert(
       "Выберите изображение QR-кода"
     );
 
-
-  if(
-    file.size >
-    2*1024*1024
-  )
+  if(file.size>2*1024*1024)
     return alert(
       "Изображение должно быть до 2 МБ"
     );
 
-
-  const r =
-    new FileReader();
-
+  const r=new FileReader();
 
   r.onload=()=>{
 
-    withdrawQrData =
-      r.result;
+    withdrawQrData=r.result;
 
-
-    const i =
+    const i=
       document.getElementById(
         "withdrawQrPreview"
       );
 
+    i.src=withdrawQrData;
 
-    i.src =
-      withdrawQrData;
-
-    i.style.display =
-      "block";
-
+    i.style.display="block";
   };
 
-
   r.readAsDataURL(file);
-
 }
-
 
 function submitWithdraw(){
 
-  const amount =
+  const amount=
     Number(
-      document
-        .getElementById(
-          "withdrawAmount"
-        )
-        .value
+      document.getElementById(
+        "withdrawAmount"
+      ).value
     )||0;
 
+  const wallet=
+    document.getElementById(
+      "withdrawWallet"
+    ).value.trim();
 
-  const wallet =
-    document
-      .getElementById(
-        "withdrawWallet"
-      )
-      .value
-      .trim();
-
-
-  const link =
-    document
-      .getElementById(
-        "withdrawWalletLink"
-      )
-      .value
-      .trim();
-
+  const link=
+    document.getElementById(
+      "withdrawWalletLink"
+    ).value.trim();
 
   if(amount<=0)
     return alert(
       "Введите сумму вывода"
     );
-
 
   if(
     !wallet &&
@@ -3903,7 +3201,6 @@ function submitWithdraw(){
       "Укажите адрес, ссылку или QR-код кошелька"
     );
 
-
   if(
     link &&
     !/^https?:\/\//i.test(link)
@@ -3912,30 +3209,24 @@ function submitWithdraw(){
       "Ссылка должна начинаться с http:// или https://"
     );
 
-
   alert(
     "Заявка на вывод подготовлена и будет обработана администратором."
   );
-
 }
-
 
 async function copyWallet(){
 
-  const w =
+  const w=
     currentRequisite?.wallet||"";
-
 
   if(!w)
     return alert(
       "Реквизит не указан"
     );
 
-
   try{
 
-    await navigator.clipboard
-      .writeText(w);
+    await navigator.clipboard.writeText(w);
 
     alert(
       "Реквизит скопирован"
@@ -3944,24 +3235,15 @@ async function copyWallet(){
   }catch(e){
 
     alert(w);
-
   }
-
 }
-
 
 async function renderAdmin(){
 
-  if(
-    currentProfile?.role!=="ADMIN"
-  )
+  if(currentProfile?.role!=="ADMIN")
     return;
 
-
-  const {
-    data,
-    error
-  } =
+  const {data,error}=
     await supabaseClient
       .from("profiles")
       .select(
@@ -3969,183 +3251,119 @@ async function renderAdmin(){
       )
       .order(
         "created_at",
-        {
-          ascending:false
-        }
+        {ascending:false}
       );
 
-
-  const body =
+  const body=
     document.getElementById(
       "usersTable"
     );
 
-
   body.innerHTML="";
-
 
   if(error){
 
-    body.innerHTML =
+    body.innerHTML=
       '<tr><td colspan="5">Ошибка загрузки пользователей</td></tr>';
 
     console.error(error);
 
     return;
-
   }
 
+  (data||[]).forEach(u=>{
 
-  (data||[])
-    .forEach(u=>{
+    const tr=
+      document.createElement("tr");
 
-      const tr =
-        document.createElement(
-          "tr"
-        );
-
-
-      tr.innerHTML =
-        '<td>'+
+    tr.innerHTML=
+      '<td>'+
         esc(u.name||"—")+
-        '</td>'+
+      '</td>'+
 
-        '<td>'+
+      '<td>'+
         esc(u.email||"—")+
-        '</td>'+
+      '</td>'+
 
-        '<td>'+
+      '<td>'+
         esc(u.role||"USER")+
-        '</td>'+
+      '</td>'+
 
-        '<td>'+
-
+      '<td>'+
         '<span class="badge '+
         (
           u.status==="active"
-            ?"green"
-            :"red"
+          ?"green"
+          :"red"
         )+
-        '">' +
-
+        '">'+
         (
           u.status==="active"
-            ?"Активен"
-            :"Заблокирован"
+          ?"Активен"
+          :"Заблокирован"
         )+
-
         '</span>'+
+      '</td>'+
 
-        '</td>'+
-
-        '<td>'+
-
+      '<td>'+
         '<button class="btn light" onclick="openManage(\''+
         escAttr(u.id)+
-        '\')">'+
+        '\')">Управлять</button>'+
+      '</td>';
 
-        'Управлять'+
+    body.appendChild(tr);
+  });
 
-        '</button>'+
-
-        '</td>';
-
-
-      body.appendChild(tr);
-
-    });
-
-
-  document
-    .getElementById(
-      "auditLog"
-    )
-    .innerHTML =
+  document.getElementById("auditLog")
+    .innerHTML=
       "Журнал действий будет подключён через Supabase на следующем этапе.";
-
 }
-
 
 async function createUser(){
 
-  if(
-    currentProfile?.role!=="ADMIN"
-  )
+  if(currentProfile?.role!=="ADMIN")
     return;
 
+  const name=
+    document.getElementById("newName")
+    .value.trim();
 
-  const name =
-    document
-      .getElementById(
-        "newName"
-      )
-      .value
-      .trim();
+  const email=
+    document.getElementById("newEmail")
+    .value.trim()
+    .toLowerCase();
 
+  const password=
+    document.getElementById(
+      "newPassword"
+    ).value;
 
-  const email =
-    document
-      .getElementById(
-        "newEmail"
-      )
-      .value
-      .trim()
-      .toLowerCase();
-
-
-  const password =
-    document
-      .getElementById(
-        "newPassword"
-      )
-      .value;
-
-
-  if(
-    !name ||
-    !email ||
-    !password
-  )
+  if(!name||!email||!password)
     return alert(
       "Заполните имя, email и пароль"
     );
 
-
-  if(
-    !/^\S+@\S+\.\S+$/.test(
-      email
-    )
-  )
+  if(!/^\S+@\S+\.\S+$/.test(email))
     return alert(
       "Введите корректный email"
     );
 
-
-  if(
-    password.length<6
-  )
+  if(password.length<6)
     return alert(
       "Пароль минимум 6 символов"
     );
 
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .functions
-      .invoke(
-        "create-user",
-        {
-          body:{
-            name,
-            email,
-            password
-          }
+  const {data,error}=
+    await supabaseClient.functions.invoke(
+      "create-user",
+      {
+        body:{
+          name,
+          email,
+          password
         }
-      );
-
+      }
+    );
 
   if(error)
     return alert(
@@ -4156,7 +3374,6 @@ async function createUser(){
       )
     );
 
-
   if(!data?.ok)
     return alert(
       "Ошибка создания USER: "+
@@ -4166,372 +3383,202 @@ async function createUser(){
       )
     );
 
-
-  document
-    .getElementById(
-      "newName"
-    )
+  document.getElementById("newName")
     .value="";
 
-
-  document
-    .getElementById(
-      "newEmail"
-    )
+  document.getElementById("newEmail")
     .value="";
 
-
-  document
-    .getElementById(
-      "newPassword"
-    )
+  document.getElementById("newPassword")
     .value="";
-
 
   await renderAdmin();
-
 
   alert(
     "USER успешно создан"
   );
-
 }
-
 
 async function openManage(id){
 
-  if(
-    currentProfile?.role!=="ADMIN"
-  )
+  if(currentProfile?.role!=="ADMIN")
     return;
 
+  managedId=id;
 
-  managedId =
-    id;
-
-
-  const {
-    data:u,
-    error
-  } =
+  const {data:u,error}=
     await supabaseClient
       .from("profiles")
       .select("*")
-      .eq(
-        "id",
-        id
-      )
+      .eq("id",id)
       .single();
 
-
-  if(
-    error||
-    !u
-  )
+  if(error||!u)
     return alert(
       "Пользователь не найден"
     );
 
-
-  const {
-    data:p
-  } =
+  const {data:p}=
     await supabaseClient
       .from("requisites")
       .select("*")
-      .eq(
-        "user_id",
-        id
-      )
+      .eq("user_id",id)
       .order(
         "created_at",
-        {
-          ascending:false
-        }
+        {ascending:false}
       )
       .limit(1)
       .maybeSingle();
 
+  const r=p||{};
 
-  const r =
-    p||{};
-
-
-  document
-    .getElementById(
-      "manageEmail"
-    )
-    .textContent =
+  document.getElementById("manageEmail")
+    .textContent=
       "Редактирование: "+
-      (
-        u.email||""
-      );
+      (u.email||"");
 
+  document.getElementById("mName")
+    .value=u.name||"";
 
-  document
-    .getElementById(
-      "mName"
-    )
-    .value =
-      u.name||"";
+  document.getElementById("mEmail")
+    .value=u.email||"";
 
-
-  document
-    .getElementById(
-      "mEmail"
-    )
-    .value =
-      u.email||"";
-
-
-  document
-    .getElementById(
-      "mPassword"
-    )
+  document.getElementById("mPassword")
     .value="";
 
+  document.getElementById("mStatus")
+    .value=u.status||"active";
 
-  document
-    .getElementById(
-      "mStatus"
-    )
-    .value =
-      u.status||"active";
+  document.getElementById("mDeposit")
+    .value=u.deposit||0;
 
+  document.getElementById("mTurnover")
+    .value=u.turnover||0;
 
-  document
-    .getElementById(
-      "mDeposit"
-    )
-    .value =
-      u.deposit||0;
+  document.getElementById("mProfit")
+    .value=u.profit||0;
 
+  document.getElementById("mCommission")
+    .value=u.commission||0;
 
-  document
-    .getElementById(
-      "mTurnover"
-    )
-    .value =
-      u.turnover||0;
+  document.getElementById("mDeals")
+    .value=u.deals||0;
 
-
-  document
-    .getElementById(
-      "mProfit"
-    )
-    .value =
-      u.profit||0;
-
-
-  document
-    .getElementById(
-      "mCommission"
-    )
-    .value =
-      u.commission||0;
-
-
-  document
-    .getElementById(
-      "mDeals"
-    )
-    .value =
-      u.deals||0;
-
-
-  document
-    .getElementById(
-      "mMethod"
-    )
-    .value =
+  document.getElementById("mMethod")
+    .value=
       r.payment_method||
       "Trust Wallet";
 
-
-  document
-    .getElementById(
-      "mNetwork"
-    )
-    .value =
+  document.getElementById("mNetwork")
+    .value=
       r.network||
       "TRC20";
 
+  document.getElementById("mWallet")
+    .value=
+      r.wallet||
+      "";
 
-  document
-    .getElementById(
-      "mWallet"
-    )
-    .value =
-      r.wallet||"";
+  document.getElementById("mWalletLink")
+    .value=
+      r.wallet_link||
+      "";
 
-
-  document
-    .getElementById(
-      "mWalletLink"
-    )
-    .value =
-      r.wallet_link||"";
-
-
-  qrData =
-    r.qr_url||"";
-
+  qrData=r.qr_url||"";
 
   showQrPreview();
 
-
-  document
-    .getElementById(
-      "manageModal"
-    )
-    .classList
-    .add("show");
-
+  document.getElementById("manageModal")
+    .classList.add("show");
 }
-
 
 function closeManage(){
 
-  document
-    .getElementById(
-      "manageModal"
-    )
-    .classList
-    .remove("show");
-
+  document.getElementById("manageModal")
+    .classList.remove("show");
 
   managedId=null;
 
   qrData="";
-
 }
-
 
 async function saveManagedUser(){
 
   if(!managedId)
     return;
 
+  const newEmail=
+    document.getElementById("mEmail")
+    .value.trim()
+    .toLowerCase();
 
-  const newEmail =
-    document
-      .getElementById(
-        "mEmail"
-      )
-      .value
-      .trim()
-      .toLowerCase();
-
-
-  const walletLink =
-    document
-      .getElementById(
-        "mWalletLink"
-      )
-      .value
-      .trim();
-
+  const walletLink=
+    document.getElementById("mWalletLink")
+    .value.trim();
 
   if(!newEmail)
     return alert(
       "Email обязателен"
     );
 
-
   if(
     walletLink &&
-    !/^https?:\/\//i.test(
-      walletLink
-    )
+    !/^https?:\/\//i.test(walletLink)
   )
     return alert(
       "Ссылка на кошелёк должна начинаться с http:// или https://"
     );
 
-
   const profileUpdate={
 
     name:
-      document
-        .getElementById(
-          "mName"
-        )
-        .value
-        .trim()||
+      document.getElementById("mName")
+      .value.trim()||
       "Пользователь",
 
     status:
-      document
-        .getElementById(
-          "mStatus"
-        )
-        .value,
+      document.getElementById("mStatus")
+      .value,
 
     deposit:
       Number(
-        document
-          .getElementById(
-            "mDeposit"
-          )
-          .value
+        document.getElementById("mDeposit")
+        .value
       )||0,
 
     turnover:
       Number(
-        document
-          .getElementById(
-            "mTurnover"
-          )
-          .value
+        document.getElementById("mTurnover")
+        .value
       )||0,
 
     profit:
       Number(
-        document
-          .getElementById(
-            "mProfit"
-          )
-          .value
+        document.getElementById("mProfit")
+        .value
       )||0,
 
     commission:
       Number(
-        document
-          .getElementById(
-            "mCommission"
-          )
-          .value
+        document.getElementById("mCommission")
+        .value
       )||0,
 
     deals:
       Number(
-        document
-          .getElementById(
-            "mDeals"
-          )
-          .value
+        document.getElementById("mDeals")
+        .value
       )||0,
 
     updated_at:
-      new Date()
-        .toISOString()
-
+      new Date().toISOString()
   };
 
-
-  const {
-    error:e1
-  } =
+  const {error:e1}=
     await supabaseClient
       .from("profiles")
-      .update(
-        profileUpdate
-      )
-      .eq(
-        "id",
-        managedId
-      );
-
+      .update(profileUpdate)
+      .eq("id",managedId);
 
   if(e1)
     return alert(
@@ -4539,33 +3586,22 @@ async function saveManagedUser(){
       e1.message
     );
 
-
   const req={
 
     user_id:
       managedId,
 
     payment_method:
-      document
-        .getElementById(
-          "mMethod"
-        )
-        .value,
+      document.getElementById("mMethod")
+      .value,
 
     network:
-      document
-        .getElementById(
-          "mNetwork"
-        )
-        .value,
+      document.getElementById("mNetwork")
+      .value,
 
     wallet:
-      document
-        .getElementById(
-          "mWallet"
-        )
-        .value
-        .trim(),
+      document.getElementById("mWallet")
+      .value.trim(),
 
     wallet_link:
       walletLink,
@@ -4574,53 +3610,37 @@ async function saveManagedUser(){
       qrData||null,
 
     updated_at:
-      new Date()
-        .toISOString()
-
+      new Date().toISOString()
   };
 
-
-  const {
-    data:existing
-  } =
+  const {data:existing}=
     await supabaseClient
       .from("requisites")
       .select("id")
-      .eq(
-        "user_id",
-        managedId
-      )
+      .eq("user_id",managedId)
       .limit(1)
       .maybeSingle();
 
-
   let e2;
 
+  if(existing)
 
-  if(existing){
-
-    e2 =
+    e2=
       (
         await supabaseClient
           .from("requisites")
           .update(req)
-          .eq(
-            "id",
-            existing.id
-          )
+          .eq("id",existing.id)
       ).error;
 
-  }else{
+  else
 
-    e2 =
+    e2=
       (
         await supabaseClient
           .from("requisites")
           .insert(req)
       ).error;
-
-  }
-
 
   if(e2)
     return alert(
@@ -4628,209 +3648,131 @@ async function saveManagedUser(){
       e2.message
     );
 
-
   closeManage();
 
   await loadProfile();
 
   render();
 
-
   alert(
     "Данные пользователя сохранены в Supabase"
   );
-
 }
-
 
 async function toggleManagedStatus(){
 
   if(!managedId)
     return;
 
-
-  const {
-    data:u
-  } =
+  const {data:u}=
     await supabaseClient
       .from("profiles")
-      .select(
-        "role,status"
-      )
-      .eq(
-        "id",
-        managedId
-      )
+      .select("role,status")
+      .eq("id",managedId)
       .single();
-
 
   if(!u)
     return;
 
-
-  if(
-    u.role==="ADMIN"
-  )
+  if(u.role==="ADMIN")
     return alert(
       "ADMIN нельзя заблокировать"
     );
 
-
-  const next =
+  const next=
     u.status==="active"
-      ? "blocked"
-      : "active";
+    ?"blocked"
+    :"active";
 
-
-  const {
-    error
-  } =
+  const {error}=
     await supabaseClient
       .from("profiles")
       .update({
         status:next,
-        updated_at:
-          new Date()
-            .toISOString()
+        updated_at:new Date().toISOString()
       })
-      .eq(
-        "id",
-        managedId
-      );
-
+      .eq("id",managedId);
 
   if(error)
     return alert(
       error.message
     );
 
-
-  await openManage(
-    managedId
-  );
+  await openManage(managedId);
 
   renderAdmin();
-
 }
-
 
 function previewQr(e){
 
-  const file =
-    e.target.files[0];
-
+  const file=e.target.files[0];
 
   if(!file)
     return;
 
-
-  if(
-    !file.type.startsWith(
-      "image/"
-    )
-  )
+  if(!file.type.startsWith("image/"))
     return alert(
       "Выберите изображение QR-кода"
     );
 
-
-  if(
-    file.size >
-    2*1024*1024
-  )
+  if(file.size>2*1024*1024)
     return alert(
       "Изображение должно быть до 2 МБ"
     );
 
-
-  const reader =
+  const reader=
     new FileReader();
 
-
   reader.onload=()=>{
-
-    qrData =
-      reader.result;
-
+    qrData=reader.result;
     showQrPreview();
-
   };
 
-
   reader.readAsDataURL(file);
-
 }
-
 
 function showQrPreview(){
 
-  const img =
+  const img=
     document.getElementById(
       "mQrPreview"
     );
 
-
-  img.style.display =
+  img.style.display=
     qrData
-      ? "block"
-      : "none";
-
+    ?"block"
+    :"none";
 
   if(qrData)
-    img.src =
-      qrData;
-
+    img.src=qrData;
 }
-
 
 function clearQr(){
 
   qrData="";
 
-
-  document
-    .getElementById(
-      "mQrFile"
-    )
+  document.getElementById("mQrFile")
     .value="";
 
-
   showQrPreview();
-
 }
-
 
 document.addEventListener(
   "keydown",
-  e => {
-
-    if(
-      e.key==="Escape"
-    ){
-
+  e=>{
+    if(e.key==="Escape"){
       closeManage();
       closeReqModal();
-
     }
-
   }
 );
 
-
-supabaseClient
-  .auth
-  .onAuthStateChange(
-    (_event,session)=>{
-
-      if(
-        session &&
-        !currentUser
-      )
-        start();
-
-    }
-  );
-
+supabaseClient.auth.onAuthStateChange(
+  (_event,session)=>{
+    if(session&&!currentUser)
+      start();
+  }
+);
 
 start();
 
