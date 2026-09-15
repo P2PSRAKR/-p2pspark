@@ -19,9 +19,7 @@
   --dark:#111827
 }
 
-*{
-  box-sizing:border-box
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -39,13 +37,8 @@ button{
 }
 
 .app{
-  height:100vh;
-  overflow:hidden
+  min-height:100vh
 }
-
-/* =========================
-   SIDEBAR
-========================= */
 
 .sidebar{
   position:fixed;
@@ -54,12 +47,9 @@ button{
   bottom:0;
   width:245px;
   background:#fff;
-  border-right:1px solid #eef0f3;
+  border-right:0;
   padding:25px 15px;
-  z-index:20;
-  overflow-y:auto;
-  overscroll-behavior:contain;
-  -webkit-overflow-scrolling:touch
+  z-index:20
 }
 
 .logo{
@@ -82,78 +72,32 @@ button{
 }
 
 .nav button{
-  display:flex;
-  align-items:center;
-  gap:14px;
+  display:block;
   width:100%;
   border:0;
   background:transparent;
   text-align:left;
-  padding:13px 14px;
-  border-radius:12px;
-  color:#1f2937;
-  margin:2px 0;
-  font-weight:600;
-  font-size:18px;
-  line-height:1.15;
-  transition:background .15s,color .15s
+  padding:12px 13px;
+  border-radius:11px;
+  color:#657083;
+  margin:3px 0;
+  font-weight:600
 }
 
-.nav button:hover{
-  background:#f3f4f6;
-  color:#111827
-}
-
+.nav button:hover,
 .nav button.active{
-  background:#e5e7eb;
-  color:#111827
+  background:var(--blue2);
+  color:var(--blue)
 }
 
 .nav button.admin{
   color:#7c3aed
 }
 
-.menu-icon{
-  width:30px;
-  min-width:30px;
-  height:30px;
-  display:grid;
-  place-items:center;
-  color:#7a8496;
-  font-size:25px;
-  font-weight:400;
-  line-height:1
-}
-
-.nav button.active .menu-icon{
-  color:#374151
-}
-
-.sidebar-close{
-  display:none;
-  width:100%;
-  border:0;
-  border-radius:15px;
-  background:#111;
-  color:#fff;
-  padding:15px 18px;
-  font-size:17px;
-  font-weight:700;
-  margin:0 0 18px
-}
-
-/* =========================
-   MAIN
-========================= */
-
 .main{
   margin-left:245px;
   padding:30px;
-  max-width:1500px;
-  height:100vh;
-  overflow-y:auto;
-  overscroll-behavior:contain;
-  -webkit-overflow-scrolling:touch
+  max-width:1500px
 }
 
 .top{
@@ -197,10 +141,6 @@ button{
   border-radius:10px;
   padding:9px 12px
 }
-
-/* =========================
-   SECTIONS
-========================= */
 
 .section{
   display:none
@@ -250,10 +190,6 @@ button{
   color:var(--muted)
 }
 
-/* =========================
-   BUTTONS
-========================= */
-
 .btn{
   border:0;
   border-radius:10px;
@@ -286,10 +222,6 @@ button{
   gap:10px;
   flex-wrap:wrap
 }
-
-/* =========================
-   DASHBOARD ACTIONS
-========================= */
 
 .dashboard-actions{
   display:grid;
@@ -345,10 +277,6 @@ button{
   font-size:13px
 }
 
-/* =========================
-   TABLE
-========================= */
-
 .table-wrap{
   overflow:auto;
   background:#fff;
@@ -379,10 +307,6 @@ button{
   border-bottom:0
 }
 
-/* =========================
-   BADGES
-========================= */
-
 .badge{
   display:inline-block;
   padding:5px 9px;
@@ -405,10 +329,6 @@ button{
   background:#eef2f7;
   color:#667085
 }
-
-/* =========================
-   FORMS
-========================= */
 
 .form-grid{
   display:grid;
@@ -438,10 +358,6 @@ button{
   border-color:var(--blue);
   box-shadow:0 0 0 3px rgba(37,99,235,.1)
 }
-
-/* =========================
-   LOGIN
-========================= */
 
 .login-screen{
   min-height:100vh;
@@ -502,10 +418,6 @@ button{
   margin-top:15px;
   font-size:13px
 }
-
-/* =========================
-   MODALS
-========================= */
 
 .modal{
   display:none;
@@ -582,9 +494,59 @@ button{
   padding:35px
 }
 
-/* =========================
-   REQUISITES
-========================= */
+.dashboard-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-top:22px;
+  margin-bottom:18px
+}
+
+.dashboard-action{
+  border:0;
+  border-radius:17px;
+  padding:18px 20px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  text-align:left;
+  box-shadow:0 6px 25px rgba(16,24,40,.04);
+  min-height:82px
+}
+
+.dashboard-action .action-icon{
+  width:46px;
+  height:46px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  font-size:28px;
+  font-weight:800
+}
+
+.deposit-action .action-icon{
+  background:#eaf1ff;
+  color:#2563eb
+}
+
+.withdraw-action .action-icon{
+  background:#ecfdf3;
+  color:#16a34a
+}
+
+.dashboard-action b{
+  display:block;
+  font-size:17px;
+  color:#101827
+}
+
+.dashboard-action small{
+  display:block;
+  margin-top:4px;
+  color:#697386;
+  font-size:13px
+}
 
 .requisites-head{
   display:flex;
@@ -706,10 +668,6 @@ button{
   height:50px
 }
 
-/* =========================
-   MOBILE
-========================= */
-
 @media(max-width:560px){
 
   .dashboard-actions{
@@ -741,19 +699,12 @@ button{
 @media(max-width:900px){
 
   .sidebar{
-    width:min(100%,430px);
-    transform:translateX(-105%);
-    transition:transform .22s ease;
-    padding:18px 15px 28px;
-    box-shadow:12px 0 40px rgba(15,23,42,.12)
+    transform:translateX(-100%);
+    transition:.2s
   }
 
   .sidebar.open{
     transform:translateX(0)
-  }
-
-  .sidebar-close{
-    display:flex
   }
 
   .main{
@@ -812,12 +763,7 @@ button{
 
 <body>
 
-<!-- =========================
-     LOGIN
-========================= -->
-
 <div id="loginScreen" class="login-screen">
-
   <div class="login-card">
 
     <div class="login-logo">
@@ -864,32 +810,17 @@ button{
       Войти →
     </button>
 
-    <div
-      class="small"
-      style="text-align:center;margin-top:18px"
-    >
+    <div class="small" style="text-align:center;margin-top:18px">
       Доступ к аккаунту создаёт администратор
     </div>
 
   </div>
-
 </div>
 
-
-<!-- =========================
-     APP
-========================= -->
 
 <div id="app" class="app" style="display:none">
 
   <aside id="sidebar" class="sidebar">
-
-    <button
-      class="sidebar-close"
-      onclick="toggleMenu()"
-    >
-      Закрыть
-    </button>
 
     <div class="logo">
       P2P<span>SPARK</span>
@@ -901,44 +832,24 @@ button{
         Основное
       </div>
 
-      <button
-        data-page="dashboard"
-        onclick="go('dashboard')"
-      >
-        <span class="menu-icon">▥</span>
-        <span>Дашборд</span>
+      <button data-page="dashboard" onclick="go('dashboard')">
+        ▣ &nbsp; Дашборд
       </button>
 
-      <button
-        data-page="finance"
-        onclick="go('finance')"
-      >
-        <span class="menu-icon">◉</span>
-        <span>Финансы</span>
+      <button data-page="finance" onclick="go('finance')">
+        ◈ &nbsp; Финансы
       </button>
 
-      <button
-        data-page="deals"
-        onclick="go('deals')"
-      >
-        <span class="menu-icon">↔</span>
-        <span>Сделки</span>
+      <button data-page="deals" onclick="go('deals')">
+        ↔ &nbsp; Сделки
       </button>
 
-      <button
-        data-page="requests"
-        onclick="go('requests')"
-      >
-        <span class="menu-icon">◷</span>
-        <span>Заявки</span>
+      <button data-page="requests" onclick="go('requests')">
+        ◌ &nbsp; Заявки
       </button>
 
-      <button
-        data-page="disputes"
-        onclick="go('disputes')"
-      >
-        <span class="menu-icon">▤</span>
-        <span>Споры</span>
+      <button data-page="disputes" onclick="go('disputes')">
+        ⚠ &nbsp; Споры
       </button>
 
 
@@ -946,60 +857,32 @@ button{
         Работа
       </div>
 
-      <button
-        data-page="requisites"
-        onclick="go('requisites')"
-      >
-        <span class="menu-icon">▭</span>
-        <span>Реквизиты</span>
+      <button data-page="requisites" onclick="go('requisites')">
+        ▤ &nbsp; Реквизиты
       </button>
 
-      <button
-        data-page="devices"
-        onclick="go('devices')"
-      >
-        <span class="menu-icon">▯</span>
-        <span>Устройства</span>
+      <button data-page="devices" onclick="go('devices')">
+        ▣ &nbsp; Устройства
       </button>
 
-      <button
-        data-page="messages"
-        onclick="go('messages')"
-      >
-        <span class="menu-icon">◌</span>
-        <span>Сообщения</span>
+      <button data-page="messages" onclick="go('messages')">
+        ✉ &nbsp; Сообщения
       </button>
 
-      <button
-        data-page="turbo"
-        onclick="go('turbo')"
-      >
-        <span class="menu-icon">ϟ</span>
-        <span>Турбозалив</span>
+      <button data-page="turbo" onclick="go('turbo')">
+        ⚡ &nbsp; Турбозалив
       </button>
 
-      <button
-        data-page="counterparties"
-        onclick="go('counterparties')"
-      >
-        <span class="menu-icon">♧</span>
-        <span>Контрагенты</span>
+      <button data-page="counterparties" onclick="go('counterparties')">
+        ♙ &nbsp; Контрагенты
       </button>
 
-      <button
-        data-page="reports"
-        onclick="go('reports')"
-      >
-        <span class="menu-icon">▱</span>
-        <span>Отчёты</span>
+      <button data-page="reports" onclick="go('reports')">
+        ▥ &nbsp; Отчёты
       </button>
 
-      <button
-        data-page="profile"
-        onclick="go('profile')"
-      >
-        <span class="menu-icon">♙</span>
-        <span>Профиль</span>
+      <button data-page="profile" onclick="go('profile')">
+        ◉ &nbsp; Профиль
       </button>
 
 
@@ -1014,8 +897,7 @@ button{
           data-page="admin"
           onclick="go('admin')"
         >
-          <span class="menu-icon">♛</span>
-          <span>Админ-панель</span>
+          ♛ &nbsp; Админ-панель
         </button>
 
       </div>
@@ -1026,8 +908,7 @@ button{
       </div>
 
       <button onclick="logout()">
-        <span class="menu-icon">↪</span>
-        <span>Выйти</span>
+        ↪ &nbsp; Выйти
       </button>
 
     </div>
@@ -1039,9 +920,7 @@ button{
 
     <div class="top">
 
-      <div
-        style="display:flex;align-items:center;gap:12px"
-      >
+      <div style="display:flex;align-items:center;gap:12px">
 
         <button
           class="mobile-menu"
@@ -1090,10 +969,6 @@ button{
     </div>
 
 
-    <!-- =========================
-         DASHBOARD
-    ========================= -->
-
     <section
       id="dashboard"
       class="section active"
@@ -1102,7 +977,6 @@ button{
       <div class="grid">
 
         <div class="card">
-
           <div class="label">
             Баланс депозита
           </div>
@@ -1117,12 +991,10 @@ button{
           <div class="small">
             Текущий баланс
           </div>
-
         </div>
 
 
         <div class="card">
-
           <div class="label">
             Активные сделки
           </div>
@@ -1137,12 +1009,10 @@ button{
           <div class="small">
             На текущий момент
           </div>
-
         </div>
 
 
         <div class="card">
-
           <div class="label">
             Оборот
           </div>
@@ -1157,12 +1027,10 @@ button{
           <div class="small">
             За текущий месяц
           </div>
-
         </div>
 
 
         <div class="card">
-
           <div class="label">
             Прибыль
           </div>
@@ -1177,7 +1045,6 @@ button{
           <div class="small">
             За текущий месяц
           </div>
-
         </div>
 
       </div>
@@ -1237,10 +1104,6 @@ button{
     </section>
 
 
-    <!-- =========================
-         FINANCE
-    ========================= -->
-
     <section
       id="finance"
       class="section"
@@ -1260,7 +1123,6 @@ button{
       >
 
         <div class="card">
-
           <div class="label">
             Депозит
           </div>
@@ -1271,12 +1133,10 @@ button{
           >
             0 USDT
           </div>
-
         </div>
 
 
         <div class="card">
-
           <div class="label">
             Оборот
           </div>
@@ -1287,12 +1147,10 @@ button{
           >
             0 USDT
           </div>
-
         </div>
 
 
         <div class="card">
-
           <div class="label">
             Прибыль
           </div>
@@ -1303,12 +1161,10 @@ button{
           >
             0 USDT
           </div>
-
         </div>
 
 
         <div class="card">
-
           <div class="label">
             Комиссия
           </div>
@@ -1319,17 +1175,12 @@ button{
           >
             0%
           </div>
-
         </div>
 
       </div>
 
     </section>
 
-
-    <!-- =========================
-         DEALS
-    ========================= -->
 
     <section
       id="deals"
@@ -1340,6 +1191,10 @@ button{
         Сделки
       </h2>
 
+      <div class="subtitle">
+        История и текущие операции
+      </div>
+
       <div
         class="card"
         style="margin-top:20px"
@@ -1349,17 +1204,13 @@ button{
           id="dealsTable"
           class="empty"
         >
-          Сделки отсутствуют
+          Пока нет сделок
         </div>
 
       </div>
 
     </section>
 
-
-    <!-- =========================
-         REQUESTS
-    ========================= -->
 
     <section
       id="requests"
@@ -1388,10 +1239,6 @@ button{
     </section>
 
 
-    <!-- =========================
-         DISPUTES
-    ========================= -->
-
     <section
       id="disputes"
       class="section"
@@ -1415,20 +1262,13 @@ button{
     </section>
 
 
-    <!-- =========================
-         REQUISITES
-    ========================= -->
-
     <section
       id="requisites"
       class="section"
     ></section>
 
 
-    <!-- =========================
-         DEPOSIT
-         ИЗМЕНЕНО ТОЛЬКО ЗДЕСЬ
-========================= -->
+    <!-- ПОПОЛНЕНИЕ -->
 
     <section
       id="deposit"
@@ -1460,20 +1300,86 @@ button{
 
 
         <div
+          class="form-grid"
           style="margin-top:20px"
         >
 
-          <div class="label">
-            Сеть
+          <div>
+
+            <div class="label">
+              Сеть
+            </div>
+
+            <div
+              id="depositNetwork"
+              class="big"
+              style="font-size:20px"
+            >
+              —
+            </div>
+
           </div>
 
+
           <div
-            id="depositNetwork"
-            class="big"
-            style="font-size:20px"
+            style="grid-column:1/-1"
           >
-            —
+
+            <div class="label">
+              Кошелёк / реквизит
+            </div>
+
+            <div
+              id="depositWallet"
+              style="margin-top:7px;word-break:break-all;font-weight:700"
+            >
+              —
+            </div>
+
           </div>
+
+
+          <div
+            id="depositLinkWrap"
+            style="grid-column:1/-1;display:none"
+          >
+
+            <div class="label">
+              Ссылка на крипто-кошелёк
+            </div>
+
+            <a
+              id="depositWalletLink"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="display:block;margin-top:7px;word-break:break-all;font-weight:700;color:var(--blue);text-decoration:none"
+            ></a>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="actions"
+          style="margin-top:18px"
+        >
+
+          <button
+            class="btn light"
+            onclick="copyDepositWallet()"
+          >
+            Скопировать кошелёк
+          </button>
+
+
+          <button
+            class="btn primary"
+            onclick="openDepositLink()"
+          >
+            Открыть кошелёк
+          </button>
 
         </div>
 
@@ -1490,10 +1396,6 @@ button{
 
     </section>
 
-
-    <!-- =========================
-         WITHDRAW
-    ========================= -->
 
     <section
       id="withdraw"
@@ -1540,11 +1442,25 @@ button{
 
             <select id="withdrawNetwork">
 
-              <option>TRC20</option>
-              <option>ERC20</option>
-              <option>BEP20</option>
-              <option>SOL</option>
-              <option>TON</option>
+              <option>
+                TRC20
+              </option>
+
+              <option>
+                ERC20
+              </option>
+
+              <option>
+                BEP20
+              </option>
+
+              <option>
+                SOL
+              </option>
+
+              <option>
+                TON
+              </option>
 
             </select>
 
@@ -1625,10 +1541,6 @@ button{
 
     </section>
 
-
-    <!-- =========================
-         OTHER
-    ========================= -->
 
     <section
       id="devices"
@@ -1752,10 +1664,6 @@ button{
     </section>
 
 
-    <!-- =========================
-         PROFILE
-    ========================= -->
-
     <section
       id="profile"
       class="section"
@@ -1819,10 +1727,6 @@ button{
 
     </section>
 
-
-    <!-- =========================
-         ADMIN
-    ========================= -->
 
     <section
       id="admin"
@@ -1930,13 +1834,11 @@ button{
             <thead>
 
               <tr>
-
                 <th>Имя</th>
                 <th>Email</th>
                 <th>Роль</th>
                 <th>Статус</th>
                 <th>Действие</th>
-
               </tr>
 
             </thead>
@@ -1971,10 +1873,6 @@ button{
 
 </div>
 
-
-<!-- =========================
-     REQUISITES MODAL
-========================= -->
 
 <div
   id="reqModal"
@@ -2334,10 +2232,6 @@ button{
 </div>
 
 
-<!-- =========================
-     MANAGE USER MODAL
-========================= -->
-
 <div
   id="manageModal"
   class="modal"
@@ -2691,10 +2585,6 @@ button{
 
 <script>
 
-/* =========================
-   SUPABASE
-========================= */
-
 const SUPABASE_URL =
   "https://crjqzqulqjqclqajohzb.supabase.co";
 
@@ -2711,28 +2601,18 @@ const supabaseClient =
 let currentUser = null;
 let currentProfile = null;
 let currentRequisite = null;
-
 let managedId = null;
-
 let qrData = "";
-let reqQrData = "";
-let withdrawQrData = "";
 
-
-/* =========================
-   HELPERS
-========================= */
 
 function money(n){
-
-  return Number(n || 0)
-    .toLocaleString("ru-RU") + " USDT";
-
+  return Number(n||0)
+    .toLocaleString("ru-RU")+" USDT"
 }
 
-function esc(s){
 
-  return String(s ?? "")
+function esc(s){
+  return String(s??"")
     .replace(
       /[&<>"']/g,
       m => ({
@@ -2742,32 +2622,25 @@ function esc(s){
         '"':"&quot;",
         "'":"&#039;"
       }[m])
-    );
-
+    )
 }
+
 
 function escAttr(s){
-
-  return String(s ?? "")
+  return String(s??"")
     .replace(/\\/g,"\\\\")
-    .replace(/'/g,"\\'");
-
+    .replace(/'/g,"\\'")
 }
 
-function setLoginError(text){
 
+function setLoginError(text){
   const e =
     document.getElementById("loginError");
 
   e.textContent = text;
-  e.style.display = "block";
-
+  e.style.display = "block"
 }
 
-
-/* =========================
-   LOGIN
-========================= */
 
 async function login(){
 
@@ -2783,22 +2656,23 @@ async function login(){
       .getElementById("loginPassword")
       .value;
 
-  if(!email || !password){
-
+  if(!email||!password)
     return setLoginError(
       "Введите email и пароль"
     );
 
-  }
 
   const {
     data,
     error
   } =
-    await supabaseClient.auth.signInWithPassword({
-      email,
-      password
-    });
+    await supabaseClient
+      .auth
+      .signInWithPassword({
+        email,
+        password
+      });
+
 
   if(error){
 
@@ -2810,27 +2684,23 @@ async function login(){
 
   }
 
-  if(!data.user){
 
+  if(!data.user)
     return setLoginError(
       "Не удалось войти"
     );
 
-  }
 
   await start();
 
 }
 
 
-/* =========================
-   LOAD PROFILE
-========================= */
-
 async function loadProfile(){
 
   if(!currentUser)
     return false;
+
 
   const {
     data,
@@ -2841,6 +2711,7 @@ async function loadProfile(){
       .select("*")
       .eq("id",currentUser.id)
       .single();
+
 
   if(error){
 
@@ -2854,7 +2725,9 @@ async function loadProfile(){
 
   }
 
-  currentProfile = data;
+
+  currentProfile =
+    data;
 
 
   const {
@@ -2863,22 +2736,28 @@ async function loadProfile(){
     await supabaseClient
       .from("requisites")
       .select("*")
-      .eq("user_id",currentUser.id)
-      .order("created_at",{ascending:false})
+      .eq(
+        "user_id",
+        currentUser.id
+      )
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      )
       .limit(1)
       .maybeSingle();
 
+
   currentRequisite =
-    req || null;
+    req||null;
+
 
   return true;
 
 }
 
-
-/* =========================
-   START
-========================= */
 
 async function start(){
 
@@ -2887,19 +2766,20 @@ async function start(){
       .auth
       .getSession();
 
+
   currentUser =
-    data.session?.user || null;
+    data.session?.user||null;
 
 
   if(!currentUser){
 
     document
       .getElementById("loginScreen")
-      .style.display = "grid";
+      .style.display="grid";
 
     document
       .getElementById("app")
-      .style.display = "none";
+      .style.display="none";
 
     return;
 
@@ -2917,7 +2797,10 @@ async function start(){
   }
 
 
-  if(currentProfile.status === "blocked"){
+  if(
+    currentProfile.status ===
+    "blocked"
+  ){
 
     alert(
       "Ваш аккаунт заблокирован администратором"
@@ -2934,17 +2817,18 @@ async function start(){
 
   document
     .getElementById("loginScreen")
-    .style.display = "none";
+    .style.display="none";
+
 
   document
     .getElementById("app")
-    .style.display = "block";
+    .style.display="block";
 
 
   document
     .getElementById("adminNav")
     .style.display =
-      currentProfile.role === "ADMIN"
+      currentProfile.role==="ADMIN"
         ? "block"
         : "none";
 
@@ -2960,7 +2844,7 @@ async function start(){
   document
     .getElementById("roleText")
     .textContent =
-      currentProfile.role === "ADMIN"
+      currentProfile.role==="ADMIN"
         ? "ADMIN"
         : "USER";
 
@@ -2995,7 +2879,7 @@ async function start(){
   document
     .getElementById("profileStatus")
     .value =
-      currentProfile.status === "blocked"
+      currentProfile.status==="blocked"
         ? "Заблокирован"
         : "Активен";
 
@@ -3004,10 +2888,6 @@ async function start(){
 
 }
 
-
-/* =========================
-   LOGOUT
-========================= */
 
 async function logout(){
 
@@ -3020,10 +2900,6 @@ async function logout(){
 }
 
 
-/* =========================
-   MOBILE MENU
-========================= */
-
 function toggleMenu(){
 
   document
@@ -3034,18 +2910,16 @@ function toggleMenu(){
 }
 
 
-/* =========================
-   PAGE NAVIGATION
-========================= */
-
 function go(page){
 
   if(
-    page === "admin" &&
-    currentProfile?.role !== "ADMIN"
+    page==="admin" &&
+    currentProfile?.role!=="ADMIN"
   ){
 
-    alert("Доступ запрещён");
+    alert(
+      "Доступ запрещён"
+    );
 
     return;
 
@@ -3055,17 +2929,17 @@ function go(page){
   document
     .querySelectorAll(".section")
     .forEach(
-      x => x.classList.remove("active")
+      x =>
+        x.classList.remove(
+          "active"
+        )
     );
 
 
-  const target =
-    document.getElementById(page);
-
-  if(!target)
-    return;
-
-  target.classList.add("active");
+  document
+    .getElementById(page)
+    .classList
+    .add("active");
 
 
   document
@@ -3076,12 +2950,12 @@ function go(page){
       x =>
         x.classList.toggle(
           "active",
-          x.dataset.page === page
+          x.dataset.page===page
         )
     );
 
 
-  const titles = {
+  const titles={
 
     dashboard:"Дашборд",
     finance:"Финансы",
@@ -3105,7 +2979,7 @@ function go(page){
   document
     .getElementById("pageTitle")
     .textContent =
-      titles[page] || page;
+      titles[page]||page;
 
 
   document
@@ -3118,10 +2992,6 @@ function go(page){
 
 }
 
-
-/* =========================
-   RENDER
-========================= */
 
 function render(){
 
@@ -3175,31 +3045,30 @@ function render(){
   document
     .getElementById("dDeals")
     .textContent =
-      f.deals || 0;
+      f.deals||0;
 
 
   document
     .getElementById("fCommission")
     .textContent =
-      (f.commission || 0) + "%";
+      (f.commission||0)+"%";
 
 
   renderPayment(
     currentRequisite
   );
 
+
   renderDeals();
 
 
-  if(f.role === "ADMIN")
+  if(
+    f.role==="ADMIN"
+  )
     renderAdmin();
 
 }
 
-
-/* =========================
-   DEALS
-========================= */
 
 function renderDeals(){
 
@@ -3208,20 +3077,28 @@ function renderDeals(){
       "dealsTable"
     );
 
+
   if(deals)
     deals.innerHTML =
-      "Сделки отсутствуют";
+      "Пока нет сделок";
+
+
+  const dash =
+    document.getElementById(
+      "dashDeals"
+    );
+
+
+  if(dash)
+    dash.innerHTML =
+      "Пока нет сделок";
 
 }
 
 
-/* =========================
-   PAYMENT
-========================= */
-
 function renderPayment(p){
 
-  p = p || {};
+  p=p||{};
 
 
   const pm =
@@ -3229,9 +3106,10 @@ function renderPayment(p){
       "pMethod"
     );
 
+
   if(pm)
     pm.textContent =
-      p.payment_method || "—";
+      p.payment_method||"—";
 
 
   const pn =
@@ -3239,9 +3117,10 @@ function renderPayment(p){
       "pNetwork"
     );
 
+
   if(pn)
     pn.textContent =
-      p.network || "—";
+      p.network||"—";
 
 
   const pw =
@@ -3249,9 +3128,10 @@ function renderPayment(p){
       "pWallet"
     );
 
+
   if(pw)
     pw.textContent =
-      p.wallet || "Не указан";
+      p.wallet||"Не указан";
 
 
   const img =
@@ -3259,12 +3139,14 @@ function renderPayment(p){
       "pQr"
     );
 
+
   if(img){
 
     img.style.display =
       p.qr_url
         ? "block"
         : "none";
+
 
     if(p.qr_url)
       img.src =
@@ -3278,25 +3160,21 @@ function renderPayment(p){
       "depositNetwork"
     );
 
+
   if(dn)
     dn.textContent =
-      p.network || "—";
+      p.network||"—";
 
-
-  /* depositMethod оставлен в JS,
-     потому что ты попросил больше
-     ничего не менять. Элемент на
-     странице пополнения удалён,
-     поэтому этот код ничего не меняет. */
 
   const dm =
     document.getElementById(
       "depositMethod"
     );
 
+
   if(dm)
     dm.textContent =
-      p.payment_method || "—";
+      p.payment_method||"—";
 
 
   const dw =
@@ -3304,9 +3182,10 @@ function renderPayment(p){
       "depositWallet"
     );
 
+
   if(dw)
     dw.textContent =
-      p.wallet || "Не указан";
+      p.wallet||"Не указан";
 
 
   const dq =
@@ -3314,12 +3193,14 @@ function renderPayment(p){
       "depositQr"
     );
 
+
   if(dq){
 
     dq.style.display =
       p.qr_url
         ? "block"
         : "none";
+
 
     if(p.qr_url)
       dq.src =
@@ -3333,17 +3214,18 @@ function renderPayment(p){
       "depositLinkWrap"
     );
 
+
   const dl =
     document.getElementById(
       "depositWalletLink"
     );
 
 
-  if(dlw && dl){
+  if(dlw&&dl){
 
     const link =
       (
-        p.wallet_link || ""
+        p.wallet_link||""
       ).trim();
 
 
@@ -3380,16 +3262,13 @@ function renderPayment(p){
 }
 
 
-/* =========================
-   REQUISITES LIST
-========================= */
-
 function renderReqList(p){
 
   const list =
     document.getElementById(
       "reqList"
     );
+
 
   if(!list)
     return;
@@ -3403,7 +3282,7 @@ function renderReqList(p){
 
   if(addBtn)
     addBtn.style.display =
-      currentProfile?.role === "ADMIN"
+      currentProfile?.role==="ADMIN"
         ? "block"
         : "none";
 
@@ -3430,124 +3309,131 @@ function renderReqList(p){
     JSON.parse(
       localStorage.getItem(
         "p2pspark_req_settings_" +
-        (currentUser?.id || "")
-      ) || "{}"
+        (
+          currentUser?.id||""
+        )
+      )||"{}"
     );
 
 
   list.innerHTML =
-    '<div class="req-card" data-search="' +
+    '<div class="req-card" data-search="'+
     esc(
-      (p.payment_method || "") +
-      " " +
-      (p.network || "") +
-      " " +
-      (p.wallet || "") +
-      " " +
-      (settings.bank || "") +
-      " " +
-      (settings.device || "")
-    ) +
-    '">' +
+      (p.payment_method||"")+
+      " "+
+      (p.network||"")+
+      " "+
+      (p.wallet||"")+
+      " "+
+      (settings.bank||"")+
+      " "+
+      (settings.device||"")
+    )+
+    '">'+
 
-    '<div class="req-card-top">' +
+    '<div class="req-card-top">'+
 
-    '<div>' +
+    '<div>'+
 
-    '<h3>' +
+    '<h3>'+
     (
       esc(
-        settings.bank ||
-        p.payment_method ||
+        settings.bank||
+        p.payment_method||
         "Реквизит"
       )
-    ) +
-    '</h3>' +
+    )+
+    '</h3>'+
 
-    '<div class="req-meta">' +
+    '<div class="req-meta">'+
     esc(
-      settings.device ||
+      settings.device||
       "Основной реквизит"
-    ) +
-    ' · ' +
+    )+
+    ' · '+
     esc(
-      p.network ||
+      p.network||
       "Сеть не указана"
-    ) +
-    '</div>' +
+    )+
+    '</div>'+
 
-    '</div>' +
+    '</div>'+
 
-    '<span class="badge green">Активен</span>' +
+    '<span class="badge green">Активен</span>'+
 
-    '</div>' +
+    '</div>'+
 
-    '<div class="req-values">' +
+    '<div class="req-values">'+
 
-    '<div class="req-value">' +
-    '<span>Суточный лимит</span>' +
-    '<b>' +
-    esc(settings.dailyLimit || "—") +
-    '</b>' +
-    '</div>' +
+    '<div class="req-value">'+
+    '<span>Суточный лимит</span>'+
+    '<b>'+
+    esc(
+      settings.dailyLimit||"—"
+    )+
+    '</b>'+
+    '</div>'+
 
-    '<div class="req-value">' +
-    '<span>Сделок в сутки</span>' +
-    '<b>' +
-    esc(settings.dailyDeals || "—") +
-    '</b>' +
-    '</div>' +
+    '<div class="req-value">'+
+    '<span>Сделок в сутки</span>'+
+    '<b>'+
+    esc(
+      settings.dailyDeals||"—"
+    )+
+    '</b>'+
+    '</div>'+
 
-    '<div class="req-value">' +
-    '<span>Мин. сумма</span>' +
-    '<b>' +
-    esc(settings.minDeal || "—") +
-    '</b>' +
-    '</div>' +
+    '<div class="req-value">'+
+    '<span>Мин. сумма</span>'+
+    '<b>'+
+    esc(
+      settings.minDeal||"—"
+    )+
+    '</b>'+
+    '</div>'+
 
-    '<div class="req-value">' +
-    '<span>Макс. сумма</span>' +
-    '<b>' +
-    esc(settings.maxDeal || "—") +
-    '</b>' +
-    '</div>' +
+    '<div class="req-value">'+
+    '<span>Макс. сумма</span>'+
+    '<b>'+
+    esc(
+      settings.maxDeal||"—"
+    )+
+    '</b>'+
+    '</div>'+
 
-    '</div>' +
+    '</div>'+
 
-    '<div style="margin-top:16px;word-break:break-all">' +
-    '<span class="label">Кошелёк</span>' +
-    '<div style="margin-top:5px;font-weight:750">' +
-    esc(p.wallet || "Не указан") +
-    '</div>' +
-    '</div>' +
+    '<div style="margin-top:16px;word-break:break-all">'+
+    '<span class="label">Кошелёк</span>'+
+    '<div style="margin-top:5px;font-weight:750">'+
+    esc(
+      p.wallet||"Не указан"
+    )+
+    '</div>'+
+    '</div>'+
 
     (
       p.qr_url
       ?
-      '<img src="' +
-      escAttr(p.qr_url) +
+      '<img src="'+
+      escAttr(p.qr_url)+
       '" style="max-width:150px;max-height:150px;border-radius:12px;margin-top:15px">'
       :
       ""
-    ) +
+    )+
 
     '</div>';
 
 }
 
 
-/* =========================
-   FILTER
-========================= */
-
 function filterReqs(){
 
   const q =
     (
-      document
-        .getElementById(
-          "reqSearch"
-        )?.value || ""
+      document.getElementById(
+        "reqSearch"
+      )?.value||""
     )
     .toLowerCase();
 
@@ -3569,21 +3455,17 @@ function filterReqs(){
 }
 
 
-/* =========================
-   REQUISITES MODAL
-========================= */
+let reqQrData="";
+
 
 function openReqModal(){
 
   if(
-    currentProfile?.role !== "ADMIN"
-  ){
-
+    currentProfile?.role!=="ADMIN"
+  )
     return alert(
       "Добавлять реквизиты может только администратор"
     );
-
-  }
 
 
   document
@@ -3613,6 +3495,7 @@ function previewReqQr(e){
   const file =
     e.target.files[0];
 
+
   if(!file)
     return;
 
@@ -3621,32 +3504,26 @@ function previewReqQr(e){
     !file.type.startsWith(
       "image/"
     )
-  ){
-
+  )
     return alert(
       "Выберите изображение QR-кода"
     );
 
-  }
-
 
   if(
     file.size >
-    2 * 1024 * 1024
-  ){
-
+    2*1024*1024
+  )
     return alert(
       "Изображение должно быть до 2 МБ"
     );
-
-  }
 
 
   const r =
     new FileReader();
 
 
-  r.onload = () => {
+  r.onload=()=>{
 
     reqQrData =
       r.result;
@@ -3672,14 +3549,10 @@ function previewReqQr(e){
 }
 
 
-/* =========================
-   SAVE REQUISITES
-========================= */
-
 async function saveReqModal(){
 
   if(
-    currentProfile?.role !== "ADMIN"
+    currentProfile?.role!=="ADMIN"
   )
     return;
 
@@ -3705,16 +3578,13 @@ async function saveReqModal(){
   if(
     link &&
     !/^https?:\/\//i.test(link)
-  ){
-
+  )
     return alert(
       "Ссылка должна начинаться с http:// или https://"
     );
 
-  }
 
-
-  const req = {
+  const req={
 
     user_id:
       currentUser.id,
@@ -3735,7 +3605,7 @@ async function saveReqModal(){
       link,
 
     qr_url:
-      reqQrData || null,
+      reqQrData||null,
 
     updated_at:
       new Date().toISOString()
@@ -3759,9 +3629,7 @@ async function saveReqModal(){
 
   const error =
     existing
-
       ?
-
       (
         await supabaseClient
           .from("requisites")
@@ -3771,9 +3639,7 @@ async function saveReqModal(){
             existing.id
           )
       ).error
-
       :
-
       (
         await supabaseClient
           .from("requisites")
@@ -3781,19 +3647,16 @@ async function saveReqModal(){
       ).error;
 
 
-  if(error){
-
+  if(error)
     return alert(
-      "Не удалось сохранить реквизит: " +
+      "Не удалось сохранить реквизит: "+
       error.message
     );
-
-  }
 
 
   localStorage.setItem(
 
-    "p2pspark_req_settings_" +
+    "p2pspark_req_settings_"+
     currentUser.id,
 
     JSON.stringify({
@@ -3848,21 +3711,22 @@ async function saveReqModal(){
   );
 
 
-  reqQrData = "";
+  reqQrData="";
+
 
   document
     .getElementById(
       "rqQrFile"
     )
-    .value = "";
+    .value="";
 
 
   document
     .getElementById(
       "rqQrPreview"
     )
-    .style.display =
-      "none";
+    .style
+    .display="none";
 
 
   closeReqModal();
@@ -3878,15 +3742,10 @@ async function saveReqModal(){
 }
 
 
-/* =========================
-   DEPOSIT
-========================= */
-
 async function copyDepositWallet(){
 
   const w =
-    currentRequisite?.wallet ||
-    "";
+    currentRequisite?.wallet||"";
 
 
   if(!w)
@@ -3918,18 +3777,14 @@ function openDepositLink(){
   const l =
     (
       currentRequisite
-        ?.wallet_link ||
-      ""
+        ?.wallet_link||""
     ).trim();
 
 
-  if(!l){
-
+  if(!l)
     return alert(
       "Ссылка на крипто-кошелёк не указана"
     );
-
-  }
 
 
   window.open(
@@ -3941,14 +3796,14 @@ function openDepositLink(){
 }
 
 
-/* =========================
-   WITHDRAW
-========================= */
+let withdrawQrData="";
+
 
 function previewWithdrawQr(e){
 
   const file =
     e.target.files[0];
+
 
   if(!file)
     return;
@@ -3958,32 +3813,26 @@ function previewWithdrawQr(e){
     !file.type.startsWith(
       "image/"
     )
-  ){
-
+  )
     return alert(
       "Выберите изображение QR-кода"
     );
 
-  }
-
 
   if(
     file.size >
-    2 * 1024 * 1024
-  ){
-
+    2*1024*1024
+  )
     return alert(
       "Изображение должно быть до 2 МБ"
     );
-
-  }
 
 
   const r =
     new FileReader();
 
 
-  r.onload = () => {
+  r.onload=()=>{
 
     withdrawQrData =
       r.result;
@@ -4013,10 +3862,12 @@ function submitWithdraw(){
 
   const amount =
     Number(
-      document.getElementById(
-        "withdrawAmount"
-      ).value
-    ) || 0;
+      document
+        .getElementById(
+          "withdrawAmount"
+        )
+        .value
+    )||0;
 
 
   const wallet =
@@ -4037,40 +3888,29 @@ function submitWithdraw(){
       .trim();
 
 
-  if(amount <= 0){
-
+  if(amount<=0)
     return alert(
       "Введите сумму вывода"
     );
-
-  }
 
 
   if(
     !wallet &&
     !link &&
     !withdrawQrData
-  ){
-
+  )
     return alert(
       "Укажите адрес, ссылку или QR-код кошелька"
     );
 
-  }
-
 
   if(
     link &&
-    !/^https?:\/\//i.test(
-      link
-    )
-  ){
-
+    !/^https?:\/\//i.test(link)
+  )
     return alert(
       "Ссылка должна начинаться с http:// или https://"
     );
-
-  }
 
 
   alert(
@@ -4080,15 +3920,10 @@ function submitWithdraw(){
 }
 
 
-/* =========================
-   COPY WALLET
-========================= */
-
 async function copyWallet(){
 
   const w =
-    currentRequisite?.wallet ||
-    "";
+    currentRequisite?.wallet||"";
 
 
   if(!w)
@@ -4115,14 +3950,10 @@ async function copyWallet(){
 }
 
 
-/* =========================
-   ADMIN
-========================= */
-
 async function renderAdmin(){
 
   if(
-    currentProfile?.role !== "ADMIN"
+    currentProfile?.role!=="ADMIN"
   )
     return;
 
@@ -4150,7 +3981,7 @@ async function renderAdmin(){
     );
 
 
-  body.innerHTML = "";
+  body.innerHTML="";
 
 
   if(error){
@@ -4165,8 +3996,8 @@ async function renderAdmin(){
   }
 
 
-  (data || [])
-    .forEach(u => {
+  (data||[])
+    .forEach(u=>{
 
       const tr =
         document.createElement(
@@ -4175,48 +4006,47 @@ async function renderAdmin(){
 
 
       tr.innerHTML =
+        '<td>'+
+        esc(u.name||"—")+
+        '</td>'+
 
-        '<td>' +
-        esc(u.name || "—") +
-        '</td>' +
+        '<td>'+
+        esc(u.email||"—")+
+        '</td>'+
 
-        '<td>' +
-        esc(u.email || "—") +
-        '</td>' +
+        '<td>'+
+        esc(u.role||"USER")+
+        '</td>'+
 
-        '<td>' +
-        esc(u.role || "USER") +
-        '</td>' +
+        '<td>'+
 
-        '<td>' +
-
-        '<span class="badge ' +
+        '<span class="badge '+
         (
-          u.status === "active"
-            ? "green"
-            : "red"
-        ) +
+          u.status==="active"
+            ?"green"
+            :"red"
+        )+
         '">' +
 
         (
-          u.status === "active"
-            ? "Активен"
-            : "Заблокирован"
-        ) +
+          u.status==="active"
+            ?"Активен"
+            :"Заблокирован"
+        )+
 
-        '</span>' +
+        '</span>'+
 
-        '</td>' +
+        '</td>'+
 
-        '<td>' +
+        '<td>'+
 
-        '<button class="btn light" onclick="openManage(\'' +
-        escAttr(u.id) +
-        '\')">' +
+        '<button class="btn light" onclick="openManage(\''+
+        escAttr(u.id)+
+        '\')">'+
 
-        'Управлять' +
+        'Управлять'+
 
-        '</button>' +
+        '</button>'+
 
         '</td>';
 
@@ -4236,14 +4066,10 @@ async function renderAdmin(){
 }
 
 
-/* =========================
-   CREATE USER
-========================= */
-
 async function createUser(){
 
   if(
-    currentProfile?.role !== "ADMIN"
+    currentProfile?.role!=="ADMIN"
   )
     return;
 
@@ -4279,33 +4105,28 @@ async function createUser(){
     !name ||
     !email ||
     !password
-  ){
-
+  )
     return alert(
       "Заполните имя, email и пароль"
     );
 
-  }
-
 
   if(
-    !/^\S+@\S+\.\S+$/.test(email)
-  ){
-
+    !/^\S+@\S+\.\S+$/.test(
+      email
+    )
+  )
     return alert(
       "Введите корректный email"
     );
 
-  }
 
-
-  if(password.length < 6){
-
+  if(
+    password.length<6
+  )
     return alert(
       "Пароль минимум 6 символов"
     );
-
-  }
 
 
   const {
@@ -4326,51 +4147,45 @@ async function createUser(){
       );
 
 
-  if(error){
-
+  if(error)
     return alert(
-      "Ошибка создания USER: " +
+      "Ошибка создания USER: "+
       (
-        error.message ||
+        error.message||
         "Неизвестная ошибка"
       )
     );
 
-  }
 
-
-  if(!data?.ok){
-
+  if(!data?.ok)
     return alert(
-      "Ошибка создания USER: " +
+      "Ошибка создания USER: "+
       (
-        data?.error ||
+        data?.error||
         "Неизвестная ошибка"
       )
     );
-
-  }
 
 
   document
     .getElementById(
       "newName"
     )
-    .value = "";
+    .value="";
 
 
   document
     .getElementById(
       "newEmail"
     )
-    .value = "";
+    .value="";
 
 
   document
     .getElementById(
       "newPassword"
     )
-    .value = "";
+    .value="";
 
 
   await renderAdmin();
@@ -4383,14 +4198,10 @@ async function createUser(){
 }
 
 
-/* =========================
-   OPEN MANAGE
-========================= */
-
 async function openManage(id){
 
   if(
-    currentProfile?.role !== "ADMIN"
+    currentProfile?.role!=="ADMIN"
   )
     return;
 
@@ -4406,20 +4217,20 @@ async function openManage(id){
     await supabaseClient
       .from("profiles")
       .select("*")
-      .eq("id",id)
+      .eq(
+        "id",
+        id
+      )
       .single();
 
 
   if(
-    error ||
+    error||
     !u
-  ){
-
+  )
     return alert(
       "Пользователь не найден"
     );
-
-  }
 
 
   const {
@@ -4428,7 +4239,10 @@ async function openManage(id){
     await supabaseClient
       .from("requisites")
       .select("*")
-      .eq("user_id",id)
+      .eq(
+        "user_id",
+        id
+      )
       .order(
         "created_at",
         {
@@ -4440,7 +4254,7 @@ async function openManage(id){
 
 
   const r =
-    p || {};
+    p||{};
 
 
   document
@@ -4448,8 +4262,10 @@ async function openManage(id){
       "manageEmail"
     )
     .textContent =
-      "Редактирование: " +
-      (u.email || "");
+      "Редактирование: "+
+      (
+        u.email||""
+      );
 
 
   document
@@ -4457,7 +4273,7 @@ async function openManage(id){
       "mName"
     )
     .value =
-      u.name || "";
+      u.name||"";
 
 
   document
@@ -4465,14 +4281,14 @@ async function openManage(id){
       "mEmail"
     )
     .value =
-      u.email || "";
+      u.email||"";
 
 
   document
     .getElementById(
       "mPassword"
     )
-    .value = "";
+    .value="";
 
 
   document
@@ -4480,7 +4296,7 @@ async function openManage(id){
       "mStatus"
     )
     .value =
-      u.status || "active";
+      u.status||"active";
 
 
   document
@@ -4488,7 +4304,7 @@ async function openManage(id){
       "mDeposit"
     )
     .value =
-      u.deposit || 0;
+      u.deposit||0;
 
 
   document
@@ -4496,7 +4312,7 @@ async function openManage(id){
       "mTurnover"
     )
     .value =
-      u.turnover || 0;
+      u.turnover||0;
 
 
   document
@@ -4504,7 +4320,7 @@ async function openManage(id){
       "mProfit"
     )
     .value =
-      u.profit || 0;
+      u.profit||0;
 
 
   document
@@ -4512,7 +4328,7 @@ async function openManage(id){
       "mCommission"
     )
     .value =
-      u.commission || 0;
+      u.commission||0;
 
 
   document
@@ -4520,7 +4336,7 @@ async function openManage(id){
       "mDeals"
     )
     .value =
-      u.deals || 0;
+      u.deals||0;
 
 
   document
@@ -4528,7 +4344,7 @@ async function openManage(id){
       "mMethod"
     )
     .value =
-      r.payment_method ||
+      r.payment_method||
       "Trust Wallet";
 
 
@@ -4537,7 +4353,7 @@ async function openManage(id){
       "mNetwork"
     )
     .value =
-      r.network ||
+      r.network||
       "TRC20";
 
 
@@ -4546,7 +4362,7 @@ async function openManage(id){
       "mWallet"
     )
     .value =
-      r.wallet || "";
+      r.wallet||"";
 
 
   document
@@ -4554,11 +4370,11 @@ async function openManage(id){
       "mWalletLink"
     )
     .value =
-      r.wallet_link || "";
+      r.wallet_link||"";
 
 
   qrData =
-    r.qr_url || "";
+    r.qr_url||"";
 
 
   showQrPreview();
@@ -4574,10 +4390,6 @@ async function openManage(id){
 }
 
 
-/* =========================
-   CLOSE MANAGE
-========================= */
-
 function closeManage(){
 
   document
@@ -4588,16 +4400,12 @@ function closeManage(){
     .remove("show");
 
 
-  managedId = null;
+  managedId=null;
 
-  qrData = "";
+  qrData="";
 
 }
 
-
-/* =========================
-   SAVE MANAGED USER
-========================= */
 
 async function saveManagedUser(){
 
@@ -4624,13 +4432,10 @@ async function saveManagedUser(){
       .trim();
 
 
-  if(!newEmail){
-
+  if(!newEmail)
     return alert(
       "Email обязателен"
     );
-
-  }
 
 
   if(
@@ -4638,16 +4443,13 @@ async function saveManagedUser(){
     !/^https?:\/\//i.test(
       walletLink
     )
-  ){
-
+  )
     return alert(
       "Ссылка на кошелёк должна начинаться с http:// или https://"
     );
 
-  }
 
-
-  const profileUpdate = {
+  const profileUpdate={
 
     name:
       document
@@ -4655,7 +4457,7 @@ async function saveManagedUser(){
           "mName"
         )
         .value
-        .trim() ||
+        .trim()||
       "Пользователь",
 
     status:
@@ -4672,7 +4474,7 @@ async function saveManagedUser(){
             "mDeposit"
           )
           .value
-      ) || 0,
+      )||0,
 
     turnover:
       Number(
@@ -4681,7 +4483,7 @@ async function saveManagedUser(){
             "mTurnover"
           )
           .value
-      ) || 0,
+      )||0,
 
     profit:
       Number(
@@ -4690,7 +4492,7 @@ async function saveManagedUser(){
             "mProfit"
           )
           .value
-      ) || 0,
+      )||0,
 
     commission:
       Number(
@@ -4699,7 +4501,7 @@ async function saveManagedUser(){
             "mCommission"
           )
           .value
-      ) || 0,
+      )||0,
 
     deals:
       Number(
@@ -4708,10 +4510,11 @@ async function saveManagedUser(){
             "mDeals"
           )
           .value
-      ) || 0,
+      )||0,
 
     updated_at:
-      new Date().toISOString()
+      new Date()
+        .toISOString()
 
   };
 
@@ -4721,48 +4524,58 @@ async function saveManagedUser(){
   } =
     await supabaseClient
       .from("profiles")
-      .update(profileUpdate)
-      .eq("id",managedId);
+      .update(
+        profileUpdate
+      )
+      .eq(
+        "id",
+        managedId
+      );
 
 
-  if(e1){
-
+  if(e1)
     return alert(
-      "Ошибка сохранения профиля: " +
+      "Ошибка сохранения профиля: "+
       e1.message
     );
 
-  }
 
-
-  const req = {
+  const req={
 
     user_id:
       managedId,
 
     payment_method:
-      document.getElementById(
-        "mMethod"
-      ).value,
+      document
+        .getElementById(
+          "mMethod"
+        )
+        .value,
 
     network:
-      document.getElementById(
-        "mNetwork"
-      ).value,
+      document
+        .getElementById(
+          "mNetwork"
+        )
+        .value,
 
     wallet:
-      document.getElementById(
-        "mWallet"
-      ).value.trim(),
+      document
+        .getElementById(
+          "mWallet"
+        )
+        .value
+        .trim(),
 
     wallet_link:
       walletLink,
 
     qr_url:
-      qrData || null,
+      qrData||null,
 
     updated_at:
-      new Date().toISOString()
+      new Date()
+        .toISOString()
 
   };
 
@@ -4809,14 +4622,11 @@ async function saveManagedUser(){
   }
 
 
-  if(e2){
-
+  if(e2)
     return alert(
-      "Профиль сохранён, но реквизиты не сохранились: " +
+      "Профиль сохранён, но реквизиты не сохранились: "+
       e2.message
     );
-
-  }
 
 
   closeManage();
@@ -4832,10 +4642,6 @@ async function saveManagedUser(){
 
 }
 
-
-/* =========================
-   BLOCK USER
-========================= */
 
 async function toggleManagedStatus(){
 
@@ -4862,17 +4668,16 @@ async function toggleManagedStatus(){
     return;
 
 
-  if(u.role === "ADMIN"){
-
+  if(
+    u.role==="ADMIN"
+  )
     return alert(
       "ADMIN нельзя заблокировать"
     );
 
-  }
-
 
   const next =
-    u.status === "active"
+    u.status==="active"
       ? "blocked"
       : "active";
 
@@ -4885,7 +4690,8 @@ async function toggleManagedStatus(){
       .update({
         status:next,
         updated_at:
-          new Date().toISOString()
+          new Date()
+            .toISOString()
       })
       .eq(
         "id",
@@ -4908,14 +4714,11 @@ async function toggleManagedStatus(){
 }
 
 
-/* =========================
-   QR
-========================= */
-
 function previewQr(e){
 
   const file =
     e.target.files[0];
+
 
   if(!file)
     return;
@@ -4925,32 +4728,26 @@ function previewQr(e){
     !file.type.startsWith(
       "image/"
     )
-  ){
-
+  )
     return alert(
       "Выберите изображение QR-кода"
     );
 
-  }
-
 
   if(
     file.size >
-    2 * 1024 * 1024
-  ){
-
+    2*1024*1024
+  )
     return alert(
       "Изображение должно быть до 2 МБ"
     );
-
-  }
 
 
   const reader =
     new FileReader();
 
 
-  reader.onload = () => {
+  reader.onload=()=>{
 
     qrData =
       reader.result;
@@ -4988,14 +4785,14 @@ function showQrPreview(){
 
 function clearQr(){
 
-  qrData = "";
+  qrData="";
 
 
   document
     .getElementById(
       "mQrFile"
     )
-    .value = "";
+    .value="";
 
 
   showQrPreview();
@@ -5003,15 +4800,13 @@ function clearQr(){
 }
 
 
-/* =========================
-   ESC / AUTH
-========================= */
-
 document.addEventListener(
   "keydown",
   e => {
 
-    if(e.key === "Escape"){
+    if(
+      e.key==="Escape"
+    ){
 
       closeManage();
       closeReqModal();
@@ -5025,16 +4820,13 @@ document.addEventListener(
 supabaseClient
   .auth
   .onAuthStateChange(
-    (_event,session) => {
+    (_event,session)=>{
 
       if(
         session &&
         !currentUser
-      ){
-
+      )
         start();
-
-      }
 
     }
   );
